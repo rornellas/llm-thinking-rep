@@ -1,0 +1,4 @@
+variant=baseline rank=None seed=1337 step=1/400 train=4.1753 val=4.0672 aux=1.9432
+variant=baseline rank=None seed=1337 step=100/400 train=2.7199 val=2.8072 aux=1.6924
+variant=baseline rank=None seed=1337 step=200/400 train=2.5120 val=2.5429 aux=1.6168
+variant=baseline rank=None seed=1337 step=300/400 train=2.5315 val=2.4722 aux=1.5645
