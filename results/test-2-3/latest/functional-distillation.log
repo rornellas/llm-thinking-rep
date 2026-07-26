@@ -1,0 +1,35 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_3_functional_modal_distillation.py:130: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"teacher step={step}/{cfg.steps} ce={float(ce):.4f} aux={float(aux):.4f}", flush=True)
+teacher step=1/400 ce=4.1693 aux=1.9400
+teacher step=100/400 ce=2.7995 aux=1.6989
+teacher step=200/400 ce=2.5567 aux=1.6021
+teacher step=300/400 ce=2.4349 aux=1.5704
+teacher step=400/400 ce=2.3922 aux=1.5515
+distill rank=1 step=1/500 ce=3.5652 kl=0.9729 feature=1.5118
+distill rank=1 step=100/500 ce=2.5038 kl=0.0564 feature=0.2994
+distill rank=1 step=200/500 ce=2.4464 kl=0.0314 feature=0.1817
+distill rank=1 step=300/500 ce=2.5000 kl=0.0259 feature=0.1487
+distill rank=1 step=400/500 ce=2.3926 kl=0.0186 feature=0.1149
+distill rank=1 step=500/500 ce=2.3776 kl=0.0157 feature=0.0925
+rank=1 copied=23 trainable=147552 before={'teacher_loss': 2.3904973387718202, 'student_loss': 3.528174090385437, 'kl': 0.9826255738735199, 'moe_relative_error': 1.2153069631131541} after={'teacher_loss': 2.38267320394516, 'student_loss': 2.383334696292877, 'kl': 0.01899539600126445, 'moe_relative_error': 0.32640024139661283}
+distill rank=2 step=1/500 ce=3.6309 kl=1.0646 feature=1.6068
+distill rank=2 step=100/500 ce=2.4377 kl=0.0473 feature=0.2360
+distill rank=2 step=200/500 ce=2.4204 kl=0.0236 feature=0.1367
+distill rank=2 step=300/500 ce=2.3745 kl=0.0182 feature=0.1120
+distill rank=2 step=400/500 ce=2.4105 kl=0.0153 feature=0.0912
+distill rank=2 step=500/500 ce=2.3638 kl=0.0136 feature=0.0772
+rank=2 copied=23 trainable=221376 before={'teacher_loss': 2.411275494098663, 'student_loss': 3.6420256972312925, 'kl': 1.0855945348739624, 'moe_relative_error': 1.2402932234244703} after={'teacher_loss': 2.399604833126068, 'student_loss': 2.3883179426193237, 'kl': 0.015665563847869636, 'moe_relative_error': 0.2911001679870793}
+# Test 2.3 — functional distillation of trained experts
+
+**Decision:** **PASS_K1**
+
+All compatible non-expert weights and router weights are copied from the conventional teacher and frozen. Only modal matrices and codes are trained.
+
+| Rank | Expert params | Ideal expert compute | Loss before | Loss after | Loss/teacher | KL after | MoE error before | MoE error after |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 12.51% | 50.01% | 3.5282 | 2.3833 | 1.000× | 0.0190 | 121.53% | 32.64% |
+| 2 | 18.77% | 75.02% | 3.6420 | 2.3883 | 0.995× | 0.0157 | 124.03% | 29.11% |
+
+A positive result would demonstrate functional conversion by distillation, not analytic weight decomposition. The small model remains a mechanism test; scaling and multi-domain validation remain required.
+

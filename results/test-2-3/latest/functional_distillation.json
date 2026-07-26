@@ -1,0 +1,148 @@
+{
+  "decision": {
+    "rule": "PASS requires <=5% validation-loss penalty, KL <=0.10 nat/token, and layerwise MoE relative error <=35% after replacing only expert matrices.",
+    "verdict": "PASS_K1"
+  },
+  "history": {
+    "1": [
+      {
+        "aux": 1.6607897281646729,
+        "ce": 3.5651984214782715,
+        "feature": 1.5117640495300293,
+        "kl": 0.972935140132904,
+        "step": 1.0,
+        "total": 2.836071252822876
+      },
+      {
+        "aux": 1.542905330657959,
+        "ce": 2.503800868988037,
+        "feature": 0.29942435026168823,
+        "kl": 0.0564165860414505,
+        "step": 100.0,
+        "total": 1.1417150497436523
+      },
+      {
+        "aux": 1.5416630506515503,
+        "ce": 2.446429491043091,
+        "feature": 0.18169459700584412,
+        "kl": 0.031375087797641754,
+        "step": 200.0,
+        "total": 1.0220565795898438
+      },
+      {
+        "aux": 1.534472942352295,
+        "ce": 2.500002384185791,
+        "feature": 0.1486579179763794,
+        "kl": 0.025876764208078384,
+        "step": 300.0,
+        "total": 1.0134835243225098
+      },
+      {
+        "aux": 1.537019968032837,
+        "ce": 2.392554759979248,
+        "feature": 0.11485535651445389,
+        "kl": 0.018613897264003754,
+        "step": 400.0,
+        "total": 0.9472821354866028
+      },
+      {
+        "aux": 1.5398858785629272,
+        "ce": 2.377554178237915,
+        "feature": 0.09254993498325348,
+        "kl": 0.0156911201775074,
+        "step": 500.0,
+        "total": 0.9240162968635559
+      }
+    ],
+    "2": [
+      {
+        "aux": 1.644209861755371,
+        "ce": 3.6308655738830566,
+        "feature": 1.6067883968353271,
+        "kl": 1.0646334886550903,
+        "step": 1.0,
+        "total": 2.971421480178833
+      },
+      {
+        "aux": 1.5395792722702026,
+        "ce": 2.4377336502075195,
+        "feature": 0.2360420823097229,
+        "kl": 0.04733632504940033,
+        "step": 100.0,
+        "total": 1.066935420036316
+      },
+      {
+        "aux": 1.5499475002288818,
+        "ce": 2.42044997215271,
+        "feature": 0.136723130941391,
+        "kl": 0.023563362658023834,
+        "step": 200.0,
+        "total": 0.9758027791976929
+      },
+      {
+        "aux": 1.5415288209915161,
+        "ce": 2.374523162841797,
+        "feature": 0.1119953989982605,
+        "kl": 0.01819838397204876,
+        "step": 300.0,
+        "total": 0.9386842250823975
+      },
+      {
+        "aux": 1.5332924127578735,
+        "ce": 2.410524606704712,
+        "feature": 0.09121178835630417,
+        "kl": 0.015277007594704628,
+        "step": 400.0,
+        "total": 0.9343000650405884
+      },
+      {
+        "aux": 1.5467894077301025,
+        "ce": 2.3638479709625244,
+        "feature": 0.07723411917686462,
+        "kl": 0.013554316945374012,
+        "step": 500.0,
+        "total": 0.9068397283554077
+      }
+    ]
+  },
+  "metadata": {
+    "distill_steps": 500,
+    "seed": 1337,
+    "task": "Tiny Shakespeare character LM",
+    "teacher_steps": 400
+  },
+  "results": [
+    {
+      "elapsed_seconds": 47.98526824700002,
+      "expert_parameter_ratio": 0.12508138020833334,
+      "idealized_expert_compute_ratio": 0.5000813802083334,
+      "loss_ratio_to_teacher_after": 1.0002776261329593,
+      "loss_ratio_to_teacher_before": 1.4759163430811963,
+      "modal_rank": 1,
+      "moe_relative_error_after": 0.32640024139661283,
+      "moe_relative_error_before": 1.2153069631131541,
+      "teacher_student_kl_after": 0.01899539600126445,
+      "teacher_student_kl_before": 0.9826255738735199,
+      "trainable_modal_parameters": 147552,
+      "validation_loss_after": 2.383334696292877,
+      "validation_loss_before": 3.528174090385437,
+      "validation_loss_teacher": 2.38267320394516
+    },
+    {
+      "elapsed_seconds": 52.758979014999994,
+      "expert_parameter_ratio": 0.18766276041666666,
+      "idealized_expert_compute_ratio": 0.7501627604166666,
+      "loss_ratio_to_teacher_after": 0.9952963544868175,
+      "loss_ratio_to_teacher_before": 1.5104145943276734,
+      "modal_rank": 2,
+      "moe_relative_error_after": 0.2911001679870793,
+      "moe_relative_error_before": 1.2402932234244703,
+      "teacher_student_kl_after": 0.015665563847869636,
+      "teacher_student_kl_before": 1.0855945348739624,
+      "trainable_modal_parameters": 221376,
+      "validation_loss_after": 2.3883179426193237,
+      "validation_loss_before": 3.6420256972312925,
+      "validation_loss_teacher": 2.399604833126068
+    }
+  ]
+}
