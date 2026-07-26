@@ -1,0 +1,346 @@
+Layer 7: 64 experts; selected tensor payload=768.00 MiB
+
+Analyzing projection: gate
+  gate: loaded 8/64 experts
+  gate: loaded 16/64 experts
+  gate: loaded 24/64 experts
+  gate: loaded 32/64 experts
+  gate: loaded 40/64 experts
+  gate: loaded 48/64 experts
+  gate: loaded 56/64 experts
+  gate: loaded 64/64 experts
+
+Analyzing projection: up
+  up: loaded 8/64 experts
+  up: loaded 16/64 experts
+  up: loaded 24/64 experts
+  up: loaded 32/64 experts
+  up: loaded 40/64 experts
+  up: loaded 48/64 experts
+  up: loaded 56/64 experts
+  up: loaded 64/64 experts
+
+Analyzing projection: down
+  down: loaded 8/64 experts
+  down: loaded 16/64 experts
+  down: loaded 24/64 experts
+  down: loaded 32/64 experts
+  down: loaded 40/64 experts
+  down: loaded 48/64 experts
+  down: loaded 56/64 experts
+  down: loaded 64/64 experts
+
+================================================================================================
+Projection gate: 64 experts, shape 1024x2048, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.9904%; centered stable rank=50.11; participation ratio=62.21
+Variance ranks: 90%=56, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       98.9998% |    1.5625% |    99.0127% |   99.2740% |   99.2999%
+   1 |            1.9956% |       98.0070% |    3.1250% |    97.6538% |   99.2416% |   99.2924%
+   2 |            3.8848% |       97.0578% |    4.6876% |    96.7679% |   99.2339% |   99.2880%
+   3 |            5.7613% |       96.1057% |    6.2501% |    95.7709% |   99.2165% |   99.2867%
+   4 |            7.6316% |       95.1472% |    7.8127% |    94.6276% |   99.2147% |   99.2867%
+   5 |            9.4918% |       94.1842% |    9.3752% |    93.4889% |   99.2069% |   99.2794%
+   6 |           11.3442% |       93.2155% |   10.9378% |    92.1334% |   99.1977% |   99.2704%
+   7 |           13.1845% |       92.2429% |   12.5003% |    90.7200% |   99.1863% |   99.2494%
+   8 |           15.0211% |       91.2620% |   14.0629% |    89.4501% |   99.1769% |   99.2490%
+  12 |           22.2285% |       87.3061% |   20.3131% |    84.2659% |   99.1178% |   99.2459%
+  16 |           29.2983% |       83.2433% |   26.5633% |    78.0362% |   99.0623% |   99.1949%
+  24 |           42.7902% |       74.8806% |   39.0636% |    66.2105% |   98.9303% |   99.0341%
+  32 |           55.5444% |       66.0082% |   51.5640% |    54.7550% |   98.7502% |   98.9468%
+  48 |           79.5004% |       44.8236% |   76.5648% |    31.4498% |   97.9781% |   98.7105%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+
+================================================================================================
+Projection up: 64 experts, shape 1024x2048, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.5632%; centered stable rank=56.20; participation ratio=62.78
+Variance ranks: 90%=56, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       99.2153% |    1.5625% |    99.2178% |   99.3017% |   99.3901%
+   1 |            1.7793% |       98.3287% |    3.1250% |    97.9811% |   99.2992% |   99.3901%
+   2 |            3.5163% |       97.4553% |    4.6876% |    97.0154% |   99.2860% |   99.3544%
+   3 |            5.2369% |       96.5825% |    6.2501% |    96.0633% |   99.2792% |   99.3380%
+   4 |            6.9442% |       95.7085% |    7.8127% |    95.1155% |   99.2711% |   99.3363%
+   5 |            8.6467% |       94.8289% |    9.3752% |    94.1441% |   99.2504% |   99.3361%
+   6 |           10.3475% |       93.9420% |   10.9378% |    93.1587% |   99.2457% |   99.2996%
+   7 |           12.0468% |       93.0475% |   12.5003% |    92.0063% |   99.2298% |   99.2940%
+   8 |           13.7439% |       92.1454% |   14.0629% |    90.8743% |   99.1996% |   99.2930%
+  12 |           20.4825% |       88.4729% |   20.3131% |    86.5673% |   99.1462% |   99.2395%
+  16 |           27.1573% |       84.6782% |   26.5633% |    82.1586% |   99.0126% |   99.2012%
+  24 |           40.3452% |       76.6304% |   39.0636% |    71.5844% |   98.7883% |   99.0493%
+  32 |           53.2704% |       67.8227% |   51.5640% |    58.9682% |   98.5275% |   98.9781%
+  48 |           78.1391% |       46.3888% |   76.5648% |    33.6151% |   97.0207% |   97.9518%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+
+================================================================================================
+Projection down: 64 experts, shape 2048x1024, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.5679%; centered stable rank=56.90; participation ratio=62.85
+Variance ranks: 90%=57, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       99.2130% |    1.5625% |    99.2148% |   99.3129% |   99.3501%
+   1 |            1.7573% |       98.3373% |    3.1250% |    98.0152% |   99.3010% |   99.3212%
+   2 |            3.4663% |       97.4783% |    4.6876% |    97.0764% |   99.2932% |   99.3207%
+   3 |            5.1701% |       96.6142% |    6.2501% |    96.2036% |   99.2742% |   99.3145%
+   4 |            6.8672% |       95.7458% |    7.8127% |    95.2273% |   99.2519% |   99.3096%
+   5 |            8.5557% |       94.8739% |    9.3752% |    94.3122% |   99.2185% |   99.3045%
+   6 |           10.2388% |       93.9968% |   10.9378% |    93.3182% |   99.2076% |   99.2984%
+   7 |           11.9181% |       93.1133% |   12.5003% |    92.3868% |   99.1924% |   99.2953%
+   8 |           13.5954% |       92.2225% |   14.0629% |    91.3629% |   99.1792% |   99.2678%
+  12 |           20.2696% |       88.5891% |   20.3131% |    86.9114% |   99.0054% |   99.1592%
+  16 |           26.8810% |       84.8367% |   26.5633% |    82.3877% |   98.8331% |   99.0415%
+  24 |           39.9412% |       76.8877% |   39.0636% |    72.7405% |   98.5514% |   98.8494%
+  32 |           52.7884% |       68.1699% |   51.5640% |    61.7934% |   98.2153% |   98.3184%
+  48 |           77.7950% |       46.7513% |   76.5648% |    34.4120% |   96.4940% |   97.1314%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-17/modal_weight_probe_v2.json
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-17/modal_weight_probe_v2.csv
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-17/modal_spectrum_v2.csv
+Layer 7: 64 experts; selected tensor payload=768.00 MiB
+
+Analyzing projection: gate
+  gate: loaded 8/64 experts
+  gate: loaded 16/64 experts
+  gate: loaded 24/64 experts
+  gate: loaded 32/64 experts
+  gate: loaded 40/64 experts
+  gate: loaded 48/64 experts
+  gate: loaded 56/64 experts
+  gate: loaded 64/64 experts
+
+Analyzing projection: up
+  up: loaded 8/64 experts
+  up: loaded 16/64 experts
+  up: loaded 24/64 experts
+  up: loaded 32/64 experts
+  up: loaded 40/64 experts
+  up: loaded 48/64 experts
+  up: loaded 56/64 experts
+  up: loaded 64/64 experts
+
+Analyzing projection: down
+  down: loaded 8/64 experts
+  down: loaded 16/64 experts
+  down: loaded 24/64 experts
+  down: loaded 32/64 experts
+  down: loaded 40/64 experts
+  down: loaded 48/64 experts
+  down: loaded 56/64 experts
+  down: loaded 64/64 experts
+
+================================================================================================
+Projection gate: 64 experts, shape 1024x2048, sampled 131,072/2,097,152 coordinates
+Common energy fraction=2.0052%; centered stable rank=50.13; participation ratio=62.21
+Variance ranks: 90%=56, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       98.9923% |    1.5625% |    99.0058% |   99.2704% |   99.3234%
+   1 |            1.9947% |       98.0001% |    3.1250% |    97.6763% |   99.2540% |   99.3148%
+   2 |            3.8883% |       97.0487% |    4.6876% |    96.6788% |   99.2294% |   99.3105%
+   3 |            5.7692% |       96.0944% |    6.2501% |    95.6666% |   99.2259% |   99.2996%
+   4 |            7.6375% |       95.1370% |    7.8127% |    94.6463% |   99.2202% |   99.2902%
+   5 |            9.4961% |       94.1749% |    9.3752% |    93.1941% |   99.2192% |   99.2868%
+   6 |           11.3486% |       93.2061% |   10.9378% |    91.9658% |   99.2075% |   99.2271%
+   7 |           13.1974% |       92.2291% |   12.5003% |    90.5917% |   99.1791% |   99.2210%
+   8 |           15.0350% |       91.2476% |   14.0629% |    89.2155% |   99.1743% |   99.2209%
+  12 |           22.2290% |       87.2992% |   20.3131% |    84.4919% |   99.0896% |   99.2060%
+  16 |           29.2811% |       83.2471% |   26.5633% |    78.2486% |   99.0397% |   99.1455%
+  24 |           42.7695% |       74.8885% |   39.0636% |    66.2192% |   98.8269% |   98.9779%
+  32 |           55.4970% |       66.0384% |   51.5640% |    55.3838% |   98.7275% |   98.8621%
+  48 |           79.4854% |       44.8367% |   76.5648% |    31.3921% |   98.1382% |   98.4810%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+
+================================================================================================
+Projection up: 64 experts, shape 1024x2048, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.5623%; centered stable rank=56.63; participation ratio=62.79
+Variance ranks: 90%=56, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       99.2158% |    1.5625% |    99.2182% |   99.3191% |   99.3665%
+   1 |            1.7660% |       98.3358% |    3.1250% |    97.9936% |   99.3066% |   99.3627%
+   2 |            3.4941% |       97.4670% |    4.6876% |    97.0759% |   99.2995% |   99.3535%
+   3 |            5.2186% |       96.5922% |    6.2501% |    96.0432% |   99.2847% |   99.3467%
+   4 |            6.9392% |       95.7115% |    7.8127% |    95.1393% |   99.2607% |   99.3164%
+   5 |            8.6493% |       94.8280% |    9.3752% |    94.1815% |   99.2494% |   99.3164%
+   6 |           10.3551% |       93.9385% |   10.9378% |    93.1066% |   99.2451% |   99.3017%
+   7 |           12.0575% |       93.0422% |   12.5003% |    91.9634% |   99.2246% |   99.2941%
+   8 |           13.7530% |       92.1410% |   14.0629% |    90.9263% |   99.2096% |   99.2941%
+  12 |           20.4753% |       88.4773% |   20.3131% |    86.5009% |   99.1535% |   99.1997%
+  16 |           27.1447% |       84.6859% |   26.5633% |    81.6316% |   99.0893% |   99.1679%
+  24 |           40.2998% |       76.6600% |   39.0636% |    71.1732% |   98.9213% |   99.0603%
+  32 |           53.2004% |       67.8738% |   51.5640% |    59.5757% |   98.5745% |   98.8390%
+  48 |           78.1034% |       46.4268% |   76.5648% |    33.3287% |   97.3338% |   98.1616%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+
+================================================================================================
+Projection down: 64 experts, shape 2048x1024, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.5660%; centered stable rank=56.83; participation ratio=62.85
+Variance ranks: 90%=57, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       99.2139% |    1.5625% |    99.2156% |   99.2900% |   99.3519%
+   1 |            1.7598% |       98.3371% |    3.1250% |    97.9980% |   99.2807% |   99.3362%
+   2 |            3.4772% |       97.4737% |    4.6876% |    97.0919% |   99.2551% |   99.3360%
+   3 |            5.1801% |       96.6101% |    6.2501% |    96.0468% |   99.2462% |   99.3348%
+   4 |            6.8772% |       95.7416% |    7.8127% |    95.1598% |   99.2245% |   99.3030%
+   5 |            8.5714% |       94.8667% |    9.3752% |    94.1713% |   99.1799% |   99.2972%
+   6 |           10.2572% |       93.9880% |   10.9378% |    93.2663% |   99.1260% |   99.2914%
+   7 |           11.9392% |       93.1030% |   12.5003% |    92.3004% |   99.1066% |   99.2507%
+   8 |           13.6117% |       92.2147% |   14.0629% |    91.1596% |   99.0826% |   99.1976%
+  12 |           20.2758% |       88.5866% |   20.3131% |    87.0330% |   98.9045% |   99.0895%
+  16 |           26.8975% |       84.8279% |   26.5633% |    82.5665% |   98.7753% |   99.0101%
+  24 |           39.9654% |       76.8729% |   39.0636% |    72.6883% |   98.5180% |   98.8850%
+  32 |           52.8243% |       68.1446% |   51.5640% |    61.8307% |   98.1443% |   98.5838%
+  48 |           77.7973% |       46.7494% |   76.5648% |    34.6973% |   96.3302% |   97.7484%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-23/modal_weight_probe_v2.json
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-23/modal_weight_probe_v2.csv
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-23/modal_spectrum_v2.csv
+Layer 7: 64 experts; selected tensor payload=768.00 MiB
+
+Analyzing projection: gate
+  gate: loaded 8/64 experts
+  gate: loaded 16/64 experts
+  gate: loaded 24/64 experts
+  gate: loaded 32/64 experts
+  gate: loaded 40/64 experts
+  gate: loaded 48/64 experts
+  gate: loaded 56/64 experts
+  gate: loaded 64/64 experts
+
+Analyzing projection: up
+  up: loaded 8/64 experts
+  up: loaded 16/64 experts
+  up: loaded 24/64 experts
+  up: loaded 32/64 experts
+  up: loaded 40/64 experts
+  up: loaded 48/64 experts
+  up: loaded 56/64 experts
+  up: loaded 64/64 experts
+
+Analyzing projection: down
+  down: loaded 8/64 experts
+  down: loaded 16/64 experts
+  down: loaded 24/64 experts
+  down: loaded 32/64 experts
+  down: loaded 40/64 experts
+  down: loaded 48/64 experts
+  down: loaded 56/64 experts
+  down: loaded 64/64 experts
+
+================================================================================================
+Projection gate: 64 experts, shape 1024x2048, sampled 131,072/2,097,152 coordinates
+Common energy fraction=2.0134%; centered stable rank=50.09; participation ratio=62.19
+Variance ranks: 90%=56, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       98.9882% |    1.5625% |    99.0016% |   99.2626% |   99.2810%
+   1 |            1.9965% |       97.9951% |    3.1250% |    97.6683% |   99.2333% |   99.2702%
+   2 |            3.8887% |       97.0444% |    4.6876% |    96.7064% |   99.2330% |   99.2662%
+   3 |            5.7723% |       96.0887% |    6.2501% |    95.7414% |   99.2226% |   99.2406%
+   4 |            7.6549% |       95.1241% |    7.8127% |    94.5319% |   99.2143% |   99.2372%
+   5 |            9.5223% |       94.1573% |    9.3752% |    93.4114% |   99.2142% |   99.2366%
+   6 |           11.3765% |       93.1875% |   10.9378% |    92.2680% |   99.2023% |   99.2364%
+   7 |           13.2277% |       92.2091% |   12.5003% |    90.8485% |   99.1827% |   99.2331%
+   8 |           15.0552% |       91.2329% |   14.0629% |    89.4152% |   99.1788% |   99.2048%
+  12 |           22.2705% |       87.2723% |   20.3131% |    84.2380% |   99.1176% |   99.1789%
+  16 |           29.3338% |       83.2126% |   26.5633% |    78.2475% |   99.0417% |   99.1584%
+  24 |           42.8484% |       74.8337% |   39.0636% |    65.9531% |   98.8958% |   99.0492%
+  32 |           55.5839% |       65.9711% |   51.5640% |    55.3127% |   98.6953% |   98.9705%
+  48 |           79.5349% |       44.7806% |   76.5648% |    31.4303% |   97.8900% |   98.6377%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+
+================================================================================================
+Projection up: 64 experts, shape 1024x2048, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.5659%; centered stable rank=55.93; participation ratio=62.79
+Variance ranks: 90%=56, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       99.2140% |    1.5625% |    99.2161% |   99.3106% |   99.3236%
+   1 |            1.7879% |       98.3231% |    3.1250% |    98.0382% |   99.2894% |   99.3116%
+   2 |            3.5210% |       97.4517% |    4.6876% |    96.9733% |   99.2845% |   99.2982%
+   3 |            5.2393% |       96.5799% |    6.2501% |    96.0723% |   99.2586% |   99.2863%
+   4 |            6.9529% |       95.7027% |    7.8127% |    95.1587% |   99.2538% |   99.2678%
+   5 |            8.6595% |       94.8210% |    9.3752% |    94.2218% |   99.2467% |   99.2636%
+   6 |           10.3610% |       93.9337% |   10.9378% |    93.2394% |   99.2181% |   99.2484%
+   7 |           12.0546% |       93.0421% |   12.5003% |    92.2565% |   99.1886% |   99.2430%
+   8 |           13.7461% |       92.1430% |   14.0629% |    91.2013% |   99.1652% |   99.2189%
+  12 |           20.4697% |       88.4788% |   20.3131% |    86.6637% |   99.0707% |   99.1743%
+  16 |           27.1273% |       84.6945% |   26.5633% |    82.2723% |   98.9755% |   99.1358%
+  24 |           40.2902% |       76.6648% |   39.0636% |    71.8119% |   98.8491% |   99.0133%
+  32 |           53.2061% |       67.8684% |   51.5640% |    59.7669% |   98.5993% |   98.7760%
+  48 |           78.0946% |       46.4353% |   76.5648% |    33.5520% |   97.4949% |   98.1773%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+
+================================================================================================
+Projection down: 64 experts, shape 2048x1024, sampled 131,072/2,097,152 coordinates
+Common energy fraction=1.5568%; centered stable rank=57.11; participation ratio=62.85
+Variance ranks: 90%=57, 95%=60, 99%=63
+rank | explained residual | error/original | param ratio | mean expert | p95 expert | max expert
+   0 |            0.0000% |       99.2185% |    1.5625% |    99.2202% |   99.3058% |   99.3333%
+   1 |            1.7511% |       98.3460% |    3.1250% |    97.9920% |   99.2879% |   99.3080%
+   2 |            3.4545% |       97.4897% |    4.6876% |    97.1503% |   99.2782% |   99.3040%
+   3 |            5.1573% |       96.6262% |    6.2501% |    96.2177% |   99.2226% |   99.2840%
+   4 |            6.8561% |       95.7569% |    7.8127% |    95.2874% |   99.2152% |   99.2744%
+   5 |            8.5464% |       94.8841% |    9.3752% |    94.2898% |   99.1764% |   99.2630%
+   6 |           10.2308% |       94.0062% |   10.9378% |    93.2859% |   99.1586% |   99.2393%
+   7 |           11.9102% |       93.1227% |   12.5003% |    92.2348% |   99.1501% |   99.1836%
+   8 |           13.5843% |       92.2336% |   14.0629% |    91.3082% |   99.1119% |   99.1563%
+  12 |           20.2485% |       88.6058% |   20.3131% |    87.1845% |   99.0328% |   99.1103%
+  16 |           26.8699% |       84.8479% |   26.5633% |    82.8779% |   98.8384% |   99.0286%
+  24 |           39.9429% |       76.8909% |   39.0636% |    73.1865% |   98.6288% |   98.9045%
+  32 |           52.8247% |       68.1476% |   51.5640% |    62.0471% |   98.2824% |   98.5005%
+  48 |           77.8249% |       46.7224% |   76.5648% |    34.8651% |   97.0044% |   97.5980%
+  63 |          100.0000% |        0.0000% |  100.0030% |     0.0000% |    0.0000% |    0.0000%
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-31/modal_weight_probe_v2.json
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-31/modal_weight_probe_v2.csv
+Wrote /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/seed-31/modal_spectrum_v2.csv
+[
+  {
+    "projection": "down",
+    "runs": 3,
+    "rank90_mean": 57.0,
+    "rank90_std": 0.0,
+    "rank95_mean": 60.0,
+    "rank95_std": 0.0,
+    "rank99_mean": 63.0,
+    "rank99_std": 0.0,
+    "common_energy_fraction_mean": 0.01563552443837896,
+    "common_energy_fraction_std": 5.9223536240902314e-05,
+    "stable_rank_mean": 56.9459270146019,
+    "stable_rank_std": 0.1457284345080096,
+    "participation_ratio_mean": 62.85265589449261,
+    "participation_ratio_std": 0.0018149613631776643,
+    "geometric_screen": "FAIL"
+  },
+  {
+    "projection": "gate",
+    "runs": 3,
+    "rank90_mean": 56.0,
+    "rank90_std": 0.0,
+    "rank95_mean": 60.0,
+    "rank95_std": 0.0,
+    "rank99_mean": 63.0,
+    "rank99_std": 0.0,
+    "common_energy_fraction_mean": 0.020029904000887725,
+    "common_energy_fraction_std": 0.0001167072443270137,
+    "stable_rank_mean": 50.10991717884841,
+    "stable_rank_std": 0.022294997317065416,
+    "participation_ratio_mean": 62.20377241263585,
+    "participation_ratio_std": 0.012519158228225526,
+    "geometric_screen": "FAIL"
+  },
+  {
+    "projection": "up",
+    "runs": 3,
+    "rank90_mean": 56.0,
+    "rank90_std": 0.0,
+    "rank95_mean": 60.0,
+    "rank95_std": 0.0,
+    "rank99_mean": 63.0,
+    "rank99_std": 0.0,
+    "common_energy_fraction_mean": 0.015637873777929193,
+    "common_energy_fraction_std": 1.875255717844328e-05,
+    "stable_rank_mean": 56.253868895165084,
+    "stable_rank_std": 0.3494134687387093,
+    "participation_ratio_mean": 62.79003302127512,
+    "participation_ratio_std": 0.004457835402326781,
+    "geometric_screen": "FAIL"
+  }
+]
+
+Scout complete. Aggregate verdict: /home/runner/work/llm-thinking-rep/llm-thinking-rep/modal_moe_experiment/results/olmoe_l7_scout/aggregate/VERDICT.md
