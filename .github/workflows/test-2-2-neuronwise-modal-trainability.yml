@@ -1,0 +1,105 @@
+name: Modal MoE — Test 2.2 neuron-wise modal trainability
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-2-2-neuronwise-modal-trainability.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-2-2-neuronwise
+  cancel-in-progress: true
+
+jobs:
+  neuronwise-trainability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0"
+
+      - name: Materialize pinned Tiny Shakespeare
+        run: |
+          mkdir -p data
+          python - <<'PY'
+          import base64, json, urllib.request
+          from pathlib import Path
+          sha="7dcb3a2d4cc3b48b6283dd46870bfeb78f88aac9"
+          req=urllib.request.Request(f"https://api.github.com/repos/karpathy/char-rnn/git/blobs/{sha}",headers={"Accept":"application/vnd.github+json","User-Agent":"modal-moe-experiment"})
+          with urllib.request.urlopen(req,timeout=60) as response: payload=json.load(response)
+          Path("data/tinyshakespeare.txt").write_bytes(base64.b64decode(payload["content"]))
+          PY
+
+      - name: Validate both modal execution graphs
+        run: |
+          python experiments/test_2_0_modal_moe_trainability.py --self-test
+          python experiments/test_2_2_neuronwise_modal_trainability.py --self-test
+
+      - name: Train scalar and neuron-wise modal MoEs
+        run: |
+          python experiments/test_2_2_neuronwise_modal_trainability.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --text data/tinyshakespeare.txt \
+            --output-dir results/test-2-2/latest \
+            --steps 400 \
+            --seed 1337 \
+            --threads 4 \
+            2>&1 | tee neuronwise-trainability.log
+
+      - name: Publish verdict
+        if: always()
+        run: |
+          [[ -f results/test-2-2/latest/VERDICT.md ]] && cat results/test-2-2/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist results
+        if: always()
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p results/test-2-2/latest runs
+          [[ -f neuronwise-trainability.log ]] && cp neuronwise-trainability.log results/test-2-2/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload={"workflow":"Modal MoE — Test 2.2 neuron-wise modal trainability","run_id":int(os.environ["GITHUB_RUN_ID"]),"status":os.environ["RUN_STATUS"],"finished_at":datetime.now(timezone.utc).isoformat()}
+          Path("runs/test-2-2-latest.json").write_text(json.dumps(payload,indent=2)+"\n")
+          Path("results/test-2-2/latest/run.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/test-2-2/latest runs/test-2-2-latest.json
+          git commit -m "results: neuron-wise modal trainability ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modal-moe-test-2-2-neuronwise-${{ github.run_id }}
+          path: |
+            results/test-2-2/latest
+            neuronwise-trainability.log
+          if-no-files-found: warn
+          retention-days: 14
