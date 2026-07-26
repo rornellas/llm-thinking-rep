@@ -1,0 +1,209 @@
+signatures: expert 0 (1/64)
+signatures: expert 1 (2/64)
+signatures: expert 2 (3/64)
+signatures: expert 3 (4/64)
+signatures: expert 4 (5/64)
+signatures: expert 5 (6/64)
+signatures: expert 6 (7/64)
+signatures: expert 7 (8/64)
+signatures: expert 8 (9/64)
+signatures: expert 9 (10/64)
+signatures: expert 10 (11/64)
+signatures: expert 11 (12/64)
+signatures: expert 12 (13/64)
+signatures: expert 13 (14/64)
+signatures: expert 14 (15/64)
+signatures: expert 15 (16/64)
+signatures: expert 16 (17/64)
+signatures: expert 17 (18/64)
+signatures: expert 18 (19/64)
+signatures: expert 19 (20/64)
+signatures: expert 20 (21/64)
+signatures: expert 21 (22/64)
+signatures: expert 22 (23/64)
+signatures: expert 23 (24/64)
+signatures: expert 24 (25/64)
+signatures: expert 25 (26/64)
+signatures: expert 26 (27/64)
+signatures: expert 27 (28/64)
+signatures: expert 28 (29/64)
+signatures: expert 29 (30/64)
+signatures: expert 30 (31/64)
+signatures: expert 31 (32/64)
+signatures: expert 32 (33/64)
+signatures: expert 33 (34/64)
+signatures: expert 34 (35/64)
+signatures: expert 35 (36/64)
+signatures: expert 36 (37/64)
+signatures: expert 37 (38/64)
+signatures: expert 38 (39/64)
+signatures: expert 39 (40/64)
+signatures: expert 40 (41/64)
+signatures: expert 41 (42/64)
+signatures: expert 42 (43/64)
+signatures: expert 43 (44/64)
+signatures: expert 44 (45/64)
+signatures: expert 45 (46/64)
+signatures: expert 46 (47/64)
+signatures: expert 47 (48/64)
+signatures: expert 48 (49/64)
+signatures: expert 49 (50/64)
+signatures: expert 50 (51/64)
+signatures: expert 51 (52/64)
+signatures: expert 52 (53/64)
+signatures: expert 53 (54/64)
+signatures: expert 54 (55/64)
+signatures: expert 55 (56/64)
+signatures: expert 56 (57/64)
+signatures: expert 57 (58/64)
+signatures: expert 58 (59/64)
+signatures: expert 59 (60/64)
+signatures: expert 60 (61/64)
+signatures: expert 61 (62/64)
+signatures: expert 62 (63/64)
+signatures: expert 63 (64/64)
+matched 8/512 queries
+matched 16/512 queries
+matched 24/512 queries
+matched 32/512 queries
+matched 40/512 queries
+matched 48/512 queries
+matched 56/512 queries
+matched 64/512 queries
+matched 72/512 queries
+matched 80/512 queries
+matched 88/512 queries
+matched 96/512 queries
+matched 104/512 queries
+matched 112/512 queries
+matched 120/512 queries
+matched 128/512 queries
+matched 136/512 queries
+matched 144/512 queries
+matched 152/512 queries
+matched 160/512 queries
+matched 168/512 queries
+matched 176/512 queries
+matched 184/512 queries
+matched 192/512 queries
+matched 200/512 queries
+matched 208/512 queries
+matched 216/512 queries
+matched 224/512 queries
+matched 232/512 queries
+matched 240/512 queries
+matched 248/512 queries
+matched 256/512 queries
+matched 264/512 queries
+matched 272/512 queries
+matched 280/512 queries
+matched 288/512 queries
+matched 296/512 queries
+matched 304/512 queries
+matched 312/512 queries
+matched 320/512 queries
+matched 328/512 queries
+matched 336/512 queries
+matched 344/512 queries
+matched 352/512 queries
+matched 360/512 queries
+matched 368/512 queries
+matched 376/512 queries
+matched 384/512 queries
+matched 392/512 queries
+matched 400/512 queries
+matched 408/512 queries
+matched 416/512 queries
+matched 424/512 queries
+matched 432/512 queries
+matched 440/512 queries
+matched 448/512 queries
+matched 456/512 queries
+matched 464/512 queries
+matched 472/512 queries
+matched 480/512 queries
+matched 488/512 queries
+matched 496/512 queries
+matched 504/512 queries
+matched 512/512 queries
+exact candidates: expert 0 (1/64)
+exact candidates: expert 1 (2/64)
+exact candidates: expert 2 (3/64)
+exact candidates: expert 3 (4/64)
+exact candidates: expert 4 (5/64)
+exact candidates: expert 5 (6/64)
+exact candidates: expert 6 (7/64)
+exact candidates: expert 7 (8/64)
+exact candidates: expert 8 (9/64)
+exact candidates: expert 9 (10/64)
+exact candidates: expert 10 (11/64)
+exact candidates: expert 11 (12/64)
+exact candidates: expert 12 (13/64)
+exact candidates: expert 13 (14/64)
+exact candidates: expert 14 (15/64)
+exact candidates: expert 15 (16/64)
+exact candidates: expert 16 (17/64)
+exact candidates: expert 17 (18/64)
+exact candidates: expert 18 (19/64)
+exact candidates: expert 19 (20/64)
+exact candidates: expert 20 (21/64)
+exact candidates: expert 21 (22/64)
+exact candidates: expert 22 (23/64)
+exact candidates: expert 23 (24/64)
+exact candidates: expert 24 (25/64)
+exact candidates: expert 25 (26/64)
+exact candidates: expert 26 (27/64)
+exact candidates: expert 27 (28/64)
+exact candidates: expert 28 (29/64)
+exact candidates: expert 29 (30/64)
+exact candidates: expert 30 (31/64)
+exact candidates: expert 31 (32/64)
+exact candidates: expert 32 (33/64)
+exact candidates: expert 33 (34/64)
+exact candidates: expert 34 (35/64)
+exact candidates: expert 35 (36/64)
+exact candidates: expert 36 (37/64)
+exact candidates: expert 37 (38/64)
+exact candidates: expert 38 (39/64)
+exact candidates: expert 39 (40/64)
+exact candidates: expert 40 (41/64)
+exact candidates: expert 41 (42/64)
+exact candidates: expert 42 (43/64)
+exact candidates: expert 43 (44/64)
+exact candidates: expert 44 (45/64)
+exact candidates: expert 45 (46/64)
+exact candidates: expert 46 (47/64)
+exact candidates: expert 47 (48/64)
+exact candidates: expert 48 (49/64)
+exact candidates: expert 49 (50/64)
+exact candidates: expert 50 (51/64)
+exact candidates: expert 51 (52/64)
+exact candidates: expert 52 (53/64)
+exact candidates: expert 53 (54/64)
+exact candidates: expert 54 (55/64)
+exact candidates: expert 55 (56/64)
+exact candidates: expert 56 (57/64)
+exact candidates: expert 57 (58/64)
+exact candidates: expert 58 (59/64)
+exact candidates: expert 59 (60/64)
+exact candidates: expert 60 (61/64)
+exact candidates: expert 61 (62/64)
+exact candidates: expert 62 (63/64)
+exact candidates: expert 63 (64/64)
+# Test 0.8 — permutation-invariant neuron dictionary screen
+
+**Decision:** **FAIL**
+
+Queries are matched to all neurons from other experts using training coordinates and then scored on disjoint holdout coordinates and all 2,048 dimensions.
+
+| Metric | Mean | Median | p95 | Maximum |
+|---|---:|---:|---:|---:|
+| Train-selected top1 / training | 0.3821 | 0.3767 | 0.4297 | 0.6797 |
+| Train-selected top1 / holdout | 0.0566 | 0.0435 | 0.2471 | 0.6412 |
+| Train-selected top1 / exact | 0.0387 | 0.0181 | 0.2376 | 0.6000 |
+| Best-holdout among train top64 / exact | 0.0671 | 0.0266 | 0.2815 | 0.6000 |
+| Random cross-expert / exact | 0.0090 | 0.0087 | 0.0316 | 0.0561 |
+
+A compact directly executed dictionary needs very high cross-expert reuse; cosine-like scores near zero indicate unrelated triplets, while scores near one indicate reusable atoms.
+The top64 oracle is deliberately optimistic and is not a deployable selection rule.
+
