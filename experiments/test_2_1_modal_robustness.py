@@ -17,6 +17,7 @@ import csv
 import importlib.util
 import json
 import math
+import sys
 from dataclasses import asdict
 from pathlib import Path
 from statistics import mean, pstdev
@@ -28,6 +29,7 @@ def load_source(path: Path):
     if spec is None or spec.loader is None:
         raise RuntimeError(path)
     module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
