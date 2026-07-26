@@ -1,0 +1,194 @@
+name: Modal MoE — Test 1.1b routed expert subspaces retry
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-1-1b-routed-expert-subspaces-retry.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-1-1-routed-subspaces
+  cancel-in-progress: true
+
+jobs:
+  routed-subspaces:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_XET: "1"
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload = {
+              "workflow": "Modal MoE — Test 1.1b routed expert subspaces retry",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-1-1b-latest.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-1-1b-latest.json
+          git commit -m "chore: register routed-subspace retry ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Install build and analysis dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential cmake ninja-build libgomp1
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir "numpy>=2.0" "huggingface_hub>=0.24"
+
+      - name: Build pinned llama.cpp expert collector
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/ggml-org/llama.cpp.git "$RUNNER_TEMP/llama.cpp"
+          cd "$RUNNER_TEMP/llama.cpp"
+          git checkout d4d057b6dd6a9df2a44479a68d737154600e6162
+          cp "$GITHUB_WORKSPACE/experiments/test_1_1_expert_activation_capture.cpp" examples/eval-callback/eval-callback.cpp
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DGGML_NATIVE=OFF \
+            -DLLAMA_CURL=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_SERVER=OFF
+          cmake --build build --target llama-eval-callback -j4
+          test -x build/bin/llama-eval-callback
+
+      - name: Validate routed analysis
+        shell: bash
+        run: python experiments/test_1_1_analyze_routed_expert_subspaces.py --self-test
+
+      - name: Restore official GGUF cache
+        id: model-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/olmoe-gguf
+          key: olmoe-1b-7b-0924-q4-k-m-3a970199d0f87db4e3e57275abb93812bf10fd83
+
+      - name: Download official OLMoE Q4_K_M GGUF when cache misses
+        if: steps.model-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from huggingface_hub import hf_hub_download
+          print(hf_hub_download(
+              repo_id="allenai/OLMoE-1B-7B-0924-GGUF",
+              filename="olmoe-1b-7b-0924-q4_k_m.gguf",
+              local_dir=os.path.join(os.environ["RUNNER_TEMP"], "olmoe-gguf"),
+          ))
+          PY
+
+      - name: Resolve model path
+        shell: bash
+        run: |
+          set -euo pipefail
+          model_path="$(find "$RUNNER_TEMP/olmoe-gguf" -maxdepth 3 -name 'olmoe-1b-7b-0924-q4_k_m.gguf' -print -quit)"
+          test -s "$model_path"
+          printf '%s' "$model_path" > "$RUNNER_TEMP/olmoe_gguf_path.txt"
+          ls -lh "$model_path"
+
+      - name: Capture routed layer-7 expert activations
+        shell: bash
+        env:
+          CAPTURE_DIR: ${{ github.workspace }}/expert_activation_capture
+          CAPTURE_MAX_TOKENS: "768"
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/llama.cpp/build/bin/llama-eval-callback" \
+            -m "$(cat "$RUNNER_TEMP/olmoe_gguf_path.txt")" \
+            -f experiments/calibration_corpus_multidomain.txt \
+            -c 1024 -b 768 -ub 768 -t 4 \
+            2>&1 | tee expert-activation-capture.log
+          find expert_activation_capture -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
+          for tensor in ffn_norm-7 ffn_moe_topk-7 ffn_moe_weights-7 ffn_moe_gate-7 ffn_moe_up-7 ffn_moe_swiglu-7 ffn_moe_down-7 ffn_moe_out-7; do
+            test -n "$(find expert_activation_capture -maxdepth 1 -name "*${tensor}*.f32" -print -quit)"
+          done
+
+      - name: Analyze routed expert subspaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_1_1_analyze_routed_expert_subspaces.py \
+            --capture-dir expert_activation_capture \
+            --output-dir results/test-1-1/latest \
+            --ranks 4,8,16,24,32,48,64,128,256,512 \
+            --seed 20260731 \
+            2>&1 | tee routed-subspace-analysis.log
+
+      - name: Publish verdict
+        if: always()
+        shell: bash
+        run: |
+          [[ -f results/test-1-1/latest/VERDICT.md ]] && cat results/test-1-1/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || echo 'No verdict produced.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Persist compact result
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-1-1/latest runs
+          [[ -f expert-activation-capture.log ]] && cp expert-activation-capture.log results/test-1-1/latest/
+          [[ -f routed-subspace-analysis.log ]] && cp routed-subspace-analysis.log results/test-1-1/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          marker = Path("runs/test-1-1b-latest.json")
+          payload = json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({"run_id": int(os.environ["GITHUB_RUN_ID"]), "status": os.environ["RUN_STATUS"], "finished_at": datetime.now(timezone.utc).isoformat()})
+          marker.write_text(json.dumps(payload, indent=2) + "\n")
+          Path("results/test-1-1/latest/run.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/test-1-1/latest runs/test-1-1b-latest.json
+          git commit -m "results: routed-subspace retry ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload activation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olmoe-test-1-1b-routed-subspaces-${{ github.run_id }}
+          path: |
+            expert_activation_capture
+            results/test-1-1/latest
+            expert-activation-capture.log
+            routed-subspace-analysis.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 6
