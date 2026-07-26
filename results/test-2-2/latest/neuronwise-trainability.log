@@ -1,4 +1,42 @@
 variant=baseline rank=None seed=1337 step=1/400 train=4.1753 val=4.0686 aux=1.9432
-variant=baseline rank=None seed=1337 step=100/400 train=2.7199 val=2.8303 aux=1.6924
-variant=baseline rank=None seed=1337 step=200/400 train=2.5120 val=2.5444 aux=1.6168
-variant=baseline rank=None seed=1337 step=300/400 train=2.5315 val=2.4568 aux=1.5645
+variant=baseline rank=None seed=1337 step=100/400 train=2.7191 val=2.8298 aux=1.6901
+variant=baseline rank=None seed=1337 step=200/400 train=2.5193 val=2.5473 aux=1.6179
+variant=baseline rank=None seed=1337 step=300/400 train=2.5363 val=2.4576 aux=1.5638
+variant=baseline rank=None seed=1337 step=400/400 train=2.4017 val=2.3892 aux=1.5492
+variant=modal rank=1 seed=1337 step=1/400 train=4.2008 val=4.1443 aux=1.8308
+variant=modal rank=1 seed=1337 step=100/400 train=2.7334 val=2.8696 aux=1.5108
+variant=modal rank=1 seed=1337 step=200/400 train=2.5372 val=2.5847 aux=1.4213
+variant=modal rank=1 seed=1337 step=300/400 train=2.5741 val=2.4993 aux=1.4085
+variant=modal rank=1 seed=1337 step=400/400 train=2.4416 val=2.4351 aux=1.3782
+variant=modal rank=2 seed=1337 step=1/400 train=4.1887 val=4.1106 aux=1.8388
+variant=modal rank=2 seed=1337 step=100/400 train=2.7370 val=2.8453 aux=1.5436
+variant=modal rank=2 seed=1337 step=200/400 train=2.5305 val=2.5580 aux=1.4417
+variant=modal rank=2 seed=1337 step=300/400 train=2.5435 val=2.4841 aux=1.3965
+variant=modal rank=2 seed=1337 step=400/400 train=2.4301 val=2.4080 aux=1.3849
+variant=modal rank=1 seed=1337 step=1/400 train=4.1716 val=4.0946 aux=1.9087
+variant=modal rank=1 seed=1337 step=100/400 train=2.7395 val=2.8515 aux=1.5002
+variant=modal rank=1 seed=1337 step=200/400 train=2.5466 val=2.5825 aux=1.4073
+variant=modal rank=1 seed=1337 step=300/400 train=2.5728 val=2.4965 aux=1.3606
+variant=modal rank=1 seed=1337 step=400/400 train=2.4659 val=2.4233 aux=1.3211
+variant=modal rank=2 seed=1337 step=1/400 train=4.2001 val=4.1351 aux=1.8090
+variant=modal rank=2 seed=1337 step=100/400 train=2.7259 val=2.8423 aux=1.4725
+variant=modal rank=2 seed=1337 step=200/400 train=2.5358 val=2.5640 aux=1.3845
+variant=modal rank=2 seed=1337 step=300/400 train=2.5598 val=2.4915 aux=1.3490
+variant=modal rank=2 seed=1337 step=400/400 train=2.4436 val=2.4146 aux=1.3167
+# Test 2.2 — neuron-wise modal codes trained from initialization
+
+**Decision:** **PASS_K1**
+
+| Variant | Expert params | Ideal expert compute | Validation loss | Loss/full | Parameters |
+|---|---:|---:|---:|---:|---:|
+| baseline | 100.00% | 100.00% | 2.3878 | 1.000× | 1,270,560 |
+| scalar-k1 | 12.51% | 50.01% | 2.4336 | 1.019× | 238,464 |
+| scalar-k2 | 18.77% | 75.02% | 2.4097 | 1.009× | 312,288 |
+| neuronwise-k1 | 13.54% | 51.04% | 2.4189 | 1.013× | 250,656 |
+| neuronwise-k2 | 20.83% | 77.08% | 2.4182 | 1.013× | 336,672 |
+
+Projected OLMoE K=1 budget: **3.174% parameters**, **25.049% ideal expert compute**.
+Projected OLMoE K=2 budget: **4.785% parameters**, **37.598% ideal expert compute**.
+
+The extra expressivity comes from elementwise expert codes; the number of shared matrix multiplications is unchanged. The down branch remains aggregated before its shared matrices.
+

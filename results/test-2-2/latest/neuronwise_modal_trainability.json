@@ -1,0 +1,274 @@
+{
+  "decision": {
+    "loss_ratios": {
+      "baseline": 1.0,
+      "neuronwise-k1": 1.0130223827523697,
+      "neuronwise-k2": 1.0127617339991806,
+      "scalar-k1": 1.0191866698492227,
+      "scalar-k2": 1.0091776538826396
+    },
+    "neuronwise_k1_advantage": 0.006164287096853016,
+    "neuronwise_k2_advantage": -0.0035840801165409886,
+    "olmoe_budget_projection": {
+      "k1_compute_ratio": 0.25048828125,
+      "k1_parameter_ratio": 0.03173828125,
+      "k2_compute_ratio": 0.3759765625,
+      "k2_parameter_ratio": 0.0478515625
+    },
+    "verdict": "PASS_K1"
+  },
+  "history": {
+    "baseline": [
+      {
+        "aux_loss": 1.9431865215301514,
+        "step": 1.0,
+        "train_loss": 4.175276279449463,
+        "validation_loss": 4.068566608428955
+      },
+      {
+        "aux_loss": 1.6900871992111206,
+        "step": 100.0,
+        "train_loss": 2.7191293239593506,
+        "validation_loss": 2.8298221111297606
+      },
+      {
+        "aux_loss": 1.6178756952285767,
+        "step": 200.0,
+        "train_loss": 2.5192599296569824,
+        "validation_loss": 2.5473071098327638
+      },
+      {
+        "aux_loss": 1.5638266801834106,
+        "step": 300.0,
+        "train_loss": 2.536313533782959,
+        "validation_loss": 2.4576372385025023
+      },
+      {
+        "aux_loss": 1.5492238998413086,
+        "step": 400.0,
+        "train_loss": 2.401657819747925,
+        "validation_loss": 2.389199137687683
+      }
+    ],
+    "neuronwise-k1": [
+      {
+        "aux_loss": 1.9087471961975098,
+        "step": 1.0,
+        "train_loss": 4.171590328216553,
+        "validation_loss": 4.09459753036499
+      },
+      {
+        "aux_loss": 1.5001533031463623,
+        "step": 100.0,
+        "train_loss": 2.739478349685669,
+        "validation_loss": 2.851499152183533
+      },
+      {
+        "aux_loss": 1.4072966575622559,
+        "step": 200.0,
+        "train_loss": 2.5466396808624268,
+        "validation_loss": 2.5825454711914064
+      },
+      {
+        "aux_loss": 1.36055588722229,
+        "step": 300.0,
+        "train_loss": 2.57281231880188,
+        "validation_loss": 2.4965328931808473
+      },
+      {
+        "aux_loss": 1.3210992813110352,
+        "step": 400.0,
+        "train_loss": 2.4659171104431152,
+        "validation_loss": 2.4232744216918944
+      }
+    ],
+    "neuronwise-k2": [
+      {
+        "aux_loss": 1.8089566230773926,
+        "step": 1.0,
+        "train_loss": 4.200143814086914,
+        "validation_loss": 4.135067510604858
+      },
+      {
+        "aux_loss": 1.4724924564361572,
+        "step": 100.0,
+        "train_loss": 2.7259445190429688,
+        "validation_loss": 2.842294716835022
+      },
+      {
+        "aux_loss": 1.384490728378296,
+        "step": 200.0,
+        "train_loss": 2.5357508659362793,
+        "validation_loss": 2.5639703035354615
+      },
+      {
+        "aux_loss": 1.348981499671936,
+        "step": 300.0,
+        "train_loss": 2.5598204135894775,
+        "validation_loss": 2.491492676734924
+      },
+      {
+        "aux_loss": 1.3167438507080078,
+        "step": 400.0,
+        "train_loss": 2.443584680557251,
+        "validation_loss": 2.414600872993469
+      }
+    ],
+    "scalar-k1": [
+      {
+        "aux_loss": 1.8308453559875488,
+        "step": 1.0,
+        "train_loss": 4.200817584991455,
+        "validation_loss": 4.144275808334351
+      },
+      {
+        "aux_loss": 1.510751485824585,
+        "step": 100.0,
+        "train_loss": 2.733360767364502,
+        "validation_loss": 2.869597578048706
+      },
+      {
+        "aux_loss": 1.4212992191314697,
+        "step": 200.0,
+        "train_loss": 2.537165641784668,
+        "validation_loss": 2.58468234539032
+      },
+      {
+        "aux_loss": 1.4085272550582886,
+        "step": 300.0,
+        "train_loss": 2.574075222015381,
+        "validation_loss": 2.4993300437927246
+      },
+      {
+        "aux_loss": 1.3781789541244507,
+        "step": 400.0,
+        "train_loss": 2.441619396209717,
+        "validation_loss": 2.435119891166687
+      }
+    ],
+    "scalar-k2": [
+      {
+        "aux_loss": 1.8387579917907715,
+        "step": 1.0,
+        "train_loss": 4.188661575317383,
+        "validation_loss": 4.110559368133545
+      },
+      {
+        "aux_loss": 1.543574571609497,
+        "step": 100.0,
+        "train_loss": 2.7370121479034424,
+        "validation_loss": 2.8453462600708006
+      },
+      {
+        "aux_loss": 1.441670298576355,
+        "step": 200.0,
+        "train_loss": 2.530453681945801,
+        "validation_loss": 2.5579940557479857
+      },
+      {
+        "aux_loss": 1.3964614868164062,
+        "step": 300.0,
+        "train_loss": 2.5435285568237305,
+        "validation_loss": 2.4840766906738283
+      },
+      {
+        "aux_loss": 1.3849422931671143,
+        "step": 400.0,
+        "train_loss": 2.4300713539123535,
+        "validation_loss": 2.4080331087112428
+      }
+    ]
+  },
+  "metadata": {
+    "seed": 1337,
+    "steps": 400,
+    "task": "Tiny Shakespeare character LM"
+  },
+  "results": [
+    {
+      "best_validation_loss": 2.389199137687683,
+      "elapsed_seconds": 48.082493759000016,
+      "expert_parameter_ratio": 1.0,
+      "final_train_loss": 2.401657819747925,
+      "final_validation_loss": 2.387764573097229,
+      "final_validation_perplexity": 10.889124872863961,
+      "idealized_expert_compute_ratio": 1.0,
+      "max_expert_fraction": 0.0962646484375,
+      "min_expert_fraction": 0.0386474609375,
+      "modal_rank": null,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 1270560,
+      "utilization_entropy": 0.9829688927541502,
+      "variant": "baseline"
+    },
+    {
+      "best_validation_loss": 2.435119891166687,
+      "elapsed_seconds": 19.657100867000054,
+      "expert_parameter_ratio": 0.12508138020833334,
+      "final_train_loss": 2.441619396209717,
+      "final_validation_loss": 2.433577823638916,
+      "final_validation_perplexity": 11.399594945114712,
+      "idealized_expert_compute_ratio": 0.5000813802083334,
+      "max_expert_fraction": 0.11890869140625,
+      "min_expert_fraction": 0.02125244140625,
+      "modal_rank": 1,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 238464,
+      "utilization_entropy": 0.9645207058149341,
+      "variant": "scalar-k1"
+    },
+    {
+      "best_validation_loss": 2.4080331087112428,
+      "elapsed_seconds": 23.224313456999994,
+      "expert_parameter_ratio": 0.18766276041666666,
+      "final_train_loss": 2.4300713539123535,
+      "final_validation_loss": 2.409678649902344,
+      "final_validation_perplexity": 11.130383820381642,
+      "idealized_expert_compute_ratio": 0.7501627604166666,
+      "max_expert_fraction": 0.1032958984375,
+      "min_expert_fraction": 0.02144775390625,
+      "modal_rank": 2,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 312288,
+      "utilization_entropy": 0.9785594581280026,
+      "variant": "scalar-k2"
+    },
+    {
+      "best_validation_loss": 2.4232744216918944,
+      "elapsed_seconds": 54.73113193400002,
+      "expert_parameter_ratio": 0.13541666666666666,
+      "final_train_loss": 2.4659171104431152,
+      "final_validation_loss": 2.4188589572906496,
+      "final_validation_perplexity": 11.233034627249836,
+      "idealized_expert_compute_ratio": 0.5104166666666666,
+      "max_expert_fraction": 0.09674072265625,
+      "min_expert_fraction": 0.040234375,
+      "modal_rank": 1,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 250656,
+      "utilization_entropy": 0.99165744710798,
+      "variant": "neuronwise-k1"
+    },
+    {
+      "best_validation_loss": 2.414600872993469,
+      "elapsed_seconds": 70.61988859300004,
+      "expert_parameter_ratio": 0.20833333333333334,
+      "final_train_loss": 2.443584680557251,
+      "final_validation_loss": 2.418236589431763,
+      "final_validation_perplexity": 11.226045722600476,
+      "idealized_expert_compute_ratio": 0.7708333333333334,
+      "max_expert_fraction": 0.099853515625,
+      "min_expert_fraction": 0.03603515625,
+      "modal_rank": 2,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 336672,
+      "utilization_entropy": 0.9824224108475853,
+      "variant": "neuronwise-k2"
+    }
+  ]
+}
