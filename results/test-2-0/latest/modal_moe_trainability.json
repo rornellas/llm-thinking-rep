@@ -1,0 +1,254 @@
+{
+  "decision": {
+    "baseline_validation_loss": 2.394596815109253,
+    "comparisons": [
+      {
+        "absolute_validation_loss_delta": 0.04686073064804086,
+        "expert_parameter_ratio": 0.125,
+        "idealized_expert_compute_ratio": 0.5,
+        "relative_validation_loss": 1.0195693614692722,
+        "variant": "modal-k1"
+      },
+      {
+        "absolute_validation_loss_delta": 0.019294285774230868,
+        "expert_parameter_ratio": 0.1875,
+        "idealized_expert_compute_ratio": 0.75,
+        "relative_validation_loss": 1.00805742563946,
+        "variant": "modal-k2"
+      },
+      {
+        "absolute_validation_loss_delta": 0.03275983333587629,
+        "expert_parameter_ratio": 0.25,
+        "idealized_expert_compute_ratio": 1.0,
+        "relative_validation_loss": 1.0136807303547597,
+        "variant": "modal-k3"
+      }
+    ],
+    "rule": "PASS: K=2 reaches <=10% relative loss penalty at 75% ideal expert compute and ~18.75% expert matrix parameters. BORDERLINE: K=3 reaches the same quality gate at compute parity.",
+    "verdict": "PASS"
+  },
+  "history": {
+    "baseline": [
+      {
+        "aux_loss": 1.943186640739441,
+        "step": 1.0,
+        "train_loss": 4.175276279449463,
+        "validation_loss": 4.067167210578918
+      },
+      {
+        "aux_loss": 1.6923954486846924,
+        "step": 100.0,
+        "train_loss": 2.719874382019043,
+        "validation_loss": 2.807181882858276
+      },
+      {
+        "aux_loss": 1.61684250831604,
+        "step": 200.0,
+        "train_loss": 2.5120232105255127,
+        "validation_loss": 2.542945051193237
+      },
+      {
+        "aux_loss": 1.564518928527832,
+        "step": 300.0,
+        "train_loss": 2.531487464904785,
+        "validation_loss": 2.472158408164978
+      },
+      {
+        "aux_loss": 1.5585346221923828,
+        "step": 400.0,
+        "train_loss": 2.400496482849121,
+        "validation_loss": 2.386624574661255
+      }
+    ],
+    "modal-k1": [
+      {
+        "aux_loss": 1.8308453559875488,
+        "step": 1.0,
+        "train_loss": 4.200817584991455,
+        "validation_loss": 4.142824053764343
+      },
+      {
+        "aux_loss": 1.51047945022583,
+        "step": 100.0,
+        "train_loss": 2.7334494590759277,
+        "validation_loss": 2.8451439261436464
+      },
+      {
+        "aux_loss": 1.4185694456100464,
+        "step": 200.0,
+        "train_loss": 2.538336753845215,
+        "validation_loss": 2.583557689189911
+      },
+      {
+        "aux_loss": 1.4117319583892822,
+        "step": 300.0,
+        "train_loss": 2.574418067932129,
+        "validation_loss": 2.5104117393493652
+      },
+      {
+        "aux_loss": 1.3749785423278809,
+        "step": 400.0,
+        "train_loss": 2.443920373916626,
+        "validation_loss": 2.433587896823883
+      }
+    ],
+    "modal-k2": [
+      {
+        "aux_loss": 1.8387579917907715,
+        "step": 1.0,
+        "train_loss": 4.188661575317383,
+        "validation_loss": 4.110554194450378
+      },
+      {
+        "aux_loss": 1.5369584560394287,
+        "step": 100.0,
+        "train_loss": 2.7366714477539062,
+        "validation_loss": 2.826549303531647
+      },
+      {
+        "aux_loss": 1.4425959587097168,
+        "step": 200.0,
+        "train_loss": 2.531360149383545,
+        "validation_loss": 2.5523403882980347
+      },
+      {
+        "aux_loss": 1.4028946161270142,
+        "step": 300.0,
+        "train_loss": 2.5456440448760986,
+        "validation_loss": 2.4881767630577087
+      },
+      {
+        "aux_loss": 1.3860228061676025,
+        "step": 400.0,
+        "train_loss": 2.431126356124878,
+        "validation_loss": 2.4109758496284486
+      }
+    ],
+    "modal-k3": [
+      {
+        "aux_loss": 1.9114606380462646,
+        "step": 1.0,
+        "train_loss": 4.144835948944092,
+        "validation_loss": 4.06772735118866
+      },
+      {
+        "aux_loss": 1.5753934383392334,
+        "step": 100.0,
+        "train_loss": 2.7309484481811523,
+        "validation_loss": 2.83897750377655
+      },
+      {
+        "aux_loss": 1.47036612033844,
+        "step": 200.0,
+        "train_loss": 2.5395920276641846,
+        "validation_loss": 2.563152861595154
+      },
+      {
+        "aux_loss": 1.4276925325393677,
+        "step": 300.0,
+        "train_loss": 2.5728683471679688,
+        "validation_loss": 2.507135546207428
+      },
+      {
+        "aux_loss": 1.3983652591705322,
+        "step": 400.0,
+        "train_loss": 2.4584245681762695,
+        "validation_loss": 2.4156053185462953
+      }
+    ]
+  },
+  "metadata": {
+    "config": {
+      "aux_weight": 0.01,
+      "batch_size": 16,
+      "d_ff": 128,
+      "d_model": 96,
+      "eval_batches": 20,
+      "eval_interval": 100,
+      "grad_clip": 1.0,
+      "lr": 0.0004,
+      "n_experts": 16,
+      "n_heads": 4,
+      "n_layers": 2,
+      "seq_len": 64,
+      "steps": 400,
+      "top_k": 4,
+      "weight_decay": 0.05,
+      "z_loss_weight": 0.001
+    },
+    "dataset_chars": 1115394,
+    "modal_execution": "shared gate/up projections plus pre-down modal aggregation; no weight reconstruction",
+    "task": "character-level next-token prediction",
+    "vocab_size": 65
+  },
+  "results": [
+    {
+      "best_validation_loss": 2.386624574661255,
+      "elapsed_seconds": 69.055690625,
+      "expert_parameter_ratio": 1.0,
+      "final_train_loss": 2.400496482849121,
+      "final_validation_loss": 2.394596815109253,
+      "final_validation_perplexity": 10.963776738708955,
+      "idealized_expert_compute_ratio": 1.0,
+      "max_expert_fraction": 0.10487060546875,
+      "min_expert_fraction": 0.037005615234375,
+      "modal_rank": null,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 1270560,
+      "utilization_entropy": 0.9784262200367622,
+      "variant": "baseline"
+    },
+    {
+      "best_validation_loss": 2.433587896823883,
+      "elapsed_seconds": 25.187924132000006,
+      "expert_parameter_ratio": 0.125,
+      "final_train_loss": 2.443920373916626,
+      "final_validation_loss": 2.441457545757294,
+      "final_validation_perplexity": 11.489775417467136,
+      "idealized_expert_compute_ratio": 0.5,
+      "max_expert_fraction": 0.119390869140625,
+      "min_expert_fraction": 0.009234619140625,
+      "modal_rank": 1,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 238464,
+      "utilization_entropy": 0.9619884751100641,
+      "variant": "modal-k1"
+    },
+    {
+      "best_validation_loss": 2.4109758496284486,
+      "elapsed_seconds": 29.275448102000013,
+      "expert_parameter_ratio": 0.1875,
+      "final_train_loss": 2.431126356124878,
+      "final_validation_loss": 2.413891100883484,
+      "final_validation_perplexity": 11.177368908338028,
+      "idealized_expert_compute_ratio": 0.75,
+      "max_expert_fraction": 0.105126953125,
+      "min_expert_fraction": 0.027288818359375,
+      "modal_rank": 2,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 312288,
+      "utilization_entropy": 0.978459241333454,
+      "variant": "modal-k2"
+    },
+    {
+      "best_validation_loss": 2.4156053185462953,
+      "elapsed_seconds": 32.550772298,
+      "expert_parameter_ratio": 0.25,
+      "final_train_loss": 2.4584245681762695,
+      "final_validation_loss": 2.427356648445129,
+      "final_validation_perplexity": 11.328896210451179,
+      "idealized_expert_compute_ratio": 1.0,
+      "max_expert_fraction": 0.094134521484375,
+      "min_expert_fraction": 0.01317138671875,
+      "modal_rank": 3,
+      "seed": 1337,
+      "tokens_seen": 409600,
+      "trainable_parameters": 386112,
+      "utilization_entropy": 0.9801480030655458,
+      "variant": "modal-k3"
+    }
+  ]
+}

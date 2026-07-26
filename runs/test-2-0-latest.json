@@ -2,7 +2,8 @@
   "workflow": "Modal MoE \u2014 Test 2.0 trainability from initialization",
   "run_id": 30223787157,
   "run_attempt": 1,
-  "status": "running",
+  "status": "success",
   "commit": "858709de24c892d8c9b5bc6e65bfa56435d04cec",
-  "started_at": "2026-07-26T22:46:03.745206+00:00"
+  "started_at": "2026-07-26T22:46:03.745206+00:00",
+  "finished_at": "2026-07-26T22:49:10.598000+00:00"
 }

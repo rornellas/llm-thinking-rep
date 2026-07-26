@@ -2,3 +2,33 @@ variant=baseline rank=None seed=1337 step=1/400 train=4.1753 val=4.0672 aux=1.94
 variant=baseline rank=None seed=1337 step=100/400 train=2.7199 val=2.8072 aux=1.6924
 variant=baseline rank=None seed=1337 step=200/400 train=2.5120 val=2.5429 aux=1.6168
 variant=baseline rank=None seed=1337 step=300/400 train=2.5315 val=2.4722 aux=1.5645
+variant=baseline rank=None seed=1337 step=400/400 train=2.4005 val=2.3866 aux=1.5585
+variant=modal rank=1 seed=1337 step=1/400 train=4.2008 val=4.1428 aux=1.8308
+variant=modal rank=1 seed=1337 step=100/400 train=2.7334 val=2.8451 aux=1.5105
+variant=modal rank=1 seed=1337 step=200/400 train=2.5383 val=2.5836 aux=1.4186
+variant=modal rank=1 seed=1337 step=300/400 train=2.5744 val=2.5104 aux=1.4117
+variant=modal rank=1 seed=1337 step=400/400 train=2.4439 val=2.4336 aux=1.3750
+variant=modal rank=2 seed=1337 step=1/400 train=4.1887 val=4.1106 aux=1.8388
+variant=modal rank=2 seed=1337 step=100/400 train=2.7367 val=2.8265 aux=1.5370
+variant=modal rank=2 seed=1337 step=200/400 train=2.5314 val=2.5523 aux=1.4426
+variant=modal rank=2 seed=1337 step=300/400 train=2.5456 val=2.4882 aux=1.4029
+variant=modal rank=2 seed=1337 step=400/400 train=2.4311 val=2.4110 aux=1.3860
+variant=modal rank=3 seed=1337 step=1/400 train=4.1448 val=4.0677 aux=1.9115
+variant=modal rank=3 seed=1337 step=100/400 train=2.7309 val=2.8390 aux=1.5754
+variant=modal rank=3 seed=1337 step=200/400 train=2.5396 val=2.5632 aux=1.4704
+variant=modal rank=3 seed=1337 step=300/400 train=2.5729 val=2.5071 aux=1.4277
+variant=modal rank=3 seed=1337 step=400/400 train=2.4584 val=2.4156 aux=1.3984
+# Test 2.0 — modal MoE trainability under architectural constraint
+
+**Decision:** **PASS**
+
+| Variant | Parameters | Expert parameter ratio | Ideal expert compute ratio | Validation loss | Loss vs baseline | Utilization entropy |
+|---|---:|---:|---:|---:|---:|---:|
+| baseline | 1,270,560 | 100.00% | 100.00% | 2.3946 | 1.000× | 0.978 |
+| modal-k1 | 238,464 | 12.50% | 50.00% | 2.4415 | 1.020× | 0.962 |
+| modal-k2 | 312,288 | 18.75% | 75.00% | 2.4139 | 1.008× | 0.978 |
+| modal-k3 | 386,112 | 25.00% | 100.00% | 2.4274 | 1.014× | 0.980 |
+
+The experiment asks whether optimization can coordinate experts around shared full-rank matrix modes when that structure is present from initialization. It does not claim transfer to billion-parameter training from a character-level task.
+The modal `down` projection is executed after aggregation, so the tested graph matches the intended future kernel algebra rather than reconstructing expert matrices.
+
