@@ -167,3 +167,5 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
           compression-level: 9
+
+# Triggered after the workflow became present on the default branch.
