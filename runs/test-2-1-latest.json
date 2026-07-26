@@ -1,0 +1,8 @@
+{
+  "workflow": "Modal MoE \u2014 Test 2.1 multi-seed robustness",
+  "run_id": 30224102395,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "f1ac36d1fa37485eb75b11c7cb68abd8110a1717",
+  "started_at": "2026-07-26T22:55:12.691283+00:00"
+}
