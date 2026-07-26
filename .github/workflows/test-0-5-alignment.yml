@@ -1,0 +1,222 @@
+name: Modal MoE — Test 0.5 alignment pilot
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-0-5-alignment.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-0-5-alignment
+  cancel-in-progress: true
+
+jobs:
+  alignment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_XET: "1"
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          payload = {
+              "workflow": "Modal MoE — Test 0.5 alignment pilot",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-0-5-latest.json").write_text(
+              json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-0-5-latest.json
+          git commit -m "chore: register alignment run ${GITHUB_RUN_ID}"
+          git push origin HEAD:main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild experiment package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat experiment/archive.part-* | base64 --decode > "$RUNNER_TEMP/modal_moe_experiment.zip"
+          echo "363c296bac175dfb71a7594777e5239d3363ab045b3b5700737b4cf88ac4a323  $RUNNER_TEMP/modal_moe_experiment.zip" | sha256sum --check --strict
+          unzip -q "$RUNNER_TEMP/modal_moe_experiment.zip"
+          cp experiments/test_0_5_alignment_probe.py modal_moe_experiment/alignment_probe.py
+          test -f modal_moe_experiment/modal_moe_weight_probe_v2.py
+          test -f modal_moe_experiment/alignment_probe.py
+
+      - name: Install CPU-only dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir \
+            "numpy>=2.0" "scipy>=1.13" "requests>=2.31" \
+            "safetensors>=0.4.3" "pytest>=8.0" "huggingface_hub>=0.24"
+
+      - name: Validate mathematical implementation
+        working-directory: modal_moe_experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pytest -q
+          python alignment_probe.py --self-test
+
+      - name: Run two-subset alignment pilot
+        working-directory: modal_moe_experiment
+        shell: bash
+        env:
+          RANGE_CACHE: ${{ runner.temp }}/olmoe-alignment-range-cache
+        run: |
+          set -euo pipefail
+          python alignment_probe.py \
+            --layer 7 \
+            --subset-size 16 \
+            --subset-count 2 \
+            --subset-seed 20260726 \
+            --signature-dims 64 \
+            --eval-dims 131072 \
+            --iterations 2 \
+            --cache-dir "$RANGE_CACHE" \
+            --output-dir "${GITHUB_WORKSPACE}/modal_moe_experiment/results/test_0_5/pilot" \
+            2>&1 | tee alignment-pilot.log
+
+      - name: Expand automatically when pilot passes
+        working-directory: modal_moe_experiment
+        shell: bash
+        env:
+          RANGE_CACHE: ${{ runner.temp }}/olmoe-alignment-range-cache
+        run: |
+          set -euo pipefail
+          passed="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("results/test_0_5/pilot/alignment_probe.json")
+          print(str(json.loads(p.read_text())["pilot_gate"]["passed"]).lower())
+          PY
+          )"
+          echo "Pilot continuation gate: $passed"
+          if [[ "$passed" == "true" ]]; then
+            python alignment_probe.py \
+              --layer 7 \
+              --subset-size 64 \
+              --subset-count 1 \
+              --subset-seed 20260726 \
+              --signature-dims 96 \
+              --eval-dims 262144 \
+              --iterations 2 \
+              --cache-dir "$RANGE_CACHE" \
+              --output-dir "${GITHUB_WORKSPACE}/modal_moe_experiment/results/test_0_5/full64" \
+              2>&1 | tee alignment-full64.log
+          else
+            printf '%s\n' "Pilot gate failed; full-64 expansion intentionally skipped." | tee alignment-full64.log
+          fi
+
+      - name: Publish verdict in run summary
+        if: always()
+        shell: bash
+        run: |
+          pilot="modal_moe_experiment/results/test_0_5/pilot/VERDICT.md"
+          full="modal_moe_experiment/results/test_0_5/full64/VERDICT.md"
+          if [[ -f "$pilot" ]]; then
+            cat "$pilot" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' '## Test 0.5' '' 'No pilot verdict was produced.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [[ -f "$full" ]]; then
+            printf '\n---\n\n' >> "$GITHUB_STEP_SUMMARY"
+            cat "$full" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Persist compact result in repository
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          rm -rf results/test-0-5/latest
+          mkdir -p results/test-0-5/latest
+          if [[ -d modal_moe_experiment/results/test_0_5 ]]; then
+            cp -a modal_moe_experiment/results/test_0_5/. results/test-0-5/latest/
+          fi
+          for log in modal_moe_experiment/alignment-pilot.log modal_moe_experiment/alignment-full64.log; do
+            if [[ -f "$log" ]]; then
+              cp "$log" "results/test-0-5/latest/$(basename "$log")"
+            fi
+          done
+
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          marker = Path("runs/test-0-5-latest.json")
+          payload = json.loads(marker.read_text(encoding="utf-8")) if marker.exists() else {}
+          payload.update({
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": os.environ["RUN_STATUS"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+          })
+          marker.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          Path("results/test-0-5/latest/run.json").write_text(
+              json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-0-5-latest.json results/test-0-5/latest
+          git commit -m "results: alignment pilot run ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload full results and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olmoe-test-0-5-alignment-${{ github.run_id }}
+          path: |
+            modal_moe_experiment/results/test_0_5
+            modal_moe_experiment/alignment-pilot.log
+            modal_moe_experiment/alignment-full64.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 9
