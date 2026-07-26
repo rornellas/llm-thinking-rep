@@ -1,0 +1,129 @@
+name: Modal MoE — OLMoE layer 7 scout
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/modal-moe.yml"
+      - "experiment/archive.part-*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: modal-moe-l7-scout
+  cancel-in-progress: false
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_XET: "1"
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Rebuild and verify experiment archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat experiment/archive.part-* | base64 --decode > "$RUNNER_TEMP/modal_moe_experiment.zip"
+          echo "363c296bac175dfb71a7594777e5239d3363ab045b3b5700737b4cf88ac4a323  $RUNNER_TEMP/modal_moe_experiment.zip" | sha256sum --check --strict
+          unzip -q "$RUNNER_TEMP/modal_moe_experiment.zip"
+          test -f modal_moe_experiment/modal_moe_weight_probe_v2.py
+
+      - name: Install CPU-only dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir \
+            "numpy>=2.0" "requests>=2.31" "safetensors>=0.4.3" \
+            "pytest>=8.0" "huggingface_hub>=0.24"
+
+      - name: Validate probe
+        working-directory: modal_moe_experiment
+        shell: bash
+        run: python -m pytest -q
+
+      - name: Run real three-seed scout
+        working-directory: modal_moe_experiment
+        shell: bash
+        env:
+          PYTHON_BIN: python
+          RESULT_ROOT: ${{ github.workspace }}/modal_moe_experiment/results/olmoe_l7_scout
+          RANGE_CACHE: ${{ runner.temp }}/olmoe-range-cache
+          HF_HOME: ${{ runner.temp }}/huggingface
+        run: |
+          set -uo pipefail
+          bash run_olmoe_l7_scout.sh 2>&1 | tee cloud-run.log
+          status=${PIPESTATUS[0]}
+
+          if [[ "$status" -ne 0 ]]; then
+            echo "HTTP Range mode failed; retrying with the complete checkpoint shard." | tee -a cloud-run.log
+            rm -rf "$RESULT_ROOT" "$RANGE_CACHE"
+            mkdir -p "$RUNNER_TEMP/olmoe-shard"
+
+            python - <<'PY'
+          import os
+          from huggingface_hub import hf_hub_download
+
+          path = hf_hub_download(
+              repo_id="allenai/OLMoE-1B-7B-0924",
+              filename="model-00002-of-00003.safetensors",
+              revision="3a970199d0f87db4e3e57275abb93812bf10fd83",
+              local_dir=os.path.join(os.environ["RUNNER_TEMP"], "olmoe-shard"),
+          )
+          with open(os.path.join(os.environ["RUNNER_TEMP"], "shard_path.txt"), "w", encoding="utf-8") as handle:
+              handle.write(path)
+          print(path)
+          PY
+            download_status=$?
+            if [[ "$download_status" -ne 0 ]]; then
+              exit "$download_status"
+            fi
+
+            export SHARD_PATH="$(cat "$RUNNER_TEMP/shard_path.txt")"
+            bash run_olmoe_l7_scout.sh 2>&1 | tee -a cloud-run.log
+            status=${PIPESTATUS[0]}
+          fi
+
+          exit "$status"
+
+      - name: Publish verdict in run summary
+        if: always()
+        shell: bash
+        run: |
+          verdict="modal_moe_experiment/results/olmoe_l7_scout/aggregate/VERDICT.md"
+          if [[ -f "$verdict" ]]; then
+            cat "$verdict" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' '## Modal MoE scout' '' 'No aggregate verdict was produced. Inspect cloud-run.log.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload results and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olmoe-l7-scout-${{ github.run_id }}
+          path: |
+            modal_moe_experiment/results/olmoe_l7_scout
+            modal_moe_experiment/cloud-run.log
+          if-no-files-found: warn
+          retention-days: 7
+          compression-level: 9
