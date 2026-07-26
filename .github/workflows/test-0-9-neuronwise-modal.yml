@@ -1,0 +1,151 @@
+name: Modal MoE — Test 0.9 neuron-wise modes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-0-9-neuronwise-modal.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-0-9-neuronwise
+  cancel-in-progress: true
+
+jobs:
+  neuronwise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      HF_HUB_DISABLE_XET: "1"
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload = {
+              "workflow": "Modal MoE — Test 0.9 neuron-wise modes",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-0-9-latest.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-0-9-latest.json
+          git commit -m "chore: register neuron-wise run ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild experiment and probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat experiment/archive.part-* | base64 --decode > "$RUNNER_TEMP/modal_moe_experiment.zip"
+          echo "363c296bac175dfb71a7594777e5239d3363ab045b3b5700737b4cf88ac4a323  $RUNNER_TEMP/modal_moe_experiment.zip" | sha256sum --check --strict
+          unzip -q "$RUNNER_TEMP/modal_moe_experiment.zip"
+          base64 --decode experiment/test_0_9_neuronwise_modal_probe.py.gz.b64 | gzip -dc > modal_moe_experiment/neuronwise_modal_probe.py
+          python -m py_compile modal_moe_experiment/neuronwise_modal_probe.py
+
+      - name: Install CPU dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "requests>=2.31" "safetensors>=0.4.3" "pytest>=8.0" "huggingface_hub>=0.24"
+
+      - name: Validate mathematical implementation
+        working-directory: modal_moe_experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pytest -q
+          python neuronwise_modal_probe.py --self-test
+
+      - name: Run real neuron-wise modal screen
+        working-directory: modal_moe_experiment
+        shell: bash
+        env:
+          RANGE_CACHE: ${{ runner.temp }}/olmoe-neuronwise-range-cache
+        run: |
+          set -euo pipefail
+          python neuronwise_modal_probe.py \
+            --layer 7 \
+            --sample-features 256 \
+            --seeds 17,23,31 \
+            --cache-dir "$RANGE_CACHE" \
+            --output-dir "${GITHUB_WORKSPACE}/modal_moe_experiment/results/test_0_9/latest" \
+            2>&1 | tee neuronwise-modal.log
+
+      - name: Publish verdict
+        if: always()
+        shell: bash
+        run: |
+          verdict="modal_moe_experiment/results/test_0_9/latest/VERDICT.md"
+          if [[ -f "$verdict" ]]; then cat "$verdict" >> "$GITHUB_STEP_SUMMARY"; else echo 'No verdict produced.' >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: Persist compact result
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          rm -rf results/test-0-9/latest
+          mkdir -p results/test-0-9/latest
+          [[ -d modal_moe_experiment/results/test_0_9/latest ]] && cp -a modal_moe_experiment/results/test_0_9/latest/. results/test-0-9/latest/
+          [[ -f modal_moe_experiment/neuronwise-modal.log ]] && cp modal_moe_experiment/neuronwise-modal.log results/test-0-9/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          marker = Path("runs/test-0-9-latest.json")
+          payload = json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({"run_id": int(os.environ["GITHUB_RUN_ID"]), "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]), "status": os.environ["RUN_STATUS"], "finished_at": datetime.now(timezone.utc).isoformat()})
+          marker.write_text(json.dumps(payload, indent=2) + "\n")
+          Path("results/test-0-9/latest/run.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-0-9-latest.json results/test-0-9/latest
+          git commit -m "results: neuron-wise run ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olmoe-test-0-9-neuronwise-${{ github.run_id }}
+          path: |
+            modal_moe_experiment/results/test_0_9/latest
+            modal_moe_experiment/neuronwise-modal.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 9
