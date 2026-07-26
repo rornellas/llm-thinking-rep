@@ -1,0 +1,37 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_5_scale64_and_code_ablation.py:99: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"step={step}/{cfg.steps} ce={float(ce):.4f} aux={float(aux):.4f}", flush=True)
+step=1/300 ce=4.1856 aux=2.9022
+step=100/300 ce=2.8316 aux=2.6023
+step=200/300 ce=2.4905 aux=2.4814
+step=300/300 ce=2.4415 aux=2.4028
+step=1/300 ce=4.2329 aux=2.8831
+step=100/300 ce=2.8582 aux=2.2706
+step=200/300 ce=2.5455 aux=2.0571
+step=300/300 ce=2.5218 aux=1.9295
+step=1/300 ce=4.2180 aux=2.9168
+step=100/300 ce=2.8697 aux=2.2389
+step=200/300 ce=2.5340 aux=2.0106
+step=300/300 ce=2.5094 aux=1.8585
+step=1/300 ce=4.1843 aux=2.8530
+step=100/300 ce=2.9013 aux=2.2843
+step=200/300 ce=2.5351 aux=2.1343
+step=300/300 ce=2.5192 aux=2.0348
+step=1/300 ce=4.1471 aux=2.8676
+step=100/300 ce=2.8424 aux=2.3117
+step=200/300 ce=2.5237 aux=2.1169
+step=300/300 ce=2.5181 aux=1.9757
+# Test 2.5 — 64-expert/top-8 scaling and code ablations
+
+**Decision:** **SCALE64_AND_CODES_USED**
+
+| Variant | Expert params | Ideal expert compute | Validation loss | Loss/full | Router entropy | Mean-code ablation | Shuffle ablation | Zero-code ablation |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| baseline | 100.000% | 100.000% | 2.4310 | 1.000× | 0.954 | n/a | n/a | n/a |
+| scalar-k1 | 3.133% | 25.008% | 2.4781 | 1.019× | 0.964 | 1.030× | 1.037× | 1.028× |
+| neuronwise-k1 | 4.167% | 26.042% | 2.4775 | 1.019× | 0.967 | 1.018× | 1.022× | 1.020× |
+| scalar-k2 | 4.704% | 37.516% | 2.4663 | 1.015× | 0.962 | 1.050× | 1.042× | 1.054× |
+| neuronwise-k2 | 6.771% | 39.583% | 2.4682 | 1.015× | 0.963 | 1.033× | 1.031× | 1.036× |
+
+An ablation penalty above 1.0 means expert-specific codes carry information beyond the common mode. This test matches OLMoE's 64-expert/top-8 geometry but remains a small character language model.
+
