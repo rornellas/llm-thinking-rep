@@ -1,0 +1,8 @@
+{
+  "workflow": "Modal MoE \u2014 Test 0.9 neuron-wise modes",
+  "run_id": 30224027912,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "0bc3775d28c92810425dcff9d971768ff4e1190d",
+  "started_at": "2026-07-26T22:52:56.035676+00:00"
+}
