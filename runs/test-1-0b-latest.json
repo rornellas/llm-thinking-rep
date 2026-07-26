@@ -2,7 +2,8 @@
   "workflow": "Modal MoE \u2014 Test 1.0b activation subspaces retry",
   "run_id": 30224045389,
   "run_attempt": 1,
-  "status": "running",
+  "status": "success",
   "commit": "fa7e7b61ded599b90559e4c5335ef546d3acff6e",
-  "started_at": "2026-07-26T22:53:25.219677+00:00"
+  "started_at": "2026-07-26T22:53:25.219677+00:00",
+  "finished_at": "2026-07-26T23:00:08.732274+00:00"
 }

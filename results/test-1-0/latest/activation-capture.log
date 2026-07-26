@@ -1,1 +1,262 @@
-error: invalid argument: --no-warmup
+0.03.408.653 I capture: evaluating 768 tokens
+0.03.412.415 I capture-discovery: name=ffn_inp-0 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.427 I capture-discovery: name=ffn_norm-0 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.428 I capture-discovery: name=ffn_moe_logits-0 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.429 I capture-discovery: name=ffn_moe_probs-0 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.430 I capture-discovery: name=ffn_moe_probs-0 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.431 I capture-discovery: name=ffn_moe_argsort-0 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.432 I capture-discovery: name=ffn_moe_topk-0 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.434 I capture-discovery: name=ffn_moe_weights-0 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.435 I capture-discovery: name=ffn_norm-0 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.436 I capture-discovery: name=ffn_moe_gate-0 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.437 I capture-discovery: name=ffn_moe_up-0 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.438 I capture-discovery: name=ffn_moe_swiglu-0 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.439 I capture-discovery: name=ffn_moe_down-0 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.440 I capture-discovery: name=ffn_moe_weighted-0 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.441 I capture-discovery: name=ffn_moe_weighted-0 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.445 I capture-discovery: name=ffn_moe_out-0 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.451 I capture-discovery: name=ffn_inp-1 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.452 I capture-discovery: name=ffn_norm-1 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.453 I capture-discovery: name=ffn_moe_logits-1 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.454 I capture-discovery: name=ffn_moe_probs-1 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.455 I capture-discovery: name=ffn_moe_probs-1 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.456 I capture-discovery: name=ffn_moe_argsort-1 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.457 I capture-discovery: name=ffn_moe_topk-1 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.458 I capture-discovery: name=ffn_moe_weights-1 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.459 I capture-discovery: name=ffn_norm-1 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.460 I capture-discovery: name=ffn_moe_gate-1 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.461 I capture-discovery: name=ffn_moe_up-1 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.462 I capture-discovery: name=ffn_moe_swiglu-1 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.463 I capture-discovery: name=ffn_moe_down-1 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.464 I capture-discovery: name=ffn_moe_weighted-1 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.465 I capture-discovery: name=ffn_moe_weighted-1 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.469 I capture-discovery: name=ffn_moe_out-1 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.475 I capture-discovery: name=ffn_inp-2 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.476 I capture-discovery: name=ffn_norm-2 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.477 I capture-discovery: name=ffn_moe_logits-2 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.478 I capture-discovery: name=ffn_moe_probs-2 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.478 I capture-discovery: name=ffn_moe_probs-2 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.479 I capture-discovery: name=ffn_moe_argsort-2 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.480 I capture-discovery: name=ffn_moe_topk-2 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.481 I capture-discovery: name=ffn_moe_weights-2 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.482 I capture-discovery: name=ffn_norm-2 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.483 I capture-discovery: name=ffn_moe_gate-2 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.484 I capture-discovery: name=ffn_moe_up-2 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.485 I capture-discovery: name=ffn_moe_swiglu-2 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.486 I capture-discovery: name=ffn_moe_down-2 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.487 I capture-discovery: name=ffn_moe_weighted-2 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.488 I capture-discovery: name=ffn_moe_weighted-2 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.492 I capture-discovery: name=ffn_moe_out-2 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.499 I capture-discovery: name=ffn_inp-3 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.500 I capture-discovery: name=ffn_norm-3 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.501 I capture-discovery: name=ffn_moe_logits-3 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.502 I capture-discovery: name=ffn_moe_probs-3 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.502 I capture-discovery: name=ffn_moe_probs-3 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.504 I capture-discovery: name=ffn_moe_argsort-3 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.505 I capture-discovery: name=ffn_moe_topk-3 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.505 I capture-discovery: name=ffn_moe_weights-3 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.507 I capture-discovery: name=ffn_norm-3 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.508 I capture-discovery: name=ffn_moe_gate-3 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.509 I capture-discovery: name=ffn_moe_up-3 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.511 I capture-discovery: name=ffn_moe_swiglu-3 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.512 I capture-discovery: name=ffn_moe_down-3 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.513 I capture-discovery: name=ffn_moe_weighted-3 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.514 I capture-discovery: name=ffn_moe_weighted-3 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.518 I capture-discovery: name=ffn_moe_out-3 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.524 I capture-discovery: name=ffn_inp-4 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.525 I capture-discovery: name=ffn_norm-4 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.526 I capture-discovery: name=ffn_moe_logits-4 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.528 I capture-discovery: name=ffn_moe_probs-4 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.529 I capture-discovery: name=ffn_moe_probs-4 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.530 I capture-discovery: name=ffn_moe_argsort-4 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.531 I capture-discovery: name=ffn_moe_topk-4 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.532 I capture-discovery: name=ffn_moe_weights-4 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.533 I capture-discovery: name=ffn_norm-4 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.534 I capture-discovery: name=ffn_moe_gate-4 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.535 I capture-discovery: name=ffn_moe_up-4 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.536 I capture-discovery: name=ffn_moe_swiglu-4 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.537 I capture-discovery: name=ffn_moe_down-4 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.538 I capture-discovery: name=ffn_moe_weighted-4 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.540 I capture-discovery: name=ffn_moe_weighted-4 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.543 I capture-discovery: name=ffn_moe_out-4 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.549 I capture-discovery: name=ffn_inp-5 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.550 I capture-discovery: name=ffn_norm-5 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.551 I capture-discovery: name=ffn_moe_logits-5 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.552 I capture-discovery: name=ffn_moe_probs-5 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.553 I capture-discovery: name=ffn_moe_probs-5 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.554 I capture-discovery: name=ffn_moe_argsort-5 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.555 I capture-discovery: name=ffn_moe_topk-5 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.556 I capture-discovery: name=ffn_moe_weights-5 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.557 I capture-discovery: name=ffn_norm-5 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.558 I capture-discovery: name=ffn_moe_gate-5 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.559 I capture-discovery: name=ffn_moe_up-5 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.560 I capture-discovery: name=ffn_moe_swiglu-5 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.561 I capture-discovery: name=ffn_moe_down-5 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.562 I capture-discovery: name=ffn_moe_weighted-5 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.563 I capture-discovery: name=ffn_moe_weighted-5 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.567 I capture-discovery: name=ffn_moe_out-5 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.573 I capture-discovery: name=ffn_inp-6 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.574 I capture-discovery: name=ffn_norm-6 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.575 I capture-discovery: name=ffn_moe_logits-6 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.576 I capture-discovery: name=ffn_moe_probs-6 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.577 I capture-discovery: name=ffn_moe_probs-6 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.03.412.578 I capture-discovery: name=ffn_moe_argsort-6 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.03.412.579 I capture-discovery: name=ffn_moe_topk-6 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.03.412.580 I capture-discovery: name=ffn_moe_weights-6 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.03.412.581 I capture-discovery: name=ffn_norm-6 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.03.412.582 I capture-discovery: name=ffn_moe_gate-6 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.583 I capture-discovery: name=ffn_moe_up-6 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.584 I capture-discovery: name=ffn_moe_swiglu-6 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.03.412.585 I capture-discovery: name=ffn_moe_down-6 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.586 I capture-discovery: name=ffn_moe_weighted-6 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.03.412.587 I capture-discovery: name=ffn_moe_weighted-6 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.590 I capture-discovery: name=ffn_moe_out-6 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.597 I capture-discovery: name=ffn_inp-7 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.03.412.598 I capture-discovery: name=ffn_norm-7 type=f32 shape={2048,768,1,1} elements=1572864 target=1
+0.15.369.221 I capture: wrote ffn_norm-7 chunk=0 elements=1572864
+0.15.369.233 I capture-discovery: name=ffn_moe_logits-7 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.15.369.235 I capture-discovery: name=ffn_moe_probs-7 type=f32 shape={64,768,1,1} elements=49152 target=1
+0.15.372.720 I capture: wrote ffn_moe_probs-7 chunk=0 elements=49152
+0.15.372.732 I capture-discovery: name=ffn_moe_probs-7 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=1
+0.15.373.010 I capture: wrote ffn_moe_probs-7 (reshaped) chunk=0 elements=49152
+0.15.373.022 I capture-discovery: name=ffn_moe_argsort-7 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.15.373.029 I capture-discovery: name=ffn_moe_topk-7 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.15.373.031 I capture-discovery: name=ffn_moe_weights-7 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.15.373.033 I capture-discovery: name=ffn_norm-7 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=1
+0.15.379.301 I capture: wrote ffn_norm-7 (reshaped) chunk=0 elements=1572864
+0.15.379.312 I capture-discovery: name=ffn_moe_gate-7 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.15.379.314 I capture-discovery: name=ffn_moe_up-7 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.15.379.316 I capture-discovery: name=ffn_moe_swiglu-7 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.15.379.318 I capture-discovery: name=ffn_moe_down-7 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.15.379.320 I capture-discovery: name=ffn_moe_weighted-7 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.15.379.321 I capture-discovery: name=ffn_moe_weighted-7 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.15.379.333 I capture-discovery: name=ffn_moe_out-7 type=f32 shape={2048,768,1,1} elements=1572864 target=1
+0.16.672.743 I capture: wrote ffn_moe_out-7 chunk=0 elements=1572864
+0.16.672.765 I capture-discovery: name=ffn_inp-8 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.767 I capture-discovery: name=ffn_norm-8 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.768 I capture-discovery: name=ffn_moe_logits-8 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.770 I capture-discovery: name=ffn_moe_probs-8 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.771 I capture-discovery: name=ffn_moe_probs-8 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.773 I capture-discovery: name=ffn_moe_argsort-8 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.775 I capture-discovery: name=ffn_moe_topk-8 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.776 I capture-discovery: name=ffn_moe_weights-8 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.777 I capture-discovery: name=ffn_norm-8 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.779 I capture-discovery: name=ffn_moe_gate-8 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.780 I capture-discovery: name=ffn_moe_up-8 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.781 I capture-discovery: name=ffn_moe_swiglu-8 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.783 I capture-discovery: name=ffn_moe_down-8 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.784 I capture-discovery: name=ffn_moe_weighted-8 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.786 I capture-discovery: name=ffn_moe_weighted-8 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.790 I capture-discovery: name=ffn_moe_out-8 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.798 I capture-discovery: name=ffn_inp-9 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.799 I capture-discovery: name=ffn_norm-9 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.800 I capture-discovery: name=ffn_moe_logits-9 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.802 I capture-discovery: name=ffn_moe_probs-9 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.803 I capture-discovery: name=ffn_moe_probs-9 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.805 I capture-discovery: name=ffn_moe_argsort-9 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.806 I capture-discovery: name=ffn_moe_topk-9 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.808 I capture-discovery: name=ffn_moe_weights-9 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.809 I capture-discovery: name=ffn_norm-9 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.810 I capture-discovery: name=ffn_moe_gate-9 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.811 I capture-discovery: name=ffn_moe_up-9 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.812 I capture-discovery: name=ffn_moe_swiglu-9 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.813 I capture-discovery: name=ffn_moe_down-9 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.813 I capture-discovery: name=ffn_moe_weighted-9 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.815 I capture-discovery: name=ffn_moe_weighted-9 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.818 I capture-discovery: name=ffn_moe_out-9 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.826 I capture-discovery: name=ffn_inp-10 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.827 I capture-discovery: name=ffn_norm-10 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.828 I capture-discovery: name=ffn_moe_logits-10 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.829 I capture-discovery: name=ffn_moe_probs-10 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.831 I capture-discovery: name=ffn_moe_probs-10 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.832 I capture-discovery: name=ffn_moe_argsort-10 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.833 I capture-discovery: name=ffn_moe_topk-10 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.834 I capture-discovery: name=ffn_moe_weights-10 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.835 I capture-discovery: name=ffn_norm-10 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.837 I capture-discovery: name=ffn_moe_gate-10 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.838 I capture-discovery: name=ffn_moe_up-10 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.839 I capture-discovery: name=ffn_moe_swiglu-10 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.840 I capture-discovery: name=ffn_moe_down-10 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.841 I capture-discovery: name=ffn_moe_weighted-10 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.843 I capture-discovery: name=ffn_moe_weighted-10 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.847 I capture-discovery: name=ffn_moe_out-10 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.855 I capture-discovery: name=ffn_inp-11 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.856 I capture-discovery: name=ffn_norm-11 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.857 I capture-discovery: name=ffn_moe_logits-11 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.858 I capture-discovery: name=ffn_moe_probs-11 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.859 I capture-discovery: name=ffn_moe_probs-11 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.861 I capture-discovery: name=ffn_moe_argsort-11 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.862 I capture-discovery: name=ffn_moe_topk-11 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.863 I capture-discovery: name=ffn_moe_weights-11 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.864 I capture-discovery: name=ffn_norm-11 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.865 I capture-discovery: name=ffn_moe_gate-11 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.866 I capture-discovery: name=ffn_moe_up-11 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.867 I capture-discovery: name=ffn_moe_swiglu-11 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.868 I capture-discovery: name=ffn_moe_down-11 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.869 I capture-discovery: name=ffn_moe_weighted-11 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.870 I capture-discovery: name=ffn_moe_weighted-11 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.875 I capture-discovery: name=ffn_moe_out-11 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.884 I capture-discovery: name=ffn_inp-12 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.885 I capture-discovery: name=ffn_norm-12 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.886 I capture-discovery: name=ffn_moe_logits-12 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.887 I capture-discovery: name=ffn_moe_probs-12 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.888 I capture-discovery: name=ffn_moe_probs-12 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.889 I capture-discovery: name=ffn_moe_argsort-12 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.890 I capture-discovery: name=ffn_moe_topk-12 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.891 I capture-discovery: name=ffn_moe_weights-12 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.892 I capture-discovery: name=ffn_norm-12 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.893 I capture-discovery: name=ffn_moe_gate-12 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.894 I capture-discovery: name=ffn_moe_up-12 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.894 I capture-discovery: name=ffn_moe_swiglu-12 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.896 I capture-discovery: name=ffn_moe_down-12 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.897 I capture-discovery: name=ffn_moe_weighted-12 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.898 I capture-discovery: name=ffn_moe_weighted-12 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.902 I capture-discovery: name=ffn_moe_out-12 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.909 I capture-discovery: name=ffn_inp-13 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.910 I capture-discovery: name=ffn_norm-13 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.911 I capture-discovery: name=ffn_moe_logits-13 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.912 I capture-discovery: name=ffn_moe_probs-13 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.914 I capture-discovery: name=ffn_moe_probs-13 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.915 I capture-discovery: name=ffn_moe_argsort-13 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.916 I capture-discovery: name=ffn_moe_topk-13 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.917 I capture-discovery: name=ffn_moe_weights-13 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.918 I capture-discovery: name=ffn_norm-13 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.919 I capture-discovery: name=ffn_moe_gate-13 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.919 I capture-discovery: name=ffn_moe_up-13 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.920 I capture-discovery: name=ffn_moe_swiglu-13 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.921 I capture-discovery: name=ffn_moe_down-13 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.922 I capture-discovery: name=ffn_moe_weighted-13 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.923 I capture-discovery: name=ffn_moe_weighted-13 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.927 I capture-discovery: name=ffn_moe_out-13 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.934 I capture-discovery: name=ffn_inp-14 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.935 I capture-discovery: name=ffn_norm-14 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.936 I capture-discovery: name=ffn_moe_logits-14 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.937 I capture-discovery: name=ffn_moe_probs-14 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.938 I capture-discovery: name=ffn_moe_probs-14 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.16.672.939 I capture-discovery: name=ffn_moe_argsort-14 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.16.672.940 I capture-discovery: name=ffn_moe_topk-14 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.16.672.941 I capture-discovery: name=ffn_moe_weights-14 type=f32 shape={1,8,768,1} elements=6144 target=0
+0.16.672.942 I capture-discovery: name=ffn_norm-14 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=0
+0.16.672.944 I capture-discovery: name=ffn_moe_gate-14 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.944 I capture-discovery: name=ffn_moe_up-14 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.945 I capture-discovery: name=ffn_moe_swiglu-14 type=f32 shape={1024,8,768,1} elements=6291456 target=0
+0.16.672.946 I capture-discovery: name=ffn_moe_down-14 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.947 I capture-discovery: name=ffn_moe_weighted-14 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.16.672.948 I capture-discovery: name=ffn_moe_weighted-14 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.952 I capture-discovery: name=ffn_moe_out-14 type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.16.672.960 I capture-discovery: name=ffn_inp-15 type=f32 shape={2048,1,1,1} elements=2048 target=0
+0.16.672.961 I capture-discovery: name=ffn_norm-15 type=f32 shape={2048,1,1,1} elements=2048 target=0
+0.16.672.962 I capture-discovery: name=ffn_moe_logits-15 type=f32 shape={64,1,1,1} elements=64 target=0
+0.16.672.964 I capture-discovery: name=ffn_moe_probs-15 type=f32 shape={64,1,1,1} elements=64 target=0
+0.16.672.965 I capture-discovery: name=ffn_moe_probs-15 (reshaped) type=f32 shape={1,64,1,1} elements=64 target=0
+0.16.672.966 I capture-discovery: name=ffn_moe_argsort-15 type=i32 shape={64,1,1,1} elements=64 target=0
+0.16.672.967 I capture-discovery: name=ffn_moe_topk-15 type=i32 shape={8,1,1,1} elements=8 target=0
+0.16.672.968 I capture-discovery: name=ffn_moe_weights-15 type=f32 shape={1,8,1,1} elements=8 target=0
+0.16.672.969 I capture-discovery: name=ffn_norm-15 (reshaped) type=f32 shape={2048,1,1,1} elements=2048 target=0
+0.16.672.970 I capture-discovery: name=ffn_moe_gate-15 type=f32 shape={1024,8,1,1} elements=8192 target=0
+0.16.672.971 I capture-discovery: name=ffn_moe_up-15 type=f32 shape={1024,8,1,1} elements=8192 target=0
+0.16.672.972 I capture-discovery: name=ffn_moe_swiglu-15 type=f32 shape={1024,8,1,1} elements=8192 target=0
+0.16.672.973 I capture-discovery: name=ffn_moe_down-15 type=f32 shape={2048,8,1,1} elements=16384 target=0
+0.16.672.974 I capture-discovery: name=ffn_moe_weighted-15 type=f32 shape={2048,8,1,1} elements=16384 target=0
+0.16.672.975 I capture-discovery: name=ffn_moe_weighted-15 (view) type=f32 shape={2048,1,1,1} elements=2048 target=0
+0.16.672.980 I capture-discovery: name=ffn_moe_out-15 type=f32 shape={2048,1,1,1} elements=2048 target=0
