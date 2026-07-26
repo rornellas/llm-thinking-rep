@@ -103,3 +103,5 @@ jobs:
             neuronwise-trainability.log
           if-no-files-found: warn
           retention-days: 14
+
+# Triggered after the workflow became present on the default branch.
