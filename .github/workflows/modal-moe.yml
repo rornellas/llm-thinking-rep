@@ -8,11 +8,11 @@ on:
       - "experiment/archive.part-*"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: modal-moe-l7-scout
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   scout:
@@ -30,12 +30,43 @@ jobs:
     steps:
       - name: Checkout experiment
         uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          payload = {
+              "workflow": "Modal MoE — OLMoE layer 7 scout",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/latest.json").write_text(
+              json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/latest.json
+          git commit -m "chore: register Modal MoE run ${GITHUB_RUN_ID}"
+          git push origin HEAD:main
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
 
       - name: Rebuild and verify experiment archive
         shell: bash
@@ -116,7 +147,64 @@ jobs:
             printf '%s\n' '## Modal MoE scout' '' 'No aggregate verdict was produced. Inspect cloud-run.log.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Upload results and diagnostics
+      - name: Persist compact result in repository
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          rm -rf results/latest
+          mkdir -p results/latest
+
+          aggregate="modal_moe_experiment/results/olmoe_l7_scout/aggregate"
+          if [[ -d "$aggregate" ]]; then
+            cp -a "$aggregate" results/latest/aggregate
+          fi
+
+          for seed_dir in modal_moe_experiment/results/olmoe_l7_scout/seed-*; do
+            [[ -d "$seed_dir" ]] || continue
+            destination="results/latest/$(basename "$seed_dir")"
+            mkdir -p "$destination"
+            for name in modal_weight_probe_v2.json modal_weight_probe_v2.csv; do
+              [[ -f "$seed_dir/$name" ]] && cp "$seed_dir/$name" "$destination/"
+            done
+          done
+
+          if [[ -f modal_moe_experiment/cloud-run.log ]]; then
+            tail -n 1000 modal_moe_experiment/cloud-run.log > results/latest/cloud-run-tail.log
+          fi
+
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          marker = Path("runs/latest.json")
+          payload = json.loads(marker.read_text(encoding="utf-8")) if marker.exists() else {}
+          payload.update({
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": os.environ["RUN_STATUS"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+          })
+          marker.parent.mkdir(parents=True, exist_ok=True)
+          marker.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          Path("results/latest/run.json").write_text(
+              json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/latest.json results/latest
+          git commit -m "results: Modal MoE scout run ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload full results and diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
