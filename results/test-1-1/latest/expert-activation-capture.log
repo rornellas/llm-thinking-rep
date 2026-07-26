@@ -1,1 +1,25 @@
-error: invalid argument: --no-warmup
+0.07.042.655 I capture: evaluating 768 tokens
+0.07.045.886 I capture-discovery: name=ffn_norm-7 type=f32 shape={2048,768,1,1} elements=1572864 target=1
+0.19.168.757 I capture: wrote ffn_norm-7 chunk=0 elements=1572864
+0.19.168.770 I capture-discovery: name=ffn_moe_logits-7 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.19.168.771 I capture-discovery: name=ffn_moe_probs-7 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.19.168.772 I capture-discovery: name=ffn_moe_probs-7 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.19.168.774 I capture-discovery: name=ffn_moe_argsort-7 type=i32 shape={64,768,1,1} elements=49152 target=0
+0.19.168.775 I capture-discovery: name=ffn_moe_topk-7 type=i32 shape={8,768,1,1} elements=6144 target=1
+0.19.173.177 E capture: target tensor is not contiguous: ffn_moe_topk-7
+0.19.173.206 I capture-discovery: name=ffn_moe_weights-7 type=f32 shape={1,8,768,1} elements=6144 target=1
+0.19.173.464 I capture: wrote ffn_moe_weights-7 chunk=0 elements=6144
+0.19.173.467 I capture-discovery: name=ffn_norm-7 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=1
+0.19.179.709 I capture: wrote ffn_norm-7 (reshaped) chunk=0 elements=1572864
+0.19.179.728 I capture-discovery: name=ffn_moe_gate-7 type=f32 shape={1024,8,768,1} elements=6291456 target=1
+0.19.580.961 I capture: wrote ffn_moe_gate-7 chunk=0 elements=6291456
+0.19.580.988 I capture-discovery: name=ffn_moe_up-7 type=f32 shape={1024,8,768,1} elements=6291456 target=1
+0.20.002.896 I capture: wrote ffn_moe_up-7 chunk=0 elements=6291456
+0.20.002.917 I capture-discovery: name=ffn_moe_swiglu-7 type=f32 shape={1024,8,768,1} elements=6291456 target=1
+0.20.048.675 I capture: wrote ffn_moe_swiglu-7 chunk=0 elements=6291456
+0.20.048.812 I capture-discovery: name=ffn_moe_down-7 type=f32 shape={2048,8,768,1} elements=12582912 target=1
+0.20.646.423 I capture: wrote ffn_moe_down-7 chunk=0 elements=12582912
+0.20.649.632 I capture-discovery: name=ffn_moe_weighted-7 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.20.649.643 I capture-discovery: name=ffn_moe_weighted-7 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.20.649.650 I capture-discovery: name=ffn_moe_out-7 type=f32 shape={2048,768,1,1} elements=1572864 target=1
+0.20.684.663 I capture: wrote ffn_moe_out-7 chunk=0 elements=1572864

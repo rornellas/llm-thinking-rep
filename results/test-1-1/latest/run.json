@@ -1,9 +1,9 @@
 {
-  "workflow": "Modal MoE — Test 1.1 routed expert subspaces",
-  "run_id": 30224351648,
+  "workflow": "Modal MoE \u2014 Test 1.1b routed expert subspaces retry",
+  "run_id": 30224666324,
   "run_attempt": 1,
   "status": "failure",
-  "commit": "cea91b640e51ffd2fa1e4ed06c323bb34fc217b2",
-  "started_at": "2026-07-26T23:01:54.286349+00:00",
-  "finished_at": "2026-07-26T23:08:38.497762+00:00"
+  "commit": "53d77605310e96682a363d2e9644f3073182b7ef",
+  "started_at": "2026-07-26T23:10:19.329110+00:00",
+  "finished_at": "2026-07-26T23:17:52.828094+00:00"
 }
