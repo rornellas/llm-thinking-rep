@@ -1,0 +1,77 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_6_progressive_nested_modes.py:150: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"baseline step={step}/{cfg.steps} ce={float(ce):.4f}", flush=True)
+baseline step=1/400 ce=4.1705
+baseline step=100/400 ce=2.7842
+baseline step=200/400 ce=2.5450
+baseline step=300/400 ce=2.5009
+baseline step=400/400 ce=2.3582
+progressive step=1/400 full=4.2315 sampled-rank=2 sampled=4.2305
+progressive step=100/400 full=2.8653 sampled-rank=3 sampled=2.8653
+progressive step=200/400 full=2.5844 sampled-rank=2 sampled=2.5974
+progressive step=300/400 full=2.4854 sampled-rank=3 sampled=2.4854
+progressive step=400/400 full=2.4239 sampled-rank=0 sampled=2.4581
+collected train utility batch 1/32
+collected train utility batch 8/32
+collected train utility batch 16/32
+collected train utility batch 24/32
+collected train utility batch 32/32
+collected train utility batch 1/24
+collected train utility batch 8/24
+collected train utility batch 16/24
+collected train utility batch 24/24
+collected validation utility batch 1/24
+collected validation utility batch 8/24
+collected validation utility batch 16/24
+collected validation utility batch 24/24
+utility-controller layer=0 step=1/800 loss=47.4575 regression=46.8424 ranking=1.7573
+utility-controller layer=0 step=200/800 loss=47.0793 regression=46.5452 ranking=1.5261
+utility-controller layer=0 step=400/800 loss=46.9248 regression=46.3682 ranking=1.5903
+utility-controller layer=0 step=600/800 loss=44.4681 regression=43.8819 ranking=1.6747
+utility-controller layer=0 step=800/800 loss=47.2010 regression=46.5930 ranking=1.7372
+utility-controller layer=1 step=1/800 loss=47.1549 regression=46.4894 ranking=1.9014
+utility-controller layer=1 step=200/800 loss=45.5742 regression=44.9549 ranking=1.7693
+utility-controller layer=1 step=400/800 loss=43.0768 regression=42.4794 ranking=1.7066
+utility-controller layer=1 step=600/800 loss=44.3562 regression=43.7078 ranking=1.8525
+utility-controller layer=1 step=800/800 loss=44.1073 regression=43.4954 ranking=1.7485
+lambda=0.000 delta=-0.0138 ucb95=-0.0120 mean-K=2.161 bucket16=40.313%
+lambda=0.001 delta=-0.0132 ucb95=-0.0116 mean-K=2.038 bucket16=38.749%
+lambda=0.002 delta=-0.0128 ucb95=-0.0110 mean-K=1.919 bucket16=37.278%
+lambda=0.003 delta=-0.0122 ucb95=-0.0101 mean-K=1.800 bucket16=35.779%
+lambda=0.004 delta=-0.0119 ucb95=-0.0100 mean-K=1.685 bucket16=34.345%
+lambda=0.005 delta=-0.0111 ucb95=-0.0094 mean-K=1.570 bucket16=32.903%
+lambda=0.006 delta=-0.0106 ucb95=-0.0091 mean-K=1.460 bucket16=31.494%
+lambda=0.007 delta=-0.0102 ucb95=-0.0087 mean-K=1.351 bucket16=30.174%
+lambda=0.008 delta=-0.0093 ucb95=-0.0079 mean-K=1.249 bucket16=28.896%
+lambda=0.009 delta=-0.0086 ucb95=-0.0072 mean-K=1.157 bucket16=27.691%
+lambda=0.010 delta=-0.0076 ucb95=-0.0061 mean-K=1.070 bucket16=26.604%
+lambda=0.011 delta=-0.0069 ucb95=-0.0054 mean-K=0.992 bucket16=25.632%
+lambda=0.012 delta=-0.0064 ucb95=-0.0049 mean-K=0.913 bucket16=24.648%
+lambda=0.013 delta=-0.0061 ucb95=-0.0047 mean-K=0.846 bucket16=23.814%
+lambda=0.014 delta=-0.0051 ucb95=-0.0036 mean-K=0.785 bucket16=23.034%
+lambda=0.015 delta=-0.0038 ucb95=-0.0024 mean-K=0.723 bucket16=22.254%
+lambda=0.016 delta=-0.0029 ucb95=-0.0013 mean-K=0.669 bucket16=21.576%
+lambda=0.017 delta=-0.0021 ucb95=-0.0006 mean-K=0.619 bucket16=20.979%
+lambda=0.018 delta=-0.0010 ucb95=+0.0004 mean-K=0.568 bucket16=20.289%
+lambda=0.019 delta=-0.0002 ucb95=+0.0011 mean-K=0.523 bucket16=19.742%
+lambda=0.020 delta=+0.0007 ucb95=+0.0020 mean-K=0.483 bucket16=19.268%
+# Test 2.10 — marginal-utility rank controller
+
+**Decision:** **MARGINAL_UTILITY_PASS**
+
+Chosen utility price: `0.0200` nat per residual mode (train-calibration only).
+
+| Policy | Validation loss | Δ vs K1 | Mean K | p95 K | Exact compute | Bucket16 | Bucket32 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Static K=0 | 2.4862 | +0.0171 | 0 | 0 | 12.500% | 12.500% | 12.500% |
+| Static K=1 | 2.4691 | +0.0000 | 1 | 1 | 25.049% | 25.049% | 25.049% |
+| Static K=2 | 2.4601 | -0.0090 | 2 | 2 | 37.598% | 37.598% | 37.598% |
+| Static K=3 | 2.4563 | -0.0128 | 3 | 3 | 50.146% | 50.146% | 50.146% |
+| **Marginal dynamic** | **2.4712** | **+0.0021** | **0.499** | **3** | **19.173%** | **19.452%** | **19.773%** |
+
+- Test paired-bootstrap UCB95 vs static K1: `+0.0037` nat.
+- Bucket16 compute advantage vs K1: `+5.597%`.
+- Rank counts: `{'0': 35802, '1': 6083, '2': 3363, '3': 3904}`.
+
+Each controller predicts the cumulative final-language-loss improvement of K=1,2,3 over K=0 for its layer. Inference chooses the prefix maximizing predicted benefit minus a calibrated price per residual mode. Reported bucket cost assumes one rank compaction before grouped GEMMs; scan/scatter latency remains for a kernel benchmark.
+
