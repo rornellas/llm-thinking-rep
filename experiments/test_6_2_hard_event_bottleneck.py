@@ -550,7 +550,7 @@ def write_outputs(output_dir: Path, payload: dict[str, Any]) -> None:
             f"{row['validation_loss']:.4f} | {row['delta_vs_own_dense_k3']:+.4f} | "
             f"{row['delta_vs_control_dense_k3']:+.4f} | {row['event_density']:.3%} | "
             f"{row['residual_bit_ratio_vs_dense_bf16']:.3%} | "
-            f"{('n/a' if row['magnitude_advantage_over_random'] is None else f'{row['magnitude_advantage_over_random']:+.4f}')} |"
+            f"{('n/a' if row['magnitude_advantage_over_random'] is None else format(row['magnitude_advantage_over_random'], '+.4f'))} |"
         )
     lines += [
         "",
