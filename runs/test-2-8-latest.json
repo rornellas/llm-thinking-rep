@@ -1,9 +1,8 @@
 {
-  "workflow": "Modal MoE \u2014 Test 2.8 scale64 dynamic controller",
-  "run_id": 30233530312,
+  "workflow": "Modal MoE \u2014 Test 2.8 controller robustness",
+  "run_id": 30267924481,
   "run_attempt": 1,
-  "status": "success",
-  "commit": "5f0c3b8610b509dbecc4ffac99ad28783818453a",
-  "started_at": "2026-07-27T03:01:01.667916+00:00",
-  "finished_at": "2026-07-27T03:10:03.236032+00:00"
+  "status": "running",
+  "commit": "e8d1596ef226418573f90b40b7542f56c17ef32e",
+  "started_at": "2026-07-27T12:55:18.841177+00:00"
 }
