@@ -1,3 +1,4 @@
+# Public GitHub-hosted runner trigger; methodology unchanged.
 name: Modal MoE — Test 4.0 WikiText-2 scale64 controller
 
 on:
