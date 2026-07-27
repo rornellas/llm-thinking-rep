@@ -1,0 +1,101 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_4_autoregressive_patch_lm.py:126: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.transformer = nn.TransformerEncoder(layer, num_layers=cfg.n_layers)
+seed=61401 byte step=1/1000 train-bpb=7.9552 val-bpb=7.8170
+seed=61401 byte step=250/1000 train-bpb=3.8566 val-bpb=3.7852
+seed=61401 byte step=500/1000 train-bpb=3.6483 val-bpb=3.6354
+seed=61401 byte step=750/1000 train-bpb=3.5130 val-bpb=3.5719
+seed=61401 byte step=1000/1000 train-bpb=3.4689 val-bpb=3.5001
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_4_autoregressive_patch_lm.py:198: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.latent_transformer = nn.TransformerEncoder(
+seed=61401 patch4-gru step=1/1000 train-bpb=8.0925 val-bpb=7.9500
+seed=61401 patch4-gru step=250/1000 train-bpb=3.8563 val-bpb=3.7490
+seed=61401 patch4-gru step=500/1000 train-bpb=3.5112 val-bpb=3.5188
+seed=61401 patch4-gru step=750/1000 train-bpb=3.3790 val-bpb=3.4042
+seed=61401 patch4-gru step=1000/1000 train-bpb=3.3309 val-bpb=3.3157
+seed=61401 patch8-gru step=1/1000 train-bpb=7.9352 val-bpb=7.8560
+seed=61401 patch8-gru step=250/1000 train-bpb=3.8542 val-bpb=3.7473
+seed=61401 patch8-gru step=500/1000 train-bpb=3.5005 val-bpb=3.4863
+seed=61401 patch8-gru step=750/1000 train-bpb=3.3329 val-bpb=3.3684
+seed=61401 patch8-gru step=1000/1000 train-bpb=3.2862 val-bpb=3.2855
+seed=61401 patch16-gru step=1/1000 train-bpb=8.0607 val-bpb=7.9630
+seed=61401 patch16-gru step=250/1000 train-bpb=3.7706 val-bpb=3.6643
+seed=61401 patch16-gru step=500/1000 train-bpb=3.4610 val-bpb=3.4437
+seed=61401 patch16-gru step=750/1000 train-bpb=3.2979 val-bpb=3.3354
+seed=61401 patch16-gru step=1000/1000 train-bpb=3.2483 val-bpb=3.2477
+seed=61401 patch8-mean step=1/1000 train-bpb=8.0363 val-bpb=7.9192
+seed=61401 patch8-mean step=250/1000 train-bpb=3.9295 val-bpb=3.8216
+seed=61401 patch8-mean step=500/1000 train-bpb=3.6485 val-bpb=3.6188
+seed=61401 patch8-mean step=750/1000 train-bpb=3.4649 val-bpb=3.5271
+seed=61401 patch8-mean step=1000/1000 train-bpb=3.4842 val-bpb=3.4670
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_4_autoregressive_patch_lm.py:126: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.transformer = nn.TransformerEncoder(layer, num_layers=cfg.n_layers)
+seed=62502 byte step=1/1000 train-bpb=8.1085 val-bpb=7.9205
+seed=62502 byte step=250/1000 train-bpb=3.7617 val-bpb=3.7947
+seed=62502 byte step=500/1000 train-bpb=3.6077 val-bpb=3.6367
+seed=62502 byte step=750/1000 train-bpb=3.5379 val-bpb=3.5611
+seed=62502 byte step=1000/1000 train-bpb=3.4122 val-bpb=3.4971
+seed=62502 patch4-gru step=1/1000 train-bpb=8.0880 val-bpb=7.8995
+seed=62502 patch4-gru step=250/1000 train-bpb=3.7495 val-bpb=3.7808
+seed=62502 patch4-gru step=500/1000 train-bpb=3.4719 val-bpb=3.5156
+seed=62502 patch4-gru step=750/1000 train-bpb=3.3822 val-bpb=3.3823
+seed=62502 patch4-gru step=1000/1000 train-bpb=3.1422 val-bpb=3.2963
+seed=62502 patch8-gru step=1/1000 train-bpb=8.0113 val-bpb=7.8954
+seed=62502 patch8-gru step=250/1000 train-bpb=3.6633 val-bpb=3.7061
+seed=62502 patch8-gru step=500/1000 train-bpb=3.4234 val-bpb=3.4733
+seed=62502 patch8-gru step=750/1000 train-bpb=3.3458 val-bpb=3.3558
+seed=62502 patch8-gru step=1000/1000 train-bpb=3.1382 val-bpb=3.2732
+seed=62502 patch16-gru step=1/1000 train-bpb=8.1280 val-bpb=8.0237
+seed=62502 patch16-gru step=250/1000 train-bpb=3.6346 val-bpb=3.6812
+seed=62502 patch16-gru step=500/1000 train-bpb=3.3854 val-bpb=3.4402
+seed=62502 patch16-gru step=750/1000 train-bpb=3.3158 val-bpb=3.3189
+seed=62502 patch16-gru step=1000/1000 train-bpb=3.0947 val-bpb=3.2394
+seed=62502 patch8-mean step=1/1000 train-bpb=8.0264 val-bpb=7.9270
+seed=62502 patch8-mean step=250/1000 train-bpb=3.7610 val-bpb=3.8179
+seed=62502 patch8-mean step=500/1000 train-bpb=3.5917 val-bpb=3.6110
+seed=62502 patch8-mean step=750/1000 train-bpb=3.5367 val-bpb=3.5151
+seed=62502 patch8-mean step=1000/1000 train-bpb=3.3536 val-bpb=3.4626
+seed=63603 byte step=1/1000 train-bpb=8.1246 val-bpb=7.9437
+seed=63603 byte step=250/1000 train-bpb=3.7741 val-bpb=3.7902
+seed=63603 byte step=500/1000 train-bpb=3.6725 val-bpb=3.6310
+seed=63603 byte step=750/1000 train-bpb=3.4991 val-bpb=3.5579
+seed=63603 byte step=1000/1000 train-bpb=3.5952 val-bpb=3.5090
+seed=63603 patch4-gru step=1/1000 train-bpb=8.0414 val-bpb=7.8974
+seed=63603 patch4-gru step=250/1000 train-bpb=3.7743 val-bpb=3.7609
+seed=63603 patch4-gru step=500/1000 train-bpb=3.5653 val-bpb=3.5224
+seed=63603 patch4-gru step=750/1000 train-bpb=3.3287 val-bpb=3.4116
+seed=63603 patch4-gru step=1000/1000 train-bpb=3.4339 val-bpb=3.3174
+seed=63603 patch8-gru step=1/1000 train-bpb=8.0608 val-bpb=7.9651
+seed=63603 patch8-gru step=250/1000 train-bpb=3.7417 val-bpb=3.7164
+seed=63603 patch8-gru step=500/1000 train-bpb=3.5356 val-bpb=3.4902
+seed=63603 patch8-gru step=750/1000 train-bpb=3.3020 val-bpb=3.3730
+seed=63603 patch8-gru step=1000/1000 train-bpb=3.4010 val-bpb=3.2828
+seed=63603 patch16-gru step=1/1000 train-bpb=8.0546 val-bpb=7.9602
+seed=63603 patch16-gru step=250/1000 train-bpb=3.6873 val-bpb=3.6684
+seed=63603 patch16-gru step=500/1000 train-bpb=3.4931 val-bpb=3.4487
+seed=63603 patch16-gru step=750/1000 train-bpb=3.2859 val-bpb=3.3367
+seed=63603 patch16-gru step=1000/1000 train-bpb=3.3618 val-bpb=3.2507
+seed=63603 patch8-mean step=1/1000 train-bpb=8.0126 val-bpb=7.9031
+seed=63603 patch8-mean step=250/1000 train-bpb=3.8593 val-bpb=3.8298
+seed=63603 patch8-mean step=500/1000 train-bpb=3.6653 val-bpb=3.6155
+seed=63603 patch8-mean step=750/1000 train-bpb=3.4549 val-bpb=3.5272
+seed=63603 patch8-mean step=1000/1000 train-bpb=3.5667 val-bpb=3.4600
+# Test 5.4 — autoregressive byte-patch language model
+
+**Decision:** **AUTOREGRESSIVE_PATCH_FAIL**
+
+| Model | Runs | Patch | BpB | Rolled Δ | Worst rolled LCB95 | Params | Latent positions | Attention work/byte | Target bytes/s |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| byte | 3 | 1 | 3.5021 ± 0.0051 | +0.0264 | +0.0215 | 125,760 | 143 | 100.000% | 128918 |
+| patch16-gru | 3 | 16 | 3.2459 ± 0.0048 | +0.0317 | +0.0276 | 171,264 | 8 | 0.313% | 217493 |
+| patch4-gru | 3 | 4 | 3.3098 ± 0.0096 | +0.0305 | +0.0257 | 172,992 | 35 | 5.991% | 219301 |
+| patch8-gru | 3 | 8 | 3.2805 ± 0.0053 | +0.0305 | +0.0264 | 171,840 | 17 | 1.413% | 239519 |
+| patch8-mean | 3 | 8 | 3.4632 ± 0.0029 | +0.0080 | +0.0047 | 146,880 | 17 | 1.413% | 340423 |
+
+- Byte baseline: `3.5021` BpB.
+- Patch4: ratio `0.9451`, context `False`.
+- Patch8: ratio `0.9367`, context `False`.
+- Patch16: ratio `0.9269`, context `False`.
+- Patch8 GRU advantage over mean encoder: `+0.1827` BpB.
+
+Every model receives the same 144 raw bytes and predicts the same 128 raw target bytes. Patch models are autoregressive within each target patch; rolled-context evaluation keeps targets fixed and replaces preceding context with another held-out example.
+

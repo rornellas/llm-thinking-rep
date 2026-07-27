@@ -1,0 +1,438 @@
+{
+  "comparisons": [
+    {
+      "delta_vs_byte_bpb": -0.25233685970306396,
+      "delta_vs_byte_lcb95_bpb": -0.2608049809932709,
+      "seed": 61401,
+      "variant": "patch16-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.1844216138124466,
+      "delta_vs_byte_lcb95_bpb": -0.19325841963291168,
+      "seed": 61401,
+      "variant": "patch4-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.2145417183637619,
+      "delta_vs_byte_lcb95_bpb": -0.22312842309474945,
+      "seed": 61401,
+      "variant": "patch8-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.033109355717897415,
+      "delta_vs_byte_lcb95_bpb": -0.041675399988889694,
+      "seed": 61401,
+      "variant": "patch8-mean"
+    },
+    {
+      "delta_vs_byte_bpb": -0.2576982080936432,
+      "delta_vs_byte_lcb95_bpb": -0.26581811904907227,
+      "seed": 62502,
+      "variant": "patch16-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.20077422261238098,
+      "delta_vs_byte_lcb95_bpb": -0.20864741504192352,
+      "seed": 62502,
+      "variant": "patch4-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.22385315597057343,
+      "delta_vs_byte_lcb95_bpb": -0.23163031041622162,
+      "seed": 62502,
+      "variant": "patch8-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.03443225100636482,
+      "delta_vs_byte_lcb95_bpb": -0.042238444089889526,
+      "seed": 62502,
+      "variant": "patch8-mean"
+    },
+    {
+      "delta_vs_byte_bpb": -0.25829267501831055,
+      "delta_vs_byte_lcb95_bpb": -0.26673373579978943,
+      "seed": 63603,
+      "variant": "patch16-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.19158820807933807,
+      "delta_vs_byte_lcb95_bpb": -0.20052482187747955,
+      "seed": 63603,
+      "variant": "patch4-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.22616851329803467,
+      "delta_vs_byte_lcb95_bpb": -0.2345062643289566,
+      "seed": 63603,
+      "variant": "patch8-gru"
+    },
+    {
+      "delta_vs_byte_bpb": -0.0490020290017128,
+      "delta_vs_byte_lcb95_bpb": -0.05715551972389221,
+      "seed": 63603,
+      "variant": "patch8-mean"
+    }
+  ],
+  "decision": {
+    "byte_validation_bpb": 3.5020554316054353,
+    "patch16": {
+      "bpb_ratio_to_byte": 0.9268689156739162,
+      "context_dependent": false,
+      "paired_deltas_vs_byte": [
+        -0.25233685970306396,
+        -0.2576982080936432,
+        -0.25829267501831055
+      ],
+      "passes": false
+    },
+    "patch4": {
+      "bpb_ratio_to_byte": 0.9451004905602237,
+      "context_dependent": false,
+      "paired_deltas_vs_byte": [
+        -0.1844216138124466,
+        -0.20077422261238098,
+        -0.19158820807933807
+      ],
+      "passes": false
+    },
+    "patch8": {
+      "bpb_ratio_to_byte": 0.9367454024588973,
+      "context_dependent": false,
+      "paired_deltas_vs_byte": [
+        -0.2145417183637619,
+        -0.22385315597057343,
+        -0.22616851329803467
+      ],
+      "passes": false
+    },
+    "patch8_gru_advantage_over_mean_bpb": 0.18267320709554102,
+    "rule": "Patch4/8 require BpB <=1.02x byte and rolled-context cost >=0.05 BpB with positive LCB95 in every seed. Patch16 permits 1.03x. Strong patch8 signal additionally requires GRU order encoding to beat the mean encoder by >=0.005 BpB.",
+    "verdict": "AUTOREGRESSIVE_PATCH_FAIL"
+  },
+  "metadata": {
+    "dataset": "WikiText-2 raw UTF-8 bytes",
+    "evaluation_examples_per_seed": 320,
+    "intervention": "roll context windows across held-out examples while retaining target span",
+    "seeds": [
+      61401,
+      62502,
+      63603
+    ],
+    "steps_per_variant": 1000,
+    "target_bytes": 128,
+    "target_start": 16,
+    "task": "autoregressive prediction of bytes 16..143 from each 144-byte WikiText-2 window",
+    "train_corpus_bytes": 10951563,
+    "validation_corpus_bytes": 1148008,
+    "window_bytes": 144
+  },
+  "runs": [
+    {
+      "best_validation_bits_per_byte": 3.500072586296088,
+      "downstream_attention_work_ratio_to_byte": 1.0,
+      "final_train_bits_per_byte": 3.468892819625264,
+      "latent_positions": 143,
+      "model_bytes_per_second": 102153.01393215047,
+      "patch_size": 1,
+      "rolled_context_bits_per_byte": 3.5271192659013764,
+      "rolled_context_delta_bpb": 0.02704637125134468,
+      "rolled_context_lcb95_bpb": 0.02388896606862545,
+      "seed": 61401,
+      "trainable_parameters": 125760,
+      "training_seconds": 22.09049040900001,
+      "validation_bits_per_byte": 3.500072586296088,
+      "variant": "byte"
+    },
+    {
+      "best_validation_bits_per_byte": 3.3156511182269757,
+      "downstream_attention_work_ratio_to_byte": 0.05990512983519977,
+      "final_train_bits_per_byte": 3.3309004759136793,
+      "latent_positions": 35,
+      "model_bytes_per_second": 220174.37240508394,
+      "patch_size": 4,
+      "rolled_context_bits_per_byte": 3.345201521263525,
+      "rolled_context_delta_bpb": 0.029550492763519287,
+      "rolled_context_lcb95_bpb": 0.026564961299300194,
+      "seed": 61401,
+      "trainable_parameters": 172992,
+      "training_seconds": 19.100179330000003,
+      "validation_bits_per_byte": 3.3156511182269757,
+      "variant": "patch4-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.285530764685467,
+      "downstream_attention_work_ratio_to_byte": 0.01413272042642672,
+      "final_train_bits_per_byte": 3.286156093604004,
+      "latent_positions": 17,
+      "model_bytes_per_second": 239281.42479564078,
+      "patch_size": 8,
+      "rolled_context_bits_per_byte": 3.3148200980580067,
+      "rolled_context_delta_bpb": 0.02928924560546875,
+      "rolled_context_lcb95_bpb": 0.026508066803216934,
+      "seed": 61401,
+      "trainable_parameters": 171840,
+      "training_seconds": 18.82721748900002,
+      "validation_bits_per_byte": 3.285530764685467,
+      "variant": "patch8-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.247735857331856,
+      "downstream_attention_work_ratio_to_byte": 0.003129737395471661,
+      "final_train_bits_per_byte": 3.248313719038755,
+      "latent_positions": 8,
+      "model_bytes_per_second": 210929.59722084177,
+      "patch_size": 16,
+      "rolled_context_bits_per_byte": 3.279485918472941,
+      "rolled_context_delta_bpb": 0.03175029903650284,
+      "rolled_context_lcb95_bpb": 0.02867051213979721,
+      "seed": 61401,
+      "trainable_parameters": 171264,
+      "training_seconds": 21.852407408999994,
+      "validation_bits_per_byte": 3.247735857331856,
+      "variant": "patch16-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.4669631742825833,
+      "downstream_attention_work_ratio_to_byte": 0.01413272042642672,
+      "final_train_bits_per_byte": 3.4841872367664934,
+      "latent_positions": 17,
+      "model_bytes_per_second": 337028.4021470012,
+      "patch_size": 8,
+      "rolled_context_bits_per_byte": 3.4748970779321864,
+      "rolled_context_delta_bpb": 0.007933823391795158,
+      "rolled_context_lcb95_bpb": 0.006392790470272303,
+      "seed": 61401,
+      "trainable_parameters": 146880,
+      "training_seconds": 14.573765518000016,
+      "validation_bits_per_byte": 3.4669631742825833,
+      "variant": "patch8-mean"
+    },
+    {
+      "best_validation_bits_per_byte": 3.4970797442057733,
+      "downstream_attention_work_ratio_to_byte": 1.0,
+      "final_train_bits_per_byte": 3.412176724989029,
+      "latent_positions": 143,
+      "model_bytes_per_second": 138749.48073955328,
+      "patch_size": 1,
+      "rolled_context_bits_per_byte": 3.521432487567947,
+      "rolled_context_delta_bpb": 0.024352755397558212,
+      "rolled_context_lcb95_bpb": 0.021526819095015526,
+      "seed": 62502,
+      "trainable_parameters": 125760,
+      "training_seconds": 23.081729209000002,
+      "validation_bits_per_byte": 3.4970797442057733,
+      "variant": "byte"
+    },
+    {
+      "best_validation_bits_per_byte": 3.2963058217273233,
+      "downstream_attention_work_ratio_to_byte": 0.05990512983519977,
+      "final_train_bits_per_byte": 3.1421632752038158,
+      "latent_positions": 35,
+      "model_bytes_per_second": 216877.71270217,
+      "patch_size": 4,
+      "rolled_context_bits_per_byte": 3.3251187631569734,
+      "rolled_context_delta_bpb": 0.02881297469139099,
+      "rolled_context_lcb95_bpb": 0.02569728158414364,
+      "seed": 62502,
+      "trainable_parameters": 172992,
+      "training_seconds": 20.39306996399995,
+      "validation_bits_per_byte": 3.2963058217273233,
+      "variant": "patch4-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.27322678187744,
+      "downstream_attention_work_ratio_to_byte": 0.01413272042642672,
+      "final_train_bits_per_byte": 3.1382424147294454,
+      "latent_positions": 17,
+      "model_bytes_per_second": 237349.87873690217,
+      "patch_size": 8,
+      "rolled_context_bits_per_byte": 3.302894133116576,
+      "rolled_context_delta_bpb": 0.029667478054761887,
+      "rolled_context_lcb95_bpb": 0.02643859013915062,
+      "seed": 62502,
+      "trainable_parameters": 171840,
+      "training_seconds": 19.752355095999974,
+      "validation_bits_per_byte": 3.27322678187744,
+      "variant": "patch8-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.239381628083544,
+      "downstream_attention_work_ratio_to_byte": 0.003129737395471661,
+      "final_train_bits_per_byte": 3.0947050066635255,
+      "latent_positions": 8,
+      "model_bytes_per_second": 212701.68245262472,
+      "patch_size": 16,
+      "rolled_context_bits_per_byte": 3.270182688957168,
+      "rolled_context_delta_bpb": 0.030801156535744667,
+      "rolled_context_lcb95_bpb": 0.027595695108175278,
+      "seed": 62502,
+      "trainable_parameters": 171264,
+      "training_seconds": 21.519348116999993,
+      "validation_bits_per_byte": 3.239381628083544,
+      "variant": "patch16-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.462647441641832,
+      "downstream_attention_work_ratio_to_byte": 0.01413272042642672,
+      "final_train_bits_per_byte": 3.3535949625562336,
+      "latent_positions": 17,
+      "model_bytes_per_second": 344703.3544030109,
+      "patch_size": 8,
+      "rolled_context_bits_per_byte": 3.4687707119431517,
+      "rolled_context_delta_bpb": 0.006123126484453678,
+      "rolled_context_lcb95_bpb": 0.004697293043136597,
+      "seed": 62502,
+      "trainable_parameters": 146880,
+      "training_seconds": 13.757084531999965,
+      "validation_bits_per_byte": 3.462647441641832,
+      "variant": "patch8-mean"
+    },
+    {
+      "best_validation_bits_per_byte": 3.509013964314445,
+      "downstream_attention_work_ratio_to_byte": 1.0,
+      "final_train_bits_per_byte": 3.5951669534376607,
+      "latent_positions": 143,
+      "model_bytes_per_second": 145851.8903394891,
+      "patch_size": 1,
+      "rolled_context_bits_per_byte": 3.536876873580729,
+      "rolled_context_delta_bpb": 0.027862494811415672,
+      "rolled_context_lcb95_bpb": 0.02482607774436474,
+      "seed": 63603,
+      "trainable_parameters": 125760,
+      "training_seconds": 21.33777287500004,
+      "validation_bits_per_byte": 3.509013964314445,
+      "variant": "byte"
+    },
+    {
+      "best_validation_bits_per_byte": 3.31742597918388,
+      "downstream_attention_work_ratio_to_byte": 0.05990512983519977,
+      "final_train_bits_per_byte": 3.4338692407076565,
+      "latent_positions": 35,
+      "model_bytes_per_second": 220850.90489131538,
+      "patch_size": 4,
+      "rolled_context_bits_per_byte": 3.350467973998246,
+      "rolled_context_delta_bpb": 0.033042263239622116,
+      "rolled_context_lcb95_bpb": 0.029899371787905693,
+      "seed": 63603,
+      "trainable_parameters": 172992,
+      "training_seconds": 19.028141036999955,
+      "validation_bits_per_byte": 3.31742597918388,
+      "variant": "patch4-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.282845427574895,
+      "downstream_attention_work_ratio_to_byte": 0.01413272042642672,
+      "final_train_bits_per_byte": 3.4009703354588083,
+      "latent_positions": 17,
+      "model_bytes_per_second": 241926.4303969925,
+      "patch_size": 8,
+      "rolled_context_bits_per_byte": 3.3154970217718027,
+      "rolled_context_delta_bpb": 0.0326511487364769,
+      "rolled_context_lcb95_bpb": 0.029512351378798485,
+      "seed": 63603,
+      "trainable_parameters": 171840,
+      "training_seconds": 18.595537673000024,
+      "validation_bits_per_byte": 3.282845427574895,
+      "variant": "patch8-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.2507214761508343,
+      "downstream_attention_work_ratio_to_byte": 0.003129737395471661,
+      "final_train_bits_per_byte": 3.3618122936144585,
+      "latent_positions": 8,
+      "model_bytes_per_second": 228848.28007694831,
+      "patch_size": 16,
+      "rolled_context_bits_per_byte": 3.283400931537182,
+      "rolled_context_delta_bpb": 0.032679587602615356,
+      "rolled_context_lcb95_bpb": 0.029637310653924942,
+      "seed": 63603,
+      "trainable_parameters": 171264,
+      "training_seconds": 20.114679298999988,
+      "validation_bits_per_byte": 3.2507214761508343,
+      "variant": "patch16-gru"
+    },
+    {
+      "best_validation_bits_per_byte": 3.46001197950001,
+      "downstream_attention_work_ratio_to_byte": 0.01413272042642672,
+      "final_train_bits_per_byte": 3.5667168954013313,
+      "latent_positions": 17,
+      "model_bytes_per_second": 339538.34970016504,
+      "patch_size": 8,
+      "rolled_context_bits_per_byte": 3.470083627499838,
+      "rolled_context_delta_bpb": 0.010071679949760437,
+      "rolled_context_lcb95_bpb": 0.008318680338561535,
+      "seed": 63603,
+      "trainable_parameters": 146880,
+      "training_seconds": 13.378611878000015,
+      "validation_bits_per_byte": 3.46001197950001,
+      "variant": "patch8-mean"
+    }
+  ],
+  "summary": [
+    {
+      "attention_work_ratio_to_byte": 1.0,
+      "latent_positions": 143,
+      "model_bytes_per_second_mean": 128918.12833706428,
+      "patch_size": 1,
+      "rolled_delta_bpb_mean": 0.026420540486772854,
+      "runs": 3,
+      "trainable_parameters": 125760,
+      "validation_bpb_mean": 3.5020554316054353,
+      "validation_bpb_std": 0.005069855950692475,
+      "variant": "byte",
+      "worst_rolled_lcb95_bpb": 0.021526819095015526
+    },
+    {
+      "attention_work_ratio_to_byte": 0.003129737395471661,
+      "latent_positions": 8,
+      "model_bytes_per_second_mean": 217493.1865834716,
+      "patch_size": 16,
+      "rolled_delta_bpb_mean": 0.03174368105828762,
+      "runs": 3,
+      "trainable_parameters": 171264,
+      "validation_bpb_mean": 3.245946320522078,
+      "validation_bpb_std": 0.004799296479170595,
+      "variant": "patch16-gru",
+      "worst_rolled_lcb95_bpb": 0.027595695108175278
+    },
+    {
+      "attention_work_ratio_to_byte": 0.05990512983519977,
+      "latent_positions": 35,
+      "model_bytes_per_second_mean": 219300.99666618978,
+      "patch_size": 4,
+      "rolled_delta_bpb_mean": 0.030468576898177464,
+      "runs": 3,
+      "trainable_parameters": 172992,
+      "validation_bpb_mean": 3.309794306379393,
+      "validation_bpb_std": 0.009565282588992467,
+      "variant": "patch4-gru",
+      "worst_rolled_lcb95_bpb": 0.02569728158414364
+    },
+    {
+      "attention_work_ratio_to_byte": 0.01413272042642672,
+      "latent_positions": 17,
+      "model_bytes_per_second_mean": 239519.24464317848,
+      "patch_size": 8,
+      "rolled_delta_bpb_mean": 0.03053595746556918,
+      "runs": 3,
+      "trainable_parameters": 171840,
+      "validation_bpb_mean": 3.2805343247126006,
+      "validation_bpb_std": 0.005282227785391053,
+      "variant": "patch8-gru",
+      "worst_rolled_lcb95_bpb": 0.02643859013915062
+    },
+    {
+      "attention_work_ratio_to_byte": 0.01413272042642672,
+      "latent_positions": 17,
+      "model_bytes_per_second_mean": 340423.36875005905,
+      "patch_size": 8,
+      "rolled_delta_bpb_mean": 0.008042876608669758,
+      "runs": 3,
+      "trainable_parameters": 146880,
+      "validation_bpb_mean": 3.4632075318081417,
+      "validation_bpb_std": 0.0028653159188375267,
+      "variant": "patch8-mean",
+      "worst_rolled_lcb95_bpb": 0.004697293043136597
+    }
+  ]
+}
