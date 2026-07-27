@@ -1,0 +1,19 @@
+# Test 2.9 — rank bucketing and tile-divergence cost
+
+**Decision:** **RANK_COMPACTION_REQUIRED**
+
+| Tile | Expected max K without bucketing | Compute without bucketing | Compute after rank compaction | Padding after compaction | Advantage vs static K1 |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 0.737 | 22.014% | 22.014% | 0.000% | +3.035% |
+| 2 | 1.287 | 28.915% | 22.015% | 0.004% | +3.034% |
+| 4 | 2.008 | 37.959% | 22.017% | 0.008% | +3.032% |
+| 8 | 2.653 | 46.055% | 22.021% | 0.016% | +3.027% |
+| 16 | 2.951 | 49.795% | 22.023% | 0.033% | +3.025% |
+| 32 | 2.999 | 50.392% | 22.052% | 0.130% | +2.997% |
+| 64 | 3.000 | 50.409% | 22.076% | 0.260% | +2.973% |
+| 128 | 3.000 | 50.409% | 22.239% | 0.781% | +2.810% |
+| 256 | 3.000 | 50.409% | 22.369% | 1.042% | +2.680% |
+| 512 | 3.000 | 50.409% | 22.695% | 2.083% | +2.354% |
+
+Unbucketed estimates assume ranks are independently mixed inside a hardware tile. Compacted estimates sort tokens by predicted rank and include exact tail padding. The controller and elementwise code overhead are included; scan/scatter and kernel-launch latency are not.
+

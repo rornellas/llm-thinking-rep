@@ -1,0 +1,151 @@
+{
+  "decision": {
+    "note": "Projected matrix work only. Scatter, scan, launch, and memory-layout costs require a kernel benchmark.",
+    "verdict": "RANK_COMPACTION_REQUIRED"
+  },
+  "metadata": {
+    "assumption": "unbucketed ranks are iid within a tile; compacted cost uses exact observed counts",
+    "controller_overhead_ratio": 0.0026295979817708335,
+    "mean_rank": 0.7372233072916666,
+    "rank_counts": {
+      "0": 34439,
+      "1": 2448,
+      "2": 3007,
+      "3": 9258
+    },
+    "source_dynamic_compute_ratio": 0.22014248371124268,
+    "tokens_across_layers": 49152
+  },
+  "rows": [
+    {
+      "compacted_advantage_vs_k1": 0.030345797538757296,
+      "compacted_compute_ratio": 0.2201424837112427,
+      "compaction_padding_fraction": 0.0,
+      "compaction_padding_tokens": 0,
+      "expected_unbucketed_max_rank": 0.7372233072916667,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 1,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": 0.030345797538757296,
+      "unbucketed_compute_ratio": 0.2201424837112427
+    },
+    {
+      "compacted_advantage_vs_k1": 0.03033562501271564,
+      "compacted_compute_ratio": 0.22015265623728436,
+      "compaction_padding_fraction": 4.0690104166666664e-05,
+      "compaction_padding_tokens": 2,
+      "expected_unbucketed_max_rank": 1.2871004583107102,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 2,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.03865734104126911,
+      "unbucketed_compute_ratio": 0.2891456222912691
+    },
+    {
+      "compacted_advantage_vs_k1": 0.030315279960632296,
+      "compacted_compute_ratio": 0.2201730012893677,
+      "compaction_padding_fraction": 8.138020833333333e-05,
+      "compaction_padding_tokens": 4,
+      "expected_unbucketed_max_rank": 2.0078162521921596,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 4,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.12909872728518146,
+      "unbucketed_compute_ratio": 0.37958700853518146
+    },
+    {
+      "compacted_advantage_vs_k1": 0.03027458985646564,
+      "compacted_compute_ratio": 0.22021369139353436,
+      "compaction_padding_fraction": 0.00016276041666666666,
+      "compaction_padding_tokens": 8,
+      "expected_unbucketed_max_rank": 2.6529648300680435,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 8,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.21005731347370793,
+      "unbucketed_compute_ratio": 0.46054559472370793
+    },
+    {
+      "compacted_advantage_vs_k1": 0.030254244804382296,
+      "compacted_compute_ratio": 0.2202340364456177,
+      "compaction_padding_fraction": 0.0003255208333333333,
+      "compaction_padding_tokens": 16,
+      "expected_unbucketed_max_rank": 2.9510327640626492,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 16,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.24746134620642946,
+      "unbucketed_compute_ratio": 0.49794962745642946
+    },
+    {
+      "compacted_advantage_vs_k1": 0.02996941407521564,
+      "compacted_compute_ratio": 0.22051886717478436,
+      "compaction_padding_fraction": 0.0013020833333333333,
+      "compaction_padding_tokens": 64,
+      "expected_unbucketed_max_rank": 2.998628011464321,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 32,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.2534339919985338,
+      "unbucketed_compute_ratio": 0.5039222732485338
+    },
+    {
+      "compacted_advantage_vs_k1": 0.02972527345021564,
+      "compacted_compute_ratio": 0.22076300779978436,
+      "compaction_padding_fraction": 0.0026041666666666665,
+      "compaction_padding_tokens": 128,
+      "expected_unbucketed_max_rank": 2.9999984064853935,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 64,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.2536059605143618,
+      "unbucketed_compute_ratio": 0.5040942417643618
+    },
+    {
+      "compacted_advantage_vs_k1": 0.02809766928354898,
+      "compacted_compute_ratio": 0.22239061196645102,
+      "compaction_padding_fraction": 0.0078125,
+      "compaction_padding_tokens": 384,
+      "expected_unbucketed_max_rank": 2.9999999999974944,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 128,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.25360616048145646,
+      "unbucketed_compute_ratio": 0.5040944417314565
+    },
+    {
+      "compacted_advantage_vs_k1": 0.02679558595021564,
+      "compacted_compute_ratio": 0.22369269529978436,
+      "compaction_padding_fraction": 0.010416666666666666,
+      "compaction_padding_tokens": 512,
+      "expected_unbucketed_max_rank": 3.0,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 256,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.25360616048177087,
+      "unbucketed_compute_ratio": 0.5040944417317709
+    },
+    {
+      "compacted_advantage_vs_k1": 0.023540377616882296,
+      "compacted_compute_ratio": 0.2269479036331177,
+      "compaction_padding_fraction": 0.020833333333333332,
+      "compaction_padding_tokens": 1024,
+      "expected_unbucketed_max_rank": 3.0,
+      "mean_rank": 0.7372233072916666,
+      "static_k1_compute_ratio": 0.25048828125,
+      "tile": 512,
+      "tokens": 49152,
+      "unbucketed_advantage_vs_k1": -0.25360616048177087,
+      "unbucketed_compute_ratio": 0.5040944417317709
+    }
+  ]
+}
