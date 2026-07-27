@@ -1,0 +1,148 @@
+name: Modal MoE — Test 3.0b real OLMoE down distillation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-3-0b-real-olmoe-down-distillation.yml"
+      - "experiments/test_3_0b_real_olmoe_down_distillation.py"
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: modal-moe-test-3-0-real-down-distillation
+  cancel-in-progress: true
+
+jobs:
+  real-down-distillation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register corrected run
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload={
+              "workflow":"Modal MoE — Test 3.0b real OLMoE down distillation",
+              "run_id":int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt":int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status":"running",
+              "commit":os.environ["GITHUB_SHA"],
+              "source_activation_run_id":30233139781,
+              "source_activation_artifact_id":8640815344,
+              "started_at":datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-3-0b-latest.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-3-0b-latest.json
+          git commit -m "chore: register corrected real down distillation ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0"
+
+      - name: Restore real layer-7 activation capture
+        uses: actions/download-artifact@v4
+        with:
+          name: olmoe-test-1-1c-routed-subspaces-30233139781
+          path: source-activation-artifact
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 30233139781
+
+      - name: Resolve capture
+        run: |
+          set -euo pipefail
+          capture_dir="$(find source-activation-artifact -type d -name expert_activation_capture -print -quit)"
+          test -n "$capture_dir"
+          test -s "$capture_dir/ffn_moe_argsort-7.f32"
+          test -s "$capture_dir/ffn_moe_swiglu-7.f32"
+          test -s "$capture_dir/ffn_moe_out-7.f32"
+          printf '%s' "$capture_dir" > "$RUNNER_TEMP/capture_dir.txt"
+
+      - name: Validate corrected fused algebra
+        run: |
+          set -euo pipefail
+          python experiments/test_3_0b_real_olmoe_down_distillation.py --self-test
+          python -m py_compile experiments/test_3_0b_real_olmoe_down_distillation.py
+
+      - name: Distill real OLMoE down branch
+        run: |
+          set -euo pipefail
+          python experiments/test_3_0b_real_olmoe_down_distillation.py \
+            --capture-dir "$(cat "$RUNNER_TEMP/capture_dir.txt")" \
+            --output-dir results/test-3-0b/latest \
+            --steps 220 \
+            --batch-size 8 \
+            --seed 30001 \
+            --threads 4 \
+            2>&1 | tee real-down-distillation.log
+
+      - name: Publish verdict
+        if: always()
+        run: |
+          [[ -f results/test-3-0b/latest/VERDICT.md ]] && cat results/test-3-0b/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist results
+        if: always()
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-3-0b/latest runs
+          [[ -f real-down-distillation.log ]] && cp real-down-distillation.log results/test-3-0b/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          marker=Path("runs/test-3-0b-latest.json")
+          payload=json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({"run_id":int(os.environ["GITHUB_RUN_ID"]),"run_attempt":int(os.environ["GITHUB_RUN_ATTEMPT"]),"status":os.environ["RUN_STATUS"],"finished_at":datetime.now(timezone.utc).isoformat()})
+          marker.write_text(json.dumps(payload,indent=2)+"\n")
+          Path("results/test-3-0b/latest/run.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-3-0b-latest.json results/test-3-0b/latest
+          git commit -m "results: corrected real down distillation ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modal-moe-test-3-0b-real-down-${{ github.run_id }}
+          path: |
+            results/test-3-0b/latest
+            real-down-distillation.log
+          if-no-files-found: warn
+          retention-days: 14
