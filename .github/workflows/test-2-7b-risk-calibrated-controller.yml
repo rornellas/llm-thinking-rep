@@ -1,0 +1,172 @@
+name: Modal MoE — Test 2.7b risk-calibrated controller
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-2-7b-risk-calibrated-controller.yml"
+      - "experiments/test_2_7b_risk_calibrated_controller.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-2-7b-controller
+  cancel-in-progress: true
+
+jobs:
+  risk-calibrated-controller:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload = {
+              "workflow": "Modal MoE — Test 2.7b risk-calibrated controller",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-2-7b-latest.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-2-7b-latest.json
+          git commit -m "chore: register risk-calibrated controller ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU-only dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0"
+
+      - name: Materialize pinned Tiny Shakespeare
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          python - <<'PY'
+          import base64, json, urllib.request
+          from pathlib import Path
+          sha = "7dcb3a2d4cc3b48b6283dd46870bfeb78f88aac9"
+          request = urllib.request.Request(
+              f"https://api.github.com/repos/karpathy/char-rnn/git/blobs/{sha}",
+              headers={"Accept":"application/vnd.github+json","User-Agent":"modal-moe-experiment"},
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              payload = json.load(response)
+          if payload.get("sha") != sha or payload.get("encoding") != "base64":
+              raise RuntimeError(payload)
+          Path("data/tinyshakespeare.txt").write_bytes(base64.b64decode(payload["content"]))
+          PY
+
+      - name: Validate risk-calibrated wrapper
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_2_7b_risk_calibrated_controller.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --progressive-source experiments/test_2_6_progressive_nested_modes.py \
+            --text data/tinyshakespeare.txt \
+            --self-test
+          python -m py_compile experiments/test_2_7b_risk_calibrated_controller.py
+
+      - name: Train and evaluate conservative dynamic policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_2_7b_risk_calibrated_controller.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --progressive-source experiments/test_2_6_progressive_nested_modes.py \
+            --text data/tinyshakespeare.txt \
+            --output-dir results/test-2-7b/latest \
+            --steps 500 \
+            --seed 9090 \
+            --threads 4 \
+            --controller-train-batches 48 \
+            --controller-tune-batches 16 \
+            --test-batches 24 \
+            --controller-steps 800 \
+            --controller-hidden 64 \
+            --oracle-tolerance 0.05 \
+            2>&1 | tee risk-calibrated-controller.log
+
+      - name: Publish verdict
+        if: always()
+        shell: bash
+        run: |
+          verdict="results/test-2-7b/latest/VERDICT.md"
+          [[ -f "$verdict" ]] && cat "$verdict" >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist compact results
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-2-7b/latest runs
+          [[ -f risk-calibrated-controller.log ]] && cp risk-calibrated-controller.log results/test-2-7b/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          marker = Path("runs/test-2-7b-latest.json")
+          payload = json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": os.environ["RUN_STATUS"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+          })
+          marker.write_text(json.dumps(payload, indent=2) + "\n")
+          Path("results/test-2-7b/latest/run.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-2-7b-latest.json results/test-2-7b/latest
+          git commit -m "results: risk-calibrated controller ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modal-moe-test-2-7b-controller-${{ github.run_id }}
+          path: |
+            results/test-2-7b/latest
+            risk-calibrated-controller.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 9
