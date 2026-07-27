@@ -1,0 +1,361 @@
+{
+  "calibration": {
+    "s0.75-l0-m1": {
+      "calibration_density": 0.25,
+      "clip_995": 0.6590955257415771,
+      "mean_retained": 0.274820476770401,
+      "threshold": 0.18232224881649017
+    },
+    "s0.75-l0-m2": {
+      "calibration_density": 0.25,
+      "clip_995": 0.6337391138076782,
+      "mean_retained": 0.27064475417137146,
+      "threshold": 0.18166697025299072
+    },
+    "s0.75-l0-m3": {
+      "calibration_density": 0.25,
+      "clip_995": 0.5628193020820618,
+      "mean_retained": 0.2682015895843506,
+      "threshold": 0.18213549256324768
+    },
+    "s0.75-l1-m1": {
+      "calibration_density": 0.25,
+      "clip_995": 1.801611065864563,
+      "mean_retained": 0.6444488167762756,
+      "threshold": 0.4209904670715332
+    },
+    "s0.75-l1-m2": {
+      "calibration_density": 0.25,
+      "clip_995": 1.8494313955307007,
+      "mean_retained": 0.6651895642280579,
+      "threshold": 0.3949422538280487
+    },
+    "s0.75-l1-m3": {
+      "calibration_density": 0.25,
+      "clip_995": 1.4801981449127197,
+      "mean_retained": 0.5844354629516602,
+      "threshold": 0.37293553352355957
+    },
+    "s0.9-l0-m1": {
+      "calibration_density": 0.100006103515625,
+      "clip_995": 0.7495141625404358,
+      "mean_retained": 0.3570820391178131,
+      "threshold": 0.2689361274242401
+    },
+    "s0.9-l0-m2": {
+      "calibration_density": 0.100006103515625,
+      "clip_995": 0.7205609679222107,
+      "mean_retained": 0.3492414951324463,
+      "threshold": 0.26492148637771606
+    },
+    "s0.9-l0-m3": {
+      "calibration_density": 0.100006103515625,
+      "clip_995": 0.6154448986053467,
+      "mean_retained": 0.34215158224105835,
+      "threshold": 0.2669023871421814
+    },
+    "s0.9-l1-m1": {
+      "calibration_density": 0.100006103515625,
+      "clip_995": 1.8878544569015503,
+      "mean_retained": 0.8391452431678772,
+      "threshold": 0.6329817771911621
+    },
+    "s0.9-l1-m2": {
+      "calibration_density": 0.100006103515625,
+      "clip_995": 1.9258289337158203,
+      "mean_retained": 0.9225216507911682,
+      "threshold": 0.6286567449569702
+    },
+    "s0.9-l1-m3": {
+      "calibration_density": 0.100006103515625,
+      "clip_995": 1.6094391345977783,
+      "mean_retained": 0.7772725820541382,
+      "threshold": 0.5675591230392456
+    },
+    "s0.95-l0-m1": {
+      "calibration_density": 0.0500030517578125,
+      "clip_995": 0.8605120182037354,
+      "mean_retained": 0.4183175563812256,
+      "threshold": 0.330597460269928
+    },
+    "s0.95-l0-m2": {
+      "calibration_density": 0.0500030517578125,
+      "clip_995": 0.7710750102996826,
+      "mean_retained": 0.4078546166419983,
+      "threshold": 0.3232383728027344
+    },
+    "s0.95-l0-m3": {
+      "calibration_density": 0.0500030517578125,
+      "clip_995": 0.6607950925827026,
+      "mean_retained": 0.39284735918045044,
+      "threshold": 0.32134774327278137
+    },
+    "s0.95-l1-m1": {
+      "calibration_density": 0.0500030517578125,
+      "clip_995": 1.9327268600463867,
+      "mean_retained": 0.9818960428237915,
+      "threshold": 0.7760033011436462
+    },
+    "s0.95-l1-m2": {
+      "calibration_density": 0.0500030517578125,
+      "clip_995": 1.979485273361206,
+      "mean_retained": 1.1338714361190796,
+      "threshold": 0.8207436203956604
+    },
+    "s0.95-l1-m3": {
+      "calibration_density": 0.0500030517578125,
+      "clip_995": 1.717084527015686,
+      "mean_retained": 0.9210524559020996,
+      "threshold": 0.7183841466903687
+    }
+  },
+  "decision": {
+    "best_candidate": "magnitude-s90-q2",
+    "best_loss_delta_vs_k3": 0.013512651125589858,
+    "best_residual_bit_ratio": 0.07441851831067146,
+    "magnitude_advantage_over_random_s90_q4_nats": 0.01203234990437796,
+    "rule": "Strong signal requires at least 90% target sparsity, <=4-bit events, <=0.010 nat held-out loss increase versus K3, and at least 0.003 nat advantage over a random mask with the same event rate.",
+    "verdict": "FAIL"
+  },
+  "metadata": {
+    "calibration_batches": 16,
+    "d_ff": 128,
+    "d_model": 96,
+    "experts": 64,
+    "layers": 2,
+    "max_rank": 3,
+    "quantization_note": "2-bit uses ternary zero/sign with train-calibrated mean retained magnitude; 4/8-bit use symmetric uniform quantization clipped at train-calibrated p99.5.",
+    "seed": 60600,
+    "test_batches": 24,
+    "top_k": 8,
+    "traffic_note": "Residual bit ratio includes one bitmap bit per component per refinement mode plus value bits for nonzero events.",
+    "training_seconds": 124.99539446300014,
+    "training_steps": 400
+  },
+  "results": [
+    {
+      "elapsed_seconds": 3.666592936999905,
+      "label": "static-k0",
+      "loss_delta_vs_k1": 0.017335355281829834,
+      "loss_delta_vs_k3": 0.029746800661087036,
+      "mask_policy": "static-k0",
+      "mean_delta_relative_error": 0.0,
+      "mean_event_density": 0.0,
+      "p95_token_event_density": 0.0,
+      "quantization_bits": null,
+      "residual_bit_ratio_vs_dense_bf16": 0.0,
+      "residual_bits_per_token_layer": 0.0,
+      "sparsity_target": null,
+      "validation_loss": 2.4629978438218436,
+      "validation_perplexity": 11.73995338550557
+    },
+    {
+      "elapsed_seconds": 3.6846286790000704,
+      "label": "static-k1",
+      "loss_delta_vs_k1": 0.0,
+      "loss_delta_vs_k3": 0.012411445379257202,
+      "mask_policy": "static-k1",
+      "mean_delta_relative_error": 0.0,
+      "mean_event_density": 0.0,
+      "p95_token_event_density": 0.0,
+      "quantization_bits": null,
+      "residual_bit_ratio_vs_dense_bf16": 0.0,
+      "residual_bits_per_token_layer": 0.0,
+      "sparsity_target": null,
+      "validation_loss": 2.445662488540014,
+      "validation_perplexity": 11.538190986694605
+    },
+    {
+      "elapsed_seconds": 3.6857569579999563,
+      "label": "static-k2",
+      "loss_delta_vs_k1": -0.008726328611373901,
+      "loss_delta_vs_k3": 0.0036851167678833008,
+      "mask_policy": "static-k2",
+      "mean_delta_relative_error": 0.0,
+      "mean_event_density": 0.0,
+      "p95_token_event_density": 0.0,
+      "quantization_bits": null,
+      "residual_bit_ratio_vs_dense_bf16": 0.0,
+      "residual_bits_per_token_layer": 0.0,
+      "sparsity_target": null,
+      "validation_loss": 2.43693615992864,
+      "validation_perplexity": 11.437942975255575
+    },
+    {
+      "elapsed_seconds": 3.6586102290000326,
+      "label": "static-k3",
+      "loss_delta_vs_k1": -0.012411445379257202,
+      "loss_delta_vs_k3": 0.0,
+      "mask_policy": "full",
+      "mean_delta_relative_error": 0.0,
+      "mean_event_density": 0.0,
+      "p95_token_event_density": 0.0,
+      "quantization_bits": null,
+      "residual_bit_ratio_vs_dense_bf16": 0.0,
+      "residual_bits_per_token_layer": 0.0,
+      "sparsity_target": null,
+      "validation_loss": 2.4332510431607566,
+      "validation_perplexity": 11.395870388617046
+    },
+    {
+      "elapsed_seconds": 3.7597199679998994,
+      "label": "magnitude-s75-q8",
+      "loss_delta_vs_k1": -0.007856100797653198,
+      "loss_delta_vs_k3": 0.004555344581604004,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.4891145926796728,
+      "mean_event_density": 0.24595331255760455,
+      "p95_token_event_density": 0.5073784862955412,
+      "quantization_bits": 8,
+      "residual_bit_ratio_vs_dense_bf16": 0.18547665627880228,
+      "residual_bits_per_token_layer": 854.676432132721,
+      "sparsity_target": 0.75,
+      "validation_loss": 2.4378063877423606,
+      "validation_perplexity": 11.447900923577766
+    },
+    {
+      "elapsed_seconds": 3.8449475209999946,
+      "label": "magnitude-s75-q4",
+      "loss_delta_vs_k1": -0.00775483250617981,
+      "loss_delta_vs_k3": 0.004656612873077393,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.4963522704525127,
+      "mean_event_density": 0.2459005426822437,
+      "p95_token_event_density": 0.506944457689921,
+      "quantization_bits": 4,
+      "residual_bit_ratio_vs_dense_bf16": 0.12397513567056093,
+      "residual_bits_per_token_layer": 571.2774251699448,
+      "sparsity_target": 0.75,
+      "validation_loss": 2.437907656033834,
+      "validation_perplexity": 11.449060291647875
+    },
+    {
+      "elapsed_seconds": 3.7857424200001333,
+      "label": "magnitude-s75-q2",
+      "loss_delta_vs_k1": -0.006905039151509751,
+      "loss_delta_vs_k3": 0.005506406227747451,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.5635659707089266,
+      "mean_event_density": 0.2458597115344471,
+      "p95_token_event_density": 0.5056423731148243,
+      "quantization_bits": 2,
+      "residual_bit_ratio_vs_dense_bf16": 0.09323246394180588,
+      "residual_bits_per_token_layer": 429.6151938438415,
+      "sparsity_target": 0.75,
+      "validation_loss": 2.438757449388504,
+      "validation_perplexity": 11.458793762134452
+    },
+    {
+      "elapsed_seconds": 3.7699401959998795,
+      "label": "magnitude-s90-q8",
+      "loss_delta_vs_k1": 0.0013903478781380763,
+      "loss_delta_vs_k3": 0.013801793257395278,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.7148833610117435,
+      "mean_event_density": 0.0954019757401612,
+      "p95_token_event_density": 0.2937065934141477,
+      "quantization_bits": 8,
+      "residual_bit_ratio_vs_dense_bf16": 0.11020098787008059,
+      "residual_bits_per_token_layer": 507.80615210533136,
+      "sparsity_target": 0.9,
+      "validation_loss": 2.447052836418152,
+      "validation_perplexity": 11.554244243270116
+    },
+    {
+      "elapsed_seconds": 3.7554695660001016,
+      "label": "magnitude-s90-q4",
+      "loss_delta_vs_k1": 0.0013800263404846191,
+      "loss_delta_vs_k3": 0.013791471719741821,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.7175096952252918,
+      "mean_event_density": 0.09538509236234759,
+      "p95_token_event_density": 0.293337669223547,
+      "quantization_bits": 4,
+      "residual_bit_ratio_vs_dense_bf16": 0.0863462730905869,
+      "residual_bits_per_token_layer": 397.8836264014244,
+      "sparsity_target": 0.9,
+      "validation_loss": 2.4470425148804984,
+      "validation_perplexity": 11.554124986318559
+    },
+    {
+      "elapsed_seconds": 3.7588352320001377,
+      "label": "magnitude-s90-q2",
+      "loss_delta_vs_k1": 0.0011012057463326563,
+      "loss_delta_vs_k3": 0.013512651125589858,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.7349808928039337,
+      "mean_event_density": 0.09534814648537171,
+      "p95_token_event_density": 0.2942057251930237,
+      "quantization_bits": 2,
+      "residual_bit_ratio_vs_dense_bf16": 0.07441851831067146,
+      "residual_bits_per_token_layer": 342.9205323755741,
+      "sparsity_target": 0.9,
+      "validation_loss": 2.4467636942863464,
+      "validation_perplexity": 11.550903907397405
+    },
+    {
+      "elapsed_seconds": 3.7805492289999165,
+      "label": "magnitude-s95-q8",
+      "loss_delta_vs_k1": 0.007859925429026138,
+      "loss_delta_vs_k3": 0.02027137080828334,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.8220050359765688,
+      "mean_event_density": 0.04641702450397942,
+      "p95_token_event_density": 0.18693576318522295,
+      "quantization_bits": 8,
+      "residual_bit_ratio_vs_dense_bf16": 0.08570851225198971,
+      "residual_bits_per_token_layer": 394.9448244571686,
+      "sparsity_target": 0.95,
+      "validation_loss": 2.45352241396904,
+      "validation_perplexity": 11.629237648696684
+    },
+    {
+      "elapsed_seconds": 3.764348100999996,
+      "label": "magnitude-s95-q4",
+      "loss_delta_vs_k1": 0.008027344942092896,
+      "loss_delta_vs_k3": 0.020438790321350098,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.823026051123937,
+      "mean_event_density": 0.04640353168360889,
+      "p95_token_event_density": 0.1866319440305233,
+      "quantization_bits": 4,
+      "residual_bit_ratio_vs_dense_bf16": 0.07410088292090222,
+      "residual_bits_per_token_layer": 341.45686849951744,
+      "sparsity_target": 0.95,
+      "validation_loss": 2.4536898334821067,
+      "validation_perplexity": 11.631184772989918
+    },
+    {
+      "elapsed_seconds": 3.7398010599999907,
+      "label": "magnitude-s95-q2",
+      "loss_delta_vs_k1": 0.007683465878168594,
+      "loss_delta_vs_k3": 0.020094911257425796,
+      "mask_policy": "magnitude",
+      "mean_delta_relative_error": 0.830427193807231,
+      "mean_event_density": 0.04638855560268793,
+      "p95_token_event_density": 0.18619791604578495,
+      "quantization_bits": 2,
+      "residual_bit_ratio_vs_dense_bf16": 0.068298569450336,
+      "residual_bits_per_token_layer": 314.71980802714825,
+      "sparsity_target": 0.95,
+      "validation_loss": 2.4533459544181824,
+      "validation_perplexity": 11.627185739689173
+    },
+    {
+      "elapsed_seconds": 3.855633474999877,
+      "label": "random-s90-q4",
+      "loss_delta_vs_k1": 0.013412376244862578,
+      "loss_delta_vs_k3": 0.02582382162411978,
+      "mask_policy": "random",
+      "mean_delta_relative_error": 0.9539543775220712,
+      "mean_event_density": 0.10007752328076296,
+      "p95_token_event_density": 0.15581597201526165,
+      "quantization_bits": 4,
+      "residual_bit_ratio_vs_dense_bf16": 0.08751938082019074,
+      "residual_bits_per_token_layer": 403.28930681943893,
+      "sparsity_target": 0.9,
+      "validation_loss": 2.4590748647848764,
+      "validation_perplexity": 11.693988014023306
+    }
+  ]
+}

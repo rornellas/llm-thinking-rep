@@ -1,0 +1,27 @@
+# Test 6.0 — sparse event-delta refinement
+
+**Decision:** **FAIL**
+
+| Policy | Loss | Δ vs K3 | Δ vs K1 | Event density | p95 token density | Residual bits/BF16 | Delta error |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| static-k0 | 2.4630 | +0.0297 | +0.0173 | 0.000% | 0.000% | 0.000% | 0.000 |
+| static-k1 | 2.4457 | +0.0124 | +0.0000 | 0.000% | 0.000% | 0.000% | 0.000 |
+| static-k2 | 2.4369 | +0.0037 | -0.0087 | 0.000% | 0.000% | 0.000% | 0.000 |
+| static-k3 | 2.4333 | +0.0000 | -0.0124 | 0.000% | 0.000% | 0.000% | 0.000 |
+| magnitude-s75-q8 | 2.4378 | +0.0046 | -0.0079 | 24.595% | 50.738% | 18.548% | 0.489 |
+| magnitude-s75-q4 | 2.4379 | +0.0047 | -0.0078 | 24.590% | 50.694% | 12.398% | 0.496 |
+| magnitude-s75-q2 | 2.4388 | +0.0055 | -0.0069 | 24.586% | 50.564% | 9.323% | 0.564 |
+| magnitude-s90-q8 | 2.4471 | +0.0138 | +0.0014 | 9.540% | 29.371% | 11.020% | 0.715 |
+| magnitude-s90-q4 | 2.4470 | +0.0138 | +0.0014 | 9.539% | 29.334% | 8.635% | 0.718 |
+| magnitude-s90-q2 | 2.4468 | +0.0135 | +0.0011 | 9.535% | 29.421% | 7.442% | 0.735 |
+| magnitude-s95-q8 | 2.4535 | +0.0203 | +0.0079 | 4.642% | 18.694% | 8.571% | 0.822 |
+| magnitude-s95-q4 | 2.4537 | +0.0204 | +0.0080 | 4.640% | 18.663% | 7.410% | 0.823 |
+| magnitude-s95-q2 | 2.4533 | +0.0201 | +0.0077 | 4.639% | 18.620% | 6.830% | 0.830 |
+| random-s90-q4 | 2.4591 | +0.0258 | +0.0134 | 10.008% | 15.582% | 8.752% | 0.954 |
+
+- Best candidate: `magnitude-s90-q2`.
+- Best held-out Δ loss versus K3: `+0.0135` nat.
+- Best residual traffic ratio: `7.442%` of dense BF16 deltas.
+- Magnitude advantage over random at 90%/4-bit: `+0.0120` nat.
+
+Only refinement-state transport is modeled. The current measurement path still computes dense prefixes to obtain exact deltas; a positive result must be followed by a directly event-producing model or kernel.
