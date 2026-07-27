@@ -1,0 +1,160 @@
+name: Integration — Test 5.5 causal patches plus Modal-MoE
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-5-5-latent-modal-integration.yml"
+      - "experiments/test_5_5_latent_modal_integration.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: integration-test-5-5-latent-modal
+  cancel-in-progress: false
+
+jobs:
+  latent-modal-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      HF_HUB_DISABLE_XET: "1"
+      HF_HOME: /tmp/huggingface
+
+    steps:
+      - name: Checkout laboratory
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "datasets>=4.0"
+
+      - name: Materialize WikiText-2 as raw UTF-8 bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/test-5-5 results/test-5-5/latest
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datasets import load_dataset
+
+          root = Path("data/test-5-5")
+          dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1")
+
+          def materialize(split: str) -> tuple[int, int]:
+              text = "\n".join(row["text"] for row in dataset[split]) + "\n"
+              raw = text.encode("utf-8")
+              (root / f"{split}.bin").write_bytes(raw)
+              return len(raw), len(dataset[split])
+
+          train_bytes, train_rows = materialize("train")
+          validation_bytes, validation_rows = materialize("validation")
+          stats = {
+              "dataset": "Salesforce/wikitext",
+              "subset": "wikitext-2-raw-v1",
+              "train_bytes": train_bytes,
+              "validation_bytes": validation_bytes,
+              "train_rows": train_rows,
+              "validation_rows": validation_rows,
+          }
+          Path("results/test-5-5/latest/dataset_stats.json").write_text(
+              json.dumps(stats, indent=2) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(stats, indent=2))
+          PY
+          test -s data/test-5-5/train.bin
+          test -s data/test-5-5/validation.bin
+
+      - name: Validate algebra, interventions, and gradients
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile experiments/test_5_5_latent_modal_integration.py
+          python experiments/test_5_5_latent_modal_integration.py --self-test
+
+      - name: Run paired three-seed factorial integration test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_5_5_latent_modal_integration.py \
+            --train-bytes data/test-5-5/train.bin \
+            --validation-bytes data/test-5-5/validation.bin \
+            --output-dir results/test-5-5/latest \
+            --seeds 65501,66602,67703 \
+            --steps 700 \
+            --threads 4 \
+            2>&1 | tee test-5-5.log
+
+      - name: Publish verdict
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f results/test-5-5/latest/VERDICT.md ]]; then
+            cat results/test-5-5/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' '## Test 5.5' '' 'No verdict was produced. Inspect test-5-5.log.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Persist results on isolated branch
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-5-5/latest
+          [[ -f test-5-5.log ]] && cp test-5-5.log results/test-5-5/latest/
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          payload = {
+              "workflow": "Integration — Test 5.5 causal patches plus Modal-MoE",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": os.environ["RUN_STATUS"],
+              "head_sha": os.environ["GITHUB_SHA"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("results/test-5-5/latest/run.json").write_text(
+              json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B experiment-results/test-5-5
+          git add -f results/test-5-5/latest
+          git commit -m "results: Test 5.5 ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git push --force origin HEAD:refs/heads/experiment-results/test-5-5
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-5-5-${{ github.run_id }}
+          path: |
+            results/test-5-5/latest
+            test-5-5.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 9
