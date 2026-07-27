@@ -1,0 +1,8 @@
+{
+  "workflow": "Modal MoE \u2014 Test 2.7b risk-calibrated controller",
+  "run_id": 30232869869,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "eaf7eb12285467c7826ac8ac6160b2a3457a4440",
+  "started_at": "2026-07-27T02:44:00.117531+00:00"
+}
