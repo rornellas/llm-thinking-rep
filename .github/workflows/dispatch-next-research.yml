@@ -1,0 +1,24 @@
+name: Dispatch next research gates
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dispatch-next-research.yml"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch pending research workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run test-4-2-wikitext2-multiseed-compute-matched.yml --repo "${GITHUB_REPOSITORY}" --ref main
+          gh workflow run test-5-0-adaptive-byte-units.yml --repo "${GITHUB_REPOSITORY}" --ref main
+          gh workflow run test-2-11-marginal-utility-multiseed.yml --repo "${GITHUB_REPOSITORY}" --ref main
