@@ -35,37 +35,6 @@ jobs:
         with:
           ref: main
 
-      - name: Register workflow run
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p runs
-          python - <<'PY'
-          import json
-          import os
-          from datetime import datetime, timezone
-          from pathlib import Path
-
-          payload = {
-              "workflow": "Representation — Test 5.0 adaptive byte units",
-              "run_id": int(os.environ["GITHUB_RUN_ID"]),
-              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
-              "status": "running",
-              "commit": os.environ["GITHUB_SHA"],
-              "dataset": "Salesforce/wikitext:wikitext-2-raw-v1",
-              "started_at": datetime.now(timezone.utc).isoformat(),
-          }
-          Path("runs/test-5-0-latest.json").write_text(
-              json.dumps(payload, indent=2) + "\n", encoding="utf-8"
-          )
-          PY
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add runs/test-5-0-latest.json
-          git commit -m "chore: register adaptive-byte-unit run ${GITHUB_RUN_ID}"
-          git pull --rebase origin main
-          git push origin HEAD:main
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -152,14 +121,14 @@ jobs:
             printf '%s\n' '## Test 5.0' '' 'No verdict was produced. Inspect adaptive-byte-units.log.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Persist compact results
+      - name: Persist results on isolated branch
         if: always()
         shell: bash
         env:
           RUN_STATUS: ${{ job.status }}
         run: |
           set -euo pipefail
-          mkdir -p results/test-5-0/latest runs
+          mkdir -p results/test-5-0/latest
           [[ -f adaptive-byte-units.log ]] && cp adaptive-byte-units.log results/test-5-0/latest/
           python - <<'PY'
           import json
@@ -167,25 +136,24 @@ jobs:
           from datetime import datetime, timezone
           from pathlib import Path
 
-          marker = Path("runs/test-5-0-latest.json")
-          payload = json.loads(marker.read_text(encoding="utf-8")) if marker.exists() else {}
-          payload.update({
+          payload = {
+              "workflow": "Representation — Test 5.0 adaptive byte units",
               "run_id": int(os.environ["GITHUB_RUN_ID"]),
               "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
               "status": os.environ["RUN_STATUS"],
+              "source_commit": os.environ["GITHUB_SHA"],
               "finished_at": datetime.now(timezone.utc).isoformat(),
-          })
-          marker.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          }
           Path("results/test-5-0/latest/run.json").write_text(
               json.dumps(payload, indent=2) + "\n", encoding="utf-8"
           )
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add runs/test-5-0-latest.json results/test-5-0/latest
+          git checkout -B experiment-results/test-5-0
+          git add results/test-5-0/latest
           git commit -m "results: adaptive byte units ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git push --force origin HEAD:refs/heads/experiment-results/test-5-0
 
       - name: Upload diagnostics
         if: always()
