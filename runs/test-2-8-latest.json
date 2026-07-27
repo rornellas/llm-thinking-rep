@@ -1,0 +1,8 @@
+{
+  "workflow": "Modal MoE \u2014 Test 2.8 scale64 dynamic controller",
+  "run_id": 30233530312,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "5f0c3b8610b509dbecc4ffac99ad28783818453a",
+  "started_at": "2026-07-27T03:01:01.667916+00:00"
+}
