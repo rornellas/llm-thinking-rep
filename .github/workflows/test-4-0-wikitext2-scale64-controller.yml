@@ -1,0 +1,201 @@
+name: Modal MoE — Test 4.0 WikiText-2 scale64 controller
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-4-0-wikitext2-scale64-controller.yml"
+      - "experiments/test_4_0_wikitext2_scale64_controller.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-4-0-wikitext2
+  cancel-in-progress: true
+
+jobs:
+  wikitext2-controller:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_XET: "1"
+      HF_HOME: ${{ runner.temp }}/huggingface
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json,os
+          from datetime import datetime,timezone
+          from pathlib import Path
+          payload={
+              "workflow":"Modal MoE — Test 4.0 WikiText-2 scale64 controller",
+              "run_id":int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt":int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status":"running",
+              "commit":os.environ["GITHUB_SHA"],
+              "dataset":"Salesforce/wikitext:wikitext-2-raw-v1",
+              "started_at":datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-4-0-latest.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-4-0-latest.json
+          git commit -m "chore: register WikiText-2 modal run ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU and dataset dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "datasets>=4.0" "tokenizers>=0.20"
+
+      - name: Prepare official WikiText-2 BPE corpus
+        run: |
+          set -euo pipefail
+          mkdir -p data/wikitext2 results/test-4-0/latest
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+          from datasets import load_dataset
+          from tokenizers import Tokenizer, decoders, models, pre_tokenizers, trainers
+
+          root = Path("data/wikitext2")
+          dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1")
+          train_lines = [row["text"] for row in dataset["train"] if row["text"].strip()]
+          validation_lines = [row["text"] for row in dataset["validation"] if row["text"].strip()]
+
+          tokenizer = Tokenizer(models.BPE(unk_token="<unk>"))
+          tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
+          tokenizer.decoder = decoders.ByteLevel()
+          trainer = trainers.BpeTrainer(
+              vocab_size=2048,
+              min_frequency=2,
+              special_tokens=["<unk>"],
+              show_progress=False,
+          )
+          tokenizer.train_from_iterator(train_lines, trainer=trainer)
+          tokenizer.save(str(root / "tokenizer.json"))
+
+          def encode(lines):
+              ids = []
+              for line in lines:
+                  ids.extend(tokenizer.encode(line + "\n").ids)
+              return np.asarray(ids, dtype=np.int32)
+
+          train = encode(train_lines)
+          validation = encode(validation_lines)
+          np.save(root / "train.npy", train)
+          np.save(root / "validation.npy", validation)
+          manifest = {
+              "train_path": str(root / "train.npy"),
+              "validation_path": str(root / "validation.npy"),
+              "vocab_size": tokenizer.get_vocab_size(),
+              "dataset": "Salesforce/wikitext",
+              "subset": "wikitext-2-raw-v1",
+          }
+          (root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+          stats = {
+              **manifest,
+              "train_documents": len(train_lines),
+              "validation_documents": len(validation_lines),
+              "train_tokens": int(train.size),
+              "validation_tokens": int(validation.size),
+          }
+          Path("results/test-4-0/latest/dataset_stats.json").write_text(json.dumps(stats, indent=2) + "\n")
+          Path("results/test-4-0/latest/tokenizer.json").write_text((root / "tokenizer.json").read_text())
+          print(json.dumps(stats, indent=2))
+          PY
+          test -s data/wikitext2/train.npy
+          test -s data/wikitext2/validation.npy
+
+      - name: Validate token-level wrapper
+        run: |
+          set -euo pipefail
+          python experiments/test_4_0_wikitext2_scale64_controller.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --progressive-source experiments/test_2_6_progressive_nested_modes.py \
+            --text data/wikitext2/manifest.json \
+            --self-test
+          python -m py_compile experiments/test_4_0_wikitext2_scale64_controller.py
+
+      - name: Train and test token-level dynamic Modal MoE
+        run: |
+          set -euo pipefail
+          python experiments/test_4_0_wikitext2_scale64_controller.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --progressive-source experiments/test_2_6_progressive_nested_modes.py \
+            --text data/wikitext2/manifest.json \
+            --output-dir results/test-4-0/latest \
+            --steps 400 \
+            --seed 40400 \
+            --threads 4 \
+            --controller-train-batches 40 \
+            --controller-tune-batches 16 \
+            --test-batches 24 \
+            --controller-steps 700 \
+            --controller-hidden 64 \
+            --oracle-tolerance 0.05 \
+            2>&1 | tee wikitext2-controller.log
+
+      - name: Publish verdict
+        if: always()
+        run: |
+          [[ -f results/test-4-0/latest/VERDICT.md ]] && cat results/test-4-0/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist results
+        if: always()
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-4-0/latest runs
+          [[ -f wikitext2-controller.log ]] && cp wikitext2-controller.log results/test-4-0/latest/
+          python - <<'PY'
+          import json,os
+          from datetime import datetime,timezone
+          from pathlib import Path
+          marker=Path("runs/test-4-0-latest.json")
+          payload=json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({"run_id":int(os.environ["GITHUB_RUN_ID"]),"run_attempt":int(os.environ["GITHUB_RUN_ATTEMPT"]),"status":os.environ["RUN_STATUS"],"finished_at":datetime.now(timezone.utc).isoformat()})
+          marker.write_text(json.dumps(payload,indent=2)+"\n")
+          Path("results/test-4-0/latest/run.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-4-0-latest.json results/test-4-0/latest
+          git commit -m "results: WikiText-2 modal controller ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modal-moe-test-4-0-wikitext2-${{ github.run_id }}
+          path: |
+            results/test-4-0/latest
+            wikitext2-controller.log
+          if-no-files-found: warn
+          retention-days: 14
