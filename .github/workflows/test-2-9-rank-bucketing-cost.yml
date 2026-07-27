@@ -1,0 +1,42 @@
+name: Modal MoE — Test 2.9 rank bucketing cost
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-2-9-rank-bucketing-cost.yml"
+      - "experiments/test_2_9_rank_bucketing_cost.py"
+
+permissions:
+  contents: write
+
+jobs:
+  rank-bucketing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate cost model
+        run: python experiments/test_2_9_rank_bucketing_cost.py --self-test
+      - name: Analyze learned-controller rank histogram
+        run: |
+          python experiments/test_2_9_rank_bucketing_cost.py \
+            --input results/test-2-7c/latest/learned_controller.json \
+            --output-dir results/test-2-9/latest \
+            2>&1 | tee rank-bucketing.log
+      - name: Publish verdict
+        run: cat results/test-2-9/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Persist result
+        run: |
+          set -euo pipefail
+          cp rank-bucketing.log results/test-2-9/latest/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/test-2-9/latest
+          git commit -m "results: rank bucketing cost ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
