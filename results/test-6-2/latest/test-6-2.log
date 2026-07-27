@@ -1,0 +1,56 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_6_progressive_nested_modes.py:179: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"progressive step={step}/{cfg.steps} full={float(full_ce):.4f} sampled-rank={sampled_rank} sampled={float(sampled_ce):.4f}", flush=True)
+progressive step=1/400 full=4.1770 sampled-rank=0 sampled=4.1749
+progressive step=100/400 full=2.8227 sampled-rank=2 sampled=2.8245
+progressive step=200/400 full=2.5553 sampled-rank=1 sampled=2.5690
+progressive step=300/400 full=2.4954 sampled-rank=0 sampled=2.5336
+progressive step=400/400 full=2.4424 sampled-rank=1 sampled=2.4524
+full-control step=1/220 event=2.3811 dense=2.3811
+full-control step=60/220 event=2.3592 dense=2.3592
+full-control step=120/220 event=2.4266 dense=2.4266
+full-control step=180/220 event=2.4174 dense=2.4174
+full-control step=220/220 event=2.3303 dense=2.3303
+topk90-fp step=1/220 event=2.4438 dense=2.4355
+topk90-fp step=60/220 event=2.4096 dense=2.3946
+topk90-fp step=120/220 event=2.3512 dense=2.3428
+topk90-fp step=180/220 event=2.3934 dense=2.3861
+topk90-fp step=220/220 event=2.3105 dense=2.3009
+topk90-q4 step=1/220 event=2.4197 dense=2.4048
+topk90-q4 step=60/220 event=2.3433 dense=2.3262
+topk90-q4 step=120/220 event=2.5443 dense=2.5397
+topk90-q4 step=180/220 event=2.3666 dense=2.3607
+topk90-q4 step=220/220 event=2.3045 dense=2.3003
+topk95-q4 step=1/220 event=2.4051 dense=2.3785
+topk95-q4 step=60/220 event=2.4341 dense=2.4200
+topk95-q4 step=120/220 event=2.3906 dense=2.3797
+topk95-q4 step=180/220 event=2.3919 dense=2.3835
+topk95-q4 step=220/220 event=2.4197 dense=2.4172
+# Test 6.2 — hard top-k event bottleneck
+
+**Decision:** **HARD_EVENT_BOTTLENECK_PASS**
+
+| Training | Evaluation | Loss | Δ own K3 | Δ control K3 | Density | Residual bits/BF16 | Advantage vs random |
+|---|---|---:|---:|---:|---:|---:|---:|
+| full-control | dense-k3 | 2.3514 | +0.0000 | +0.0000 | 100.000% | 100.000% | n/a |
+| full-control | dense-k1 | 2.3877 | +0.0363 | +0.0363 | 100.000% | 100.000% | n/a |
+| full-control | topk-90%-q4 | 2.3762 | +0.0248 | +0.0248 | 10.417% | 8.854% | +0.0242 |
+| topk90-fp | dense-k3 | 2.3504 | +0.0000 | -0.0011 | 100.000% | 100.000% | n/a |
+| topk90-fp | dense-k1 | 2.3700 | +0.0196 | +0.0186 | 100.000% | 100.000% | n/a |
+| topk90-fp | topk-90%-qNone | 2.3563 | +0.0059 | +0.0049 | 10.417% | 100.000% | +0.0264 |
+| topk90-q4 | dense-k3 | 2.3539 | +0.0000 | +0.0024 | 100.000% | 100.000% | n/a |
+| topk90-q4 | dense-k1 | 2.3752 | +0.0214 | +0.0238 | 100.000% | 100.000% | n/a |
+| topk90-q4 | topk-90%-q4 | 2.3597 | +0.0058 | +0.0082 | 10.417% | 8.854% | +0.0250 |
+| topk95-q4 | dense-k3 | 2.3545 | +0.0000 | +0.0031 | 100.000% | 100.000% | n/a |
+| topk95-q4 | dense-k1 | 2.3711 | +0.0166 | +0.0196 | 100.000% | 100.000% | n/a |
+| topk95-q4 | topk-95%-q4 | 2.3643 | +0.0098 | +0.0128 | 5.208% | 7.552% | +0.0161 |
+
+- Best: `topk95-q4` / `topk-95%-q4`.
+- Δ versus own dense K3: `+0.0098` nat.
+- Δ versus control dense K3: `+0.0128` nat.
+- Residual traffic: `7.552%` of dense BF16 deltas.
+- Advantage over random: `+0.0161` nat.
+- Improvement over post-hoc control: `+0.0150` nat.
+
+The top-k mask and fake quantizer are in the fine-tuning forward pass. Sorting/index selection cost is not included in the residual traffic ratio.
+
