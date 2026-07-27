@@ -1,0 +1,39 @@
+name: Snapshot research workflow status
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/snapshot-research-runs.yml"
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Capture recent workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p status
+          gh run list --repo "${GITHUB_REPOSITORY}" --limit 30 \
+            --json databaseId,workflowName,status,conclusion,headSha,event,createdAt,updatedAt,url \
+            > status/recent-workflow-runs.json
+          python -m json.tool status/recent-workflow-runs.json > status/formatted.json
+          mv status/formatted.json status/recent-workflow-runs.json
+      - name: Publish isolated status branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B experiment-status
+          git add status/recent-workflow-runs.json
+          git commit -m "status: snapshot workflow runs ${GITHUB_RUN_ID}" || true
+          git push --force origin HEAD:refs/heads/experiment-status
