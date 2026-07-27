@@ -1,3 +1,21 @@
 running: /opt/hostedtoolcache/Python/3.11.15/x64/bin/python experiments/test_2_10b_extended_utility_price.py --source experiments/test_2_0_modal_moe_trainability.py --progressive-source experiments/test_2_6_progressive_nested_modes.py --controller-source experiments/test_2_7_learned_rank_controller.py --text data/tinyshakespeare.txt --output-dir results/test-2-11/latest/seed-61616 --steps 400 --seed 61616 --threads 4 --train-batches 32 --tune-batches 24 --test-batches 24 --controller-steps 800 --controller-hidden 96
 running: /opt/hostedtoolcache/Python/3.11.15/x64/bin/python experiments/test_2_10b_extended_utility_price.py --source experiments/test_2_0_modal_moe_trainability.py --progressive-source experiments/test_2_6_progressive_nested_modes.py --controller-source experiments/test_2_7_learned_rank_controller.py --text data/tinyshakespeare.txt --output-dir results/test-2-11/latest/seed-71717 --steps 400 --seed 71717 --threads 4 --train-batches 32 --tune-batches 24 --test-batches 24 --controller-steps 800 --controller-hidden 96
 running: /opt/hostedtoolcache/Python/3.11.15/x64/bin/python experiments/test_2_10b_extended_utility_price.py --source experiments/test_2_0_modal_moe_trainability.py --progressive-source experiments/test_2_6_progressive_nested_modes.py --controller-source experiments/test_2_7_learned_rank_controller.py --text data/tinyshakespeare.txt --output-dir results/test-2-11/latest/seed-81818 --steps 400 --seed 81818 --threads 4 --train-batches 32 --tune-batches 24 --test-batches 24 --controller-steps 800 --controller-hidden 96
+# Test 2.11 — multi-seed marginal-utility controller
+
+**Decision:** **ROBUST_MARGINAL_UTILITY_PASS**
+
+| Seed | Lambda | Δ loss vs K1 | UCB95 | Mean K | p95 K | Exact compute | Bucket16 | Advantage vs K1 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 61616 | 0.0140 | +0.0025 | +0.0038 | 0.658 | 3 | 21.175% | 21.429% | +3.620% |
+| 71717 | 0.0260 | +0.0019 | +0.0031 | 0.270 | 2 | 16.300% | 16.576% | +8.473% |
+| 81818 | 0.0200 | +0.0014 | +0.0026 | 0.498 | 2 | 19.158% | 19.476% | +5.573% |
+
+- Mean bucket16 compute: `19.160%`.
+- Mean advantage over static K1: `+5.889%`.
+- Worst held-out Δ loss: `+0.0025` nat.
+- Worst paired-bootstrap UCB95: `+0.0038` nat.
+- Worst bucket16 compute: `21.429%`.
+
+Every seed trains a new progressive Modal-MoE and new utility controllers. Utility price selection is confined to train-split calibration data.
+

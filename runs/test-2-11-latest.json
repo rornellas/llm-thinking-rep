@@ -2,7 +2,8 @@
   "workflow": "Modal MoE \u2014 Test 2.11 marginal utility multi-seed",
   "run_id": 30276840304,
   "run_attempt": 1,
-  "status": "running",
+  "status": "success",
   "commit": "a97930bd337e1ba5f43be78fd2ccf59ca67b09a6",
-  "started_at": "2026-07-27T14:48:39.006231+00:00"
+  "started_at": "2026-07-27T14:48:39.006231+00:00",
+  "finished_at": "2026-07-27T15:04:00.180772+00:00"
 }

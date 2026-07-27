@@ -1,0 +1,74 @@
+{
+  "decision": {
+    "mean_bucket16_compute_ratio": 0.19160188237826029,
+    "mean_compute_advantage_vs_k1": 0.058886398871739715,
+    "quality_guard_passed_every_seed": true,
+    "rule": "PASS requires every seed within +0.010 nat of static K1, every paired-bootstrap UCB95 <= +0.012, every bucket16 compute <=24.05%, and mean compute advantage of at least two percentage points.",
+    "strict_compute_guard_passed_every_seed": true,
+    "verdict": "ROBUST_MARGINAL_UTILITY_PASS",
+    "worst_bucket16_compute_ratio": 0.21428784728050232,
+    "worst_delta_ucb95": 0.0038208574056625365,
+    "worst_delta_vs_k1": 0.0025408665339152017
+  },
+  "metadata": {
+    "controller_steps": 800,
+    "elapsed_seconds": 890.8621983520001,
+    "experts": 64,
+    "lambda_grid": "extended through 0.060 nat per residual mode",
+    "seeds": [
+      61616,
+      71717,
+      81818
+    ],
+    "steps": 400,
+    "task": "Tiny Shakespeare character language modeling",
+    "top_k": 8
+  },
+  "runs": [
+    {
+      "bucket16_compute_ratio": 0.21428784728050232,
+      "bucket32_compute_ratio": 0.21733960509300232,
+      "compute_advantage_vs_k1": 0.03620043396949768,
+      "dynamic_delta_ucb95": 0.0038208574056625365,
+      "dynamic_delta_vs_k1": 0.0025408665339152017,
+      "dynamic_loss": 2.421998759110769,
+      "exact_compute_ratio": 0.21174725890159607,
+      "individual_verdict": "MARGINAL_UTILITY_PASS",
+      "lambda_nats": 0.014,
+      "mean_rank": 0.65838623046875,
+      "p95_rank": 3.0,
+      "seed": 61616,
+      "static_k1_loss": 2.4194578925768533
+    },
+    {
+      "bucket16_compute_ratio": 0.16575831174850464,
+      "bucket32_compute_ratio": 0.16913559039433798,
+      "compute_advantage_vs_k1": 0.08472996950149536,
+      "dynamic_delta_ucb95": 0.0030646339058876034,
+      "dynamic_delta_vs_k1": 0.0018609960873921712,
+      "dynamic_loss": 2.446954866250356,
+      "exact_compute_ratio": 0.16299647092819214,
+      "individual_verdict": "MARGINAL_UTILITY_PASS",
+      "lambda_nats": 0.026000000000000002,
+      "mean_rank": 0.2698974609375,
+      "p95_rank": 2.0,
+      "seed": 71717,
+      "static_k1_loss": 2.445093870162964
+    },
+    {
+      "bucket16_compute_ratio": 0.19475948810577393,
+      "bucket32_compute_ratio": 0.19716020425160724,
+      "compute_advantage_vs_k1": 0.055728793144226074,
+      "dynamic_delta_ucb95": 0.0026121119658152263,
+      "dynamic_delta_vs_k1": 0.001448303461074829,
+      "dynamic_loss": 2.4438736736774445,
+      "exact_compute_ratio": 0.19157548745473227,
+      "individual_verdict": "MARGINAL_UTILITY_PASS",
+      "lambda_nats": 0.02,
+      "mean_rank": 0.4976399739583333,
+      "p95_rank": 2.0,
+      "seed": 81818,
+      "static_k1_loss": 2.4424253702163696
+    }
+  ]
+}

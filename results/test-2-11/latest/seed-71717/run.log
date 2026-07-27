@@ -7,10 +7,10 @@ baseline step=200/400 ce=2.5476
 baseline step=300/400 ce=2.4712
 baseline step=400/400 ce=2.3446
 progressive step=1/400 full=4.2079 sampled-rank=2 sampled=4.2080
-progressive step=100/400 full=2.8020 sampled-rank=3 sampled=2.8020
-progressive step=200/400 full=2.6180 sampled-rank=3 sampled=2.6180
-progressive step=300/400 full=2.5036 sampled-rank=0 sampled=2.5366
-progressive step=400/400 full=2.4880 sampled-rank=2 sampled=2.4990
+progressive step=100/400 full=2.8011 sampled-rank=3 sampled=2.8011
+progressive step=200/400 full=2.6164 sampled-rank=3 sampled=2.6164
+progressive step=300/400 full=2.5054 sampled-rank=0 sampled=2.5374
+progressive step=400/400 full=2.4897 sampled-rank=2 sampled=2.5016
 collected train utility batch 1/32
 collected train utility batch 8/32
 collected train utility batch 16/32
@@ -24,57 +24,57 @@ collected validation utility batch 1/24
 collected validation utility batch 8/24
 collected validation utility batch 16/24
 collected validation utility batch 24/24
-utility-controller layer=0 step=1/800 loss=41.9287 regression=41.3282 ranking=1.7156
-utility-controller layer=0 step=200/800 loss=42.3582 regression=41.7980 ranking=1.6007
-utility-controller layer=0 step=400/800 loss=40.8510 regression=40.2801 ranking=1.6312
-utility-controller layer=0 step=600/800 loss=42.2676 regression=41.6901 ranking=1.6499
-utility-controller layer=0 step=800/800 loss=39.7729 regression=39.2208 ranking=1.5775
-utility-controller layer=1 step=1/800 loss=46.2495 regression=45.5756 ranking=1.9255
-utility-controller layer=1 step=200/800 loss=43.8049 regression=43.2314 ranking=1.6386
-utility-controller layer=1 step=400/800 loss=43.1587 regression=42.5770 ranking=1.6621
-utility-controller layer=1 step=600/800 loss=41.9053 regression=41.3018 ranking=1.7243
-utility-controller layer=1 step=800/800 loss=42.6519 regression=41.9987 ranking=1.8663
-extended-lambda=0.000 delta=-0.0163 ucb95=-0.0144 mean-K=2.300 bucket16=42.037%
-extended-lambda=0.002 delta=-0.0152 ucb95=-0.0133 mean-K=2.009 bucket16=38.414%
-extended-lambda=0.004 delta=-0.0147 ucb95=-0.0129 mean-K=1.740 bucket16=35.044%
-extended-lambda=0.006 delta=-0.0132 ucb95=-0.0115 mean-K=1.501 bucket16=32.037%
-extended-lambda=0.008 delta=-0.0123 ucb95=-0.0107 mean-K=1.285 bucket16=29.308%
-extended-lambda=0.010 delta=-0.0104 ucb95=-0.0089 mean-K=1.084 bucket16=26.792%
-extended-lambda=0.012 delta=-0.0087 ucb95=-0.0072 mean-K=0.909 bucket16=24.611%
-extended-lambda=0.014 delta=-0.0071 ucb95=-0.0057 mean-K=0.763 bucket16=22.756%
-extended-lambda=0.016 delta=-0.0052 ucb95=-0.0039 mean-K=0.642 bucket16=21.245%
-extended-lambda=0.018 delta=-0.0034 ucb95=-0.0022 mean-K=0.539 bucket16=19.970%
-extended-lambda=0.020 delta=-0.0020 ucb95=-0.0009 mean-K=0.458 bucket16=18.945%
-extended-lambda=0.022 delta=-0.0005 ucb95=+0.0005 mean-K=0.393 bucket16=18.140%
-extended-lambda=0.024 delta=+0.0008 ucb95=+0.0018 mean-K=0.339 bucket16=17.454%
-extended-lambda=0.026 delta=+0.0017 ucb95=+0.0028 mean-K=0.294 bucket16=16.919%
-extended-lambda=0.028 delta=+0.0026 ucb95=+0.0038 mean-K=0.257 bucket16=16.441%
-extended-lambda=0.030 delta=+0.0034 ucb95=+0.0045 mean-K=0.223 bucket16=16.004%
-extended-lambda=0.032 delta=+0.0041 ucb95=+0.0051 mean-K=0.198 bucket16=15.702%
-extended-lambda=0.034 delta=+0.0047 ucb95=+0.0058 mean-K=0.174 bucket16=15.379%
-extended-lambda=0.036 delta=+0.0054 ucb95=+0.0066 mean-K=0.153 bucket16=15.097%
-extended-lambda=0.038 delta=+0.0060 ucb95=+0.0071 mean-K=0.135 bucket16=14.897%
-extended-lambda=0.040 delta=+0.0065 ucb95=+0.0076 mean-K=0.120 bucket16=14.689%
-extended-lambda=0.045 delta=+0.0075 ucb95=+0.0087 mean-K=0.090 bucket16=14.284%
-extended-lambda=0.050 delta=+0.0088 ucb95=+0.0100 mean-K=0.065 bucket16=13.994%
-extended-lambda=0.060 delta=+0.0102 ucb95=+0.0113 mean-K=0.035 bucket16=13.635%
+utility-controller layer=0 step=1/800 loss=42.8418 regression=42.2515 ranking=1.6865
+utility-controller layer=0 step=200/800 loss=42.5508 regression=41.9880 ranking=1.6079
+utility-controller layer=0 step=400/800 loss=42.1404 regression=41.5543 ranking=1.6744
+utility-controller layer=0 step=600/800 loss=43.8074 regression=43.2470 ranking=1.6013
+utility-controller layer=0 step=800/800 loss=41.3908 regression=40.7754 ranking=1.7583
+utility-controller layer=1 step=1/800 loss=47.1111 regression=46.4472 ranking=1.8967
+utility-controller layer=1 step=200/800 loss=45.2890 regression=44.7250 ranking=1.6113
+utility-controller layer=1 step=400/800 loss=44.7580 regression=44.1702 ranking=1.6794
+utility-controller layer=1 step=600/800 loss=43.0260 regression=42.4240 ranking=1.7202
+utility-controller layer=1 step=800/800 loss=44.3790 regression=43.7255 ranking=1.8673
+extended-lambda=0.000 delta=-0.0157 ucb95=-0.0142 mean-K=2.122 bucket16=39.819%
+extended-lambda=0.002 delta=-0.0145 ucb95=-0.0128 mean-K=1.875 bucket16=36.718%
+extended-lambda=0.004 delta=-0.0134 ucb95=-0.0117 mean-K=1.636 bucket16=33.720%
+extended-lambda=0.006 delta=-0.0115 ucb95=-0.0095 mean-K=1.399 bucket16=30.746%
+extended-lambda=0.008 delta=-0.0102 ucb95=-0.0084 mean-K=1.182 bucket16=28.038%
+extended-lambda=0.010 delta=-0.0087 ucb95=-0.0070 mean-K=0.997 bucket16=25.681%
+extended-lambda=0.012 delta=-0.0076 ucb95=-0.0059 mean-K=0.840 bucket16=23.741%
+extended-lambda=0.014 delta=-0.0053 ucb95=-0.0038 mean-K=0.711 bucket16=22.131%
+extended-lambda=0.016 delta=-0.0038 ucb95=-0.0023 mean-K=0.596 bucket16=20.653%
+extended-lambda=0.018 delta=-0.0019 ucb95=-0.0005 mean-K=0.504 bucket16=19.501%
+extended-lambda=0.020 delta=-0.0004 ucb95=+0.0009 mean-K=0.425 bucket16=18.508%
+extended-lambda=0.022 delta=+0.0010 ucb95=+0.0022 mean-K=0.356 bucket16=17.675%
+extended-lambda=0.024 delta=+0.0024 ucb95=+0.0037 mean-K=0.297 bucket16=16.903%
+extended-lambda=0.026 delta=+0.0031 ucb95=+0.0043 mean-K=0.252 bucket16=16.339%
+extended-lambda=0.028 delta=+0.0040 ucb95=+0.0051 mean-K=0.212 bucket16=15.857%
+extended-lambda=0.030 delta=+0.0052 ucb95=+0.0062 mean-K=0.181 bucket16=15.457%
+extended-lambda=0.032 delta=+0.0061 ucb95=+0.0072 mean-K=0.154 bucket16=15.150%
+extended-lambda=0.034 delta=+0.0069 ucb95=+0.0080 mean-K=0.132 bucket16=14.893%
+extended-lambda=0.036 delta=+0.0077 ucb95=+0.0088 mean-K=0.113 bucket16=14.595%
+extended-lambda=0.038 delta=+0.0084 ucb95=+0.0095 mean-K=0.099 bucket16=14.415%
+extended-lambda=0.040 delta=+0.0090 ucb95=+0.0101 mean-K=0.087 bucket16=14.268%
+extended-lambda=0.045 delta=+0.0101 ucb95=+0.0111 mean-K=0.063 bucket16=13.970%
+extended-lambda=0.050 delta=+0.0109 ucb95=+0.0120 mean-K=0.045 bucket16=13.769%
+extended-lambda=0.060 delta=+0.0119 ucb95=+0.0131 mean-K=0.023 bucket16=13.435%
 # Test 2.10b — extended marginal-utility price search
 
 **Decision:** **MARGINAL_UTILITY_PASS**
 
-Chosen utility price: `0.0300` nat per residual mode (train-calibration only).
+Chosen utility price: `0.0260` nat per residual mode (train-calibration only).
 
 | Policy | Validation loss | Δ vs K1 | Mean K | p95 K | Exact compute | Bucket16 | Bucket32 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Static K=0 | 2.4611 | +0.0135 | 0 | 0 | 12.500% | 12.500% | 12.500% |
-| Static K=1 | 2.4476 | +0.0000 | 1 | 1 | 25.049% | 25.049% | 25.049% |
-| Static K=2 | 2.4381 | -0.0094 | 2 | 2 | 37.598% | 37.598% | 37.598% |
-| Static K=3 | 2.4324 | -0.0152 | 3 | 3 | 50.146% | 50.146% | 50.146% |
-| **Marginal dynamic** | **2.4498** | **+0.0022** | **0.247** | **2** | **16.018%** | **16.306%** | **16.636%** |
+| Static K=0 | 2.4595 | +0.0144 | 0 | 0 | 12.500% | 12.500% | 12.500% |
+| Static K=1 | 2.4451 | +0.0000 | 1 | 1 | 25.049% | 25.049% | 25.049% |
+| Static K=2 | 2.4340 | -0.0111 | 2 | 2 | 37.598% | 37.598% | 37.598% |
+| Static K=3 | 2.4291 | -0.0160 | 3 | 3 | 50.146% | 50.146% | 50.146% |
+| **Marginal dynamic** | **2.4470** | **+0.0019** | **0.270** | **2** | **16.300%** | **16.576%** | **16.914%** |
 
-- Test paired-bootstrap UCB95 vs static K1: `+0.0038` nat.
-- Bucket16 compute advantage vs K1: `+8.743%`.
-- Rank counts: `{'0': 42213, '1': 3471, '2': 1713, '3': 1755}`.
+- Test paired-bootstrap UCB95 vs static K1: `+0.0031` nat.
+- Bucket16 compute advantage vs K1: `+8.473%`.
+- Rank counts: `{'0': 41349, '1': 3946, '2': 2251, '3': 1606}`.
 
 Each controller predicts the cumulative final-language-loss improvement of K=1,2,3 over K=0 for its layer. Inference chooses the prefix maximizing predicted benefit minus a calibrated price per residual mode. Reported bucket cost assumes one rank compaction before grouped GEMMs; scan/scatter latency remains for a kernel benchmark.
 
