@@ -1,0 +1,109 @@
+name: Modal MoE — Test 4.1 WikiText-2 matched baselines
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-4-1-wikitext2-compute-matched.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-4-1
+  cancel-in-progress: true
+
+jobs:
+  compute-matched:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register run
+        run: |
+          mkdir -p runs
+          printf '{"workflow":"Test 4.1 WikiText-2 matched baselines","run_id":%s,"status":"running","commit":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > runs/test-4-1-latest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-4-1-latest.json
+          git commit -m "chore: register WikiText-2 matched run ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "datasets>=4.0" "tokenizers>=0.20"
+
+      - name: Prepare corpus
+        run: |
+          python experiments/prepare_wikitext2_bpe.py \
+            --root data/wikitext2-matched \
+            --stats results/test-4-1/latest/dataset_stats.json \
+            --vocab-size 2048
+
+      - name: Run compute-matched comparison
+        run: |
+          python experiments/test_4_1_wikitext2_compute_matched.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --manifest data/wikitext2-matched/manifest.json \
+            --output-dir results/test-4-1/latest \
+            --steps 350 \
+            --seed 41410 \
+            --threads 4 \
+            2>&1 | tee wikitext2-matched.log
+
+      - name: Publish verdict
+        if: always()
+        run: |
+          [[ -f results/test-4-1/latest/VERDICT.md ]] && cat results/test-4-1/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist results
+        if: always()
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p results/test-4-1/latest runs
+          [[ -f wikitext2-matched.log ]] && cp wikitext2-matched.log results/test-4-1/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          p=Path("runs/test-4-1-latest.json")
+          data=json.loads(p.read_text()) if p.exists() else {}
+          data.update({"status":os.environ["RUN_STATUS"],"finished_at":datetime.now(timezone.utc).isoformat()})
+          p.write_text(json.dumps(data,indent=2)+"\n")
+          Path("results/test-4-1/latest/run.json").write_text(json.dumps(data,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-4-1-latest.json results/test-4-1/latest
+          git commit -m "results: WikiText-2 matched ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: modal-moe-test-4-1-${{ github.run_id }}
+          path: |
+            results/test-4-1/latest
+            wikitext2-matched.log
+          if-no-files-found: warn
+          retention-days: 14
