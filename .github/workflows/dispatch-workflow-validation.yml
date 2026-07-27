@@ -1,0 +1,59 @@
+name: Dispatch workflow validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dispatch-workflow-validation.yml"
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  dispatch-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Dispatch actionlint workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run validate-research-workflows.yml \
+            --repo "${GITHUB_REPOSITORY}" \
+            --ref main
+      - name: Resolve validation run and wait
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p status
+          sleep 8
+          run_id="$(gh run list \
+            --repo "${GITHUB_REPOSITORY}" \
+            --workflow validate-research-workflows.yml \
+            --event workflow_dispatch \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId')"
+          test -n "$run_id"
+          printf '%s\n' "$run_id" > status/validation-run-id.txt
+          gh run watch "$run_id" --repo "${GITHUB_REPOSITORY}" --exit-status || true
+          gh run view "$run_id" --repo "${GITHUB_REPOSITORY}" \
+            --json databaseId,status,conclusion,url,headSha,event,workflowName \
+            > status/validation-run.json
+          gh run view "$run_id" --repo "${GITHUB_REPOSITORY}" --log \
+            > status/actionlint.log 2>&1 || true
+      - name: Publish validation diagnosis
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B experiment-status/workflow-validation
+          git add status
+          git commit -m "status: workflow validation ${GITHUB_RUN_ID}" || true
+          git push --force origin HEAD:refs/heads/experiment-status/workflow-validation
