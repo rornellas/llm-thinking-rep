@@ -1,0 +1,45 @@
+adaptive threshold=12.2001 bits; adaptive mean length=4.000; fixed=4
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_0_adaptive_byte_units.py:386: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.transformer = nn.TransformerEncoder(layer, num_layers=cfg.n_layers)
+byte step=1/300 train=5.4927 val=5.4466 bpb=7.8577
+byte step=100/300 train=3.0256 val=3.4098 bpb=4.9193
+byte step=200/300 train=2.8656 val=3.3405 bpb=4.8193
+byte step=300/300 train=3.8071 val=3.3275 bpb=4.8006
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_0_adaptive_byte_units.py:386: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.transformer = nn.TransformerEncoder(layer, num_layers=cfg.n_layers)
+bpe512 step=1/300 train=5.4826 val=5.4299 bpb=7.8337
+bpe512 step=100/300 train=3.0259 val=3.4092 bpb=4.9184
+bpe512 step=200/300 train=2.8635 val=3.3402 bpb=4.8189
+bpe512 step=300/300 train=3.8103 val=3.3272 bpb=4.8001
+fixed step=1/300 train=5.5120 val=5.4200 bpb=7.8194
+fixed step=100/300 train=3.0297 val=3.4092 bpb=4.9185
+fixed step=200/300 train=2.8598 val=3.3399 bpb=4.8184
+fixed step=300/300 train=3.8084 val=3.3267 bpb=4.7994
+adaptive step=1/300 train=5.5121 val=5.4268 bpb=7.8292
+adaptive step=100/300 train=3.0217 val=3.4079 bpb=4.9166
+adaptive step=200/300 train=2.8594 val=3.3399 bpb=4.8184
+adaptive step=300/300 train=3.8042 val=3.3263 bpb=4.7989
+random-matched step=1/300 train=5.5134 val=5.4268 bpb=7.8293
+random-matched step=100/300 train=3.0213 val=3.4080 bpb=4.9167
+random-matched step=200/300 train=2.8581 val=3.3399 bpb=4.8185
+random-matched step=300/300 train=3.8053 val=3.3266 bpb=4.7992
+# Test 5.0 — adaptive byte-unit representation screen
+
+**Decision:** **COMPRESSION_SIGNAL**
+
+| Representation | Bits/byte | Units/context | Bytes/unit | Units/KiB | Attention work/byte | Model bytes/s |
+|---|---:|---:|---:|---:|---:|---:|
+| byte | 4.8006 | 128.00 | 1.00 | 1024.0 | 100.000% | 22605 |
+| bpe512 | 4.8001 | 61.86 | 2.07 | 494.9 | 23.522% | 39815 |
+| fixed | 4.7994 | 32.00 | 4.00 | 256.0 | 6.250% | 53990 |
+| adaptive | 4.7989 | 32.10 | 3.99 | 256.8 | 6.304% | 45374 |
+| random-matched | 4.7992 | 32.32 | 3.96 | 258.6 | 6.388% | 43602 |
+
+- Adaptive/BPE BpB ratio: `0.9997`.
+- Adaptive unit reduction versus BPE: `+48.12%`.
+- Adaptive BpB advantage versus fixed: `+0.0005`.
+- Adaptive BpB advantage versus random matched boundaries: `+0.0003`.
+- Calibrated adaptive information budget: `12.200` bits; fixed patch size `4`.
+
+All variants predict the same next raw byte from the same byte windows with identical model parameter count and initialization. This is a representation screen, not yet a full autoregressive patch decoder.
+
