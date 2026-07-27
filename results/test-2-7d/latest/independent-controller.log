@@ -1,0 +1,77 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_6_progressive_nested_modes.py:150: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"baseline step={step}/{cfg.steps} ce={float(ce):.4f}", flush=True)
+baseline step=1/500 ce=4.1813
+baseline step=100/500 ce=2.8355
+baseline step=200/500 ce=2.6092
+baseline step=300/500 ce=2.4577
+baseline step=400/500 ce=2.3834
+baseline step=500/500 ce=2.3832
+progressive step=1/500 full=4.2439 sampled-rank=0 sampled=4.2516
+progressive step=100/500 full=2.8303 sampled-rank=2 sampled=2.8351
+progressive step=200/500 full=2.5760 sampled-rank=2 sampled=2.5797
+progressive step=300/500 full=2.5264 sampled-rank=3 sampled=2.5264
+progressive step=400/500 full=2.3810 sampled-rank=2 sampled=2.3799
+progressive step=500/500 full=2.4253 sampled-rank=0 sampled=2.4660
+collected train controller batch 1/48
+collected train controller batch 8/48
+collected train controller batch 16/48
+collected train controller batch 24/48
+collected train controller batch 32/48
+collected train controller batch 40/48
+collected train controller batch 48/48
+collected train controller batch 1/16
+collected train controller batch 8/16
+collected train controller batch 16/16
+collected validation controller batch 1/24
+collected validation controller batch 8/24
+collected validation controller batch 16/24
+collected validation controller batch 24/24
+controller layer=0 step=1/800 loss=1.0668
+controller layer=0 step=200/800 loss=1.0028
+controller layer=0 step=400/800 loss=0.9800
+controller layer=0 step=600/800 loss=0.9835
+controller layer=0 step=800/800 loss=0.9445
+controller layer=1 step=1/800 loss=1.0515
+controller layer=1 step=200/800 loss=0.9951
+controller layer=1 step=400/800 loss=0.9827
+controller layer=1 step=600/800 loss=0.9613
+controller layer=1 step=800/800 loss=0.9440
+balanced-threshold=0.10 tune-loss=2.3931 limit=2.4086 mean-K=2.979 compute=50.140%
+balanced-threshold=0.15 tune-loss=2.3933 limit=2.4086 mean-K=2.953 compute=49.825%
+balanced-threshold=0.20 tune-loss=2.3936 limit=2.4086 mean-K=2.912 compute=49.302%
+balanced-threshold=0.25 tune-loss=2.3940 limit=2.4086 mean-K=2.847 compute=48.490%
+balanced-threshold=0.30 tune-loss=2.3948 limit=2.4086 mean-K=2.754 compute=47.320%
+balanced-threshold=0.35 tune-loss=2.3954 limit=2.4086 mean-K=2.620 compute=45.645%
+balanced-threshold=0.40 tune-loss=2.3975 limit=2.4086 mean-K=2.416 compute=43.085%
+balanced-threshold=0.45 tune-loss=2.3990 limit=2.4086 mean-K=2.111 compute=39.255%
+balanced-threshold=0.50 tune-loss=2.4008 limit=2.4086 mean-K=1.665 compute=33.662%
+balanced-threshold=0.55 tune-loss=2.4038 limit=2.4086 mean-K=1.053 compute=25.971%
+balanced-threshold=0.60 tune-loss=2.4083 limit=2.4086 mean-K=0.601 compute=20.300%
+balanced-threshold=0.65 tune-loss=2.4137 limit=2.4086 mean-K=0.341 compute=17.037%
+balanced-threshold=0.70 tune-loss=2.4175 limit=2.4086 mean-K=0.185 compute=15.084%
+balanced-threshold=0.75 tune-loss=2.4206 limit=2.4086 mean-K=0.099 compute=14.005%
+balanced-threshold=0.80 tune-loss=2.4230 limit=2.4086 mean-K=0.045 compute=13.326%
+balanced-threshold=0.85 tune-loss=2.4250 limit=2.4086 mean-K=0.014 compute=12.935%
+balanced-threshold=0.90 tune-loss=2.4259 limit=2.4086 mean-K=0.002 compute=12.794%
+# Test 2.7 — learned causal rank controller
+
+**Decision:** **LEARNED_CONTROLLER_PASS**
+
+Chosen threshold: `0.60` (selected only on training-calibration batches).
+
+| Policy | Validation loss | Mean K | p95 K | Projected OLMoE compute |
+|---|---:|---:|---:|---:|
+| Static K=0 | 2.4464 | 0 | 0 | 12.500% |
+| Static K=1 | 2.4296 | 1 | 1 | 25.049% |
+| Static K=2 | 2.4237 | 2 | 2 | 37.598% |
+| Static K=3 | 2.4223 | 3 | 3 | 50.146% |
+| **Learned dynamic** | **2.4370** | **0.605** | **3** | **20.350%** |
+
+- Dynamic minus static-K1 loss: `+0.0073` nat.
+- Compute advantage over static K1: `+4.698%` of original OLMoE expert projections.
+- Rank counts across all tokens and layers: `{'0': 37038, '1': 2157, '2': 2309, '3': 7648}`.
+- Controller-only MLP overhead estimate: `0.263%` of original OLMoE expert projection MACs.
+
+The controller sees the local normalized token state, router summaries, and statistics of mode 0 only. Additional modes are selected before their projections. The validation pass actually applies different ranks per token and layer; it is not an oracle recombination of independent uniform-rank passes.
+
