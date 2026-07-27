@@ -1,0 +1,24 @@
+name: Dispatch Test 4.2 now
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dispatch-test-4-2-now.yml"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch WikiText-2 multi-seed replication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run test-4-2-wikitext2-multiseed-compute-matched.yml \
+            --repo "${GITHUB_REPOSITORY}" \
+            --ref main
