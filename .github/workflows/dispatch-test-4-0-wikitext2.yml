@@ -1,0 +1,35 @@
+name: Dispatch Modal MoE Test 4.0 WikiText-2
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dispatch-test-4-0-wikitext2.yml"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch WikiText-2 experiment explicitly
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          response_file="$(mktemp)"
+          status="$({ curl --silent --show-error \
+            --output "$response_file" \
+            --write-out '%{http_code}' \
+            --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${REPOSITORY}/actions/workflows/test-4-0-wikitext2-scale64-controller.yml/dispatches" \
+            --data '{"ref":"main"}'; } 2>&1)"
+          cat "$response_file"
+          test "$status" = "204"
+          echo "WikiText-2 workflow dispatched."
