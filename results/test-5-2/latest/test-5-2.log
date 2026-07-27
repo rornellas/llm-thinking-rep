@@ -1,0 +1,115 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_2_learned_latent_resampler.py:187: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.context_transformer = nn.TransformerEncoder(
+seed=55201 fixed-mean32 step=1/700 train-bpb=8.0178 val-bpb=7.9342
+seed=55201 fixed-mean32 step=200/700 train-bpb=4.5344 val-bpb=4.6695
+seed=55201 fixed-mean32 step=400/700 train-bpb=4.4796 val-bpb=4.6436
+seed=55201 fixed-mean32 step=600/700 train-bpb=4.6547 val-bpb=4.6246
+seed=55201 fixed-mean32 step=700/700 train-bpb=4.6581 val-bpb=4.6225
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_2_learned_latent_resampler.py:187: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.context_transformer = nn.TransformerEncoder(
+seed=55201 fixed-gru32 step=1/700 train-bpb=7.9933 val-bpb=7.9457
+seed=55201 fixed-gru32 step=200/700 train-bpb=4.5348 val-bpb=4.6693
+seed=55201 fixed-gru32 step=400/700 train-bpb=4.4791 val-bpb=4.6429
+seed=55201 fixed-gru32 step=600/700 train-bpb=4.6529 val-bpb=4.6244
+seed=55201 fixed-gru32 step=700/700 train-bpb=4.6596 val-bpb=4.6224
+seed=55201 conv32 step=1/700 train-bpb=7.9953 val-bpb=7.9364
+seed=55201 conv32 step=200/700 train-bpb=4.5330 val-bpb=4.6690
+seed=55201 conv32 step=400/700 train-bpb=4.4795 val-bpb=4.6431
+seed=55201 conv32 step=600/700 train-bpb=4.6533 val-bpb=4.6242
+seed=55201 conv32 step=700/700 train-bpb=4.6579 val-bpb=4.6224
+seed=55201 resampler32 step=1/700 train-bpb=8.0775 val-bpb=7.9628
+seed=55201 resampler32 step=200/700 train-bpb=4.5321 val-bpb=4.6686
+seed=55201 resampler32 step=400/700 train-bpb=4.4790 val-bpb=4.6425
+seed=55201 resampler32 step=600/700 train-bpb=4.6529 val-bpb=4.6241
+seed=55201 resampler32 step=700/700 train-bpb=4.6595 val-bpb=4.6216
+seed=55201 resampler32-frozen step=1/700 train-bpb=8.0775 val-bpb=7.9777
+seed=55201 resampler32-frozen step=200/700 train-bpb=4.5374 val-bpb=4.6715
+seed=55201 resampler32-frozen step=400/700 train-bpb=4.4813 val-bpb=4.6432
+seed=55201 resampler32-frozen step=600/700 train-bpb=4.6543 val-bpb=4.6246
+seed=55201 resampler32-frozen step=700/700 train-bpb=4.6601 val-bpb=4.6223
+seed=55201 resampler16 step=1/700 train-bpb=8.0723 val-bpb=7.9620
+seed=55201 resampler16 step=200/700 train-bpb=4.5336 val-bpb=4.6696
+seed=55201 resampler16 step=400/700 train-bpb=4.4790 val-bpb=4.6433
+seed=55201 resampler16 step=600/700 train-bpb=4.6532 val-bpb=4.6245
+seed=55201 resampler16 step=700/700 train-bpb=4.6602 val-bpb=4.6222
+seed=56302 fixed-mean32 step=1/700 train-bpb=8.0338 val-bpb=7.9318
+seed=56302 fixed-mean32 step=200/700 train-bpb=4.6913 val-bpb=4.6816
+seed=56302 fixed-mean32 step=400/700 train-bpb=4.6814 val-bpb=4.6456
+seed=56302 fixed-mean32 step=600/700 train-bpb=4.7073 val-bpb=4.6429
+seed=56302 fixed-mean32 step=700/700 train-bpb=4.5829 val-bpb=4.6357
+seed=56302 fixed-gru32 step=1/700 train-bpb=7.9961 val-bpb=7.9382
+seed=56302 fixed-gru32 step=200/700 train-bpb=4.6869 val-bpb=4.6806
+seed=56302 fixed-gru32 step=400/700 train-bpb=4.6804 val-bpb=4.6451
+seed=56302 fixed-gru32 step=600/700 train-bpb=4.7077 val-bpb=4.6428
+seed=56302 fixed-gru32 step=700/700 train-bpb=4.5816 val-bpb=4.6362
+seed=56302 conv32 step=1/700 train-bpb=8.0034 val-bpb=7.9455
+seed=56302 conv32 step=200/700 train-bpb=4.6922 val-bpb=4.6815
+seed=56302 conv32 step=400/700 train-bpb=4.6801 val-bpb=4.6454
+seed=56302 conv32 step=600/700 train-bpb=4.7075 val-bpb=4.6433
+seed=56302 conv32 step=700/700 train-bpb=4.5828 val-bpb=4.6363
+seed=56302 resampler32 step=1/700 train-bpb=8.0334 val-bpb=7.9499
+seed=56302 resampler32 step=200/700 train-bpb=4.6908 val-bpb=4.6814
+seed=56302 resampler32 step=400/700 train-bpb=4.6802 val-bpb=4.6455
+seed=56302 resampler32 step=600/700 train-bpb=4.7081 val-bpb=4.6432
+seed=56302 resampler32 step=700/700 train-bpb=4.5833 val-bpb=4.6363
+seed=56302 resampler32-frozen step=1/700 train-bpb=8.0334 val-bpb=7.9519
+seed=56302 resampler32-frozen step=200/700 train-bpb=4.6920 val-bpb=4.6829
+seed=56302 resampler32-frozen step=400/700 train-bpb=4.6806 val-bpb=4.6458
+seed=56302 resampler32-frozen step=600/700 train-bpb=4.7079 val-bpb=4.6434
+seed=56302 resampler32-frozen step=700/700 train-bpb=4.5832 val-bpb=4.6364
+seed=56302 resampler16 step=1/700 train-bpb=8.0329 val-bpb=7.9478
+seed=56302 resampler16 step=200/700 train-bpb=4.6916 val-bpb=4.6803
+seed=56302 resampler16 step=400/700 train-bpb=4.6806 val-bpb=4.6452
+seed=56302 resampler16 step=600/700 train-bpb=4.7072 val-bpb=4.6427
+seed=56302 resampler16 step=700/700 train-bpb=4.5828 val-bpb=4.6364
+seed=57403 fixed-mean32 step=1/700 train-bpb=8.0289 val-bpb=7.9622
+seed=57403 fixed-mean32 step=200/700 train-bpb=4.8659 val-bpb=4.6612
+seed=57403 fixed-mean32 step=400/700 train-bpb=4.8711 val-bpb=4.6274
+seed=57403 fixed-mean32 step=600/700 train-bpb=4.7674 val-bpb=4.6170
+seed=57403 fixed-mean32 step=700/700 train-bpb=4.5400 val-bpb=4.6125
+seed=57403 fixed-gru32 step=1/700 train-bpb=8.0091 val-bpb=7.9593
+seed=57403 fixed-gru32 step=200/700 train-bpb=4.8652 val-bpb=4.6588
+seed=57403 fixed-gru32 step=400/700 train-bpb=4.8699 val-bpb=4.6267
+seed=57403 fixed-gru32 step=600/700 train-bpb=4.7699 val-bpb=4.6166
+seed=57403 fixed-gru32 step=700/700 train-bpb=4.5382 val-bpb=4.6118
+seed=57403 conv32 step=1/700 train-bpb=7.9961 val-bpb=7.9714
+seed=57403 conv32 step=200/700 train-bpb=4.8646 val-bpb=4.6602
+seed=57403 conv32 step=400/700 train-bpb=4.8732 val-bpb=4.6278
+seed=57403 conv32 step=600/700 train-bpb=4.7717 val-bpb=4.6171
+seed=57403 conv32 step=700/700 train-bpb=4.5406 val-bpb=4.6124
+seed=57403 resampler32 step=1/700 train-bpb=8.0255 val-bpb=7.9664
+seed=57403 resampler32 step=200/700 train-bpb=4.8645 val-bpb=4.6579
+seed=57403 resampler32 step=400/700 train-bpb=4.8718 val-bpb=4.6265
+seed=57403 resampler32 step=600/700 train-bpb=4.7704 val-bpb=4.6162
+seed=57403 resampler32 step=700/700 train-bpb=4.5404 val-bpb=4.6124
+seed=57403 resampler32-frozen step=1/700 train-bpb=8.0255 val-bpb=7.9638
+seed=57403 resampler32-frozen step=200/700 train-bpb=4.8670 val-bpb=4.6599
+seed=57403 resampler32-frozen step=400/700 train-bpb=4.8711 val-bpb=4.6271
+seed=57403 resampler32-frozen step=600/700 train-bpb=4.7678 val-bpb=4.6165
+seed=57403 resampler32-frozen step=700/700 train-bpb=4.5397 val-bpb=4.6128
+seed=57403 resampler16 step=1/700 train-bpb=8.0267 val-bpb=7.9683
+seed=57403 resampler16 step=200/700 train-bpb=4.8647 val-bpb=4.6587
+seed=57403 resampler16 step=400/700 train-bpb=4.8724 val-bpb=4.6269
+seed=57403 resampler16 step=600/700 train-bpb=4.7697 val-bpb=4.6164
+seed=57403 resampler16 step=700/700 train-bpb=4.5397 val-bpb=4.6122
+# Test 5.2 — learned continuous latent resampler
+
+**Decision:** **HALF_SLOT_COMPRESSION_SIGNAL**
+
+| Compressor | Runs | Slots | BpB | Params | Compressor params | Attention work/byte | Context bytes/s | Effective rank | Mean slot cosine |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| conv32 | 3 | 32 | 4.6237 ± 0.0098 | 393,024 | 16,448 | 6.250% | 146953 | 25.3 | 0.871 |
+| fixed-gru32 | 3 | 32 | 4.6235 ± 0.0100 | 401,536 | 24,960 | 6.250% | 106037 | 16.2 | 0.986 |
+| fixed-mean32 | 3 | 32 | 4.6236 ± 0.0095 | 376,576 | 0 | 6.250% | 167321 | 25.0 | 0.282 |
+| resampler16 | 3 | 16 | 4.6236 ± 0.0099 | 411,072 | 34,496 | 1.562% | 131640 | 7.4 | 0.641 |
+| resampler32 | 3 | 32 | 4.6234 ± 0.0099 | 412,096 | 35,520 | 6.250% | 111091 | 10.0 | 0.674 |
+| resampler32-frozen | 3 | 32 | 4.6238 ± 0.0097 | 376,576 | 0 | 6.250% | 129315 | 14.8 | 0.274 |
+
+- Best fixed compressor: `fixed-gru32`.
+- Resampler32 advantages over paired best-fixed controls: `[0.0008, -0.0006, -0.0005]`; mean `-0.0001` BpB.
+- Resampler32 advantages over frozen control: `[0.0007, 0.0, 0.0005]`.
+- Resampler32 parameter ratio to best fixed: `1.026`.
+- Resampler16/Resampler32 BpB ratio: `1.0000`; paired deltas `[0.0006, 0.0, -0.0002]`.
+
+Every model predicts the next 16 bytes from identical 128-byte contexts. Global resampling cost is included in measured model throughput; attention-work ratios describe only the downstream latent Transformer.
+
