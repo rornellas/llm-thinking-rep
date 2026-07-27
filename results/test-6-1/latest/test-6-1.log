@@ -1,0 +1,53 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_6_progressive_nested_modes.py:179: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"progressive step={step}/{cfg.steps} full={float(full_ce):.4f} sampled-rank={sampled_rank} sampled={float(sampled_ce):.4f}", flush=True)
+progressive step=1/400 full=4.1806 sampled-rank=2 sampled=4.1818
+progressive step=100/400 full=2.7946 sampled-rank=2 sampled=2.7971
+progressive step=200/400 full=2.5911 sampled-rank=1 sampled=2.5992
+progressive step=300/400 full=2.4935 sampled-rank=1 sampled=2.5054
+progressive step=400/400 full=2.3893 sampled-rank=0 sampled=2.4314
+lambda=0.000 step=1/180 full=2.3422 sampled=2.3801 hoyer=0.8039
+lambda=0.000 step=60/180 full=2.4091 sampled=2.4546 hoyer=0.8027
+lambda=0.000 step=120/180 full=2.3733 sampled=2.3819 hoyer=0.8030
+lambda=0.000 step=180/180 full=2.2651 sampled=2.3090 hoyer=0.8037
+calibration batch 1/16
+calibration batch 4/16
+calibration batch 8/16
+calibration batch 12/16
+calibration batch 16/16
+lambda=0.020 step=1/180 full=2.3460 sampled=2.3693 hoyer=0.8036
+lambda=0.020 step=60/180 full=2.4219 sampled=2.4359 hoyer=0.8026
+lambda=0.020 step=120/180 full=2.3944 sampled=2.3981 hoyer=0.8008
+lambda=0.020 step=180/180 full=2.3574 sampled=2.3834 hoyer=0.7979
+calibration batch 1/16
+calibration batch 4/16
+calibration batch 8/16
+calibration batch 12/16
+calibration batch 16/16
+lambda=0.050 step=1/180 full=2.5250 sampled=2.5305 hoyer=0.8032
+lambda=0.050 step=60/180 full=2.4257 sampled=2.4257 hoyer=0.7992
+lambda=0.050 step=120/180 full=2.3419 sampled=2.3419 hoyer=0.7944
+lambda=0.050 step=180/180 full=2.3339 sampled=2.3339 hoyer=0.7908
+calibration batch 1/16
+calibration batch 4/16
+calibration batch 8/16
+calibration batch 12/16
+calibration batch 16/16
+# Test 6.1 — training for sparse refinement events
+
+**Decision:** **TRAINED_EVENT_SPARSITY_FAIL**
+
+| Fine-tune | K3 loss | K1 loss | 90%/4-bit loss | Δ vs K3 | Event density | Residual bits/BF16 | Advantage vs random | 95% Δ |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| lambda-0.000 | 2.3531 | 2.3730 | 2.3768 | +0.0237 | 9.650% | 8.662% | +0.0096 | +0.0296 |
+| lambda-0.020 | 2.3643 | 2.3814 | 2.3869 | +0.0227 | 9.751% | 8.688% | +0.0095 | +0.0289 |
+| lambda-0.050 | 2.3509 | 2.3728 | 2.3716 | +0.0208 | 9.874% | 8.718% | +0.0126 | +0.0277 |
+
+- Best variant: `lambda-0.050`.
+- Best 90%/4-bit Δ versus K3: `+0.0208` nat.
+- Event traffic: `8.718%` of dense BF16 residual deltas.
+- Improvement over lambda=0 fine-tune: `+0.0029` nat.
+- Magnitude advantage over random: `+0.0126` nat.
+
+Hoyer regularization is scale invariant and operates on per-token MoE output deltas. This remains a state-traffic screen; dense prefix computation is still used by the reference path.
+
