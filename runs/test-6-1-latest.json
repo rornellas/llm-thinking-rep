@@ -1,0 +1,8 @@
+{
+  "workflow": "Hardware proxy \u2014 Test 6.1 train sparse refinement deltas",
+  "run_id": 30279497161,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "7451902c8c79e819f906f114a70ac0b23b124139",
+  "started_at": "2026-07-27T15:20:19.615702+00:00"
+}
