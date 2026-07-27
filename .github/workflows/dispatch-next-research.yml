@@ -1,4 +1,3 @@
-# Triggered after all target workflows existed on main.
 name: Dispatch next research gates
 
 on:
@@ -9,17 +8,110 @@ on:
 
 permissions:
   actions: write
-  contents: read
+  contents: write
+
+concurrency:
+  group: dispatch-next-research-gates
+  cancel-in-progress: false
 
 jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout laboratory
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
       - name: Dispatch pending research workflows
+        id: dispatch
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          mkdir -p runs/dispatch-next-research
+          overall=success
+          workflows=(
+            test-4-2-wikitext2-multiseed-compute-matched.yml
+            test-5-0-adaptive-byte-units.yml
+            test-2-11-marginal-utility-multiseed.yml
+          )
+          for workflow in "${workflows[@]}"; do
+            log="runs/dispatch-next-research/${workflow}.dispatch.log"
+            if gh workflow run "$workflow" --repo "$GITHUB_REPOSITORY" --ref main >"$log" 2>&1; then
+              printf '%s\n' success > "runs/dispatch-next-research/${workflow}.dispatch.status"
+            else
+              printf '%s\n' failure > "runs/dispatch-next-research/${workflow}.dispatch.status"
+              overall=failure
+            fi
+          done
+          printf '%s\n' "$overall" > runs/dispatch-next-research/overall.status
+          exit 0
+
+      - name: Resolve dispatched run IDs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          sleep 12
+          workflows=(
+            test-4-2-wikitext2-multiseed-compute-matched.yml
+            test-5-0-adaptive-byte-units.yml
+            test-2-11-marginal-utility-multiseed.yml
+          )
+          for workflow in "${workflows[@]}"; do
+            gh run list \
+              --repo "$GITHUB_REPOSITORY" \
+              --workflow "$workflow" \
+              --limit 5 \
+              --json databaseId,status,conclusion,headSha,createdAt,event,url \
+              > "runs/dispatch-next-research/${workflow}.runs.json" 2> "runs/dispatch-next-research/${workflow}.list.log" || true
+          done
+
+      - name: Persist dispatch audit
+        if: always()
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh workflow run test-4-2-wikitext2-multiseed-compute-matched.yml --repo "${GITHUB_REPOSITORY}" --ref main
-          gh workflow run test-5-0-adaptive-byte-units.yml --repo "${GITHUB_REPOSITORY}" --ref main
-          gh workflow run test-2-11-marginal-utility-multiseed.yml --repo "${GITHUB_REPOSITORY}" --ref main
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path("runs/dispatch-next-research")
+          workflows = [
+              "test-4-2-wikitext2-multiseed-compute-matched.yml",
+              "test-5-0-adaptive-byte-units.yml",
+              "test-2-11-marginal-utility-multiseed.yml",
+          ]
+          records = []
+          for workflow in workflows:
+              status_path = root / f"{workflow}.dispatch.status"
+              runs_path = root / f"{workflow}.runs.json"
+              records.append({
+                  "workflow": workflow,
+                  "dispatch_status": status_path.read_text().strip() if status_path.exists() else "missing",
+                  "recent_runs": json.loads(runs_path.read_text()) if runs_path.exists() and runs_path.stat().st_size else [],
+              })
+          payload = {
+              "dispatcher_run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "dispatcher_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "head_sha": os.environ["GITHUB_SHA"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+              "overall_status": (root / "overall.status").read_text().strip() if (root / "overall.status").exists() else "missing",
+              "targets": records,
+          }
+          (root / "latest.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          print(json.dumps(payload, indent=2))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/dispatch-next-research
+          git commit -m "chore: record research dispatch ${GITHUB_RUN_ID}" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
