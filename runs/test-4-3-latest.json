@@ -1,0 +1,8 @@
+{
+  "workflow": "Modal MoE \u2014 Test 4.3 WikiText width scaling",
+  "run_id": 30278980550,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "3d29eab266196a4b90be3ff23b8366ec1e4da64b",
+  "started_at": "2026-07-27T15:14:00.614979+00:00"
+}
