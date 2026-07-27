@@ -1,0 +1,105 @@
+{
+  "decision": {
+    "rule": "PASS requires K1 within 5% of baseline and token oracle mean rank <=1.5 at 0.05 nat tolerance.",
+    "verdict": "PROGRESSIVE_PASS"
+  },
+  "metadata": {
+    "baseline_loss": 2.349558162689209,
+    "max_rank": 3,
+    "progressive_training_seconds": 188.051637121,
+    "seed": 8080,
+    "steps": 500
+  },
+  "oracles": [
+    {
+      "counts": {
+        "0": 10265,
+        "1": 2686,
+        "2": 2451,
+        "3": 5078
+      },
+      "mean_modes": 2.11435546875,
+      "mean_rank": 1.11435546875,
+      "p50_rank": 0.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_mean_compute_ratio": 0.26483855247497556,
+      "tokens": 20480,
+      "tolerance_nats": 0.02
+    },
+    {
+      "counts": {
+        "0": 11617,
+        "1": 2762,
+        "2": 2593,
+        "3": 3508
+      },
+      "mean_modes": 1.901953125,
+      "mean_rank": 0.901953125,
+      "p50_rank": 0.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_mean_compute_ratio": 0.2381845474243164,
+      "tokens": 20480,
+      "tolerance_nats": 0.05
+    },
+    {
+      "counts": {
+        "0": 13554,
+        "1": 2788,
+        "2": 2407,
+        "3": 1731
+      },
+      "mean_modes": 1.624755859375,
+      "mean_rank": 0.624755859375,
+      "p50_rank": 0.0,
+      "p90_rank": 2.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_mean_compute_ratio": 0.20339953899383545,
+      "tokens": 20480,
+      "tolerance_nats": 0.1
+    }
+  ],
+  "prefixes": [
+    {
+      "active_rank": 0,
+      "loss_ratio_to_baseline": 1.0373302145565944,
+      "loss_ratio_to_full_prefix": 1.0106610485928103,
+      "modes_executed": 1,
+      "projected_olmoe_compute_ratio": 0.125,
+      "projected_olmoe_parameter_ratio": 0.015625,
+      "validation_loss": 2.4372676730155947,
+      "validation_perplexity": 11.441735431629443
+    },
+    {
+      "active_rank": 1,
+      "loss_ratio_to_baseline": 1.0301834051544547,
+      "loss_ratio_to_full_prefix": 1.0036979795689827,
+      "modes_executed": 2,
+      "projected_olmoe_compute_ratio": 0.25048828125,
+      "projected_olmoe_parameter_ratio": 0.03173828125,
+      "validation_loss": 2.4204758286476133,
+      "validation_perplexity": 11.251211690216667
+    },
+    {
+      "active_rank": 2,
+      "loss_ratio_to_baseline": 1.0267904665208936,
+      "loss_ratio_to_full_prefix": 1.0003922714452953,
+      "modes_executed": 3,
+      "projected_olmoe_compute_ratio": 0.3759765625,
+      "projected_olmoe_parameter_ratio": 0.0478515625,
+      "validation_loss": 2.412503921985626,
+      "validation_perplexity": 11.161874647195448
+    },
+    {
+      "active_rank": 3,
+      "loss_ratio_to_baseline": 1.026387843877942,
+      "loss_ratio_to_full_prefix": 1.0,
+      "modes_executed": 4,
+      "projected_olmoe_compute_ratio": 0.50146484375,
+      "projected_olmoe_parameter_ratio": 0.06396484375,
+      "validation_loss": 2.411557936668396,
+      "validation_perplexity": 11.15132067040703
+    }
+  ]
+}
