@@ -1,0 +1,43 @@
+name: Repair Test 6.2 source
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/repair-test-6-2-source.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Repair nested f-string and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("experiments/test_6_2_hard_event_bottleneck.py")
+          source = path.read_text(encoding="utf-8")
+          old = "f\"{('n/a' if row['magnitude_advantage_over_random'] is None else f'{row['magnitude_advantage_over_random']:+.4f}')} |\""
+          new = "f\"{('n/a' if row['magnitude_advantage_over_random'] is None else format(row['magnitude_advantage_over_random'], '+.4f'))} |\""
+          if old not in source:
+              raise RuntimeError("target formatter not found")
+          path.write_text(source.replace(old, new), encoding="utf-8")
+          PY
+          python -m py_compile experiments/test_6_2_hard_event_bottleneck.py
+      - name: Commit repair
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/test_6_2_hard_event_bottleneck.py
+          git commit -m "fix: repair Test 6.2 report formatter"
+          git pull --rebase origin main
+          git push origin HEAD:main
