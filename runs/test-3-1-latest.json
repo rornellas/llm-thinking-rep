@@ -1,0 +1,10 @@
+{
+  "workflow": "Modal MoE \u2014 Test 3.1 real down assignment distillation",
+  "run_id": 30234109924,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "d2d9c5839e3963c38ffa67945e936a03f8d71010",
+  "source_activation_run_id": 30233139781,
+  "source_activation_artifact_id": 8640815344,
+  "started_at": "2026-07-27T03:14:00.371522+00:00"
+}
