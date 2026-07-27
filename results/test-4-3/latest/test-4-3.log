@@ -1,0 +1,117 @@
+variant=baseline rank=None seed=44300 step=1/300 train=7.6357 val=7.6226 aux=2.7957
+variant=baseline rank=None seed=44300 step=100/300 train=6.6599 val=6.6020 aux=2.3511
+variant=baseline rank=None seed=44300 step=200/300 train=6.5193 val=6.4733 aux=1.8413
+variant=baseline rank=None seed=44300 step=300/300 train=6.3301 val=6.3592 aux=1.6995
+completed w64 baseline-full loss=6.3434
+variant=baseline rank=None seed=44300 step=1/300 train=7.6429 val=7.6366 aux=2.8118
+variant=baseline rank=None seed=44300 step=100/300 train=6.6654 val=6.6147 aux=2.4271
+variant=baseline rank=None seed=44300 step=200/300 train=6.5400 val=6.5003 aux=1.9143
+variant=baseline rank=None seed=44300 step=300/300 train=6.3767 val=6.4200 aux=1.7249
+completed w64 baseline-0.250x loss=6.4022
+variant=modal rank=1 seed=44300 step=1/300 train=7.6413 val=7.6268 aux=2.8181
+variant=modal rank=1 seed=44300 step=100/300 train=6.6562 val=6.6054 aux=2.0021
+variant=modal rank=1 seed=44300 step=200/300 train=6.5242 val=6.4836 aux=1.4769
+variant=modal rank=1 seed=44300 step=300/300 train=6.3560 val=6.3850 aux=1.3432
+completed w64 modal-k1 loss=6.3697
+variant=baseline rank=None seed=44300 step=1/300 train=7.6228 val=7.6288 aux=2.7816
+variant=baseline rank=None seed=44300 step=100/300 train=6.6493 val=6.6050 aux=2.4290
+variant=baseline rank=None seed=44300 step=200/300 train=6.5167 val=6.4711 aux=1.9573
+variant=baseline rank=None seed=44300 step=300/300 train=6.3161 val=6.3547 aux=1.7955
+completed w64 baseline-0.375x loss=6.3427
+variant=modal rank=2 seed=44300 step=1/300 train=7.6265 val=7.6336 aux=2.7872
+variant=modal rank=2 seed=44300 step=100/300 train=6.6546 val=6.6061 aux=2.0223
+variant=modal rank=2 seed=44300 step=200/300 train=6.5166 val=6.4721 aux=1.4870
+variant=modal rank=2 seed=44300 step=300/300 train=6.3130 val=6.3404 aux=1.3737
+completed w64 modal-k2 loss=6.3242
+variant=baseline rank=None seed=44400 step=1/300 train=7.6313 val=7.6166 aux=2.8130
+variant=baseline rank=None seed=44400 step=100/300 train=6.5999 val=6.5187 aux=2.2568
+variant=baseline rank=None seed=44400 step=200/300 train=6.2318 val=6.3269 aux=1.9467
+variant=baseline rank=None seed=44400 step=300/300 train=6.0770 val=6.0424 aux=1.8746
+completed w96 baseline-full loss=6.0416
+variant=baseline rank=None seed=44400 step=1/300 train=7.6554 val=7.6263 aux=2.8095
+variant=baseline rank=None seed=44400 step=100/300 train=6.6065 val=6.5281 aux=2.2884
+variant=baseline rank=None seed=44400 step=200/300 train=6.3348 val=6.4189 aux=1.8550
+variant=baseline rank=None seed=44400 step=300/300 train=6.2461 val=6.2249 aux=1.7560
+completed w96 baseline-0.250x loss=6.2189
+variant=modal rank=1 seed=44400 step=1/300 train=7.6432 val=7.6381 aux=2.8152
+variant=modal rank=1 seed=44400 step=100/300 train=6.6059 val=6.5273 aux=1.8264
+variant=modal rank=1 seed=44400 step=200/300 train=6.2507 val=6.3435 aux=1.4805
+variant=modal rank=1 seed=44400 step=300/300 train=6.0649 val=6.0451 aux=1.4605
+completed w96 modal-k1 loss=6.0432
+variant=baseline rank=None seed=44400 step=1/300 train=7.6508 val=7.6404 aux=2.8492
+variant=baseline rank=None seed=44400 step=100/300 train=6.6096 val=6.5280 aux=2.3205
+variant=baseline rank=None seed=44400 step=200/300 train=6.3551 val=6.4461 aux=1.9107
+variant=baseline rank=None seed=44400 step=300/300 train=6.2201 val=6.2201 aux=1.8428
+completed w96 baseline-0.375x loss=6.2124
+variant=modal rank=2 seed=44400 step=1/300 train=7.6441 val=7.6394 aux=2.7934
+variant=modal rank=2 seed=44400 step=100/300 train=6.6043 val=6.5292 aux=1.9105
+variant=modal rank=2 seed=44400 step=200/300 train=6.3114 val=6.3994 aux=1.5216
+variant=modal rank=2 seed=44400 step=300/300 train=6.1130 val=6.0876 aux=1.5418
+completed w96 modal-k2 loss=6.0873
+variant=baseline rank=None seed=44500 step=1/300 train=7.6544 val=7.6232 aux=2.8296
+variant=baseline rank=None seed=44500 step=100/300 train=6.5099 val=6.5133 aux=2.1335
+variant=baseline rank=None seed=44500 step=200/300 train=6.2179 val=6.2529 aux=1.9793
+variant=baseline rank=None seed=44500 step=300/300 train=5.8906 val=5.9845 aux=1.9457
+completed w128 baseline-full loss=5.9374
+variant=baseline rank=None seed=44500 step=1/300 train=7.6577 val=7.6247 aux=2.8356
+variant=baseline rank=None seed=44500 step=100/300 train=6.5292 val=6.5284 aux=2.2389
+variant=baseline rank=None seed=44500 step=200/300 train=6.2640 val=6.3231 aux=1.9542
+variant=baseline rank=None seed=44500 step=300/300 train=5.9440 val=6.0487 aux=1.8846
+completed w128 baseline-0.250x loss=6.0020
+variant=modal rank=1 seed=44500 step=1/300 train=7.6578 val=7.6441 aux=2.8206
+variant=modal rank=1 seed=44500 step=100/300 train=6.5253 val=6.5282 aux=1.7310
+variant=modal rank=1 seed=44500 step=200/300 train=6.2400 val=6.2806 aux=1.5119
+variant=modal rank=1 seed=44500 step=300/300 train=5.8819 val=5.9861 aux=1.5439
+completed w128 modal-k1 loss=5.9422
+variant=baseline rank=None seed=44500 step=1/300 train=7.6363 val=7.6268 aux=2.8236
+variant=baseline rank=None seed=44500 step=100/300 train=6.5334 val=6.5357 aux=2.2136
+variant=baseline rank=None seed=44500 step=200/300 train=6.3026 val=6.3431 aux=1.9099
+variant=baseline rank=None seed=44500 step=300/300 train=5.9502 val=6.0516 aux=1.8881
+completed w128 baseline-0.375x loss=6.0028
+variant=modal rank=2 seed=44500 step=1/300 train=7.6494 val=7.6264 aux=2.8293
+variant=modal rank=2 seed=44500 step=100/300 train=6.5251 val=6.5232 aux=1.8484
+variant=modal rank=2 seed=44500 step=200/300 train=6.1931 val=6.2383 aux=1.6049
+variant=modal rank=2 seed=44500 step=300/300 train=5.8628 val=5.9653 aux=1.5555
+completed w128 modal-k2 loss=5.9100
+variant=baseline rank=None seed=44600 step=1/300 train=7.6558 val=7.6196 aux=2.8688
+variant=baseline rank=None seed=44600 step=100/300 train=6.5094 val=6.4805 aux=2.2073
+variant=baseline rank=None seed=44600 step=200/300 train=6.2350 val=6.1523 aux=2.0340
+variant=baseline rank=None seed=44600 step=300/300 train=5.9991 val=5.8457 aux=2.0672
+completed w160 baseline-full loss=5.8839
+variant=baseline rank=None seed=44600 step=1/300 train=7.6421 val=7.6277 aux=2.8395
+variant=baseline rank=None seed=44600 step=100/300 train=6.5504 val=6.5200 aux=2.1173
+variant=baseline rank=None seed=44600 step=200/300 train=6.3409 val=6.2581 aux=1.9377
+variant=baseline rank=None seed=44600 step=300/300 train=6.0906 val=5.9337 aux=1.9128
+completed w160 baseline-0.250x loss=5.9719
+variant=modal rank=1 seed=44600 step=1/300 train=7.6436 val=7.6331 aux=2.8122
+variant=modal rank=1 seed=44600 step=100/300 train=6.5177 val=6.4928 aux=1.6547
+variant=modal rank=1 seed=44600 step=200/300 train=6.2375 val=6.1515 aux=1.5336
+variant=modal rank=1 seed=44600 step=300/300 train=5.9666 val=5.8258 aux=1.5509
+completed w160 modal-k1 loss=5.8637
+variant=baseline rank=None seed=44600 step=1/300 train=7.6504 val=7.6394 aux=2.8233
+variant=baseline rank=None seed=44600 step=100/300 train=6.5301 val=6.5014 aux=2.2385
+variant=baseline rank=None seed=44600 step=200/300 train=6.3118 val=6.2163 aux=2.0121
+variant=baseline rank=None seed=44600 step=300/300 train=6.0148 val=5.8817 aux=2.0299
+completed w160 baseline-0.375x loss=5.9253
+variant=modal rank=2 seed=44600 step=1/300 train=7.6605 val=7.6228 aux=2.8390
+variant=modal rank=2 seed=44600 step=100/300 train=6.5048 val=6.4810 aux=1.7159
+variant=modal rank=2 seed=44600 step=200/300 train=6.2267 val=6.1465 aux=1.6097
+variant=modal rank=2 seed=44600 step=300/300 train=5.9618 val=5.8220 aux=1.6020
+completed w160 modal-k2 loss=5.8494
+# Test 4.3 — WikiText-2 Modal-MoE width scaling
+
+**Decision:** **WIDTH_SCALING_MODAL_ADVANTAGE**
+
+| Scale | d_model | d_ff | Full loss | Narrow25 | Modal K1 | K1 advantage | Narrow37.5 | Modal K2 | K2 advantage |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| w64 | 64 | 96 | 6.3434 | 6.4022 | 6.3697 | +0.0325 | 6.3427 | 6.3242 | +0.0185 |
+| w96 | 96 | 128 | 6.0416 | 6.2189 | 6.0432 | +0.1757 | 6.2124 | 6.0873 | +0.1251 |
+| w128 | 128 | 192 | 5.9374 | 6.0020 | 5.9422 | +0.0597 | 6.0028 | 5.9100 | +0.0929 |
+| w160 | 160 | 256 | 5.8839 | 5.9719 | 5.8637 | +0.1082 | 5.9253 | 5.8494 | +0.0759 |
+
+- K1 advantage mean/worst: `+0.0940` / `+0.0325` nat.
+- K2 advantage mean/worst: `+0.0781` / `+0.0185` nat.
+- Worst Modal K1/full ratio: `1.0041`; K2/full: `1.0076`.
+
+This is a controlled small-model scaling screen. It increases dense matrix dimensions while holding 64-expert/top-8 routing, depth, corpus, token budget, and paired initialization policy fixed.
+
