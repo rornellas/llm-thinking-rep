@@ -1,0 +1,11 @@
+{
+  "train_path": "data/test-4-2b/train.npy",
+  "validation_path": "data/test-4-2b/validation.npy",
+  "vocab_size": 2048,
+  "dataset": "Salesforce/wikitext",
+  "subset": "wikitext-2-raw-v1",
+  "train_documents": 23767,
+  "validation_documents": 2461,
+  "train_tokens": 3576420,
+  "validation_tokens": 372706
+}
