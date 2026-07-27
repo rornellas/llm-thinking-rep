@@ -1,0 +1,30 @@
+name: Validate research workflows
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/validate-research-workflows.yml"
+      - ".github/workflows/test-4-2-wikitext2-multiseed-compute-matched.yml"
+      - ".github/workflows/test-5-0-adaptive-byte-units.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install actionlint
+        shell: bash
+        run: |
+          set -euo pipefail
+          go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
+      - name: Validate target workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$(go env GOPATH)/bin/actionlint" -color \
+            .github/workflows/test-4-2-wikitext2-multiseed-compute-matched.yml \
+            .github/workflows/test-5-0-adaptive-byte-units.yml
