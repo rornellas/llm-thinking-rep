@@ -1,0 +1,182 @@
+name: Representation — Test 5.0b adaptive byte patches
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-5-0b-adaptive-byte-patches.yml"
+      - "experiments/test_5_0b_adaptive_byte_patches.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: representation-test-5-0-adaptive-byte-patches
+  cancel-in-progress: true
+
+jobs:
+  adaptive-byte-patches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      HF_HUB_DISABLE_XET: "1"
+      HF_HOME: ${{ runner.temp }}/huggingface
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload = {
+              "workflow": "Representation — Test 5.0b adaptive byte patches",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "dataset": "Salesforce/wikitext:wikitext-2-raw-v1",
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-5-0b-latest.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-5-0b-latest.json
+          git commit -m "chore: register adaptive-byte corrected run ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU and corpus dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "datasets>=4.0"
+
+      - name: Prepare official WikiText-2 UTF-8 byte streams
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/wikitext2-bytes results/test-5-0b/latest
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+          from datasets import load_dataset
+
+          root = Path("data/wikitext2-bytes")
+          dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1")
+          manifest = {"dataset": "Salesforce/wikitext", "subset": "wikitext-2-raw-v1"}
+          stats = dict(manifest)
+          for split in ("train", "validation", "test"):
+              lines = [row["text"] for row in dataset[split] if row["text"].strip()]
+              raw = "\n".join(lines).encode("utf-8") + b"\n"
+              values = np.frombuffer(raw, dtype=np.uint8).copy()
+              path = root / f"{split}.npy"
+              np.save(path, values)
+              manifest[f"{split}_path"] = str(path)
+              stats[f"{split}_documents"] = len(lines)
+              stats[f"{split}_bytes"] = int(values.size)
+          (root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+          Path("results/test-5-0b/latest/dataset_stats.json").write_text(json.dumps(stats, indent=2) + "\n")
+          print(json.dumps(stats, indent=2))
+          PY
+          test -s data/wikitext2-bytes/manifest.json
+
+      - name: Validate likelihood and segmentation implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            experiments/test_5_0_adaptive_byte_patches.py \
+            experiments/test_5_0b_adaptive_byte_patches.py
+          python experiments/test_5_0b_adaptive_byte_patches.py --self-test --threads 4
+
+      - name: Train and evaluate representation baselines
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_5_0b_adaptive_byte_patches.py \
+            --manifest data/wikitext2-bytes/manifest.json \
+            --output-dir results/test-5-0b/latest \
+            --seed 50500 \
+            --steps 400 \
+            --threads 4 \
+            --train-bytes 1200000 \
+            --validation-bytes 180000 \
+            --test-bytes 180000 \
+            2>&1 | tee adaptive-byte-patches.log
+
+      - name: Publish verdict
+        if: always()
+        shell: bash
+        run: |
+          verdict="results/test-5-0b/latest/VERDICT.md"
+          if [[ -f "$verdict" ]]; then
+            cat "$verdict" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' '## Test 5.0b' '' 'No verdict was produced. Inspect adaptive-byte-patches.log.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Persist compact results
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-5-0b/latest runs
+          [[ -f adaptive-byte-patches.log ]] && cp adaptive-byte-patches.log results/test-5-0b/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          marker = Path("runs/test-5-0b-latest.json")
+          payload = json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": os.environ["RUN_STATUS"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+          })
+          marker.write_text(json.dumps(payload, indent=2) + "\n")
+          Path("results/test-5-0b/latest/run.json").write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-5-0b-latest.json results/test-5-0b/latest
+          git commit -m "results: adaptive byte patches corrected ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: representation-test-5-0b-adaptive-byte-${{ github.run_id }}
+          path: |
+            results/test-5-0b/latest
+            adaptive-byte-patches.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 9
