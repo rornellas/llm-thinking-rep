@@ -1,0 +1,42 @@
+variant=baseline rank=None seed=41410 step=1/350 train=7.6345 val=7.6281 aux=2.8078
+variant=baseline rank=None seed=41410 step=100/350 train=6.5933 val=6.5128 aux=2.1949
+variant=baseline rank=None seed=41410 step=200/350 train=6.3643 val=6.3655 aux=1.8938
+variant=baseline rank=None seed=41410 step=300/350 train=6.0960 val=6.1217 aux=1.8093
+variant=baseline rank=None seed=41410 step=350/350 train=6.0525 val=6.0207 aux=1.8044
+variant=baseline rank=None seed=41410 step=1/350 train=7.6465 val=7.6360 aux=2.8066
+variant=baseline rank=None seed=41410 step=100/350 train=6.6020 val=6.5189 aux=2.3784
+variant=baseline rank=None seed=41410 step=200/350 train=6.4168 val=6.4051 aux=1.9618
+variant=baseline rank=None seed=41410 step=300/350 train=6.1770 val=6.1908 aux=1.8226
+variant=baseline rank=None seed=41410 step=350/350 train=6.1254 val=6.0745 aux=1.8199
+variant=baseline rank=None seed=41410 step=1/350 train=7.6378 val=7.6311 aux=2.8311
+variant=baseline rank=None seed=41410 step=100/350 train=6.6073 val=6.5208 aux=2.3131
+variant=baseline rank=None seed=41410 step=200/350 train=6.4348 val=6.4266 aux=1.9145
+variant=baseline rank=None seed=41410 step=300/350 train=6.1938 val=6.2011 aux=1.8133
+variant=baseline rank=None seed=41410 step=350/350 train=6.1038 val=6.0666 aux=1.8253
+variant=modal rank=1 seed=41410 step=1/350 train=7.6509 val=7.6301 aux=2.8151
+variant=modal rank=1 seed=41410 step=100/350 train=6.6054 val=6.5206 aux=1.8541
+variant=modal rank=1 seed=41410 step=200/350 train=6.4189 val=6.4106 aux=1.4334
+variant=modal rank=1 seed=41410 step=300/350 train=6.0649 val=6.1018 aux=1.4135
+variant=modal rank=1 seed=41410 step=350/350 train=6.0426 val=5.9931 aux=1.3995
+variant=modal rank=2 seed=41410 step=1/350 train=7.6423 val=7.6252 aux=2.8125
+variant=modal rank=2 seed=41410 step=100/350 train=6.6036 val=6.5194 aux=1.8361
+variant=modal rank=2 seed=41410 step=200/350 train=6.3884 val=6.3865 aux=1.4976
+variant=modal rank=2 seed=41410 step=300/350 train=6.0545 val=6.0767 aux=1.5232
+variant=modal rank=2 seed=41410 step=350/350 train=6.0103 val=5.9659 aux=1.5167
+# Test 4.1 — WikiText-2 compute-matched conventional experts
+
+**Decision:** **MODAL_BEATS_MATCHED_NARROW**
+
+| Variant | Expert params | Ideal expert compute | Validation loss | Loss/full |
+|---|---:|---:|---:|---:|
+| baseline-full | 100.000% | 100.000% | 6.0034 | 1.000× |
+| baseline-dff32 | 25.000% | 25.000% | 6.0600 | 1.009× |
+| baseline-dff48 | 37.500% | 37.500% | 6.0541 | 1.008× |
+| modal-k1 | 3.125% | 25.000% | 5.9796 | 0.996× |
+| modal-k2 | 4.688% | 37.500% | 5.9573 | 0.992× |
+
+- Modal K1 advantage over conventional d_ff=32 at matched 25% expert arithmetic: `+0.0804` nat.
+- Modal K2 advantage over conventional d_ff=48 at matched 37.5% expert arithmetic: `+0.0968` nat.
+
+All variants use the same tokenizer, corpus, transformer width, 64 experts, top-8 router geometry, training steps, and seed.
+
