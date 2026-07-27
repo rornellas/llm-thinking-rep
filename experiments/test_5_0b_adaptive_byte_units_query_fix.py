@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Run Test 5.0 with a batch-padding-invariant query position.
+"""Methodological corrections for Test 5.0.
 
-The original screen appended the learned query after the batch maximum number
-of units. That is valid but makes the query positional embedding depend on the
-longest example in the batch. This wrapper prepends the query at position zero,
-so variable-length adaptive and random controls are not penalized by unrelated
-examples in the same batch.
+Corrections applied before the first real run:
+
+1. The learned query is prepended at a constant position, so its positional
+   embedding does not depend on another example's padding length.
+2. The first byte's boundary surprisal is a fixed neutral BOS value. The base
+   corpus surprisal array uses the byte immediately before a sampled window;
+   allowing that value to affect the first boundary would expose information
+   outside the declared context. Calibration and evaluation both use the
+   corrected local-context rule.
 """
 from __future__ import annotations
 
@@ -13,7 +17,11 @@ import importlib.util
 import sys
 from pathlib import Path
 
+import numpy as np
 import torch
+
+
+NEUTRAL_BOS_SURPRISAL_BITS = 8.0
 
 
 def load_base():
@@ -28,6 +36,119 @@ def load_base():
 
 
 base = load_base()
+original_encode_context = base.encode_context
+
+
+def local_surprisal(surprisals, start: int, context_bytes: int):
+    score = np.asarray(
+        surprisals[start:start + context_bytes], dtype=np.float32
+    ).copy()
+    if score.size:
+        score[0] = NEUTRAL_BOS_SURPRISAL_BITS
+    return score
+
+
+def local_adaptive_mean_length(
+    data,
+    surprisals,
+    starts,
+    context_bytes,
+    threshold_bits,
+    max_unit_bytes,
+):
+    lengths = []
+    for start in starts:
+        start = int(start)
+        raw = data[start:start + context_bytes]
+        score = local_surprisal(surprisals, start, context_bytes)
+        lengths.extend(
+            len(unit)
+            for unit in base.segment_adaptive(
+                raw, score, threshold_bits, max_unit_bytes
+            )
+        )
+    return float(np.mean(lengths))
+
+
+def local_calibrate_adaptive_threshold(
+    data,
+    surprisals,
+    starts,
+    context_bytes,
+    target_length,
+    max_unit_bytes,
+):
+    low, high = 0.1, 128.0
+    for _ in range(24):
+        midpoint = (low + high) * 0.5
+        observed = local_adaptive_mean_length(
+            data,
+            surprisals,
+            starts,
+            context_bytes,
+            midpoint,
+            max_unit_bytes,
+        )
+        if observed < target_length:
+            low = midpoint
+        else:
+            high = midpoint
+    threshold = (low + high) * 0.5
+    histogram = []
+    for start in starts:
+        start = int(start)
+        raw = data[start:start + context_bytes]
+        score = local_surprisal(surprisals, start, context_bytes)
+        histogram.extend(
+            len(unit)
+            for unit in base.segment_adaptive(
+                raw, score, threshold, max_unit_bytes
+            )
+        )
+    return threshold, histogram
+
+
+def local_encode_context(
+    variant,
+    data,
+    surprisals,
+    start,
+    cfg,
+    *,
+    tokenizer,
+    token_lengths,
+    fixed_size,
+    adaptive_threshold,
+    empirical_lengths,
+    random_seed,
+):
+    if variant != "adaptive":
+        return original_encode_context(
+            variant,
+            data,
+            surprisals,
+            start,
+            cfg,
+            tokenizer=tokenizer,
+            token_lengths=token_lengths,
+            fixed_size=fixed_size,
+            adaptive_threshold=adaptive_threshold,
+            empirical_lengths=empirical_lengths,
+            random_seed=random_seed,
+        )
+    raw = data[start:start + cfg.context_bytes]
+    score = local_surprisal(surprisals, start, cfg.context_bytes)
+    units = base.segment_adaptive(
+        raw, score, adaptive_threshold, cfg.max_unit_bytes
+    )
+    byte_lengths = [len(unit) for unit in units]
+    if sum(byte_lengths) != cfg.context_bytes:
+        raise AssertionError(sum(byte_lengths))
+    return base.EncodedExample(
+        units,
+        byte_lengths,
+        int(data[start + cfg.context_bytes]),
+    )
 
 
 def invariant_forward(self, ids, symbol_lengths, byte_lengths, padding_mask):
@@ -63,6 +184,9 @@ def invariant_forward(self, ids, symbol_lengths, byte_lengths, padding_mask):
     return self.output(self.final_norm(transformed[:, 0]))
 
 
+base.adaptive_mean_length = local_adaptive_mean_length
+base.calibrate_adaptive_threshold = local_calibrate_adaptive_threshold
+base.encode_context = local_encode_context
 base.UnitContextModel.forward = invariant_forward
 
 
