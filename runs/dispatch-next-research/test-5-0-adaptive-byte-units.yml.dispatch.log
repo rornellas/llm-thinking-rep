@@ -1,0 +1,1 @@
+could not create workflow dispatch event: HTTP 422: Invalid Argument - failed to parse workflow: (Line: 30, Col: 16): Unrecognized named-value: 'runner'. Located at position 1 within expression: runner.temp (https://api.github.com/repos/rornellas/llm-thinking-rep/actions/workflows/321462489/dispatches)
