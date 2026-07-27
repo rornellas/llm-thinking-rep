@@ -1,3 +1,4 @@
+# Triggered after all target workflows existed on main.
 name: Dispatch next research gates
 
 on:
