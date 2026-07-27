@@ -2,7 +2,8 @@
   "workflow": "Modal MoE \u2014 Test 2.8 controller robustness",
   "run_id": 30267924481,
   "run_attempt": 1,
-  "status": "running",
+  "status": "success",
   "commit": "e8d1596ef226418573f90b40b7542f56c17ef32e",
-  "started_at": "2026-07-27T12:55:18.841177+00:00"
+  "started_at": "2026-07-27T12:55:18.841177+00:00",
+  "finished_at": "2026-07-27T13:03:54.930110+00:00"
 }

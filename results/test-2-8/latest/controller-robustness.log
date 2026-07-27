@@ -1,0 +1,154 @@
+
+===== seed 10101 =====
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_2_6_progressive_nested_modes.py:150: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  print(f"baseline step={step}/{cfg.steps} ce={float(ce):.4f}", flush=True)
+baseline step=1/500 ce=4.1694
+baseline step=100/500 ce=2.8522
+baseline step=200/500 ce=2.5653
+baseline step=300/500 ce=2.4506
+baseline step=400/500 ce=2.3649
+baseline step=500/500 ce=2.4316
+progressive step=1/500 full=4.2211 sampled-rank=0 sampled=4.2211
+progressive step=100/500 full=2.7487 sampled-rank=2 sampled=2.7542
+progressive step=200/500 full=2.4947 sampled-rank=1 sampled=2.5081
+progressive step=300/500 full=2.4963 sampled-rank=3 sampled=2.4963
+progressive step=400/500 full=2.3956 sampled-rank=1 sampled=2.4186
+progressive step=500/500 full=2.3707 sampled-rank=1 sampled=2.3847
+collected train controller batch 1/32
+collected train controller batch 8/32
+collected train controller batch 16/32
+collected train controller batch 24/32
+collected train controller batch 32/32
+collected train controller batch 1/12
+collected train controller batch 8/12
+collected validation controller batch 1/24
+collected validation controller batch 8/24
+collected validation controller batch 16/24
+collected validation controller batch 24/24
+controller layer=0 step=1/600 loss=1.0125
+controller layer=0 step=200/600 loss=0.9957
+controller layer=0 step=400/600 loss=0.9630
+controller layer=0 step=600/600 loss=0.9939
+controller layer=1 step=1/600 loss=1.0356
+controller layer=1 step=200/600 loss=0.9828
+controller layer=1 step=400/600 loss=0.9743
+controller layer=1 step=600/600 loss=0.9750
+threshold=0.450 tune-delta=-0.0104 ucb95=-0.0084 exact=39.890% bucket16=40.163%
+threshold=0.475 tune-delta=-0.0083 ucb95=-0.0061 exact=36.778% bucket16=37.083%
+threshold=0.500 tune-delta=-0.0047 ucb95=-0.0025 exact=32.967% bucket16=33.227%
+threshold=0.525 tune-delta=-0.0019 ucb95=+0.0005 exact=28.811% bucket16=29.077%
+threshold=0.550 tune-delta=+0.0000 ucb95=+0.0023 exact=25.027% bucket16=25.327%
+threshold=0.575 tune-delta=+0.0029 ucb95=+0.0048 exact=22.181% bucket16=22.435%
+threshold=0.600 tune-delta=+0.0053 ucb95=+0.0071 exact=20.161% bucket16=20.433%
+threshold=0.625 tune-delta=+0.0069 ucb95=+0.0087 exact=18.586% bucket16=18.905%
+threshold=0.650 tune-delta=+0.0079 ucb95=+0.0099 exact=17.332% bucket16=17.639%
+threshold=0.675 tune-delta=+0.0098 ucb95=+0.0118 exact=16.240% bucket16=16.536%
+threshold=0.700 tune-delta=+0.0118 ucb95=+0.0139 exact=15.292% bucket16=15.548%
+
+===== seed 20202 =====
+baseline step=1/500 ce=4.2009
+baseline step=100/500 ce=2.9100
+baseline step=200/500 ce=2.5598
+baseline step=300/500 ce=2.4974
+baseline step=400/500 ce=2.4437
+baseline step=500/500 ce=2.3799
+progressive step=1/500 full=4.2110 sampled-rank=0 sampled=4.2097
+progressive step=100/500 full=2.8466 sampled-rank=1 sampled=2.8615
+progressive step=200/500 full=2.5803 sampled-rank=2 sampled=2.5867
+progressive step=300/500 full=2.4585 sampled-rank=2 sampled=2.4656
+progressive step=400/500 full=2.3575 sampled-rank=3 sampled=2.3575
+progressive step=500/500 full=2.2971 sampled-rank=1 sampled=2.3124
+collected train controller batch 1/32
+collected train controller batch 8/32
+collected train controller batch 16/32
+collected train controller batch 24/32
+collected train controller batch 32/32
+collected train controller batch 1/12
+collected train controller batch 8/12
+collected validation controller batch 1/24
+collected validation controller batch 8/24
+collected validation controller batch 16/24
+collected validation controller batch 24/24
+controller layer=0 step=1/600 loss=1.0134
+controller layer=0 step=200/600 loss=0.9548
+controller layer=0 step=400/600 loss=0.9890
+controller layer=0 step=600/600 loss=0.9482
+controller layer=1 step=1/600 loss=0.9920
+controller layer=1 step=200/600 loss=0.9553
+controller layer=1 step=400/600 loss=0.9676
+controller layer=1 step=600/600 loss=0.9441
+threshold=0.450 tune-delta=-0.0165 ucb95=-0.0141 exact=41.596% bucket16=41.903%
+threshold=0.475 tune-delta=-0.0148 ucb95=-0.0121 exact=38.981% bucket16=39.281%
+threshold=0.500 tune-delta=-0.0127 ucb95=-0.0105 exact=36.071% bucket16=36.340%
+threshold=0.525 tune-delta=-0.0096 ucb95=-0.0072 exact=32.826% bucket16=33.105%
+threshold=0.550 tune-delta=-0.0058 ucb95=-0.0031 exact=29.355% bucket16=29.633%
+threshold=0.575 tune-delta=-0.0018 ucb95=+0.0017 exact=26.104% bucket16=26.381%
+threshold=0.600 tune-delta=+0.0016 ucb95=+0.0054 exact=23.248% bucket16=23.530%
+threshold=0.625 tune-delta=+0.0048 ucb95=+0.0078 exact=20.860% bucket16=21.144%
+threshold=0.650 tune-delta=+0.0089 ucb95=+0.0119 exact=18.917% bucket16=19.200%
+threshold=0.675 tune-delta=+0.0114 ucb95=+0.0143 exact=17.418% bucket16=17.688%
+threshold=0.700 tune-delta=+0.0144 ucb95=+0.0172 exact=16.126% bucket16=16.406%
+
+===== seed 30303 =====
+baseline step=1/500 ce=4.1979
+baseline step=100/500 ce=2.8789
+baseline step=200/500 ce=2.5594
+baseline step=300/500 ce=2.4982
+baseline step=400/500 ce=2.4571
+baseline step=500/500 ce=2.3706
+progressive step=1/500 full=4.1889 sampled-rank=1 sampled=4.1974
+progressive step=100/500 full=2.8213 sampled-rank=1 sampled=2.8466
+progressive step=200/500 full=2.5934 sampled-rank=2 sampled=2.5993
+progressive step=300/500 full=2.5410 sampled-rank=0 sampled=2.5750
+progressive step=400/500 full=2.4092 sampled-rank=2 sampled=2.4156
+progressive step=500/500 full=2.3736 sampled-rank=3 sampled=2.3736
+collected train controller batch 1/32
+collected train controller batch 8/32
+collected train controller batch 16/32
+collected train controller batch 24/32
+collected train controller batch 32/32
+collected train controller batch 1/12
+collected train controller batch 8/12
+collected validation controller batch 1/24
+collected validation controller batch 8/24
+collected validation controller batch 16/24
+collected validation controller batch 24/24
+controller layer=0 step=1/600 loss=1.0395
+controller layer=0 step=200/600 loss=1.0048
+controller layer=0 step=400/600 loss=0.9904
+controller layer=0 step=600/600 loss=0.9683
+controller layer=1 step=1/600 loss=1.0308
+controller layer=1 step=200/600 loss=0.9879
+controller layer=1 step=400/600 loss=0.9785
+controller layer=1 step=600/600 loss=0.9705
+threshold=0.450 tune-delta=-0.0119 ucb95=-0.0087 exact=39.566% bucket16=39.820%
+threshold=0.475 tune-delta=-0.0100 ucb95=-0.0065 exact=37.000% bucket16=37.304%
+threshold=0.500 tune-delta=-0.0079 ucb95=-0.0049 exact=34.099% bucket16=34.395%
+threshold=0.525 tune-delta=-0.0061 ucb95=-0.0033 exact=30.944% bucket16=31.201%
+threshold=0.550 tune-delta=-0.0043 ucb95=-0.0019 exact=27.861% bucket16=28.154%
+threshold=0.575 tune-delta=-0.0008 ucb95=+0.0012 exact=25.041% bucket16=25.327%
+threshold=0.600 tune-delta=+0.0018 ucb95=+0.0036 exact=22.558% bucket16=22.811%
+threshold=0.625 tune-delta=+0.0042 ucb95=+0.0061 exact=20.374% bucket16=20.646%
+threshold=0.650 tune-delta=+0.0060 ucb95=+0.0078 exact=18.508% bucket16=18.799%
+threshold=0.675 tune-delta=+0.0085 ucb95=+0.0104 exact=17.077% bucket16=17.353%
+threshold=0.700 tune-delta=+0.0100 ucb95=+0.0119 exact=15.866% bucket16=16.144%
+# Test 2.8 — robust learned rank controller
+
+**Decision:** **ROBUST_CONTROLLER_BORDERLINE**
+
+Thresholds were selected on train-split calibration data using a paired-bootstrap 95% upper bound of +0.003 nat versus static K=1.
+
+| Seed | Threshold | Dynamic loss | Δ vs K1 | Test UCB95 | Mean K | Exact compute | Bucket16 | Bucket32 | Bucket64 | Pass |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 10101 | 0.550 | 2.4024 | -0.0006 | +0.0014 | 1.057 | 26.028% | 26.336% | 26.617% | 27.268% | no |
+| 20202 | 0.575 | 2.3933 | -0.0008 | +0.0010 | 1.100 | 26.572% | 26.818% | 27.091% | 27.693% | no |
+| 30303 | 0.575 | 2.4081 | -0.0017 | -0.0004 | 1.037 | 25.782% | 26.042% | 26.298% | 26.876% | no |
+
+## Aggregate
+- mean Δ loss vs static K1: `-0.0011` nat; worst `-0.0006`.
+- mean exact projected compute: `26.127%`.
+- mean bucket16 projected compute: `26.399%`; worst `26.818%`.
+
+Bucket cost assumes one upfront compaction by predicted final rank. Mode k is executed only for tokens requiring rank >= k, with each grouped GEMM padded to the indicated tile size. Compaction/scatter latency itself is not yet benchmarked.
+

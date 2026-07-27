@@ -1,20 +1,18 @@
-# Test 2.7 — learned causal rank controller
+# Test 2.8 — robust learned rank controller
 
-**Decision:** **LEARNED_CONTROLLER_PASS**
+**Decision:** **ROBUST_CONTROLLER_BORDERLINE**
 
-Chosen threshold: `0.60` (selected only on training-calibration batches).
+Thresholds were selected on train-split calibration data using a paired-bootstrap 95% upper bound of +0.003 nat versus static K=1.
 
-| Policy | Validation loss | Mean K | p95 K | Projected OLMoE compute |
-|---|---:|---:|---:|---:|
-| Static K=0 | 2.4483 | 0 | 0 | 12.500% |
-| Static K=1 | 2.4274 | 1 | 1 | 25.049% |
-| Static K=2 | 2.4145 | 2 | 2 | 37.598% |
-| Static K=3 | 2.4082 | 3 | 3 | 50.146% |
-| **Learned dynamic** | **2.4275** | **0.709** | **3** | **21.656%** |
+| Seed | Threshold | Dynamic loss | Δ vs K1 | Test UCB95 | Mean K | Exact compute | Bucket16 | Bucket32 | Bucket64 | Pass |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 10101 | 0.550 | 2.4024 | -0.0006 | +0.0014 | 1.057 | 26.028% | 26.336% | 26.617% | 27.268% | no |
+| 20202 | 0.575 | 2.3933 | -0.0008 | +0.0010 | 1.100 | 26.572% | 26.818% | 27.091% | 27.693% | no |
+| 30303 | 0.575 | 2.4081 | -0.0017 | -0.0004 | 1.037 | 25.782% | 26.042% | 26.298% | 26.876% | no |
 
-- Dynamic minus static-K1 loss: `+0.0001` nat.
-- Compute advantage over static K1: `+3.393%` of original OLMoE expert projections.
-- Rank counts across all tokens and layers: `{'0': 34622, '1': 2271, '2': 4215, '3': 8044}`.
-- Controller-only MLP overhead estimate: `0.263%` of original OLMoE expert projection MACs.
+## Aggregate
+- mean Δ loss vs static K1: `-0.0011` nat; worst `-0.0006`.
+- mean exact projected compute: `26.127%`.
+- mean bucket16 projected compute: `26.399%`; worst `26.818%`.
 
-The controller sees the local normalized token state, router summaries, and statistics of mode 0 only. Additional modes are selected before their projections. The validation pass actually applies different ranks per token and layer; it is not an oracle recombination of independent uniform-rank passes.
+Bucket cost assumes one upfront compaction by predicted final rank. Mode k is executed only for tokens requiring rank >= k, with each grouped GEMM padded to the indicated tile size. Compaction/scatter latency itself is not yet benchmarked.
