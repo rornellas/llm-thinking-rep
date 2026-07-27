@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/test-5-0-adaptive-byte-units.yml"
       - "experiments/test_5_0_adaptive_byte_units.py"
+      - "experiments/test_5_0b_adaptive_byte_units_query_fix.py"
 
 permissions:
   contents: write
@@ -92,8 +93,6 @@ jobs:
           dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1")
 
           def materialize(split):
-              # Preserve line order and explicit separators. Empty source rows are
-              # retained as newlines because formatting is part of the byte stream.
               text = "\n".join(row["text"] for row in dataset[split]) + "\n"
               raw = text.encode("utf-8")
               (root / f"{split}.bin").write_bytes(raw)
@@ -121,14 +120,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python experiments/test_5_0_adaptive_byte_units.py --self-test
-          python -m py_compile experiments/test_5_0_adaptive_byte_units.py
+          python experiments/test_5_0b_adaptive_byte_units_query_fix.py --self-test
+          python -m py_compile \
+            experiments/test_5_0_adaptive_byte_units.py \
+            experiments/test_5_0b_adaptive_byte_units_query_fix.py
 
       - name: Compare byte, BPE, fixed, adaptive, and random-matched units
         shell: bash
         run: |
           set -euo pipefail
-          python experiments/test_5_0_adaptive_byte_units.py \
+          python experiments/test_5_0b_adaptive_byte_units_query_fix.py \
             --train-bytes data/test-5-0/train.bin \
             --validation-bytes data/test-5-0/validation.bin \
             --output-dir results/test-5-0/latest \
