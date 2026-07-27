@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Token-level WikiText-2 replication of the scale64 dynamic controller."""
+"""Token-level WikiText-2 replication of the scale64 dynamic controller.
+
+This public-run trigger preserves the experiment exactly while ensuring the
+workflow is exercised on the repository's free GitHub-hosted runner.
+"""
 from __future__ import annotations
 
 import importlib.util
