@@ -1,0 +1,25 @@
+0.09.283.957 I capture: evaluating 768 tokens
+0.09.286.925 I capture-discovery: name=ffn_norm-7 type=f32 shape={2048,768,1,1} elements=1572864 target=1
+0.24.953.895 I capture: wrote ffn_norm-7 chunk=0 elements=1572864
+0.24.953.908 I capture-discovery: name=ffn_moe_logits-7 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.24.953.909 I capture-discovery: name=ffn_moe_probs-7 type=f32 shape={64,768,1,1} elements=49152 target=0
+0.24.953.912 I capture-discovery: name=ffn_moe_probs-7 (reshaped) type=f32 shape={1,64,768,1} elements=49152 target=0
+0.24.953.913 I capture-discovery: name=ffn_moe_argsort-7 type=i32 shape={64,768,1,1} elements=49152 target=1
+0.24.958.784 I capture: wrote ffn_moe_argsort-7 chunk=0 elements=49152
+0.24.958.795 I capture-discovery: name=ffn_moe_topk-7 type=i32 shape={8,768,1,1} elements=6144 target=0
+0.24.958.797 I capture-discovery: name=ffn_moe_weights-7 type=f32 shape={1,8,768,1} elements=6144 target=1
+0.24.959.026 I capture: wrote ffn_moe_weights-7 chunk=0 elements=6144
+0.24.959.034 I capture-discovery: name=ffn_norm-7 (reshaped) type=f32 shape={2048,1,768,1} elements=1572864 target=1
+0.24.963.466 I capture: wrote ffn_norm-7 (reshaped) chunk=0 elements=1572864
+0.24.963.476 I capture-discovery: name=ffn_moe_gate-7 type=f32 shape={1024,8,768,1} elements=6291456 target=1
+0.25.543.291 I capture: wrote ffn_moe_gate-7 chunk=0 elements=6291456
+0.25.543.315 I capture-discovery: name=ffn_moe_up-7 type=f32 shape={1024,8,768,1} elements=6291456 target=1
+0.26.578.627 I capture: wrote ffn_moe_up-7 chunk=0 elements=6291456
+0.26.578.712 I capture-discovery: name=ffn_moe_swiglu-7 type=f32 shape={1024,8,768,1} elements=6291456 target=1
+0.26.600.220 I capture: wrote ffn_moe_swiglu-7 chunk=0 elements=6291456
+0.26.600.387 I capture-discovery: name=ffn_moe_down-7 type=f32 shape={2048,8,768,1} elements=12582912 target=1
+0.27.371.709 I capture: wrote ffn_moe_down-7 chunk=0 elements=12582912
+0.27.372.510 I capture-discovery: name=ffn_moe_weighted-7 type=f32 shape={2048,8,768,1} elements=12582912 target=0
+0.27.372.518 I capture-discovery: name=ffn_moe_weighted-7 (view) type=f32 shape={2048,768,1,1} elements=1572864 target=0
+0.27.372.523 I capture-discovery: name=ffn_moe_out-7 type=f32 shape={2048,768,1,1} elements=1572864 target=1
+0.27.431.714 I capture: wrote ffn_moe_out-7 chunk=0 elements=1572864

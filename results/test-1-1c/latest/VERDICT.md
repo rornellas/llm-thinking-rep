@@ -1,0 +1,16 @@
+# Test 1.1 — routed expert activation subspaces
+
+**Decision:** **FAIL**
+
+- SwiGLU capture consistency error: `5.876e-08`
+- Weighted down/output consistency error: `0.000e+00`
+
+| Metric | Value |
+|---|---:|
+| Global gate+up held-out capture @512 | 68.75% |
+| Global down held-out capture @512 | 47.72% |
+| Median per-expert gate+up capture @32 | 63.08% |
+| Median per-expert down capture @32 | 28.25% |
+| Median per-expert nonlinear z error @32 | 85.40% |
+
+The per-expert oracle projection is directly realizable as a low-rank matrix factorization `A(AᵀW)x`; it does not reconstruct or compare raw weights. Aggregate down error is an optimistic lower bound because gate/up approximation is not propagated through `D_e` in this screen.
