@@ -1,0 +1,95 @@
+name: Modal MoE — Test 4.0b WikiText-2 public
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-4-0b-wikitext2-public.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-4-0b
+  cancel-in-progress: true
+
+jobs:
+  wikitext2-public:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_XET: "1"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register run
+        run: |
+          mkdir -p runs
+          printf '{"workflow":"Test 4.0b WikiText-2","run_id":%s,"status":"running","commit":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > runs/test-4-0b-latest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-4-0b-latest.json
+          git commit -m "chore: register WikiText-2 run ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "datasets>=4.0" "tokenizers>=0.20"
+
+      - name: Run WikiText-2 experiment
+        run: bash scripts/run_test_4_0b_wikitext2.sh
+
+      - name: Publish verdict
+        if: always()
+        run: |
+          [[ -f results/test-4-0b/latest/VERDICT.md ]] && cat results/test-4-0b/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist results
+        if: always()
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p results/test-4-0b/latest runs
+          [[ -f wikitext2-public.log ]] && cp wikitext2-public.log results/test-4-0b/latest/
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          p = Path("runs/test-4-0b-latest.json")
+          data = json.loads(p.read_text()) if p.exists() else {}
+          data.update({"status": os.environ["RUN_STATUS"], "finished_at": datetime.now(timezone.utc).isoformat()})
+          p.write_text(json.dumps(data, indent=2) + "\n")
+          Path("results/test-4-0b/latest/run.json").write_text(json.dumps(data, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-4-0b-latest.json results/test-4-0b/latest
+          git commit -m "results: WikiText-2 run ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: modal-moe-test-4-0b-${{ github.run_id }}
+          path: |
+            results/test-4-0b/latest
+            wikitext2-public.log
+          if-no-files-found: warn
+          retention-days: 14
