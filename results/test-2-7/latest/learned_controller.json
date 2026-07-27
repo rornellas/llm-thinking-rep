@@ -1,0 +1,528 @@
+{
+  "chosen_threshold": 0.65,
+  "controller_classification": [
+    {
+      "accuracy": 0.522412109375,
+      "confusion_matrix": [
+        [
+          10030,
+          309,
+          269,
+          611
+        ],
+        [
+          2574,
+          126,
+          124,
+          181
+        ],
+        [
+          2223,
+          132,
+          100,
+          235
+        ],
+        [
+          2836,
+          149,
+          138,
+          443
+        ]
+      ],
+      "layer": 0,
+      "mean_absolute_error": 0.952001953125,
+      "mean_oracle_rank": 0.931787109375,
+      "mean_predicted_rank": 0.3119140625,
+      "overprediction_rate": 0.084423828125,
+      "underprediction_rate": 0.3931640625
+    },
+    {
+      "accuracy": 0.51220703125,
+      "confusion_matrix": [
+        [
+          9515,
+          387,
+          337,
+          980
+        ],
+        [
+          2413,
+          175,
+          148,
+          269
+        ],
+        [
+          2132,
+          121,
+          132,
+          305
+        ],
+        [
+          2541,
+          181,
+          176,
+          668
+        ]
+      ],
+      "layer": 1,
+      "mean_absolute_error": 0.974169921875,
+      "mean_oracle_rank": 0.931787109375,
+      "mean_predicted_rank": 0.4451171875,
+      "overprediction_rate": 0.11845703125,
+      "underprediction_rate": 0.3693359375
+    }
+  ],
+  "controller_training": [
+    {
+      "final_training_loss": 0.9818970561027527,
+      "layer": 0.0,
+      "parameters": 7717.0
+    },
+    {
+      "final_training_loss": 0.9427218437194824,
+      "layer": 1.0,
+      "parameters": 7717.0
+    }
+  ],
+  "decision": {
+    "compute_advantage_over_static_k1": 0.07014196316401164,
+    "dynamic_minus_static_k1_loss_nats": 0.011049091815948486,
+    "rule": "PASS requires dynamic loss within 0.01 nat of static K1 and at least one percentage point lower projected OLMoE expert compute, including controller MLP overhead.",
+    "verdict": "BORDERLINE"
+  },
+  "dynamic_test": {
+    "controller_overhead_ratio": 0.0026295979817708335,
+    "mean_rank": 0.4200927734375,
+    "p50_rank": 0.0,
+    "p90_rank": 3.0,
+    "p95_rank": 3.0,
+    "projected_olmoe_compute_ratio": 0.18034631808598836,
+    "rank_counts": {
+      "0": 33602,
+      "1": 1710,
+      "2": 1447,
+      "3": 4201
+    },
+    "threshold": 0.65,
+    "validation_loss": 2.4126447439193726,
+    "validation_perplexity": 11.163446594647244
+  },
+  "metadata": {
+    "baseline_validation_loss": 2.353445625305176,
+    "controller_feature_dimension": 113,
+    "controller_hidden": 64,
+    "controller_train_batches": 32,
+    "controller_tune_batches": 8,
+    "methodological_note": "Threshold selection uses training-calibration data only; final metrics use the validation split. Dynamic ranks are executed inside one causal pass.",
+    "oracle_tolerance_nats": 0.05,
+    "progressive_training_seconds": 181.265183435,
+    "seed": 9090,
+    "test_batches": 20,
+    "total_elapsed_seconds": 303.57681377,
+    "training_steps": 500,
+    "tune_quality_limit": 2.424940650463104
+  },
+  "static_test": [
+    {
+      "projected_olmoe_compute_ratio": 0.125,
+      "projected_olmoe_parameter_ratio": 0.015625,
+      "rank": 0.0,
+      "validation_loss": 2.4210078954696654,
+      "validation_perplexity": 11.257199679528874
+    },
+    {
+      "projected_olmoe_compute_ratio": 0.25048828125,
+      "projected_olmoe_parameter_ratio": 0.03173828125,
+      "rank": 1.0,
+      "validation_loss": 2.401595652103424,
+      "validation_perplexity": 11.04077957577249
+    },
+    {
+      "projected_olmoe_compute_ratio": 0.3759765625,
+      "projected_olmoe_parameter_ratio": 0.0478515625,
+      "rank": 2.0,
+      "validation_loss": 2.3942727923393248,
+      "validation_perplexity": 10.960224800886648
+    },
+    {
+      "projected_olmoe_compute_ratio": 0.50146484375,
+      "projected_olmoe_parameter_ratio": 0.06396484375,
+      "rank": 3.0,
+      "validation_loss": 2.3888585805892943,
+      "validation_perplexity": 10.901044175771448
+    }
+  ],
+  "static_tune": [
+    {
+      "projected_olmoe_compute_ratio": 0.125,
+      "projected_olmoe_parameter_ratio": 0.015625,
+      "rank": 0.0,
+      "validation_loss": 2.434390902519226,
+      "validation_perplexity": 11.408867484150667
+    },
+    {
+      "projected_olmoe_compute_ratio": 0.25048828125,
+      "projected_olmoe_parameter_ratio": 0.03173828125,
+      "rank": 1.0,
+      "validation_loss": 2.4199406504631042,
+      "validation_perplexity": 11.245191898145146
+    },
+    {
+      "projected_olmoe_compute_ratio": 0.3759765625,
+      "projected_olmoe_parameter_ratio": 0.0478515625,
+      "rank": 2.0,
+      "validation_loss": 2.407860577106476,
+      "validation_perplexity": 11.110166356329813
+    },
+    {
+      "projected_olmoe_compute_ratio": 0.50146484375,
+      "projected_olmoe_parameter_ratio": 0.06396484375,
+      "rank": 3.0,
+      "validation_loss": 2.400976598262787,
+      "validation_perplexity": 11.033946853902044
+    }
+  ],
+  "test_oracle_distribution": {
+    "0": 11219,
+    "1": 3005,
+    "2": 2690,
+    "3": 3566
+  },
+  "threshold_sweep": [
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.99017333984375,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.5028613110383352,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 1,
+        "1": 44,
+        "2": 70,
+        "3": 16269
+      },
+      "threshold": 0.1,
+      "validation_loss": 2.40092009305954,
+      "validation_perplexity": 11.033323396106917,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.97894287109375,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.5014520188172659,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 17,
+        "1": 94,
+        "2": 106,
+        "3": 16167
+      },
+      "threshold": 0.15000000000000002,
+      "validation_loss": 2.4010938704013824,
+      "validation_perplexity": 11.035240904323299,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.94415283203125,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.4970862766106923,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 41,
+        "1": 147,
+        "2": 498,
+        "3": 15698
+      },
+      "threshold": 0.2,
+      "validation_loss": 2.4011662006378174,
+      "validation_perplexity": 11.036039114774052,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.8839111328125,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.4895266493161519,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 74,
+        "1": 210,
+        "2": 1260,
+        "3": 14840
+      },
+      "threshold": 0.25,
+      "validation_loss": 2.401473730802536,
+      "validation_perplexity": 11.039433551619968,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.824951171875,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.4821278651555379,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 154,
+        "1": 287,
+        "2": 1832,
+        "3": 14111
+      },
+      "threshold": 0.30000000000000004,
+      "validation_loss": 2.4019370675086975,
+      "validation_perplexity": 11.044549711560483,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.728515625,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.47002633412679035,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 480,
+        "1": 588,
+        "2": 1832,
+        "3": 13484
+      },
+      "threshold": 0.35,
+      "validation_loss": 2.4017981588840485,
+      "validation_perplexity": 11.04301563490089,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.528564453125,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.44493480523427326,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 1474,
+        "1": 1009,
+        "2": 1284,
+        "3": 12617
+      },
+      "threshold": 0.4,
+      "validation_loss": 2.403264582157135,
+      "validation_perplexity": 11.05922124927396,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 2.2628173828125,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.41158666213353473,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 2853,
+        "1": 967,
+        "2": 1585,
+        "3": 10979
+      },
+      "threshold": 0.45000000000000007,
+      "validation_loss": 2.405107706785202,
+      "validation_perplexity": 11.079623568558569,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 1.88043212890625,
+      "p50_rank": 3.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.36360179384549457,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 4621,
+        "1": 1282,
+        "2": 1916,
+        "3": 8565
+      },
+      "threshold": 0.5,
+      "validation_loss": 2.4084386825561523,
+      "validation_perplexity": 11.116591060946666,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 1.3392333984375,
+      "p50_rank": 1.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.2956876953442891,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 7612,
+        "1": 1386,
+        "2": 1602,
+        "3": 5784
+      },
+      "threshold": 0.55,
+      "validation_loss": 2.412675380706787,
+      "validation_perplexity": 11.163788612026508,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.78472900390625,
+      "p50_rank": 0.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.2261038919289907,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 11123,
+        "1": 959,
+        "2": 1008,
+        "3": 3294
+      },
+      "threshold": 0.6,
+      "validation_loss": 2.418522745370865,
+      "validation_perplexity": 11.229258581924094,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.403564453125,
+      "p50_rank": 0.0,
+      "p90_rank": 3.0,
+      "p95_rank": 3.0,
+      "projected_olmoe_compute_ratio": 0.17827220757802328,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 13605,
+        "1": 619,
+        "2": 487,
+        "3": 1673
+      },
+      "threshold": 0.65,
+      "validation_loss": 2.423775315284729,
+      "validation_perplexity": 11.288396224041668,
+      "within_quality_limit": true
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.19451904296875,
+      "p50_rank": 0.0,
+      "p90_rank": 0.0,
+      "p95_rank": 2.0,
+      "projected_olmoe_compute_ratio": 0.15203945835431418,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 15016,
+        "1": 343,
+        "2": 231,
+        "3": 794
+      },
+      "threshold": 0.7000000000000001,
+      "validation_loss": 2.4277822375297546,
+      "validation_perplexity": 11.333718691143984,
+      "within_quality_limit": false
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.08660888671875,
+      "p50_rank": 0.0,
+      "p90_rank": 0.0,
+      "p95_rank": 0.0,
+      "projected_olmoe_compute_ratio": 0.13849799831708273,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 15725,
+        "1": 211,
+        "2": 136,
+        "3": 312
+      },
+      "threshold": 0.75,
+      "validation_loss": 2.431610196828842,
+      "validation_perplexity": 11.377186849091489,
+      "within_quality_limit": false
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.03594970703125,
+      "p50_rank": 0.0,
+      "p90_rank": 0.0,
+      "p95_rank": 0.0,
+      "projected_olmoe_compute_ratio": 0.13214086492856345,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 16084,
+        "1": 122,
+        "2": 67,
+        "3": 111
+      },
+      "threshold": 0.8,
+      "validation_loss": 2.432960033416748,
+      "validation_perplexity": 11.392554561784861,
+      "within_quality_limit": false
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.01068115234375,
+      "p50_rank": 0.0,
+      "p90_rank": 0.0,
+      "p95_rank": 0.0,
+      "projected_olmoe_compute_ratio": 0.12896995743115744,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 16289,
+        "1": 49,
+        "2": 12,
+        "3": 34
+      },
+      "threshold": 0.85,
+      "validation_loss": 2.4337627589702606,
+      "validation_perplexity": 11.401703327934312,
+      "within_quality_limit": false
+    },
+    {
+      "controller_overhead_ratio": 0.0026295979817708335,
+      "mean_rank": 0.00213623046875,
+      "p50_rank": 0.0,
+      "p90_rank": 0.0,
+      "p95_rank": 0.0,
+      "projected_olmoe_compute_ratio": 0.12789766987164816,
+      "quality_limit": 2.424940650463104,
+      "rank_counts": {
+        "0": 16363,
+        "1": 13,
+        "2": 2,
+        "3": 6
+      },
+      "threshold": 0.9,
+      "validation_loss": 2.4342421889305115,
+      "validation_perplexity": 11.407170956675401,
+      "within_quality_limit": false
+    }
+  ],
+  "train_oracle_distribution": {
+    "0": 17933,
+    "1": 4604,
+    "2": 4321,
+    "3": 5910
+  },
+  "tune_oracle_distribution": {
+    "0": 4550,
+    "1": 1086,
+    "2": 1062,
+    "3": 1494
+  }
+}
