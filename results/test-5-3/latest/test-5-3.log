@@ -1,0 +1,63 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_2_learned_latent_resampler.py:187: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.context_transformer = nn.TransformerEncoder(
+seed=58301 variant=fixed-mean32 step=1/1200 train-bpb=7.9973
+seed=58301 variant=fixed-mean32 step=300/1200 train-bpb=4.3290
+seed=58301 variant=fixed-mean32 step=600/1200 train-bpb=4.4393
+seed=58301 variant=fixed-mean32 step=900/1200 train-bpb=4.4822
+seed=58301 variant=fixed-mean32 step=1200/1200 train-bpb=4.3910
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/experiments/test_5_2_learned_latent_resampler.py:187: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.context_transformer = nn.TransformerEncoder(
+seed=58301 variant=resampler16 step=1/1200 train-bpb=8.0493
+seed=58301 variant=resampler16 step=300/1200 train-bpb=4.3307
+seed=58301 variant=resampler16 step=600/1200 train-bpb=4.4359
+seed=58301 variant=resampler16 step=900/1200 train-bpb=4.4895
+seed=58301 variant=resampler16 step=1200/1200 train-bpb=4.3965
+seed=59402 variant=fixed-mean32 step=1/1200 train-bpb=7.9876
+seed=59402 variant=fixed-mean32 step=300/1200 train-bpb=4.8259
+seed=59402 variant=fixed-mean32 step=600/1200 train-bpb=4.5530
+seed=59402 variant=fixed-mean32 step=900/1200 train-bpb=4.8988
+seed=59402 variant=fixed-mean32 step=1200/1200 train-bpb=4.7060
+seed=59402 variant=resampler16 step=1/1200 train-bpb=8.0210
+seed=59402 variant=resampler16 step=300/1200 train-bpb=4.8239
+seed=59402 variant=resampler16 step=600/1200 train-bpb=4.5550
+seed=59402 variant=resampler16 step=900/1200 train-bpb=4.8985
+seed=59402 variant=resampler16 step=1200/1200 train-bpb=4.7105
+seed=60503 variant=fixed-mean32 step=1/1200 train-bpb=8.0259
+seed=60503 variant=fixed-mean32 step=300/1200 train-bpb=4.6652
+seed=60503 variant=fixed-mean32 step=600/1200 train-bpb=4.4210
+seed=60503 variant=fixed-mean32 step=900/1200 train-bpb=4.6049
+seed=60503 variant=fixed-mean32 step=1200/1200 train-bpb=4.5644
+seed=60503 variant=resampler16 step=1/1200 train-bpb=8.0291
+seed=60503 variant=resampler16 step=300/1200 train-bpb=4.6672
+seed=60503 variant=resampler16 step=600/1200 train-bpb=4.4242
+seed=60503 variant=resampler16 step=900/1200 train-bpb=4.6039
+seed=60503 variant=resampler16 step=1200/1200 train-bpb=4.5613
+# Test 5.3 — causal context dependency of compact units
+
+**Decision:** **COMPACT_CONTEXT_INCONCLUSIVE**
+
+Unconditional train-frequency baseline: `4.6086` BpB.
+
+| Representation | Intervention | BpB | Δ vs correct | Worst paired LCB95 | Context bytes/s |
+|---|---|---:|---:|---:|---:|
+| fixed-mean32 | correct | 4.6245 ± 0.0102 | +0.0000 | +0.0000 | 930200 |
+| fixed-mean32 | rolled | 4.6369 ± 0.0118 | +0.0124 | +0.0053 | 933625 |
+| fixed-mean32 | shuffle | 4.6306 ± 0.0124 | +0.0061 | -0.0005 | 875978 |
+| fixed-mean32 | zero | 4.6315 ± 0.0127 | +0.0070 | -0.0006 | 917318 |
+| fixed-mean32 | last64 | 4.6246 ± 0.0102 | +0.0001 | -0.0005 | 896569 |
+| fixed-mean32 | last32 | 4.6244 ± 0.0104 | -0.0001 | -0.0016 | 922427 |
+| fixed-mean32 | reverse | 4.6360 ± 0.0142 | +0.0115 | +0.0041 | 924090 |
+| resampler16 | correct | 4.6303 ± 0.0139 | +0.0000 | +0.0000 | 738017 |
+| resampler16 | rolled | 4.6306 ± 0.0142 | +0.0004 | +0.0000 | 737247 |
+| resampler16 | shuffle | 4.6303 ± 0.0139 | -0.0000 | -0.0000 | 710962 |
+| resampler16 | zero | 4.6308 ± 0.0145 | +0.0006 | -0.0000 | 734903 |
+| resampler16 | last64 | 4.6304 ± 0.0141 | +0.0002 | -0.0002 | 739996 |
+| resampler16 | last32 | 4.6305 ± 0.0142 | +0.0003 | -0.0000 | 738668 |
+| resampler16 | reverse | 4.6303 ± 0.0139 | -0.0000 | -0.0000 | 737803 |
+
+## Per-representation decision
+- **fixed-mean32: WEAK_CONTEXT_SIGNAL** — rolled `+0.0124` BpB, shuffle `+0.0061`, last32 `-0.0001`, rolled worst LCB95 `+0.0053`.
+- **resampler16: CONTEXT_NOT_ESTABLISHED** — rolled `+0.0004` BpB, shuffle `-0.0000`, last32 `+0.0003`, rolled worst LCB95 `+0.0000`.
+
+All interventions preserve the held-out targets. Rolled context is the primary causal control because it remains in-distribution while breaking the context-target relationship.
+
