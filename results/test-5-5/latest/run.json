@@ -1,0 +1,8 @@
+{
+  "workflow": "Integration \u2014 Test 5.5 causal patches plus Modal-MoE",
+  "run_id": 30289211653,
+  "run_attempt": 1,
+  "status": "success",
+  "head_sha": "0733180a4e14586f0b63891802b5d63b8640cb08",
+  "finished_at": "2026-07-27T17:37:48.274965+00:00"
+}

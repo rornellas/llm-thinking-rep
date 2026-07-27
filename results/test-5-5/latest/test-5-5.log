@@ -1,0 +1,144 @@
+seed=65501 byte-full step=1/700 train-bpb=7.9961 val-bpb=7.8446
+seed=65501 byte-full step=175/700 train-bpb=3.9233 val-bpb=4.0078
+seed=65501 byte-full step=350/700 train-bpb=3.7875 val-bpb=3.7352
+seed=65501 byte-full step=525/700 train-bpb=3.5706 val-bpb=3.6200
+seed=65501 byte-full step=700/700 train-bpb=3.5226 val-bpb=3.5528
+completed seed=65501 variant=byte-full bpb=3.5528
+seed=65501 byte-narrow step=1/700 train-bpb=8.0279 val-bpb=7.9430
+seed=65501 byte-narrow step=175/700 train-bpb=3.9515 val-bpb=4.0394
+seed=65501 byte-narrow step=350/700 train-bpb=3.7966 val-bpb=3.7478
+seed=65501 byte-narrow step=525/700 train-bpb=3.6028 val-bpb=3.6412
+seed=65501 byte-narrow step=700/700 train-bpb=3.5282 val-bpb=3.5759
+completed seed=65501 variant=byte-narrow bpb=3.5759
+seed=65501 byte-modal step=1/700 train-bpb=8.0358 val-bpb=7.8934
+seed=65501 byte-modal step=175/700 train-bpb=3.9332 val-bpb=4.0243
+seed=65501 byte-modal step=350/700 train-bpb=3.8153 val-bpb=3.7492
+seed=65501 byte-modal step=525/700 train-bpb=3.5989 val-bpb=3.6483
+seed=65501 byte-modal step=700/700 train-bpb=3.5439 val-bpb=3.5815
+completed seed=65501 variant=byte-modal bpb=3.5815
+seed=65501 patch8-full step=1/700 train-bpb=8.0965 val-bpb=7.9935
+seed=65501 patch8-full step=175/700 train-bpb=4.0718 val-bpb=4.1372
+seed=65501 patch8-full step=350/700 train-bpb=3.7526 val-bpb=3.6699
+seed=65501 patch8-full step=525/700 train-bpb=3.4909 val-bpb=3.5325
+seed=65501 patch8-full step=700/700 train-bpb=3.3723 val-bpb=3.4509
+completed seed=65501 variant=patch8-full bpb=3.4509
+seed=65501 patch8-narrow step=1/700 train-bpb=8.0818 val-bpb=7.9886
+seed=65501 patch8-narrow step=175/700 train-bpb=4.0709 val-bpb=4.1353
+seed=65501 patch8-narrow step=350/700 train-bpb=3.7475 val-bpb=3.6630
+seed=65501 patch8-narrow step=525/700 train-bpb=3.4900 val-bpb=3.5299
+seed=65501 patch8-narrow step=700/700 train-bpb=3.3706 val-bpb=3.4478
+completed seed=65501 variant=patch8-narrow bpb=3.4478
+seed=65501 patch8-modal step=1/700 train-bpb=8.0820 val-bpb=7.9795
+seed=65501 patch8-modal step=175/700 train-bpb=4.0748 val-bpb=4.1406
+seed=65501 patch8-modal step=350/700 train-bpb=3.7517 val-bpb=3.6571
+seed=65501 patch8-modal step=525/700 train-bpb=3.4946 val-bpb=3.5286
+seed=65501 patch8-modal step=700/700 train-bpb=3.3699 val-bpb=3.4488
+completed seed=65501 variant=patch8-modal bpb=3.4488
+seed=66602 byte-full step=1/700 train-bpb=8.0275 val-bpb=7.8944
+seed=66602 byte-full step=175/700 train-bpb=3.9264 val-bpb=4.0263
+seed=66602 byte-full step=350/700 train-bpb=3.7264 val-bpb=3.7103
+seed=66602 byte-full step=525/700 train-bpb=3.5880 val-bpb=3.6060
+seed=66602 byte-full step=700/700 train-bpb=3.5996 val-bpb=3.5446
+completed seed=66602 variant=byte-full bpb=3.5446
+seed=66602 byte-narrow step=1/700 train-bpb=7.9911 val-bpb=7.8868
+seed=66602 byte-narrow step=175/700 train-bpb=3.9757 val-bpb=4.0728
+seed=66602 byte-narrow step=350/700 train-bpb=3.7437 val-bpb=3.7365
+seed=66602 byte-narrow step=525/700 train-bpb=3.6072 val-bpb=3.6346
+seed=66602 byte-narrow step=700/700 train-bpb=3.6175 val-bpb=3.5743
+completed seed=66602 variant=byte-narrow bpb=3.5743
+seed=66602 byte-modal step=1/700 train-bpb=8.0008 val-bpb=7.8328
+seed=66602 byte-modal step=175/700 train-bpb=3.9212 val-bpb=4.0226
+seed=66602 byte-modal step=350/700 train-bpb=3.7520 val-bpb=3.7421
+seed=66602 byte-modal step=525/700 train-bpb=3.6177 val-bpb=3.6456
+seed=66602 byte-modal step=700/700 train-bpb=3.6422 val-bpb=3.5852
+completed seed=66602 variant=byte-modal bpb=3.5852
+seed=66602 patch8-full step=1/700 train-bpb=7.9777 val-bpb=7.8868
+seed=66602 patch8-full step=175/700 train-bpb=4.0118 val-bpb=4.1233
+seed=66602 patch8-full step=350/700 train-bpb=3.6704 val-bpb=3.6599
+seed=66602 patch8-full step=525/700 train-bpb=3.4933 val-bpb=3.5215
+seed=66602 patch8-full step=700/700 train-bpb=3.4916 val-bpb=3.4388
+completed seed=66602 variant=patch8-full bpb=3.4388
+seed=66602 patch8-narrow step=1/700 train-bpb=7.9514 val-bpb=7.8697
+seed=66602 patch8-narrow step=175/700 train-bpb=4.0197 val-bpb=4.1385
+seed=66602 patch8-narrow step=350/700 train-bpb=3.6777 val-bpb=3.6663
+seed=66602 patch8-narrow step=525/700 train-bpb=3.5028 val-bpb=3.5247
+seed=66602 patch8-narrow step=700/700 train-bpb=3.5010 val-bpb=3.4442
+completed seed=66602 variant=patch8-narrow bpb=3.4442
+seed=66602 patch8-modal step=1/700 train-bpb=8.0086 val-bpb=7.9264
+seed=66602 patch8-modal step=175/700 train-bpb=4.0217 val-bpb=4.1344
+seed=66602 patch8-modal step=350/700 train-bpb=3.6647 val-bpb=3.6625
+seed=66602 patch8-modal step=525/700 train-bpb=3.5024 val-bpb=3.5338
+seed=66602 patch8-modal step=700/700 train-bpb=3.5046 val-bpb=3.4490
+completed seed=66602 variant=patch8-modal bpb=3.4490
+seed=67703 byte-full step=1/700 train-bpb=8.0702 val-bpb=7.9344
+seed=67703 byte-full step=175/700 train-bpb=4.0215 val-bpb=4.0211
+seed=67703 byte-full step=350/700 train-bpb=3.6859 val-bpb=3.7161
+seed=67703 byte-full step=525/700 train-bpb=3.6266 val-bpb=3.6137
+seed=67703 byte-full step=700/700 train-bpb=3.4230 val-bpb=3.5359
+completed seed=67703 variant=byte-full bpb=3.5359
+seed=67703 byte-narrow step=1/700 train-bpb=8.0529 val-bpb=7.9617
+seed=67703 byte-narrow step=175/700 train-bpb=4.0752 val-bpb=4.0824
+seed=67703 byte-narrow step=350/700 train-bpb=3.7141 val-bpb=3.7396
+seed=67703 byte-narrow step=525/700 train-bpb=3.6473 val-bpb=3.6390
+seed=67703 byte-narrow step=700/700 train-bpb=3.4589 val-bpb=3.5667
+completed seed=67703 variant=byte-narrow bpb=3.5667
+seed=67703 byte-modal step=1/700 train-bpb=7.9708 val-bpb=7.8933
+seed=67703 byte-modal step=175/700 train-bpb=4.0631 val-bpb=4.0551
+seed=67703 byte-modal step=350/700 train-bpb=3.7150 val-bpb=3.7390
+seed=67703 byte-modal step=525/700 train-bpb=3.6558 val-bpb=3.6504
+seed=67703 byte-modal step=700/700 train-bpb=3.4570 val-bpb=3.5753
+completed seed=67703 variant=byte-modal bpb=3.5753
+seed=67703 patch8-full step=1/700 train-bpb=8.0974 val-bpb=7.9789
+seed=67703 patch8-full step=175/700 train-bpb=4.1329 val-bpb=4.1343
+seed=67703 patch8-full step=350/700 train-bpb=3.6365 val-bpb=3.6546
+seed=67703 patch8-full step=525/700 train-bpb=3.5307 val-bpb=3.5208
+seed=67703 patch8-full step=700/700 train-bpb=3.2878 val-bpb=3.4306
+completed seed=67703 variant=patch8-full bpb=3.4306
+seed=67703 patch8-narrow step=1/700 train-bpb=8.1017 val-bpb=7.9925
+seed=67703 patch8-narrow step=175/700 train-bpb=4.1571 val-bpb=4.1701
+seed=67703 patch8-narrow step=350/700 train-bpb=3.6431 val-bpb=3.6579
+seed=67703 patch8-narrow step=525/700 train-bpb=3.5244 val-bpb=3.5192
+seed=67703 patch8-narrow step=700/700 train-bpb=3.2912 val-bpb=3.4282
+completed seed=67703 variant=patch8-narrow bpb=3.4282
+seed=67703 patch8-modal step=1/700 train-bpb=8.0905 val-bpb=7.9803
+seed=67703 patch8-modal step=175/700 train-bpb=4.1400 val-bpb=4.1499
+seed=67703 patch8-modal step=350/700 train-bpb=3.6396 val-bpb=3.6624
+seed=67703 patch8-modal step=525/700 train-bpb=3.5261 val-bpb=3.5207
+seed=67703 patch8-modal step=700/700 train-bpb=3.2939 val-bpb=3.4337
+completed seed=67703 variant=patch8-modal bpb=3.4337
+# Test 5.5 — causal byte patches + Modal-MoE integration
+
+**Decision:** **INTEGRATED_PASS_WITH_THROUGHPUT**
+
+| Variant | Runs | BpB | First-patch BpB | First rolled Δ | Params | Expert params/full | Global positions | Attention work/byte | Joint expert compute/byte-full | Target bytes/s |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| byte-full | 3 | 3.5444 ± 0.0069 | 3.5256 | +0.3593 | 2,443,584 | 100.000% | 143 | 100.000% | 100.000% | 45906 |
+| byte-modal | 3 | 3.5806 ± 0.0041 | 3.5738 | +0.3290 | 158,400 | 3.141% | 143 | 100.000% | 26.562% | 140884 |
+| byte-narrow | 3 | 3.5723 ± 0.0040 | 3.5739 | +0.3136 | 674,112 | 25.000% | 143 | 100.000% | 25.000% | 53377 |
+| patch8-full | 3 | 3.4401 ± 0.0083 | 3.4592 | +0.3821 | 2,489,664 | 100.000% | 17 | 1.413% | 11.888% | 84994 |
+| patch8-modal | 3 | 3.4439 ± 0.0072 | 3.4641 | +0.3783 | 204,480 | 3.141% | 17 | 1.413% | 3.158% | 263534 |
+| patch8-narrow | 3 | 3.4400 ± 0.0085 | 3.4572 | +0.3761 | 720,192 | 25.000% | 17 | 1.413% | 2.972% | 97170 |
+
+## Paired gates
+
+- Integrated minus byte-full: `-0.1006` BpB; UCB95 `-0.0969`.
+- Integrated minus patch8-narrow: `+0.0038` BpB; UCB95 `+0.0048`.
+- Factorial interaction: `-0.0045` BpB; UCB95 `-0.0026`.
+- Integrated/byte-full throughput ratios: `[6.076, 5.658, 5.511]`; mean `5.748x`.
+
+## Modal code interventions
+
+| Policy | Δ BpB | LCB95 | Pass |
+|---|---:|---:|---|
+| mean-code | +0.0036 | +0.0032 | yes |
+| shuffle-code | +0.0058 | +0.0052 | yes |
+| zero-residual | +0.0037 | +0.0031 | yes |
+
+- Quality gate: `True`.
+- Factorial interaction gate: `True`.
+- Causal context gate: `True`.
+- Expert-code gate: `True`.
+- Measured throughput gate: `True`.
+
+All models predict identical raw-byte targets from identical windows. The first-target-patch intervention avoids dilution by later teacher-forced target bytes. Idealized work ratios exclude local patch encoding/decoding; measured target bytes/s includes the entire forward path.
+

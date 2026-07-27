@@ -1,0 +1,8 @@
+{
+  "dataset": "Salesforce/wikitext",
+  "subset": "wikitext-2-raw-v1",
+  "train_bytes": 10951563,
+  "validation_bytes": 1148008,
+  "train_rows": 36718,
+  "validation_rows": 3760
+}
