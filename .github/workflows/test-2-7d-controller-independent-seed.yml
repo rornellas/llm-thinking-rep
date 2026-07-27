@@ -1,0 +1,139 @@
+name: Modal MoE — Test 2.7d controller independent seed
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-2-7d-controller-independent-seed.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: modal-moe-test-2-7d-independent
+  cancel-in-progress: true
+
+jobs:
+  independent-controller:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register workflow run
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json,os
+          from datetime import datetime,timezone
+          from pathlib import Path
+          payload={"workflow":"Modal MoE — Test 2.7d controller independent seed","run_id":int(os.environ["GITHUB_RUN_ID"]),"run_attempt":int(os.environ["GITHUB_RUN_ATTEMPT"]),"status":"running","commit":os.environ["GITHUB_SHA"],"started_at":datetime.now(timezone.utc).isoformat()}
+          Path("runs/test-2-7d-latest.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-2-7d-latest.json
+          git commit -m "chore: register independent controller ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0"
+
+      - name: Materialize pinned Tiny Shakespeare
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          python - <<'PY'
+          import base64,json,urllib.request
+          from pathlib import Path
+          sha="7dcb3a2d4cc3b48b6283dd46870bfeb78f88aac9"
+          req=urllib.request.Request(f"https://api.github.com/repos/karpathy/char-rnn/git/blobs/{sha}",headers={"Accept":"application/vnd.github+json","User-Agent":"modal-moe-experiment"})
+          with urllib.request.urlopen(req,timeout=60) as response: payload=json.load(response)
+          Path("data/tinyshakespeare.txt").write_bytes(base64.b64decode(payload["content"]))
+          PY
+
+      - name: Validate implementation
+        run: |
+          python experiments/test_2_7c_balanced_calibrated_controller.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --progressive-source experiments/test_2_6_progressive_nested_modes.py \
+            --text data/tinyshakespeare.txt --self-test
+
+      - name: Run independent seed
+        run: |
+          set -euo pipefail
+          python experiments/test_2_7c_balanced_calibrated_controller.py \
+            --source experiments/test_2_0_modal_moe_trainability.py \
+            --progressive-source experiments/test_2_6_progressive_nested_modes.py \
+            --text data/tinyshakespeare.txt \
+            --output-dir results/test-2-7d/latest \
+            --steps 500 \
+            --seed 27027 \
+            --threads 4 \
+            --controller-train-batches 48 \
+            --controller-tune-batches 16 \
+            --test-batches 24 \
+            --controller-steps 800 \
+            --controller-hidden 64 \
+            --oracle-tolerance 0.05 \
+            2>&1 | tee independent-controller.log
+
+      - name: Publish verdict
+        if: always()
+        run: |
+          [[ -f results/test-2-7d/latest/VERDICT.md ]] && cat results/test-2-7d/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist results
+        if: always()
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-2-7d/latest runs
+          [[ -f independent-controller.log ]] && cp independent-controller.log results/test-2-7d/latest/
+          python - <<'PY'
+          import json,os
+          from datetime import datetime,timezone
+          from pathlib import Path
+          marker=Path("runs/test-2-7d-latest.json")
+          payload=json.loads(marker.read_text()) if marker.exists() else {}
+          payload.update({"run_id":int(os.environ["GITHUB_RUN_ID"]),"run_attempt":int(os.environ["GITHUB_RUN_ATTEMPT"]),"status":os.environ["RUN_STATUS"],"finished_at":datetime.now(timezone.utc).isoformat()})
+          marker.write_text(json.dumps(payload,indent=2)+"\n")
+          Path("results/test-2-7d/latest/run.json").write_text(json.dumps(payload,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-2-7d-latest.json results/test-2-7d/latest
+          git commit -m "results: independent controller ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modal-moe-test-2-7d-independent-${{ github.run_id }}
+          path: |
+            results/test-2-7d/latest
+            independent-controller.log
+          if-no-files-found: warn
+          retention-days: 14
