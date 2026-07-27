@@ -1,0 +1,191 @@
+name: Representation — Test 5.1 neural adaptive byte units
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-5-1-neural-adaptive-byte-units.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: representation-test-5-1-neural-adaptive-byte-units
+  cancel-in-progress: false
+
+jobs:
+  neural-adaptive-byte-units:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_XET: "1"
+      HF_HOME: /tmp/huggingface
+
+    steps:
+      - name: Checkout experiment
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Register run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          payload = {
+              "workflow": "Representation — Test 5.1 neural adaptive byte units",
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": "running",
+              "commit": os.environ["GITHUB_SHA"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path("runs/test-5-1-latest.json").write_text(
+              json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-5-1-latest.json
+          git commit -m "chore: register Test 5.1 run ${GITHUB_RUN_ID}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir "numpy>=2.0" "datasets>=4.0" "tokenizers>=0.20"
+
+      - name: Materialize WikiText-2 as raw UTF-8 bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/test-5-1 results/test-5-1/latest
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datasets import load_dataset
+
+          root = Path("data/test-5-1")
+          dataset = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1")
+
+          def materialize(split):
+              text = "\n".join(row["text"] for row in dataset[split]) + "\n"
+              raw = text.encode("utf-8")
+              (root / f"{split}.bin").write_bytes(raw)
+              return len(raw), len(dataset[split])
+
+          train_bytes, train_rows = materialize("train")
+          validation_bytes, validation_rows = materialize("validation")
+          stats = {
+              "dataset": "Salesforce/wikitext",
+              "subset": "wikitext-2-raw-v1",
+              "train_bytes": train_bytes,
+              "validation_bytes": validation_bytes,
+              "train_rows": train_rows,
+              "validation_rows": validation_rows,
+          }
+          Path("results/test-5-1/latest/dataset_stats.json").write_text(
+              json.dumps(stats, indent=2) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(stats, indent=2))
+          PY
+          test -s data/test-5-1/train.bin
+          test -s data/test-5-1/validation.bin
+
+      - name: Validate implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_5_1_neural_adaptive_byte_units.py --self-test
+          python -m py_compile \
+            experiments/test_5_0_adaptive_byte_units.py \
+            experiments/test_5_0b_adaptive_byte_units_query_fix.py \
+            experiments/test_5_1_neural_adaptive_byte_units.py
+
+      - name: Run paired multi-seed boundary validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python experiments/test_5_1_neural_adaptive_byte_units.py \
+            --train-bytes data/test-5-1/train.bin \
+            --validation-bytes data/test-5-1/validation.bin \
+            --output-dir results/test-5-1/latest \
+            --seeds 51101,52202,53303 \
+            --steps 700 \
+            --teacher-steps 700 \
+            --threads 4 \
+            2>&1 | tee test-5-1.log
+
+      - name: Publish verdict
+        if: always()
+        shell: bash
+        run: |
+          [[ -f results/test-5-1/latest/VERDICT.md ]] && cat results/test-5-1/latest/VERDICT.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Persist result
+        if: always()
+        shell: bash
+        env:
+          RUN_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p results/test-5-1/latest runs
+          [[ -f test-5-1.log ]] && cp test-5-1.log results/test-5-1/latest/
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          marker = Path("runs/test-5-1-latest.json")
+          payload = json.loads(marker.read_text(encoding="utf-8")) if marker.exists() else {}
+          payload.update({
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "status": os.environ["RUN_STATUS"],
+              "finished_at": datetime.now(timezone.utc).isoformat(),
+          })
+          marker.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          Path("results/test-5-1/latest/run.json").write_text(
+              json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/test-5-1-latest.json results/test-5-1/latest
+          git commit -m "results: Test 5.1 ${GITHUB_RUN_ID} (${RUN_STATUS})" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: representation-test-5-1-${{ github.run_id }}
+          path: |
+            results/test-5-1/latest
+            test-5-1.log
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 9
