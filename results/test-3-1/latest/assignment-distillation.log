@@ -1,0 +1,57 @@
+scalar-k0 warmup=1/180 loss=1.00027
+scalar-k0 warmup=50/180 loss=2.57080
+scalar-k0 warmup=100/180 loss=3.56816
+scalar-k0 warmup=150/180 loss=4.75417
+scalar-k0 warmup=180/180 loss=5.50554
+scalar-k0 step=1/500 loss=5.14097 val-aggregate-error=206.2194%
+scalar-k0 step=100/500 loss=5.46124 val-aggregate-error=192.8315%
+scalar-k0 step=200/500 loss=4.64194 val-aggregate-error=185.3411%
+scalar-k0 step=300/500 loss=4.17649 val-aggregate-error=180.4801%
+scalar-k0 step=400/500 loss=2.81997 val-aggregate-error=177.0813%
+scalar-k0 step=500/500 loss=3.20054 val-aggregate-error=174.9225%
+scalar-k1 warmup=1/180 loss=0.99935
+scalar-k1 warmup=50/180 loss=2.43832
+scalar-k1 warmup=100/180 loss=4.13892
+scalar-k1 warmup=150/180 loss=5.01841
+scalar-k1 warmup=180/180 loss=5.58102
+scalar-k1 step=1/500 loss=6.01817 val-aggregate-error=207.9266%
+scalar-k1 step=100/500 loss=5.16398 val-aggregate-error=194.2017%
+scalar-k1 step=200/500 loss=4.45489 val-aggregate-error=186.1703%
+scalar-k1 step=300/500 loss=3.45500 val-aggregate-error=180.9017%
+scalar-k1 step=400/500 loss=3.14828 val-aggregate-error=177.7582%
+scalar-k1 step=500/500 loss=3.70332 val-aggregate-error=175.0193%
+neuronwise-k1 warmup=1/180 loss=1.00060
+neuronwise-k1 warmup=50/180 loss=2.40728
+neuronwise-k1 warmup=100/180 loss=4.54103
+neuronwise-k1 warmup=150/180 loss=4.63160
+neuronwise-k1 warmup=180/180 loss=5.23584
+neuronwise-k1 step=1/500 loss=5.77534 val-aggregate-error=207.1045%
+neuronwise-k1 step=100/500 loss=4.73123 val-aggregate-error=194.1527%
+neuronwise-k1 step=200/500 loss=4.27857 val-aggregate-error=187.2447%
+neuronwise-k1 step=300/500 loss=3.61975 val-aggregate-error=182.2255%
+neuronwise-k1 step=400/500 loss=3.73424 val-aggregate-error=178.8257%
+neuronwise-k1 step=500/500 loss=3.36048 val-aggregate-error=176.4025%
+neuronwise-k2 warmup=1/180 loss=1.00006
+neuronwise-k2 warmup=50/180 loss=2.73519
+neuronwise-k2 warmup=100/180 loss=4.80972
+neuronwise-k2 warmup=150/180 loss=4.61258
+neuronwise-k2 warmup=180/180 loss=6.18704
+neuronwise-k2 step=1/500 loss=5.95872 val-aggregate-error=206.6188%
+neuronwise-k2 step=100/500 loss=4.83825 val-aggregate-error=195.7567%
+neuronwise-k2 step=200/500 loss=4.67633 val-aggregate-error=188.5747%
+neuronwise-k2 step=300/500 loss=3.90425 val-aggregate-error=183.7784%
+neuronwise-k2 step=400/500 loss=4.03253 val-aggregate-error=180.2679%
+neuronwise-k2 step=500/500 loss=3.04658 val-aggregate-error=178.2557%
+# Test 3.1 — assignment-supervised real OLMoE down distillation
+
+**Decision:** **FAIL**
+
+| Variant | Params | Compute | Best step | Train assignment error | Val assignment error | Val aggregate error | Aggregate cosine | Mean-code ablation | Shuffle ablation | Zero ablation |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| scalar-k0 | 1.562% | 12.500% | 500 | 182.34% | 187.86% | 174.92% | 0.14680 | n/a | n/a | n/a |
+| scalar-k1 | 3.125% | 25.049% | 500 | 182.95% | 188.31% | 175.02% | 0.14740 | 1.000× | 1.001× | 1.000× |
+| neuronwise-k1 | 3.174% | 25.049% | 500 | 184.46% | 189.14% | 176.40% | 0.14753 | 0.992× | 1.004× | 0.992× |
+| neuronwise-k2 | 4.785% | 37.598% | 500 | 186.35% | 190.66% | 178.26% | 0.14526 | 0.986× | 1.004× | 0.985× |
+
+Training uses the real per-assignment `D_e z_e` tensors as well as the weighted aggregate output. Output coordinates are randomly sampled during optimization; all 2,048 dimensions are used for held-out evaluation. The split is by token, so no assignment from a validation token appears in training.
+
