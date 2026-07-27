@@ -1,0 +1,10 @@
+{
+  "workflow": "Modal MoE \u2014 Test 3.0 real OLMoE down distillation",
+  "run_id": 30233727684,
+  "run_attempt": 1,
+  "status": "running",
+  "commit": "a0fcc05277d9f15622cda15960cca18162c2d73a",
+  "source_activation_run_id": 30233139781,
+  "source_activation_artifact_id": 8640815344,
+  "started_at": "2026-07-27T03:05:46.041117+00:00"
+}
