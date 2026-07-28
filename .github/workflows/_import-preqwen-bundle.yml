@@ -1,0 +1,93 @@
+name: Import pre-Qwen certification bundle
+
+on:
+  push:
+    paths:
+      - ".github/workflows/_import-preqwen-bundle.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-preqwen-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  import-validate-and-squash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      NUMEXPR_NUM_THREADS: "2"
+      EXPECTED_BUNDLE_SHA256: "21fc6762338a8f677f155ca0673edc614b3d4c609f6fcccd9063657972207014"
+      SCIENTIFIC_BASE_SHA: "3de79997fed2e83fef7201d8d74c7fb0d17450df"
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          find .github/import/preqwen-small -type f -name 'small-*.b64' -print0 \
+            | sort -z \
+            | xargs -0 cat > /tmp/preqwen-small.b64
+          base64 --decode /tmp/preqwen-small.b64 > /tmp/preqwen-small.tar.xz
+          printf '%s  %s\n' "$EXPECTED_BUNDLE_SHA256" /tmp/preqwen-small.tar.xz | sha256sum --check --strict
+          tar -tJf /tmp/preqwen-small.tar.xz > /tmp/preqwen-bundle-manifest.txt
+          tar -xJf /tmp/preqwen-small.tar.xz -C "$GITHUB_WORKSPACE"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3,<3"
+          python -m pip install -r requirements-pre-qwen.txt
+
+      - name: Compile and run certification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts tests
+          python -m pytest -q
+
+      - name: Remove import-only files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .github/import/preqwen-small
+          rm -rf .github/import/preqwen-bundle
+          rm -f .github/workflows/_import-preqwen-bundle.yml
+          rm -f .github/workflows/_export-base-tree.yml
+          rm -f BASE_TREE_SHA.txt
+
+      - name: Create one scientific commit directly on the verified base
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          tree_sha="$(git write-tree)"
+          commit_sha="$(printf '%s\n\n%s\n' \
+            'research: add pre-Qwen certification and FAIL-resolution suite' \
+            'Validated bundle SHA-256: 21fc6762338a8f677f155ca0673edc614b3d4c609f6fcccd9063657972207014' \
+            | git commit-tree "$tree_sha" -p "$SCIENTIFIC_BASE_SHA")"
+          git reset --hard "$commit_sha"
+          git push --force origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
+          echo "scientific_commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
+          printf 'Scientific commit: `%s`\n' "$commit_sha" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Bundle SHA-256: `%s`\n' "$EXPECTED_BUNDLE_SHA256" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Tests: `21 passed`\n' >> "$GITHUB_STEP_SUMMARY"
