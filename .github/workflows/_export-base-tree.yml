@@ -1,0 +1,27 @@
+name: Export base tree for atomic certification import
+
+on:
+  push:
+    paths:
+      - ".github/workflows/_export-base-tree.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  export-tree:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Commit parent tree SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rev-parse 'HEAD^{tree}' > BASE_TREE_SHA.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BASE_TREE_SHA.txt
+          git commit -m "chore: expose base tree sha for atomic import"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
