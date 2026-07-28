@@ -1,6 +1,8 @@
-.github/import/handoff-full-v1/part-00.b64: FAILED
-.github/import/handoff-full-v1/part-01.b64: FAILED
+sha256sum: .github/import/handoff-full-v1/part-00.b64: No such file or directory
+.github/import/handoff-full-v1/part-00.b64: FAILED open or read
+sha256sum: .github/import/handoff-full-v1/part-01.b64: No such file or directory
+.github/import/handoff-full-v1/part-01.b64: FAILED open or read
 .github/import/handoff-full-v1/part-02.b64: OK
 .github/import/handoff-full-v1/part-03.b64: OK
 .github/import/handoff-full-v1/part-04.b64: OK
-sha256sum: WARNING: 2 computed checksums did NOT match
+sha256sum: WARNING: 2 listed files could not be read
