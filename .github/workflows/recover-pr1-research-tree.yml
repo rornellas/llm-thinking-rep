@@ -1,0 +1,93 @@
+name: Recover PR1 canonical research tree
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: read
+  issues: read
+
+concurrency:
+  group: recover-pr1-research-tree
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/pre-qwen-certification-v2
+
+jobs:
+  recover:
+    if: >-
+      github.event.issue.pull_request &&
+      github.event.issue.number == 1 &&
+      github.event.comment.author_association == 'OWNER' &&
+      contains(github.event.comment.body, '/recover-research-tree')
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: Decode and commit observable archive diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/all-current-research-minimal-v1.tar.xz
+          find .github/import/all-current-research-minimal-v1 \
+            -type f -name 'part-*.b64' -print0 \
+            | sort -z | xargs -0 cat | base64 -d > "$archive"
+          mkdir -p runs
+          actual_sha="$(sha256sum "$archive" | awk '{print $1}')"
+          actual_bytes="$(stat -c %s "$archive")"
+          cat > runs/import-archive-diagnostic.json <<JSON
+          {
+            "status": "decoded",
+            "archive": "all-current-research-minimal-v1.tar.xz",
+            "sha256": "${actual_sha}",
+            "bytes": ${actual_bytes},
+            "source_commit": "$(git rev-parse HEAD)",
+            "expected_legacy_sha256": "315fcbeea7c580bcaa5788e899aee93dfe042b159f5e6daba34fd397e630e419"
+          }
+          JSON
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runs/import-archive-diagnostic.json
+          git commit -m "chore: record research archive diagnostic ${GITHUB_RUN_ID}"
+          git push origin "HEAD:${TARGET_BRANCH}"
+
+      - name: Validate and extract archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/all-current-research-minimal-v1.tar.xz
+          xz --test "$archive"
+          tar -tJf "$archive" >/dev/null
+          tar -xJf "$archive" -C "$GITHUB_WORKSPACE"
+          rm -rf .github/import/all-current-research-minimal-v1
+
+      - name: Test canonical tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.3'
+          python -m pip install 'numpy>=2.0' 'PyYAML>=6.0' 'pytest>=8.0'
+          python -m pip install -e .
+          PYTHONPATH=. pytest -q
+          python -m compileall -q pre_qwen_certification scripts
+          find . -type d \( -name __pycache__ -o -name .pytest_cache -o -name '*.egg-info' \) -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+
+      - name: Commit recovered canonical research tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'research: recover canonical source results audits and handoffs'
+          git push origin "HEAD:${TARGET_BRANCH}"
