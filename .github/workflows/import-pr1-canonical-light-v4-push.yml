@@ -19,7 +19,6 @@ env:
 
 jobs:
   import:
-    if: github.actor == 'rornellas'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
