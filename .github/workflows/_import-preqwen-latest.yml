@@ -29,6 +29,7 @@ jobs:
       - name: Persist reconstruction diagnostics
         shell: bash
         run: |
+          set +e
           set -u
           report=IMPORT_DIAGNOSTIC.txt
           : > "$report"
@@ -44,6 +45,7 @@ jobs:
           xz -t /tmp/preqwen-latest.tar.xz 2>> "$report"
           printf 'xz_rc=%s\n' "$?" >> "$report"
           cat "$report"
+          exit 0
 
       - name: Commit diagnostic
         shell: bash
