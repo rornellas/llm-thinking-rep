@@ -1,5 +1,6 @@
 name: Finalize alignment-tolerant v1 integration
 
+# Retriggered after GitHub registered the finalized workflow definition.
 on:
   push:
     branches:
