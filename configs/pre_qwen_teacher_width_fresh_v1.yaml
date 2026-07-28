@@ -1,0 +1,103 @@
+protocol_version: pre-qwen-teacher-informed-width-fresh-replication-v1.1
+status: preregistered_fresh_development_replication__vocabulary_coverage_fix_before_any_heldout_metric
+purpose: >-
+  Replicate on fresh teachers and documents the post-hoc signal that a
+  teacher-informed conventional narrow MoE enters a stable fidelity region near
+  65% of the original expert width. This protocol was frozen before any seed was
+  trained or evaluated.
+threads: 1
+model:
+  seq_len: 48
+  batch_size: 8
+  d_model: 24
+  n_heads: 4
+  n_layers: 2
+  d_ff: 40
+  n_experts: 12
+  top_k: 4
+  teacher_steps: 2200
+  student_steps: 600
+  learning_rate: 0.0004
+  student_learning_rate: 0.001
+  weight_decay: 0.02
+  aux_weight: 0.01
+  grad_clip: 1.0
+seeds:
+  - 91121
+  - 92129
+  - 93133
+  - 94151
+  - 95153
+data:
+  train_documents: 28
+  train_seed: 24017
+  train_split: teacher-width-train-v1
+  hypothesis_documents: 20
+  hypothesis_seed: 73061
+  hypothesis_split: teacher-width-hypothesis-v1
+  ood_split: teacher-width-ood-v1
+  windows_per_document: 3
+  evaluation_window_seed: 15121
+  capture_batches: 36
+  capture_batch_size: 8
+  near_duplicate_threshold: 0.70
+training:
+  stage1_steps: 320
+  local_steps: 600
+  joint_steps: 180
+  local_batch_size: 128
+  joint_local_weight: 0.60
+  joint_kl_weight: 0.35
+  joint_ce_weight: 0.05
+widths:
+  anchor: 14
+  comparator: 20
+  primary: 26
+  capacity: 30
+candidates:
+  - name: magnitude-init-35
+    width: 14
+    role: negative-anchor
+  - name: magnitude-init-50
+    width: 20
+    role: compute-comparator
+  - name: magnitude-init-65
+    width: 26
+    role: primary
+  - name: magnitude-init-75
+    width: 30
+    role: capacity-control
+  - name: full-continuation-control
+    width: 40
+    role: recovery-control
+statistics:
+  bootstrap_samples: 20000
+  bootstrap_seed: 213401
+  confidence: 0.95
+gates:
+  primary_hypothesis_ucb_max: 0.030
+  primary_ood_ucb_max: 0.050
+  every_seed_primary_hypothesis_delta_max: 0.060
+  primary_minus_comparator_ucb_max: 0.000
+  capacity_hypothesis_ucb_max: 0.030
+  anchor_hypothesis_lcb_min: 0.030
+  full_control_hypothesis_ucb_max: 0.010
+  full_control_ood_ucb_max: 0.015
+  exact_primary_parameter_ratio: 0.65
+  exact_primary_compute_ratio: 0.65
+  arithmetic_tolerance: 0.000001
+  require_independent_audit: true
+decision_policy:
+  pass: >-
+    The 65% primary passes absolute hypothesis/OOD fidelity, every-seed,
+    arithmetic, full-control, and independent-audit gates, and is better than
+    the 50% comparator under the paired crossed interval.
+  borderline: >-
+    The primary passes absolute fidelity but fails only the paired advantage or
+    one non-load-bearing control gate.
+  fail: >-
+    The primary fails absolute fidelity, every-seed, arithmetic, or audit gates.
+  consequence: >-
+    A PASS identifies a reproducible small-model width region only. It does not
+    validate Modal sharing, GPU speedup, OLMoE, or Qwen and does not change the
+    frozen NO_GO_FOR_OLMOE_OR_QWEN.
