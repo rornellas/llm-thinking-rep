@@ -1,154 +1,154 @@
 {
-  "artifact_sha256": {
-    "docs/methodology/IMPORTANT_CLAIM_LEDGER.json": "b725ebebaaaf7bc696695caad0dfbf05b95f81a2bce7aa24148dbc4e2806d569",
-    "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md": "bca9860cb52088e2881c9239e6ee30a86c4fa3e650af127a238776a26fdf9b2c",
-    "results/VERDICT.md": "2c06e2249897c7e236bd702018df391a611192d2feb1379191aa379ab956d86a",
-    "results/adversarial-audit/v1/VERDICT.md": "98cf6ac2d62a5ac7546f33e4614d2a80cfa863838ed44b1183c4a4b440cde5fd",
-    "results/adversarial-audit/v1/metrics.json": "f0b5e4dec9037a2f176d22df1e0943c326d1050a6f48f4fe61ee4f1fea964b28",
-    "results/controlled-small-moe-transplant/v1.3/VERDICT.md": "7ef33c4154dd2704149caf6e9e7ec702937e60aab8b3895cd60373b99cb3a1c2",
-    "results/controlled-small-moe-transplant/v1.3/independent_audit.json": "e5449734e24895e05e57f3d37fc7cc4f9ca0c91a82933b71d3c8ed26933a5b8f",
-    "results/controlled-small-moe-transplant/v1.3/metrics.json": "f1e8b8d7698f21dce99ef7a134180a2af123b0e94d165d4242c9e32dd59fa9c4",
-    "results/controlled-small-moe-transplant/v1.3/replay_verification.json": "98b161112ca709ab86f2cacb3d21695d5794e2551571b450b914eb46d6ed6995",
-    "results/followup-adversarial-audit/v1/metrics.json": "2e6439aa06f52c1a94f951aa113efee296d64069e74cd9e252a172289ec27f1b",
-    "results/local-global-calibration/v1/metrics.json": "ad4107c7569648fec26cf5b6f3425fb91132b6191b05837d8b6374183126f368",
-    "results/pre-qwen-certification/v1/VERDICT.md": "8481d73a7c87313713fec960f03e454a39422e34d1ff12cc6c3f11a506f51586",
-    "results/pre-qwen-certification/v1/metrics.json": "6c55ca368baa626a4b6c2f22e9e2371828f33da49c60e5e5595083bec8f91afd",
-    "results/pre-qwen-fail-resolution/v1/adversarial-audit/metrics.json": "ccc98c70b0c30bbb93a696c3b0e3962b3574557893bad555ced2464e30e7547a",
-    "results/pre-qwen-fail-resolution/v1/metrics.json": "c0fdfa81b0516513fbd6c43a72ec1d66fcac45e1552ea1604f00cb1ec76edc63",
-    "results/pre-qwen-mature-clustered/v1/metrics.json": "7dbd8940393a39e974d9b6b9113e313cdfe290b9fc48ee9ea006e26cc9ba6cb2",
-    "results/pre-qwen-mature-rank-curve/v1/metrics.json": "faa98bd1354a5e0ff9fb287032889a4b6b6b8f4c3424b7e8d8a2a3a0cc35ac84",
-    "results/pre-qwen-mature-residual/v1/adversarial-audit/metrics.json": "e07790361580d3c9bc130bca88a1894e2f69e8f2c7d5e44fc59b56e0d00e0b14",
-    "results/pre-qwen-mature-residual/v1/metrics.json": "429886da7ee85d2b15f694d917b613c702ee79fda431ed024cb40e0eb3e21495",
-    "results/pre-qwen-mature-teacher/v1/metrics.json": "cf10227be783b67bb074ef49fb37e061aeceb79bd0fde3d49a5af02159743d0d"
-  },
-  "controlled_transplant": {
-    "gates": {
-      "closed_loop_fidelity": true,
-      "compute_matched_advantage": false,
-      "expert_code_causality": true,
-      "parameter_and_compute_compression": true
-    },
-    "go_for_real_checkpoint": false,
-    "modal_loss_delta": {
-      "bootstrap_samples": 4000,
-      "confidence": 0.95,
-      "documents": [
-        "sealed-doc-0000",
-        "sealed-doc-0001",
-        "sealed-doc-0002",
-        "sealed-doc-0003",
-        "sealed-doc-0004",
-        "sealed-doc-0005",
-        "sealed-doc-0006",
-        "sealed-doc-0007"
-      ],
-      "effective_cells": 24,
-      "lcb": 0.003223438064257305,
-      "mean": 0.007363920410474141,
-      "training_seeds": [
-        "52111",
-        "53117",
-        "54121"
-      ],
-      "ucb": 0.012612212076783182
-    },
-    "modal_minus_narrow_loss_delta": {
-      "bootstrap_samples": 4000,
-      "confidence": 0.95,
-      "documents": [
-        "sealed-doc-0000",
-        "sealed-doc-0001",
-        "sealed-doc-0002",
-        "sealed-doc-0003",
-        "sealed-doc-0004",
-        "sealed-doc-0005",
-        "sealed-doc-0006",
-        "sealed-doc-0007"
-      ],
-      "effective_cells": 24,
-      "lcb": 0.0013884738087654124,
-      "mean": 0.006447235743204753,
-      "training_seeds": [
-        "52111",
-        "53117",
-        "54121"
-      ],
-      "ucb": 0.013442741334438325
-    },
-    "protocol": "controlled-small-moe-transplant-v1.3",
-    "sealed_commitment_verified": true,
-    "verdict": "CONTROLLED_TRANSPLANT_FUNCTIONAL_ONLY"
-  },
+  "schema_version": "pre-qwen-gate-status-v2",
+  "generated_at": "2026-07-28T19:25:00+00:00",
   "decision": "NO_GO_FOR_OLMOE_OR_QWEN",
-  "exact_scientific_replay": true,
-  "exploratory_fail_resolution": {
-    "best_candidate": "scalar-k2-s540-j120",
-    "interpretation": "Optimization and closed-loop mismatch explained part of the original failure; result is exploratory and post-selection.",
-    "loss_delta_mean": -0.00248,
-    "loss_delta_ucb95": 0.00242,
-    "status": "PROMISING_BUT_POST_SELECTION"
-  },
-  "followup_adversarial_audit": {
-    "audit_passed": true,
-    "claim_grade": "SUPPORTED_REPRESENTATIONAL_BOTTLENECK__NO_GO_UNCHANGED",
-    "frozen_decision": "NO_GO_FOR_OLMOE_OR_QWEN",
-    "load_bearing_checks": {
-      "clustered_recomputation": true,
-      "longer_budget_teacher_not_converged": true,
-      "no_compute_reducing_scalar_rank_passes": true,
-      "rank_curve_recomputation": true,
-      "residual_independent_audit": true,
-      "teacher_recomputation": true
-    }
-  },
-  "generated_at": "2026-07-28T01:20:00+00:00",
+  "go_for_real_checkpoint": false,
   "important_claim_standard": "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md",
-  "independent_audit_passed": true,
-  "local_global_calibration": {
-    "kl_nondecreasing": true,
-    "local_nrmse_to_kl_correlation": 0.9759163994320743,
-    "local_nrmse_to_loss_delta_correlation": 0.953278384908937
-  },
-  "longer_budget_clustered_screen": {
-    "adjusted_compute_ratio": 0.7,
-    "eligible_for_new_sealed_protocol": false,
-    "minus_matrix_matched_lcb95": 0.030740698861579104,
-    "minus_matrix_matched_mean": 0.05303694307804108,
-    "minus_parameter_matched_mean": -0.00021096815665562948,
-    "minus_parameter_matched_ucb95": 0.014810113546748953,
-    "parameter_ratio": 0.36666666666666664,
-    "primary_candidate": "clustered-g2-r3-annealed",
-    "teacher_loss_delta_mean": 0.059218958020210266,
-    "teacher_loss_delta_ucb95": 0.07829254511743781,
-    "verdict": "RESIDUAL_MODAL_NOT_YET_READY"
-  },
-  "longer_budget_residual_screen": {
-    "adjusted_compute_ratio": 0.7416666666666667,
-    "independent_adversarial_audit_passed": true,
-    "interpretation": "Parameter-efficiency signal only; equal-compute and teacher-fidelity gates fail.",
-    "matrix_compute_ratio": 0.5,
-    "minus_matrix_matched_lcb95": 0.01416,
-    "minus_matrix_matched_mean": 0.03464,
-    "minus_parameter_matched_mean": -0.01861,
-    "minus_parameter_matched_ucb95": -0.00213,
-    "parameter_ratio": 0.36770833333333336,
-    "primary_candidate": "residual-k1-r3-annealed",
-    "teacher_loss_delta_mean": 0.04082,
-    "teacher_loss_delta_ucb95": 0.05992,
-    "verdict": "RESIDUAL_MODAL_NOT_YET_READY"
-  },
-  "longer_budget_teacher_screen": {
-    "convergence_status": "not_demonstrated__loss_still_decreasing_at_step_900",
-    "eligible_for_new_sealed_protocol": false,
-    "interpretation": "Scalar expert-axis modes require non-compute-reducing rank for near-fidelity on mature teachers.",
-    "rank_curve_minimum_k_under_0_02_ucb": null,
-    "scalar_k2_closed_loop_loss_delta_mean": 0.05607,
-    "scalar_k2_closed_loop_loss_delta_ucb95": 0.08135
-  },
-  "next_action": "Test an alignment-tolerant factorization (expert-specific side factors plus shared bases) with activation/Fisher weighting on plateaued teachers and natural document-disjoint data.",
-  "reference_snapshot": "3de79997fed2e83fef7201d8d74c7fb0d17450df",
+  "important_claim_ledger": "docs/methodology/IMPORTANT_CLAIM_LEDGER.json",
+  "canonical_verdict": "results/VERDICT.md",
+  "exact_scientific_replay": true,
   "synthetic_harness": {
     "passed": true,
-    "verdict": "PRE_QWEN_SYNTHETIC_CERTIFIED"
-  }
+    "verdict": "PRE_QWEN_SYNTHETIC_CERTIFIED",
+    "scope": "small synthetic controlled models"
+  },
+  "controlled_transplant": {
+    "protocol": "controlled-small-moe-transplant-v1.3",
+    "verdict": "CONTROLLED_TRANSPLANT_FUNCTIONAL_ONLY",
+    "sealed_commitment_verified": true,
+    "independent_audit_passed": true,
+    "gates": {
+      "closed_loop_fidelity": true,
+      "parameter_and_compute_compression": true,
+      "expert_code_causality": true,
+      "compute_matched_advantage": false
+    },
+    "modal_loss_delta": {
+      "mean": 0.007363920410474141,
+      "lcb95": 0.003223438064257305,
+      "ucb95": 0.012612212076783182
+    },
+    "modal_minus_narrow_loss_delta": {
+      "mean": 0.006447235743204753,
+      "lcb95": 0.0013884738087654124,
+      "ucb95": 0.013442741334438325
+    }
+  },
+  "scalar_fail_resolution": {
+    "claim_grade": "SUPPORTED_REPRESENTATIONAL_BOTTLENECK__NO_GO_UNCHANGED",
+    "global_scalar_compute_reducing_rank_passed": false,
+    "higher_rank_near_fidelity_requires_non_reducing_compute": true,
+    "low_rank_residual_equal_compute_passed": false,
+    "clustered_basis_equal_compute_passed": false,
+    "existing_coordinate_selection_35_passed": false,
+    "conditional_iterative_pruning_35_passed": false,
+    "teacher_plateau_demonstrated": false
+  },
+  "teacher_width_65": {
+    "protocol": "pre-qwen-teacher-informed-width-fresh-replication-v1.1",
+    "verdict": "TEACHER_WIDTH_65_REPLICATION_PASS",
+    "independent_audit_passed": true,
+    "seeds": [91121, 92129, 93133, 94151, 95153],
+    "expert_parameter_ratio": 0.65,
+    "routed_matrix_compute_ratio": 0.65,
+    "hypothesis_loss_delta_mean": 0.01325,
+    "hypothesis_loss_delta_ucb95": 0.01914,
+    "worst_seed_hypothesis_loss_delta": 0.01608,
+    "primary_minus_50_mean": -0.01648,
+    "primary_minus_50_lcb95": -0.02611,
+    "primary_minus_50_ucb95": -0.00570,
+    "teacher_plateau_demonstrated": false,
+    "runtime_measured": false,
+    "role": "frozen_strong_baseline"
+  },
+  "alignment_tolerant_v1": {
+    "protocol": "pre-qwen-alignment-tolerant-shared-low-rank-v1",
+    "architecture": "shared_full_rank_base_plus_expert_bilateral_low_rank_residual",
+    "verdict": "ALIGNMENT_TOLERANT_SHARED_LORA_FAIL",
+    "independent_audit_passed": true,
+    "audit_mismatches": 0,
+    "fresh_document_overlap_audit_passed": true,
+    "primary": {
+      "name": "shared-lora-r5",
+      "rank": 5,
+      "expert_parameter_ratio": 0.4166666666666667,
+      "routed_matrix_compute_ratio": 0.5833333333333334,
+      "hypothesis_loss_delta_mean": -0.00764,
+      "hypothesis_loss_delta_ucb95": 0.02589,
+      "ood_loss_delta_mean": -0.04516,
+      "ood_loss_delta_ucb95": 0.02483,
+      "worst_seed_hypothesis_loss_delta": 0.02640,
+      "hypothesis_kl_mean": 0.37658,
+      "hypothesis_top1_agreement": 0.6844,
+      "hypothesis_local_nrmse": 0.34904
+    },
+    "frozen_narrow65": {
+      "hypothesis_loss_delta_mean": -0.00388,
+      "hypothesis_loss_delta_ucb95": 0.01539,
+      "hypothesis_kl_mean": 0.11450,
+      "hypothesis_top1_agreement": 0.8334,
+      "hypothesis_local_nrmse": 0.17163
+    },
+    "primary_minus_narrow65": {
+      "mean": -0.00376,
+      "lcb95": -0.03058,
+      "ucb95": 0.02035,
+      "noninferiority_established": false
+    },
+    "capacity_rank6_minus_narrow65": {
+      "mean": -0.00932,
+      "lcb95": -0.03889,
+      "ucb95": 0.01778,
+      "noninferiority_established": false
+    },
+    "gates": {
+      "absolute_hypothesis_fidelity": true,
+      "absolute_ood_fidelity": true,
+      "every_seed_limit": true,
+      "strict_parameter_budget_below_65": true,
+      "strict_compute_budget_below_65": true,
+      "full_controls": true,
+      "arithmetic": true,
+      "data_audit": true,
+      "independent_audit": true,
+      "paired_noninferiority_to_narrow65": false
+    },
+    "interpretation": "parameter_and_compute_signal_without_established_narrow65_noninferiority__behavioral_fidelity_worse"
+  },
+  "runtime": {
+    "analytic_operation_proxies_available": true,
+    "measured_layer_runtime": false,
+    "measured_end_to_end_runtime": false
+  },
+  "artifact_integrity": {
+    "teacher_width_manifest": "results/pre-qwen-teacher-width-fresh/v1/sha256sums.txt",
+    "alignment_v1_manifest": "results/pre-qwen-alignment-tolerant/v1/sha256sums.txt",
+    "alignment_v1_workflow_run_id": "30388401467",
+    "alignment_v1_workflow_outcome": "success",
+    "full_handoff_path": "docs/HANDOFF_MODAL_MOE_RESEARCH_2026-07-28_FULL.md",
+    "full_handoff_bytes": 37465,
+    "full_handoff_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
+    "full_handoff_verification": "runs/handoff-import-v1/verification.json"
+  },
+  "next_action": {
+    "protocol": "pre-qwen-alignment-tolerant-expert-distillation-v2",
+    "hypothesis": "aggregate-output distillation permits cancellation of expert-specific errors across routing mixtures",
+    "required_changes": [
+      "explicit weighted routed-expert output loss",
+      "aggregate layer-output loss",
+      "stronger closed-loop KL",
+      "fresh hypothesis and OOD documents",
+      "frozen v1 rank5 and narrow65 comparators",
+      "behavioral KL top1 and local-NRMSE gates",
+      "independent recalculation before final verdict"
+    ],
+    "scale_up_blocked": true
+  },
+  "limitations": [
+    "small character language models",
+    "teachers not at demonstrated plateau",
+    "synthetic document families",
+    "no measured runtime",
+    "alignment v1 point estimates are not confirmatory noninferiority evidence"
+  ]
 }
