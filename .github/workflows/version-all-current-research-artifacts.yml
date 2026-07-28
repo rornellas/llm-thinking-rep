@@ -1,7 +1,9 @@
 name: Persist every current research artifact in Git
 
 on:
-  push:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
     paths:
       - ".github/workflows/version-all-current-research-artifacts.yml"
   workflow_dispatch:
@@ -11,9 +13,10 @@ permissions:
 
 concurrency:
   group: version-all-current-research-artifacts
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
+  TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
   PYTHONUNBUFFERED: "1"
   OMP_NUM_THREADS: "2"
   OPENBLAS_NUM_THREADS: "2"
@@ -31,7 +34,7 @@ jobs:
       - name: Checkout research branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
 
       - name: Reconstruct and verify committed overlay
@@ -68,7 +71,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "research: version canonical source reports handoffs and policies"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${TARGET_BRANCH}"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   reproduce-seed:
@@ -138,7 +141,7 @@ jobs:
       - name: Checkout latest research branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -297,7 +300,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "results: persist checkpoints raw records logs audits and packages"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${TARGET_BRANCH}"
 
       - name: Create and commit reproducible Git bundle
         shell: bash
@@ -314,4 +317,4 @@ jobs:
             > artifacts/2026-07-28/delivery/pre-qwen-research-branch.git.bundle.sha256
           git add artifacts/2026-07-28/delivery
           git commit -m "artifact: version reproducible Git bundle"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${TARGET_BRANCH}"
