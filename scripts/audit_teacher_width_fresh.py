@@ -17,6 +17,14 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def seed_payload_path(output_dir: Path, seed: int) -> Path:
+    """Resolve both canonical nested and legacy flat per-seed layouts."""
+    nested = output_dir / f"seed-{seed}" / f"seed-{seed}.json"
+    if nested.exists():
+        return nested
+    return output_dir / f"seed-{seed}.json"
+
+
 def matrix(records: list[dict[str, Any]], key: str) -> tuple[np.ndarray, list[int], list[str]]:
     seeds = sorted({int(row["seed"]) for row in records})
     documents = sorted({str(row["document_id"]) for row in records})
@@ -73,7 +81,7 @@ def main() -> int:
     config: dict[str, Any] = yaml.safe_load(args.config.read_text(encoding="utf-8"))
     aggregate = json.loads((args.output_dir / "metrics.json").read_text(encoding="utf-8"))
     seeds = [int(v) for v in config["seeds"]]
-    payloads = [json.loads((args.output_dir / f"seed-{seed}.json").read_text(encoding="utf-8")) for seed in seeds]
+    payloads = [json.loads(seed_payload_path(args.output_dir, seed).read_text(encoding="utf-8")) for seed in seeds]
     stats = config["statistics"]
     samples = int(stats["bootstrap_samples"])
     base_seed = int(stats["bootstrap_seed"])
