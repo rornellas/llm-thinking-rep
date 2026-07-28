@@ -1,5 +1,6 @@
 name: Run alignment-tolerant shared low-rank screen v1
 
+# Retriggered after final source and transport-integrity commits.
 on:
   push:
     branches:
