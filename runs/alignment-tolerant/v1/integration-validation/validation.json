@@ -1,9 +1,9 @@
 {
   "alignment_v1_audit": "PASS",
   "handoff_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
-  "recorded_at": "2026-07-28T19:29:17.354308+00:00",
-  "run_id": "30392003768",
-  "source_sha": "1c4aa2e5b702da2e038657a586ac5158589dd28e",
+  "recorded_at": "2026-07-28T19:34:00.491439+00:00",
+  "run_id": "30392367752",
+  "source_sha": "4dd7493d68511577308f5d3577f5acd367c9533f",
   "status": "PASS",
   "teacher_width_audit": "PASS",
   "teacher_width_layout": "canonical_nested_seed_directories"

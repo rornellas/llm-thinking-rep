@@ -1,7 +1,7 @@
 910a92a926bf0eff140910f8d181bab97ba8c8fa9854c19d50396c82e6c5767d  results/pre-qwen-teacher-width-fresh/v1/VERDICT.md
 738cfac0093aca9514205e82167a4dd757125efa63f17dcdcbe9d89a6724ec61  results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/VERDICT.md
 fc885c20569b7cd0cfd0170e609863b0e7bd7c7b1539bf3588542f4d8f18762e  results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/audit.json
-ccafedb3c374a03be8503b69ed7e6d43780a0c09dfd65ad06178945309703b64  results/pre-qwen-teacher-width-fresh/v1/metrics.json
+5d2065232072dcca97c57a078fb237e44e6749397694fca7a096fe26562787a7  results/pre-qwen-teacher-width-fresh/v1/metrics.json
 d00ee761d7c01286d8bfc78811ae80ad7a6aa3fefd343ae8a7e1a6f6f9d34f22  results/pre-qwen-teacher-width-fresh/v1/seed-91121/frozen-candidates-seed-91121.pt
 a77fccb4643c1d34fb866fa59578ce7611ac06fddde155dd369cc880ed9d8658  results/pre-qwen-teacher-width-fresh/v1/seed-91121/seed-91121.json
 eb50b07c7f13a61c48bac1582559d88b52b7b467284b3b34cf9e02737d3a2f22  results/pre-qwen-teacher-width-fresh/v1/seed-92129/frozen-candidates-seed-92129.pt
