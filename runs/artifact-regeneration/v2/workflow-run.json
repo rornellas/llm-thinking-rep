@@ -1,0 +1,7 @@
+{
+  "workflow": "Regenerate PR1 and version every artifact v2",
+  "run_id": 30381609067,
+  "run_attempt": 1,
+  "source_commit": "c5e6b3d8c16d944ae653d373e5a748f408139749",
+  "status": "persistence-step-reached"
+}
