@@ -1,0 +1,72 @@
+name: Import audited pre-Qwen research bundle
+
+on:
+  push:
+    paths:
+      - ".github/workflows/_import-preqwen-latest.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-preqwen-latest
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      NUMEXPR_NUM_THREADS: "4"
+
+    steps:
+      - name: Checkout import branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Reconstruct and verify bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .github/import/preqwen-latest/part-*.b64 | base64 -d > /tmp/preqwen-latest.tar.xz
+          echo "3b53c763142b8f0cbaadee11a5fad0ece24a0a24fa32dabc777f6dc1793a0143  /tmp/preqwen-latest.tar.xz" | sha256sum -c -
+          tar -xJf /tmp/preqwen-latest.tar.xz -C "$GITHUB_WORKSPACE"
+
+      - name: Install CPU test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install --no-cache-dir -e ".[test]"
+
+      - name: Validate imported research tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification tests
+          python -m pytest -q
+          sha256sum -c LATEST_RESEARCH_MANIFEST.sha256
+
+      - name: Commit the verified research tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .github/import/preqwen-latest .github/import/preqwen-curated
+          rm -f .github/workflows/_import-preqwen-latest.yml
+          rm -f .github/workflows/_export-base-tree.yml BASE_TREE_SHA.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "research: add audited pre-Qwen certification and selective MoE preregistration"
+          git push origin HEAD
