@@ -1,0 +1,13 @@
+{
+  "base64_decode_returncode": 1,
+  "decoded_check_returncode": 1,
+  "expected_decoded_bytes": 37465,
+  "expected_decoded_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
+  "fragment_check_returncode": 1,
+  "observed_decoded_bytes": 14657,
+  "observed_decoded_sha256": "46da43c0821cd04fba732dba9d348c77aa21bf34142b82a879ab991096d687f1",
+  "recorded_at": "2026-07-28T19:03:26.555435+00:00",
+  "run_id": "30390244336",
+  "source_sha": "f7129c2a04784f8b032f1980222b79968b5f175b",
+  "status": "FAIL"
+}
