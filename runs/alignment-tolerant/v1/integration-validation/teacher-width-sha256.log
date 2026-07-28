@@ -1,0 +1,47 @@
+results/pre-qwen-teacher-width-fresh/v1/VERDICT.md: OK
+results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/VERDICT.md: OK
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/audit.json: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/audit.json: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-91121.pt: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-91121.pt: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-92129.pt: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-92129.pt: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-93133.pt: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-93133.pt: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-94151.pt: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-94151.pt: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-95153.pt: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/frozen-candidates-seed-95153.pt: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-91121.log: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-91121.log: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-91121.status: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-91121.status: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-92129.log: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-92129.log: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-92129.status: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-92129.status: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-93133.log: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-93133.log: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-93133.status: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-93133.status: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-94151.log: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-94151.log: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-94151.status: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-94151.status: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-95153.log: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-95153.log: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/logs/seed-95153.status: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/logs/seed-95153.status: FAILED open or read
+results/pre-qwen-teacher-width-fresh/v1/metrics.json: FAILED
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/seed-91121.json: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/seed-91121.json: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/seed-92129.json: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/seed-92129.json: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/seed-93133.json: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/seed-93133.json: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/seed-94151.json: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/seed-94151.json: FAILED open or read
+sha256sum: results/pre-qwen-teacher-width-fresh/v1/seed-95153.json: No such file or directory
+results/pre-qwen-teacher-width-fresh/v1/seed-95153.json: FAILED open or read
+sha256sum: WARNING: 21 listed files could not be read
+sha256sum: WARNING: 1 computed checksum did NOT match

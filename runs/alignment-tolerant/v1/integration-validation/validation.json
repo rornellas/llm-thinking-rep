@@ -1,0 +1,9 @@
+{
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+  "recorded_at": "2026-07-28T19:20:40.913160+00:00",
+  "run_id": "30391469035",
+  "source_sha": "3f21f8ce328c3b63deaf5c5a602dd31e7206a885",
+  "status": "FAIL",
+  "validation_outcome": "failure"
+}
