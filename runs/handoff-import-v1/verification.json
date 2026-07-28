@@ -4,10 +4,10 @@
   "expected_decoded_bytes": 37465,
   "expected_decoded_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
   "fragment_check_returncode": 1,
-  "observed_decoded_bytes": 26657,
-  "observed_decoded_sha256": "bcf51c113abb302190319e53717a338ab3ecbe8f367995f4ceb41ba4a08ba46f",
-  "recorded_at": "2026-07-28T19:07:22.441302+00:00",
-  "run_id": "30390548324",
-  "source_sha": "7e53feaa6c187689783fc577a51c949f5bd9795d",
+  "observed_decoded_bytes": 29657,
+  "observed_decoded_sha256": "c0b3a509f7113f8d490f0da6af487970567334ed4de45e7791b875a66a7ab456",
+  "recorded_at": "2026-07-28T19:07:58.243004+00:00",
+  "run_id": "30390591074",
+  "source_sha": "b777a13eacb115714178a19d0249913b49f4f7e5",
   "status": "FAIL"
 }
