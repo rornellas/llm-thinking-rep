@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pre-qwen-modal-certification"
+version = "0.1.0"
+description = "Falsification-oriented certification harness for Modal-MoE transplantation"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0,<3",
+  "PyYAML>=6.0,<7",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0,<9"]
+
+[tool.setuptools.packages.find]
+include = ["pre_qwen_certification*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

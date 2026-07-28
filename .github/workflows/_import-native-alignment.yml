@@ -1,0 +1,49 @@
+name: Import native alignment research bundle
+
+on:
+  push:
+    paths:
+      - ".github/workflows/_import-native-alignment.yml"
+      - ".github/import/native-alignment-v1.b64"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-native-alignment-v1
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reconstruct and verify research tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d .github/import/native-alignment-v1.b64 > /tmp/native-alignment-v1.tar.xz
+          echo "9e57be34c7d67cc5a90684be8eb3798be4de4b350f9675f9cb1b8039cd8bec8c  /tmp/native-alignment-v1.tar.xz" | sha256sum -c -
+          tar -xJf /tmp/native-alignment-v1.tar.xz -C "$GITHUB_WORKSPACE"
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+          python -m compileall -q pre_qwen_certification scripts
+          PYTHONPATH=. pytest -q tests/test_alignment_tolerant.py tests/test_modal.py tests/test_tiny_lm_smoke.py
+      - name: Commit imported files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/import/native-alignment-v1.b64
+          rm -f .github/workflows/_import-native-alignment.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "research: add native alignment screens and convergence protocol"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
