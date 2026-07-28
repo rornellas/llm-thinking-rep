@@ -84,20 +84,81 @@
       ]
     },
     {
-      "claim": "The current student family is ready for an OLMoE/Qwen checkpoint transplant.",
-      "grade": "REFUTED__NO_GO",
-      "id": "C-GO-001",
-      "independent_check": "results/followup-adversarial-audit/v1/VERDICT.md",
+      "claim": "A conventional teacher-informed narrow student retaining 65% of expert width passes the preregistered cross-entropy fidelity gates in five fresh small teachers and is superior to the 50% comparator.",
+      "grade": "VERIFIED_WITHIN_TESTED_SCOPE",
+      "id": "C-TEACHER-WIDTH-065-001",
+      "independent_check": "results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/audit.json",
       "limitations": [
-        "new materially different function classes may change this conclusion"
+        "teachers not at demonstrated plateau",
+        "small character language models",
+        "analytic width/compute proxy",
+        "no runtime measurement"
       ],
       "primary_evidence": [
-        "results/VERDICT.md",
-        "results/PRE_QWEN_GATE_STATUS.json"
+        "results/pre-qwen-teacher-width-fresh/v1/metrics.json",
+        "docs/results/2026-07-28-teacher-informed-width-fresh-replication.md"
       ]
     },
     {
-      "claim": "The current Modal/residual/clustered candidates provide measured runtime speedup.",
+      "claim": "The shared-base plus bilateral expert-specific rank-5 residual architecture meets the preregistered absolute cross-entropy gates with 41.67% of expert parameters and 58.33% of the routed matrix-operation proxy in the alignment-tolerant v1 screen.",
+      "grade": "VERIFIED_WITHIN_SCREEN",
+      "id": "C-ALIGNMENT-ABSOLUTE-001",
+      "independent_check": "results/pre-qwen-alignment-tolerant/v1/adversarial-audit/audit.json",
+      "limitations": [
+        "same five frozen non-plateaued teachers as teacher-width screen",
+        "fresh synthetic held-out documents",
+        "expert-only analytic compute proxy",
+        "no measured runtime"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-alignment-tolerant/v1/metrics.json",
+        "results/pre-qwen-alignment-tolerant/v1/VERDICT.md"
+      ]
+    },
+    {
+      "claim": "The shared-base plus bilateral expert-specific rank-5 residual architecture is non-inferior or superior to the frozen narrow65 baseline.",
+      "grade": "NOT_ESTABLISHED_IN_V1_SCREEN",
+      "id": "C-ALIGNMENT-NARROW65-001",
+      "independent_check": "results/pre-qwen-alignment-tolerant/v1/adversarial-audit/audit.json",
+      "limitations": [
+        "point estimate favors rank-5 but the crossed 95% interval includes inferior outcomes",
+        "five teacher seeds",
+        "fresh synthetic held-out documents"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-alignment-tolerant/v1/metrics.json",
+        "docs/results/2026-07-28-alignment-tolerant-v1-analysis.md"
+      ]
+    },
+    {
+      "claim": "The alignment-tolerant rank-5 candidate preserves teacher distributional behavior as well as narrow65.",
+      "grade": "REFUTED_IN_V1_SCREEN",
+      "id": "C-ALIGNMENT-BEHAVIOR-001",
+      "independent_check": "independent recomputation of KL, top-1 agreement, and local NRMSE",
+      "limitations": [
+        "behavioral metrics are proxies within a small character language model"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-alignment-tolerant/v1/metrics.json",
+        "docs/results/2026-07-28-alignment-tolerant-v1-analysis.md"
+      ]
+    },
+    {
+      "claim": "The current student family is ready for an OLMoE/Qwen checkpoint transplant.",
+      "grade": "REFUTED__NO_GO",
+      "id": "C-GO-001",
+      "independent_check": "results/followup-adversarial-audit/v1/VERDICT.md plus current alignment audit",
+      "limitations": [
+        "new materially different function classes or training objectives may change this conclusion"
+      ],
+      "primary_evidence": [
+        "results/VERDICT.md",
+        "results/PRE_QWEN_GATE_STATUS.json",
+        "results/pre-qwen-alignment-tolerant/v1/VERDICT.md"
+      ]
+    },
+    {
+      "claim": "The current Modal/residual/clustered/alignment-tolerant candidates provide measured runtime speedup.",
       "grade": "UNTESTED",
       "id": "C-RUNTIME-001",
       "independent_check": "not applicable",
@@ -109,5 +170,5 @@
   ],
   "schema_version": "important-claim-ledger-v1",
   "standard": "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md",
-  "updated_at": "2026-07-28T01:20:00+00:00"
+  "updated_at": "2026-07-28T18:55:00+00:00"
 }
