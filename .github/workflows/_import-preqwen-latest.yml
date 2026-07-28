@@ -1,25 +1,30 @@
-name: Fast import audited pre-Qwen research bundle
+name: Import audited pre-Qwen research bundle
 
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
     paths:
       - ".github/workflows/_import-preqwen-latest.yml"
+      - ".github/import/preqwen-latest/**"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: import-preqwen-latest-fast
+  group: import-preqwen-latest-pr-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: false
 
 jobs:
   import:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Checkout import branch
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
       - name: Reconstruct and verify bundle
@@ -43,4 +48,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "research: add audited pre-Qwen certification and selective MoE preregistration"
-          git push origin HEAD
+          git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
