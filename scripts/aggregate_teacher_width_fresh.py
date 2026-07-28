@@ -18,6 +18,14 @@ if str(ROOT) not in sys.path:
 from pre_qwen_certification.metrics import crossed_hierarchical_bootstrap
 
 
+def seed_payload_path(output_dir: Path, seed: int) -> Path:
+    """Resolve both canonical nested and legacy flat per-seed layouts."""
+    nested = output_dir / f"seed-{seed}" / f"seed-{seed}.json"
+    if nested.exists():
+        return nested
+    return output_dir / f"seed-{seed}.json"
+
+
 def selected(payloads, candidate: str, split: str) -> list[dict[str, Any]]:
     return [row for payload in payloads for row in payload["records"] if row["candidate"] == candidate and row["phase"] == "final" and row["evaluation_split"] == split]
 
@@ -55,7 +63,7 @@ def main() -> int:
     args = parser.parse_args()
     config: dict[str, Any] = yaml.safe_load(args.config.read_text(encoding="utf-8"))
     seeds = [int(v) for v in config["seeds"]]
-    payloads = [json.loads((args.output_dir / f"seed-{seed}.json").read_text(encoding="utf-8")) for seed in seeds]
+    payloads = [json.loads(seed_payload_path(args.output_dir, seed).read_text(encoding="utf-8")) for seed in seeds]
     names = [str(row["name"]) for row in config["candidates"]]
     candidates: dict[str, Any] = {}
     for index, name in enumerate(names):
