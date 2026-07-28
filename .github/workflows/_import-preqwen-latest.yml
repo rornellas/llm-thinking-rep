@@ -27,11 +27,20 @@ jobs:
           ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
-      - name: Reconstruct and verify bundle
+      - name: Diagnose, reconstruct and verify bundle
         shell: bash
         run: |
           set -euo pipefail
-          cat .github/import/preqwen-latest/part-*.b64 | base64 -d > /tmp/preqwen-latest.tar.xz
+          find .github/import/preqwen-latest -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
+          for file in .github/import/preqwen-latest/part-*.b64; do
+            printf '%s ' "$file"
+            sha256sum "$file"
+          done
+          cat .github/import/preqwen-latest/part-*.b64 > /tmp/preqwen-latest.b64
+          printf 'combined-base64 '; sha256sum /tmp/preqwen-latest.b64
+          base64 -d /tmp/preqwen-latest.b64 > /tmp/preqwen-latest.tar.xz
+          printf 'reconstructed-tar '; sha256sum /tmp/preqwen-latest.tar.xz
+          xz -t /tmp/preqwen-latest.tar.xz
           echo "3b53c763142b8f0cbaadee11a5fad0ece24a0a24fa32dabc777f6dc1793a0143  /tmp/preqwen-latest.tar.xz" | sha256sum -c -
           tar -xJf /tmp/preqwen-latest.tar.xz -C "$GITHUB_WORKSPACE"
           sha256sum -c LATEST_RESEARCH_MANIFEST.sha256
