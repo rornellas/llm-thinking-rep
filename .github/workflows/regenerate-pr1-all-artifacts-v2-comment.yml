@@ -1,0 +1,246 @@
+name: Regenerate PR1 and version every artifact v2 — token comment
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: regenerate-pr1-version-all-artifacts-v2
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/pre-qwen-certification-v2
+  ARCHIVE_SHA256: af08cb79031ebefbae626e92760881461611a7c7927fb0bf90cb5b3dbc9032fb
+  ARCHIVE_BYTES: "142664"
+  PYTHONUNBUFFERED: "1"
+  OMP_NUM_THREADS: "4"
+  OPENBLAS_NUM_THREADS: "4"
+  MKL_NUM_THREADS: "4"
+  TRIGGER: /regenerate-all-artifacts-v2-65pass-af08
+
+jobs:
+  regenerate:
+    if: >-
+      github.event.issue.pull_request &&
+      github.event.issue.number == 1 &&
+      contains(github.event.comment.body, '/regenerate-all-artifacts-v2-65pass-af08')
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: Ensure canonical source is available
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -d pre_qwen_certification && -d .github/import/canonical-light-v4 ]]; then
+            archive=/tmp/canonical-light-v4.tar.xz
+            mapfile -d '' parts < <(find .github/import/canonical-light-v4 -type f -name 'part-*.b64' -print0 | sort -z)
+            [[ "${#parts[@]}" -eq 10 ]]
+            cat "${parts[@]}" | base64 -d > "$archive"
+            [[ "$(sha256sum "$archive" | awk '{print $1}')" == "$ARCHIVE_SHA256" ]]
+            [[ "$(stat -c %s "$archive")" == "$ARCHIVE_BYTES" ]]
+            xz --test "$archive"
+            tar -xJf "$archive" -C "$GITHUB_WORKSPACE"
+          fi
+          test -d pre_qwen_certification
+          test -d scripts
+          mkdir -p runs/artifact-regeneration/v2 results/pre-qwen-teacher-width-fresh/v1 artifacts/2026-07-28/delivery
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.3'
+          python -m pip install 'numpy>=2.0' 'PyYAML>=6.0' 'pytest>=8.0'
+          python -m pip install -e .
+          python - <<'PY' > runs/artifact-regeneration/v2/environment.json
+          import json, platform, sys
+          import numpy, torch
+          print(json.dumps({'python':sys.version,'platform':platform.platform(),'torch':torch.__version__,'numpy':numpy.__version__,'threads':4},indent=2))
+          PY
+          python -m pip freeze > runs/artifact-regeneration/v2/pip-freeze.txt
+
+      - name: Validate source before regeneration
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. pytest -q 2>&1 | tee runs/artifact-regeneration/v2/pre-regeneration-pytest.log
+          python -m compileall -q pre_qwen_certification scripts
+
+      - name: Discover frozen teacher-width interfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import ast, json, re, subprocess, sys
+          records=[]
+          for path in sorted(Path('scripts').glob('*.py')):
+              lower=path.name.lower(); text=path.read_text(encoding='utf-8',errors='replace')
+              if not (('teacher' in lower and 'width' in lower) or 'teacher_width' in text or 'teacher-width' in text): continue
+              opts=[]
+              try:
+                  tree=ast.parse(text)
+                  for node in ast.walk(tree):
+                      if isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and node.func.attr=='add_argument':
+                          names=[a.value for a in node.args if isinstance(a,ast.Constant) and isinstance(a.value,str)]
+                          kw={x.arg:ast.unparse(x.value) for x in node.keywords if x.arg}
+                          opts.append({'names':names,'keywords':kw})
+              except Exception as exc: opts=[{'parse_error':repr(exc)}]
+              help_run=subprocess.run([sys.executable,str(path),'--help'],text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+              records.append({'path':str(path),'options':opts,'help_returncode':help_run.returncode,'help':help_run.stdout[-12000:]})
+          configs=[str(p) for p in sorted(Path('configs').glob('*teacher*width*.y*ml'))]
+          payload={'scripts':records,'configs':configs}
+          Path('runs/artifact-regeneration/v2/interface-discovery.json').write_text(json.dumps(payload,indent=2)+'\n')
+          if not records: raise SystemExit('no teacher-width scripts discovered')
+          PY
+
+      - name: Regenerate five frozen teacher-width seeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json, re, subprocess, sys, time
+          discovery=json.loads(Path('runs/artifact-regeneration/v2/interface-discovery.json').read_text())
+          scripts=[Path(row['path']) for row in discovery['scripts']]
+          config=Path(discovery['configs'][0]) if discovery['configs'] else None
+          seeds=[91121,92129,93133,94151,95153]
+          root=Path('results/pre-qwen-teacher-width-fresh/v1'); logs=Path('runs/artifact-regeneration/v2')
+          source_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          def options(path):
+              return set(re.findall(r"add_argument\(\s*['\"](--[^'\"]+)",path.read_text(encoding='utf-8',errors='replace')))
+          runners=[]
+          for path in scripts:
+              opts=options(path)
+              if '--seed' in opts and ('--output-dir' in opts or '--output' in opts): runners.append((path,opts))
+          if not runners: raise SystemExit('no seed runner with --seed and output option')
+          runner,opts=sorted(runners,key=lambda x:(0 if 'run' in x[0].name else 1,len(x[0].name)))[0]
+          summary={'runner':str(runner),'options':sorted(opts),'seeds':seeds,'commands':[],'source_commit':source_commit}
+          for seed in seeds:
+              out=root/f'seed-{seed}'; out.mkdir(parents=True,exist_ok=True)
+              cmd=[sys.executable,str(runner)]
+              if '--config' in opts and config: cmd += ['--config',str(config)]
+              cmd += ['--seed',str(seed)]
+              if '--output-dir' in opts: cmd += ['--output-dir',str(out)]
+              else: cmd += ['--output',str(out)]
+              if '--threads' in opts: cmd += ['--threads','4']
+              if '--source-commit' in opts: cmd += ['--source-commit',source_commit]
+              if '--teacher-steps' in opts: cmd += ['--teacher-steps','2200']
+              elif '--steps' in opts: cmd += ['--steps','2200']
+              log=logs/f'seed-{seed}.log'; started=time.time()
+              with log.open('w',encoding='utf-8') as fh: result=subprocess.run(cmd,stdout=fh,stderr=subprocess.STDOUT,text=True)
+              summary['commands'].append({'seed':seed,'command':cmd,'returncode':result.returncode,'seconds':time.time()-started})
+              Path(logs/'regeneration-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+              if result.returncode: raise SystemExit(f'seed {seed} failed; inspect {log}')
+          PY
+
+      - name: Aggregate and independently audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json, re, subprocess, sys
+          root=Path('results/pre-qwen-teacher-width-fresh/v1'); logs=Path('runs/artifact-regeneration/v2')
+          found=[]
+          for path in sorted(Path('scripts').glob('*.py')):
+              text=path.read_text(encoding='utf-8',errors='replace'); lower=path.name.lower()
+              opts=set(re.findall(r"add_argument\(\s*['\"](--[^'\"]+)",text))
+              if ('aggregate' in lower or 'final' in lower) and ('teacher' in lower or 'teacher_width' in text): found.append(('aggregate',path,opts))
+              if 'audit' in lower and ('teacher' in lower or 'teacher_width' in text): found.append(('audit',path,opts))
+          records=[]
+          for role in ('aggregate','audit'):
+              choices=[x for x in found if x[0]==role]
+              if not choices: raise SystemExit(f'{role} script not found')
+              _,path,opts=choices[0]; cmd=[sys.executable,str(path)]
+              if '--input-dir' in opts: cmd += ['--input-dir',str(root)]
+              elif '--results-dir' in opts: cmd += ['--results-dir',str(root)]
+              if '--output-dir' in opts: cmd += ['--output-dir',str(root if role=='aggregate' else root/'adversarial-audit')]
+              if '--config' in opts:
+                  configs=sorted(Path('configs').glob('*teacher*width*.y*ml'))
+                  if configs: cmd += ['--config',str(configs[0])]
+              (root/'adversarial-audit').mkdir(parents=True,exist_ok=True)
+              log=logs/f'{role}.log'
+              with log.open('w',encoding='utf-8') as fh: result=subprocess.run(cmd,stdout=fh,stderr=subprocess.STDOUT,text=True)
+              records.append({'role':role,'path':str(path),'command':cmd,'returncode':result.returncode})
+              Path(logs/'aggregation-audit-summary.json').write_text(json.dumps(records,indent=2)+'\n')
+              if result.returncode: raise SystemExit(f'{role} failed')
+          PY
+          test -s results/pre-qwen-teacher-width-fresh/v1/VERDICT.md
+          test -s results/pre-qwen-teacher-width-fresh/v1/metrics.json
+          test -s results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/VERDICT.md
+
+      - name: Package source results audits checkpoints logs and history
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/2026-07-28/delivery
+          git bundle create artifacts/2026-07-28/delivery/pre-qwen-research-history.bundle --all
+          tar --sort=name --mtime='UTC 2026-07-28' --owner=0 --group=0 --numeric-owner \
+            -cJf artifacts/2026-07-28/delivery/pre-qwen-canonical-source-results-audits.tar.xz \
+            configs docs pre_qwen_certification scripts tests results runs pyproject.toml requirements-pre-qwen.txt
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile
+          roots=['configs','docs','pre_qwen_certification','scripts','tests','results','runs']
+          files=[]
+          for root in roots:
+              p=Path(root)
+              if p.exists(): files += [x for x in p.rglob('*') if x.is_file()]
+          files += [p for p in (Path('pyproject.toml'),Path('requirements-pre-qwen.txt')) if p.exists()]
+          files=sorted(set(files),key=lambda p:p.as_posix())
+          target=Path('artifacts/2026-07-28/delivery/pre-qwen-current-results-and-source.zip')
+          with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+              for p in files: z.write(p,p.as_posix())
+          entries=[]
+          for p in sorted(Path('artifacts/2026-07-28').rglob('*')):
+              if p.is_file(): entries.append({'path':p.as_posix(),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          Path('artifacts/2026-07-28/ARTIFACT_INDEX.json').write_text(json.dumps({'files':entries},indent=2,sort_keys=True)+'\n')
+          PY
+          find configs docs pre_qwen_certification scripts tests results runs artifacts/2026-07-28/delivery \
+            -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/2026-07-28/ALL_ARTIFACTS_MANIFEST.sha256
+          sha256sum -c artifacts/2026-07-28/ALL_ARTIFACTS_MANIFEST.sha256
+
+      - name: Final tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. pytest -q 2>&1 | tee runs/artifact-regeneration/v2/final-pytest.log
+
+      - name: Persist everything, including failure diagnostics
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/artifact-regeneration/v2
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,subprocess
+          Path('runs/artifact-regeneration/v2/workflow-run.json').write_text(json.dumps({
+            'workflow':'Regenerate PR1 and version every artifact v2',
+            'run_id':int(os.environ['GITHUB_RUN_ID']),
+            'run_attempt':int(os.environ['GITHUB_RUN_ATTEMPT']),
+            'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'status':'persistence-step-reached'
+          },indent=2)+'\n')
+          PY
+          find . -type d \( -name __pycache__ -o -name .pytest_cache -o -name '*.egg-info' \) -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m "research: regenerate and version all artifacts ${GITHUB_RUN_ID}" || true
+          git pull --rebase origin ${TARGET_BRANCH}
+          git push origin HEAD:${TARGET_BRANCH}
