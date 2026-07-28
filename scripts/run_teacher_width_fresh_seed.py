@@ -60,9 +60,23 @@ def git_head() -> str:
 
 
 def require_clean() -> None:
-    for command in (["git", "diff", "--quiet"], ["git", "diff", "--cached", "--quiet"]):
+    # Scientific source must be immutable. Generated evidence under runs/,
+    # results/, and artifacts/ is allowed to change during a workflow run.
+    pathspec = [
+        ".",
+        ":(exclude)runs/**",
+        ":(exclude)results/**",
+        ":(exclude)artifacts/**",
+    ]
+    commands = (
+        ["git", "diff", "--quiet", "--", *pathspec],
+        ["git", "diff", "--cached", "--quiet", "--", *pathspec],
+    )
+    for command in commands:
         if subprocess.run(command, cwd=ROOT, check=False).returncode != 0:
-            raise RuntimeError("source tree must be committed and clean before a seed run")
+            raise RuntimeError(
+                "tracked source/config/test files must be committed and clean before a seed run"
+            )
 
 
 def cross_split_audit(train_docs: list, hypothesis_docs: list, ood_docs: list, threshold: float) -> dict[str, Any]:
