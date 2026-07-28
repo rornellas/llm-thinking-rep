@@ -1,0 +1,4 @@
+# PyTorch CPU/GPU must be installed for the target platform separately.
+numpy>=2.0,<3
+PyYAML>=6.0,<7
+pytest>=8.0,<9

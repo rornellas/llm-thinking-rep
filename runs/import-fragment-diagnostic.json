@@ -1,0 +1,172 @@
+{
+  "status": "fragment-inspection-complete",
+  "workflow_run_id": 30377509630,
+  "source_commit": "76b49f398ff21d22d200e8a5c2f7dcaff9b71266",
+  "fragment_count": 16,
+  "combined_clean_bytes": 165163,
+  "combined_mod4": 3,
+  "combined_sha256": "571736f26ca8dc51cc377d679ae42aa47d406dfe59dfb53140097f904e2b835a",
+  "middle_padding_count": 0,
+  "fragments": [
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-000.b64",
+      "raw_bytes": 20000,
+      "clean_bytes": 20000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "75cbd554466fb98f693ced0e2342d236d25979c7a0167938a4eaed48ab6280af"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-001.b64",
+      "raw_bytes": 20000,
+      "clean_bytes": 20000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "90853893e849e56063a7b812d66c5fc37366ef0a70319a3ea437abc0207e7b5e"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-002.b64",
+      "raw_bytes": 19999,
+      "clean_bytes": 19999,
+      "clean_mod4": 3,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "eab1ce3a9e222d837c8890315402528284a2728478b8a793ac362ab5e60f8ad1"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-003.b64",
+      "raw_bytes": 30788,
+      "clean_bytes": 30788,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "127cac52e7e3e1108f260c74384a08ba9e91e3f3ec372dfaa92997d83b68129f"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-004.b64",
+      "raw_bytes": 20000,
+      "clean_bytes": 20000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "1b4feab1d39758220739b4209c84b02f6d3cb7aed087f2ea3377f25ba400adfa"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-005-00.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "eff1ec2af27e958b4eacf6f4fc087bba64d4bcce08016cd1d506b651cdde270c"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-005-01.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "bc4037d53036cc080a41c51514203a10c4404380fa585ccac488cd3478ad29d7"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-005-02.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "09d3570b2bbe96c0ccf27b0b15c64b5e71d4a7ac7a983354a1fbf7b0188f8fb0"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-005-03.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "d2d64750293ea7c400cd2932c513d3587e5e310ec9b955cd6d6af99e16f662ba"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-006-00.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "0abea7a7961de357903312d6342d646616562fb0212ff8a90b8f9be8eb8eaa58"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-006-01.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "442bb5d10484900e3d5b95a2eadc0391c8ab1cce23c155de08e09d8c663d09ac"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-006-02.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "4cdab0c6f66a988f3e45ae5f83a373f908f707f3e4bfda81d38b116f4f67473f"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-006-03.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "305930a98430b69abdba519ee6b509428d07b4503bb02deb2a85e85cdd0c89a5"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-007-00.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "9fd9112cc5c64ee7eaad3f833314ef91d852c560dfd924711c6de0e160887f82"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-007-01.b64",
+      "raw_bytes": 5000,
+      "clean_bytes": 5000,
+      "clean_mod4": 0,
+      "padding_count": 0,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "8b84d90765e96780578f0999e176631716bc1298695e0f818436cdbdaf9c716d"
+    },
+    {
+      "path": ".github/import/all-current-research-minimal-v1/part-007-02.b64",
+      "raw_bytes": 4376,
+      "clean_bytes": 4376,
+      "clean_mod4": 0,
+      "padding_count": 2,
+      "padding_at_end": true,
+      "invalid_count": 0,
+      "sha256": "97ee3473cd7cb20fd2e78127921f1717b6ba3e194fdcd9d874c64aef17da2e76"
+    }
+  ]
+}

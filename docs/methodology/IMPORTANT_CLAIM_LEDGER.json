@@ -1,0 +1,113 @@
+{
+  "claims": [
+    {
+      "claim": "The synthetic capture/replay and known-truth harness detects the preregistered positive, negative, leakage, and wiring controls in its tested small-model scope.",
+      "grade": "VERIFIED_WITHIN_TESTED_SCOPE",
+      "id": "C-HARNESS-001",
+      "independent_check": "tests plus artifact verifier",
+      "limitations": [
+        "synthetic template family",
+        "small CPU models"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-certification/v1/metrics.json",
+        "results/pre-qwen-certification/v1/VERDICT.md"
+      ]
+    },
+    {
+      "claim": "Scalar Modal K2 can functionally replace one conventional tiny-MoE layer under the frozen v1.3 controlled protocol.",
+      "grade": "SUPPORTED",
+      "id": "C-TRANSPLANT-001",
+      "independent_check": "results/controlled-small-moe-transplant/v1.3/independent_audit.json",
+      "limitations": [
+        "three teacher seeds",
+        "300-step teachers not converged",
+        "synthetic documents"
+      ],
+      "primary_evidence": [
+        "results/controlled-small-moe-transplant/v1.3/metrics.json"
+      ]
+    },
+    {
+      "claim": "Scalar Modal K2 is superior or non-inferior to conventional narrowing at comparable dominant matrix arithmetic.",
+      "grade": "REFUTED_IN_CURRENT_CONTROLLED_SCREENS",
+      "id": "C-EQUAL-COMPUTE-001",
+      "independent_check": "results/adversarial-audit/v1/metrics.json; results/followup-adversarial-audit/v1/metrics.json",
+      "limitations": [
+        "analytic compute, not runtime",
+        "tiny model",
+        "teachers not at demonstrated plateau"
+      ],
+      "primary_evidence": [
+        "results/controlled-small-moe-transplant/v1.3/metrics.json",
+        "results/pre-qwen-mature-teacher/v1/metrics.json"
+      ]
+    },
+    {
+      "claim": "For the longer-budget top-4 controlled teachers, global scalar expert-axis modes require a non-compute-reducing K to approach the fidelity gate.",
+      "grade": "SUPPORTED_IN_CURRENT_SCREEN",
+      "id": "C-RANK-BOTTLENECK-001",
+      "independent_check": "results/followup-adversarial-audit/v1/metrics.json",
+      "limitations": [
+        "three seeds",
+        "900-step teachers still descending",
+        "development distribution"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-mature-rank-curve/v1/metrics.json"
+      ]
+    },
+    {
+      "claim": "Expert-specific low-rank residuals solve the equal-compute transplant failure.",
+      "grade": "REFUTED_IN_CURRENT_SCREEN",
+      "id": "C-RESIDUAL-001",
+      "independent_check": "results/pre-qwen-mature-residual/v1/adversarial-audit/metrics.json",
+      "limitations": [
+        "tested ranks and objective only"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-mature-residual/v1/metrics.json"
+      ]
+    },
+    {
+      "claim": "Router-semantic clustered bases solve the equal-compute transplant failure.",
+      "grade": "REFUTED_IN_CURRENT_SCREEN",
+      "id": "C-CLUSTER-001",
+      "independent_check": "results/followup-adversarial-audit/v1/metrics.json",
+      "limitations": [
+        "two or three fixed groups",
+        "low-rank residual family",
+        "development distribution"
+      ],
+      "primary_evidence": [
+        "results/pre-qwen-mature-clustered/v1/metrics.json"
+      ]
+    },
+    {
+      "claim": "The current student family is ready for an OLMoE/Qwen checkpoint transplant.",
+      "grade": "REFUTED__NO_GO",
+      "id": "C-GO-001",
+      "independent_check": "results/followup-adversarial-audit/v1/VERDICT.md",
+      "limitations": [
+        "new materially different function classes may change this conclusion"
+      ],
+      "primary_evidence": [
+        "results/VERDICT.md",
+        "results/PRE_QWEN_GATE_STATUS.json"
+      ]
+    },
+    {
+      "claim": "The current Modal/residual/clustered candidates provide measured runtime speedup.",
+      "grade": "UNTESTED",
+      "id": "C-RUNTIME-001",
+      "independent_check": "not applicable",
+      "limitations": [
+        "only analytic operation-count proxies exist"
+      ],
+      "primary_evidence": []
+    }
+  ],
+  "schema_version": "important-claim-ledger-v1",
+  "standard": "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md",
+  "updated_at": "2026-07-28T01:20:00+00:00"
+}

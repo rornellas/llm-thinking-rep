@@ -1,0 +1,15 @@
+[
+  {
+    "role": "aggregate",
+    "path": "scripts/aggregate_teacher_width_fresh.py",
+    "command": [
+      "/usr/bin/python",
+      "scripts/aggregate_teacher_width_fresh.py",
+      "--output-dir",
+      "results/pre-qwen-teacher-width-fresh/v1",
+      "--config",
+      "configs/pre_qwen_teacher_width_fresh_v1.yaml"
+    ],
+    "returncode": 1
+  }
+]

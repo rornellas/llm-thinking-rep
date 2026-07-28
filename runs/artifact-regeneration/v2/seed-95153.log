@@ -1,0 +1,16 @@
+trained seed=95153 candidate=magnitude-init-35
+trained seed=95153 candidate=magnitude-init-50
+trained seed=95153 candidate=magnitude-init-65
+trained seed=95153 candidate=magnitude-init-75
+trained seed=95153 candidate=full-continuation-control
+evaluated seed=95153 candidate=magnitude-init-35 phase=initial hyp=+1.665902
+evaluated seed=95153 candidate=magnitude-init-35 phase=final hyp=+0.074963
+evaluated seed=95153 candidate=magnitude-init-50 phase=initial hyp=+1.071892
+evaluated seed=95153 candidate=magnitude-init-50 phase=final hyp=+0.027120
+evaluated seed=95153 candidate=magnitude-init-65 phase=initial hyp=+0.668636
+evaluated seed=95153 candidate=magnitude-init-65 phase=final hyp=+0.013755
+evaluated seed=95153 candidate=magnitude-init-75 phase=initial hyp=+0.447026
+evaluated seed=95153 candidate=magnitude-init-75 phase=final hyp=-0.001895
+evaluated seed=95153 candidate=full-continuation-control phase=initial hyp=+0.000000
+evaluated seed=95153 candidate=full-continuation-control phase=final hyp=-0.008400
+results/pre-qwen-teacher-width-fresh/v1/seed-95153/seed-95153.json

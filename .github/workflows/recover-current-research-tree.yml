@@ -1,0 +1,73 @@
+name: Recover and verify canonical research tree
+
+on:
+  push:
+    paths:
+      - ".github/workflows/recover-current-research-tree.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recover-current-research-tree
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/pre-qwen-certification-v2
+          fetch-depth: 0
+
+      - name: Reconstruct, diagnose, and validate committed archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/all-current-research-minimal-v1.tar.xz
+          find .github/import/all-current-research-minimal-v1 \
+            -type f -name 'part-*.b64' -print0 \
+            | sort -z | xargs -0 cat | base64 -d > "$archive"
+          mkdir -p runs
+          actual_sha="$(sha256sum "$archive" | awk '{print $1}')"
+          actual_bytes="$(stat -c %s "$archive")"
+          cat > runs/import-archive-diagnostic.json <<JSON
+          {
+            "archive": "all-current-research-minimal-v1.tar.xz",
+            "sha256": "${actual_sha}",
+            "bytes": ${actual_bytes},
+            "source_commit": "$(git rev-parse HEAD)",
+            "verified_by": ["base64-decode", "xz-test", "tar-list"]
+          }
+          JSON
+          xz --test "$archive"
+          tar -tJf "$archive" >/dev/null
+          tar -xJf "$archive" -C "$GITHUB_WORKSPACE"
+          rm -rf .github/import/all-current-research-minimal-v1
+
+      - name: Install dependencies and validate imported tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.3'
+          python -m pip install 'numpy>=2.0' 'PyYAML>=6.0' 'pytest>=8.0'
+          python -m pip install -e .
+          PYTHONPATH=. pytest -q
+          python -m compileall -q pre_qwen_certification scripts
+          find . -type d \( -name __pycache__ -o -name .pytest_cache -o -name '*.egg-info' \) -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+
+      - name: Commit canonical files and diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'research: recover canonical source results audits and handoffs'
+          git push origin HEAD:agent/pre-qwen-certification-v2
