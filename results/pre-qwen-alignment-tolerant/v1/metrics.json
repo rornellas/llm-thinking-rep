@@ -1,0 +1,580 @@
+{
+  "arithmetic_checks": {
+    "full-continuation-control": true,
+    "narrow65-frozen-baseline": true,
+    "shared-lora-r4": true,
+    "shared-lora-r5": true,
+    "shared-lora-r6": true
+  },
+  "candidates": {
+    "full-continuation-control": {
+      "compute_ratio": 1.0,
+      "hypothesis": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-hypothesis-v1-doc-0000",
+          "alignment-hypothesis-v1-doc-0001",
+          "alignment-hypothesis-v1-doc-0002",
+          "alignment-hypothesis-v1-doc-0003",
+          "alignment-hypothesis-v1-doc-0004",
+          "alignment-hypothesis-v1-doc-0005",
+          "alignment-hypothesis-v1-doc-0006",
+          "alignment-hypothesis-v1-doc-0007",
+          "alignment-hypothesis-v1-doc-0008",
+          "alignment-hypothesis-v1-doc-0009",
+          "alignment-hypothesis-v1-doc-0010",
+          "alignment-hypothesis-v1-doc-0011",
+          "alignment-hypothesis-v1-doc-0012",
+          "alignment-hypothesis-v1-doc-0013",
+          "alignment-hypothesis-v1-doc-0014",
+          "alignment-hypothesis-v1-doc-0015",
+          "alignment-hypothesis-v1-doc-0016",
+          "alignment-hypothesis-v1-doc-0017",
+          "alignment-hypothesis-v1-doc-0018",
+          "alignment-hypothesis-v1-doc-0019"
+        ],
+        "effective_cells": 100,
+        "kl_mean": 0.0124953601954604,
+        "lcb": -0.005150477051734924,
+        "local_nrmse_mean": 0.027860149167009095,
+        "mean": 0.0024371830622355144,
+        "per_seed": {
+          "91121": -0.006702705224355062,
+          "92129": 0.0023344953854878745,
+          "93133": 0.012580211957295735,
+          "94151": -0.0016485850016276042,
+          "95153": 0.005622498194376628
+        },
+        "top1_mean": 0.9500694457689921,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.009987027963002515
+      },
+      "ood": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-ood-v1-doc-0000",
+          "alignment-ood-v1-doc-0001",
+          "alignment-ood-v1-doc-0002",
+          "alignment-ood-v1-doc-0003",
+          "alignment-ood-v1-doc-0004",
+          "alignment-ood-v1-doc-0005",
+          "alignment-ood-v1-doc-0006",
+          "alignment-ood-v1-doc-0007",
+          "alignment-ood-v1-doc-0008",
+          "alignment-ood-v1-doc-0009",
+          "alignment-ood-v1-doc-0010",
+          "alignment-ood-v1-doc-0011"
+        ],
+        "effective_cells": 60,
+        "kl_mean": 0.013706918414299527,
+        "lcb": -0.01410713821649551,
+        "local_nrmse_mean": 0.02835725504499598,
+        "mean": -0.005090885692172582,
+        "per_seed": {
+          "91121": -0.014961792363060845,
+          "92129": -0.004023830095926921,
+          "93133": -0.005466838677724202,
+          "94151": -0.0007919073104858398,
+          "95153": -0.0002100600136650933
+        },
+        "top1_mean": 0.9487268537282944,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.004182497395409462
+      },
+      "parameter_ratio": 1.0
+    },
+    "narrow65-frozen-baseline": {
+      "compute_ratio": 0.65,
+      "hypothesis": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-hypothesis-v1-doc-0000",
+          "alignment-hypothesis-v1-doc-0001",
+          "alignment-hypothesis-v1-doc-0002",
+          "alignment-hypothesis-v1-doc-0003",
+          "alignment-hypothesis-v1-doc-0004",
+          "alignment-hypothesis-v1-doc-0005",
+          "alignment-hypothesis-v1-doc-0006",
+          "alignment-hypothesis-v1-doc-0007",
+          "alignment-hypothesis-v1-doc-0008",
+          "alignment-hypothesis-v1-doc-0009",
+          "alignment-hypothesis-v1-doc-0010",
+          "alignment-hypothesis-v1-doc-0011",
+          "alignment-hypothesis-v1-doc-0012",
+          "alignment-hypothesis-v1-doc-0013",
+          "alignment-hypothesis-v1-doc-0014",
+          "alignment-hypothesis-v1-doc-0015",
+          "alignment-hypothesis-v1-doc-0016",
+          "alignment-hypothesis-v1-doc-0017",
+          "alignment-hypothesis-v1-doc-0018",
+          "alignment-hypothesis-v1-doc-0019"
+        ],
+        "effective_cells": 100,
+        "kl_mean": 0.11450262233000799,
+        "lcb": -0.026163415908813478,
+        "local_nrmse_mean": 0.17162821262088074,
+        "mean": -0.0038791322708129883,
+        "per_seed": {
+          "91121": -0.015120863914489746,
+          "92129": 0.0038491090138753257,
+          "93133": 0.02090191046396891,
+          "94151": -0.03503423134485881,
+          "95153": 0.006008414427439371
+        },
+        "top1_mean": 0.8334027757247289,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.015388213137785565
+      },
+      "ood": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-ood-v1-doc-0000",
+          "alignment-ood-v1-doc-0001",
+          "alignment-ood-v1-doc-0002",
+          "alignment-ood-v1-doc-0003",
+          "alignment-ood-v1-doc-0004",
+          "alignment-ood-v1-doc-0005",
+          "alignment-ood-v1-doc-0006",
+          "alignment-ood-v1-doc-0007",
+          "alignment-ood-v1-doc-0008",
+          "alignment-ood-v1-doc-0009",
+          "alignment-ood-v1-doc-0010",
+          "alignment-ood-v1-doc-0011"
+        ],
+        "effective_cells": 60,
+        "kl_mean": 0.1300399789456103,
+        "lcb": -0.029611726337009002,
+        "local_nrmse_mean": 0.17709249588450748,
+        "mean": 0.002441566520267062,
+        "per_seed": {
+          "91121": -0.033575846089257136,
+          "92129": -0.0061591267585754395,
+          "93133": 0.010927114221784804,
+          "94151": 0.039977934625413686,
+          "95153": 0.0010377566019694011
+        },
+        "top1_mean": 0.8224537031518089,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.03219728380441663
+      },
+      "parameter_ratio": 0.65
+    },
+    "shared-lora-r4": {
+      "compute_ratio": 0.5166666666666667,
+      "hypothesis": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-hypothesis-v1-doc-0000",
+          "alignment-hypothesis-v1-doc-0001",
+          "alignment-hypothesis-v1-doc-0002",
+          "alignment-hypothesis-v1-doc-0003",
+          "alignment-hypothesis-v1-doc-0004",
+          "alignment-hypothesis-v1-doc-0005",
+          "alignment-hypothesis-v1-doc-0006",
+          "alignment-hypothesis-v1-doc-0007",
+          "alignment-hypothesis-v1-doc-0008",
+          "alignment-hypothesis-v1-doc-0009",
+          "alignment-hypothesis-v1-doc-0010",
+          "alignment-hypothesis-v1-doc-0011",
+          "alignment-hypothesis-v1-doc-0012",
+          "alignment-hypothesis-v1-doc-0013",
+          "alignment-hypothesis-v1-doc-0014",
+          "alignment-hypothesis-v1-doc-0015",
+          "alignment-hypothesis-v1-doc-0016",
+          "alignment-hypothesis-v1-doc-0017",
+          "alignment-hypothesis-v1-doc-0018",
+          "alignment-hypothesis-v1-doc-0019"
+        ],
+        "effective_cells": 100,
+        "kl_mean": 0.43451720220492973,
+        "lcb": -0.020722389181454977,
+        "local_nrmse_mean": 0.375101938206897,
+        "mean": 0.01581133524576823,
+        "per_seed": {
+          "91121": -0.022432140509287515,
+          "92129": 0.0409190575281779,
+          "93133": 0.03297390937805176,
+          "94151": 0.001462546984354655,
+          "95153": 0.02613330284754435
+        },
+        "top1_mean": 0.664861111442248,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.05364969118436176
+      },
+      "ood": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-ood-v1-doc-0000",
+          "alignment-ood-v1-doc-0001",
+          "alignment-ood-v1-doc-0002",
+          "alignment-ood-v1-doc-0003",
+          "alignment-ood-v1-doc-0004",
+          "alignment-ood-v1-doc-0005",
+          "alignment-ood-v1-doc-0006",
+          "alignment-ood-v1-doc-0007",
+          "alignment-ood-v1-doc-0008",
+          "alignment-ood-v1-doc-0009",
+          "alignment-ood-v1-doc-0010",
+          "alignment-ood-v1-doc-0011"
+        ],
+        "effective_cells": 60,
+        "kl_mean": 0.4989954728918162,
+        "lcb": -0.13087178177303738,
+        "local_nrmse_mean": 0.3859047957482005,
+        "mean": -0.056916860739390056,
+        "per_seed": {
+          "91121": -0.09902391831080119,
+          "92129": -0.062186737855275474,
+          "93133": -0.04671286212073432,
+          "94151": 0.07095543543497722,
+          "95153": -0.1476162208451165
+        },
+        "top1_mean": 0.6518518512447675,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.030483562019136143
+      },
+      "parameter_ratio": 0.35
+    },
+    "shared-lora-r5": {
+      "compute_ratio": 0.5833333333333334,
+      "hypothesis": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-hypothesis-v1-doc-0000",
+          "alignment-hypothesis-v1-doc-0001",
+          "alignment-hypothesis-v1-doc-0002",
+          "alignment-hypothesis-v1-doc-0003",
+          "alignment-hypothesis-v1-doc-0004",
+          "alignment-hypothesis-v1-doc-0005",
+          "alignment-hypothesis-v1-doc-0006",
+          "alignment-hypothesis-v1-doc-0007",
+          "alignment-hypothesis-v1-doc-0008",
+          "alignment-hypothesis-v1-doc-0009",
+          "alignment-hypothesis-v1-doc-0010",
+          "alignment-hypothesis-v1-doc-0011",
+          "alignment-hypothesis-v1-doc-0012",
+          "alignment-hypothesis-v1-doc-0013",
+          "alignment-hypothesis-v1-doc-0014",
+          "alignment-hypothesis-v1-doc-0015",
+          "alignment-hypothesis-v1-doc-0016",
+          "alignment-hypothesis-v1-doc-0017",
+          "alignment-hypothesis-v1-doc-0018",
+          "alignment-hypothesis-v1-doc-0019"
+        ],
+        "effective_cells": 100,
+        "kl_mean": 0.3765764036510985,
+        "lcb": -0.04643513462940853,
+        "local_nrmse_mean": 0.3490396319629777,
+        "mean": -0.007637011210123696,
+        "per_seed": {
+          "91121": -0.010797953605651856,
+          "92129": 0.0004401048024495443,
+          "93133": 0.00673829714457194,
+          "94151": -0.06096638838450114,
+          "95153": 0.02640088399251302
+        },
+        "top1_mean": 0.6844444447755813,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.02589363735914226
+      },
+      "ood": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-ood-v1-doc-0000",
+          "alignment-ood-v1-doc-0001",
+          "alignment-ood-v1-doc-0002",
+          "alignment-ood-v1-doc-0003",
+          "alignment-ood-v1-doc-0004",
+          "alignment-ood-v1-doc-0005",
+          "alignment-ood-v1-doc-0006",
+          "alignment-ood-v1-doc-0007",
+          "alignment-ood-v1-doc-0008",
+          "alignment-ood-v1-doc-0009",
+          "alignment-ood-v1-doc-0010",
+          "alignment-ood-v1-doc-0011"
+        ],
+        "effective_cells": 60,
+        "kl_mean": 0.4457263849537111,
+        "lcb": -0.10877569993336995,
+        "local_nrmse_mean": 0.35979626855867963,
+        "mean": -0.045157084200117326,
+        "per_seed": {
+          "91121": -0.06115398142072889,
+          "92129": -0.0865193936559889,
+          "93133": 0.014165600140889486,
+          "94151": 0.013654298252529569,
+          "95153": -0.10593194431728786
+        },
+        "top1_mean": 0.6666666665010982,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.02483010686106135
+      },
+      "parameter_ratio": 0.4166666666666667
+    },
+    "shared-lora-r6": {
+      "compute_ratio": 0.65,
+      "hypothesis": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-hypothesis-v1-doc-0000",
+          "alignment-hypothesis-v1-doc-0001",
+          "alignment-hypothesis-v1-doc-0002",
+          "alignment-hypothesis-v1-doc-0003",
+          "alignment-hypothesis-v1-doc-0004",
+          "alignment-hypothesis-v1-doc-0005",
+          "alignment-hypothesis-v1-doc-0006",
+          "alignment-hypothesis-v1-doc-0007",
+          "alignment-hypothesis-v1-doc-0008",
+          "alignment-hypothesis-v1-doc-0009",
+          "alignment-hypothesis-v1-doc-0010",
+          "alignment-hypothesis-v1-doc-0011",
+          "alignment-hypothesis-v1-doc-0012",
+          "alignment-hypothesis-v1-doc-0013",
+          "alignment-hypothesis-v1-doc-0014",
+          "alignment-hypothesis-v1-doc-0015",
+          "alignment-hypothesis-v1-doc-0016",
+          "alignment-hypothesis-v1-doc-0017",
+          "alignment-hypothesis-v1-doc-0018",
+          "alignment-hypothesis-v1-doc-0019"
+        ],
+        "effective_cells": 100,
+        "kl_mean": 0.33875783346435395,
+        "lcb": -0.044474365631739295,
+        "local_nrmse_mean": 0.32370628598213025,
+        "mean": -0.013201636473337813,
+        "per_seed": {
+          "91121": -0.03087692658106486,
+          "92129": 0.013834166526794433,
+          "93133": -0.014885358015696208,
+          "94151": -0.041327015558878584,
+          "95153": 0.007246951262156169
+        },
+        "top1_mean": 0.7056944448749224,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 0.016369411389032966
+      },
+      "ood": {
+        "bootstrap_samples": 20000,
+        "confidence": 0.95,
+        "documents": [
+          "alignment-ood-v1-doc-0000",
+          "alignment-ood-v1-doc-0001",
+          "alignment-ood-v1-doc-0002",
+          "alignment-ood-v1-doc-0003",
+          "alignment-ood-v1-doc-0004",
+          "alignment-ood-v1-doc-0005",
+          "alignment-ood-v1-doc-0006",
+          "alignment-ood-v1-doc-0007",
+          "alignment-ood-v1-doc-0008",
+          "alignment-ood-v1-doc-0009",
+          "alignment-ood-v1-doc-0010",
+          "alignment-ood-v1-doc-0011"
+        ],
+        "effective_cells": 60,
+        "kl_mean": 0.39017555835818746,
+        "lcb": -0.11547155128584964,
+        "local_nrmse_mean": 0.33361279027184054,
+        "mean": -0.05966810915205214,
+        "per_seed": {
+          "91121": -0.04949584272172716,
+          "92129": -0.10102944903903538,
+          "93133": -0.04806592729356554,
+          "94151": 0.020228279961480036,
+          "95153": -0.11997760666741265
+        },
+        "top1_mean": 0.6863425933652454,
+        "training_seeds": [
+          "91121",
+          "92129",
+          "93133",
+          "94151",
+          "95153"
+        ],
+        "ucb": 1.2692378626914545e-05
+      },
+      "parameter_ratio": 0.4833333333333333
+    }
+  },
+  "comparisons": {
+    "capacity_minus_narrow65": {
+      "bootstrap_samples": 20000,
+      "confidence": 0.95,
+      "documents": [
+        "alignment-hypothesis-v1-doc-0000",
+        "alignment-hypothesis-v1-doc-0001",
+        "alignment-hypothesis-v1-doc-0002",
+        "alignment-hypothesis-v1-doc-0003",
+        "alignment-hypothesis-v1-doc-0004",
+        "alignment-hypothesis-v1-doc-0005",
+        "alignment-hypothesis-v1-doc-0006",
+        "alignment-hypothesis-v1-doc-0007",
+        "alignment-hypothesis-v1-doc-0008",
+        "alignment-hypothesis-v1-doc-0009",
+        "alignment-hypothesis-v1-doc-0010",
+        "alignment-hypothesis-v1-doc-0011",
+        "alignment-hypothesis-v1-doc-0012",
+        "alignment-hypothesis-v1-doc-0013",
+        "alignment-hypothesis-v1-doc-0014",
+        "alignment-hypothesis-v1-doc-0015",
+        "alignment-hypothesis-v1-doc-0016",
+        "alignment-hypothesis-v1-doc-0017",
+        "alignment-hypothesis-v1-doc-0018",
+        "alignment-hypothesis-v1-doc-0019"
+      ],
+      "effective_cells": 100,
+      "lcb": -0.038894849022229505,
+      "mean": -0.009322504202524822,
+      "training_seeds": [
+        "91121",
+        "92129",
+        "93133",
+        "94151",
+        "95153"
+      ],
+      "ucb": 0.01778481982151665
+    },
+    "primary_minus_narrow65": {
+      "bootstrap_samples": 20000,
+      "confidence": 0.95,
+      "documents": [
+        "alignment-hypothesis-v1-doc-0000",
+        "alignment-hypothesis-v1-doc-0001",
+        "alignment-hypothesis-v1-doc-0002",
+        "alignment-hypothesis-v1-doc-0003",
+        "alignment-hypothesis-v1-doc-0004",
+        "alignment-hypothesis-v1-doc-0005",
+        "alignment-hypothesis-v1-doc-0006",
+        "alignment-hypothesis-v1-doc-0007",
+        "alignment-hypothesis-v1-doc-0008",
+        "alignment-hypothesis-v1-doc-0009",
+        "alignment-hypothesis-v1-doc-0010",
+        "alignment-hypothesis-v1-doc-0011",
+        "alignment-hypothesis-v1-doc-0012",
+        "alignment-hypothesis-v1-doc-0013",
+        "alignment-hypothesis-v1-doc-0014",
+        "alignment-hypothesis-v1-doc-0015",
+        "alignment-hypothesis-v1-doc-0016",
+        "alignment-hypothesis-v1-doc-0017",
+        "alignment-hypothesis-v1-doc-0018",
+        "alignment-hypothesis-v1-doc-0019"
+      ],
+      "effective_cells": 100,
+      "lcb": -0.03058164916435877,
+      "mean": -0.00375787893931071,
+      "training_seeds": [
+        "91121",
+        "92129",
+        "93133",
+        "94151",
+        "95153"
+      ],
+      "ucb": 0.02035262487332024
+    }
+  },
+  "decision": {
+    "consequence": "No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. A PASS only justifies a fresh replication on plateaued teachers and a runtime implementation of the factorized execution. A FAIL falsifies this rank range and initialization under fixed small teachers; it does not falsify all alignment-tolerant architectures.",
+    "frozen_no_go_changed": false,
+    "gates": {
+      "all_arithmetic_pass": true,
+      "capacity_hypothesis_pass": true,
+      "capacity_vs_narrow65_pass": false,
+      "clean_data_audit_pass": true,
+      "every_seed_primary_pass": true,
+      "full_control_hypothesis_pass": true,
+      "full_control_ood_pass": true,
+      "independent_audit_pass": true,
+      "primary_compute_budget_pass": true,
+      "primary_hypothesis_pass": true,
+      "primary_ood_pass": true,
+      "primary_parameter_budget_pass": true,
+      "primary_vs_narrow65_pass": false
+    },
+    "interpretation": "Rank-5 fails absolute fidelity, every-seed robustness, paired comparison, arithmetic, data, or audit gates, and rank-6 does not provide a credible capacity-control rescue.",
+    "verdict": "ALIGNMENT_TOLERANT_SHARED_LORA_FAIL"
+  },
+  "metadata": {
+    "configuration_sha256": "f187cf9af27b2b82f7082392dd94ea6314d809325877d99027ab33214b1553e0",
+    "generated_at": "2026-07-28T18:47:35.704361+00:00",
+    "protocol_version": "pre-qwen-alignment-tolerant-shared-low-rank-v1",
+    "seeds": [
+      91121,
+      92129,
+      93133,
+      94151,
+      95153
+    ],
+    "source_commits": [
+      "4853dc10b254d2718723cb3d1db1bf0de6a504d7"
+    ],
+    "source_teacher_tail_changes": {
+      "91121": -0.42142075300216675,
+      "92129": -0.3334815502166748,
+      "93133": -0.008910536766052246,
+      "94151": -0.20913302898406982,
+      "95153": -0.16812658309936523
+    }
+  }
+}

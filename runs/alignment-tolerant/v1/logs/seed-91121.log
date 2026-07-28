@@ -1,0 +1,14 @@
+trained seed=91121 candidate=shared-lora-r4
+trained seed=91121 candidate=shared-lora-r5
+trained seed=91121 candidate=shared-lora-r6
+evaluated seed=91121 candidate=shared-lora-r4 phase=initial hyp=+0.707593
+evaluated seed=91121 candidate=shared-lora-r4 phase=final hyp=-0.022432
+evaluated seed=91121 candidate=shared-lora-r5 phase=initial hyp=+0.646956
+evaluated seed=91121 candidate=shared-lora-r5 phase=final hyp=-0.010798
+evaluated seed=91121 candidate=shared-lora-r6 phase=initial hyp=+0.504181
+evaluated seed=91121 candidate=shared-lora-r6 phase=final hyp=-0.030877
+evaluated seed=91121 candidate=narrow65-frozen-baseline phase=initial hyp=-0.015121
+evaluated seed=91121 candidate=narrow65-frozen-baseline phase=final hyp=-0.015121
+evaluated seed=91121 candidate=full-continuation-control phase=initial hyp=-0.006703
+evaluated seed=91121 candidate=full-continuation-control phase=final hyp=-0.006703
+results/pre-qwen-alignment-tolerant/v1/seed-91121/seed-91121.json

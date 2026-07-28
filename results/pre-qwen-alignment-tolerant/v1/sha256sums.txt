@@ -1,0 +1,14 @@
+0ff8561f8d65fbab345cc9c616b55aad5d5245c756b6bd3f0e81de1cc6d85a4e  results/pre-qwen-alignment-tolerant/v1/VERDICT.md
+a8fa5191bdc4ca582d5e8f408a53e8c987a484ca3a43f15f1a25639a7d139827  results/pre-qwen-alignment-tolerant/v1/adversarial-audit/VERDICT.md
+4a674b075eaeabffc18a780ebedc445cbdd63e1ff0d0957fcac9e99f63893f74  results/pre-qwen-alignment-tolerant/v1/adversarial-audit/audit.json
+cab9847eb7a33dd2af4a8d2098fd8a6ac764b667ca32e5cf0afcee5fa53d23f4  results/pre-qwen-alignment-tolerant/v1/metrics.json
+aa2cb8d86173e4952141978e4a8f06ae018b177920012b00c5e51590f0120888  results/pre-qwen-alignment-tolerant/v1/seed-91121/frozen-candidates-seed-91121.pt
+a5a3543d5f4739689221bed1b877d23be57dbef863945e9605eed8fe955ee95d  results/pre-qwen-alignment-tolerant/v1/seed-91121/seed-91121.json
+60a90493bcb34c801058ccfd1e8bb56be96351d4a72017b657ef97871bae2d23  results/pre-qwen-alignment-tolerant/v1/seed-92129/frozen-candidates-seed-92129.pt
+9c3ae706407af22cbca45961b7ac9c861dc241cd152ecba5be0fc253cd6ec571  results/pre-qwen-alignment-tolerant/v1/seed-92129/seed-92129.json
+a38d8bf2c3adafe4cf9c7c874179b6deaad7fe5d393159a10acb3d009021df5a  results/pre-qwen-alignment-tolerant/v1/seed-93133/frozen-candidates-seed-93133.pt
+d7fcaebe78ea90027fa0562829946a0be9dadc9dc14c3e2597ec651e29c095f8  results/pre-qwen-alignment-tolerant/v1/seed-93133/seed-93133.json
+fc524f19b93efca58ac389209ae40772e351b5355637ebead47e84bd8f384ee4  results/pre-qwen-alignment-tolerant/v1/seed-94151/frozen-candidates-seed-94151.pt
+faa753ac06235f10dc102c0308933937c7cfd036d257dfcbc4d569b2500775a3  results/pre-qwen-alignment-tolerant/v1/seed-94151/seed-94151.json
+81ce1d72e5693de1ebf745badf80bc5787228441525dbb53eae7322b01a1238c  results/pre-qwen-alignment-tolerant/v1/seed-95153/frozen-candidates-seed-95153.pt
+de7fb3a17f20f929174635b1d066f8d14e588f6b907ee1441ad38a4b71983587  results/pre-qwen-alignment-tolerant/v1/seed-95153/seed-95153.json
