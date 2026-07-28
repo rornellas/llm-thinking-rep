@@ -32,31 +32,95 @@ jobs:
           ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
 
-      - name: Decode and commit observable archive diagnostics
+      - name: Inspect fragments and commit observable diagnostics
         shell: bash
         run: |
           set -euo pipefail
-          archive=/tmp/all-current-research-minimal-v1.tar.xz
-          find .github/import/all-current-research-minimal-v1 \
-            -type f -name 'part-*.b64' -print0 \
-            | sort -z | xargs -0 cat | base64 -d > "$archive"
           mkdir -p runs
-          actual_sha="$(sha256sum "$archive" | awk '{print $1}')"
-          actual_bytes="$(stat -c %s "$archive")"
-          cat > runs/import-archive-diagnostic.json <<JSON
-          {
-            "status": "decoded",
-            "archive": "all-current-research-minimal-v1.tar.xz",
-            "sha256": "${actual_sha}",
-            "bytes": ${actual_bytes},
-            "source_commit": "$(git rev-parse HEAD)",
-            "expected_legacy_sha256": "315fcbeea7c580bcaa5788e899aee93dfe042b159f5e6daba34fd397e630e419"
+          python - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, json, re
+
+          root = Path('.github/import/all-current-research-minimal-v1')
+          parts = sorted(root.glob('part-*.b64'))
+          if not parts:
+              raise SystemExit('no committed archive fragments found')
+
+          allowed = set(b'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=')
+          rows = []
+          combined = bytearray()
+          for path in parts:
+              raw = path.read_bytes()
+              clean = re.sub(rb'\s+', b'', raw)
+              invalid = [index for index, value in enumerate(clean) if value not in allowed]
+              rows.append({
+                  'path': path.as_posix(),
+                  'raw_bytes': len(raw),
+                  'clean_bytes': len(clean),
+                  'clean_mod4': len(clean) % 4,
+                  'padding_count': clean.count(b'='),
+                  'padding_at_end': clean.rstrip(b'=') + b'=' * clean.count(b'=') == clean,
+                  'invalid_count': len(invalid),
+                  'sha256': hashlib.sha256(raw).hexdigest(),
+              })
+              combined.extend(clean)
+
+          combined_bytes = bytes(combined)
+          middle_padding = [index for index, value in enumerate(combined_bytes[:-2]) if value == ord('=')]
+          payload = {
+              'status': 'fragment-inspection-complete',
+              'source_commit': __import__('subprocess').check_output(['git','rev-parse','HEAD'], text=True).strip(),
+              'fragment_count': len(rows),
+              'combined_clean_bytes': len(combined_bytes),
+              'combined_mod4': len(combined_bytes) % 4,
+              'combined_sha256': hashlib.sha256(combined_bytes).hexdigest(),
+              'middle_padding_count': len(middle_padding),
+              'fragments': rows,
           }
-          JSON
+          Path('runs/import-fragment-diagnostic.json').write_text(json.dumps(payload, indent=2) + '\n')
+          Path('/tmp/combined-archive.b64').write_bytes(combined_bytes)
+          PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runs/import-fragment-diagnostic.json
+          git commit -m "chore: record research archive fragment diagnostic ${GITHUB_RUN_ID}"
+          git push origin "HEAD:${TARGET_BRANCH}"
+
+      - name: Decode archive using validated fragment topology
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import base64, json, re
+
+          diagnosis = json.loads(Path('runs/import-fragment-diagnostic.json').read_text())
+          root = Path('.github/import/all-current-research-minimal-v1')
+          parts = sorted(root.glob('part-*.b64'))
+          target = Path('/tmp/all-current-research-minimal-v1.tar.xz')
+
+          if diagnosis['middle_padding_count'] == 0 and diagnosis['combined_mod4'] == 0:
+              clean = re.sub(rb'\s+', b'', b''.join(path.read_bytes() for path in parts))
+              decoded = base64.b64decode(clean, validate=True)
+              mode = 'combined-stream'
+          elif all(row['clean_mod4'] == 0 and row['invalid_count'] == 0 for row in diagnosis['fragments']):
+              decoded = b''.join(
+                  base64.b64decode(re.sub(rb'\s+', b'', path.read_bytes()), validate=True)
+                  for path in parts
+              )
+              mode = 'independently-encoded-fragments'
+          else:
+              raise SystemExit('fragment topology is incomplete or corrupt; inspect runs/import-fragment-diagnostic.json')
+
+          target.write_bytes(decoded)
+          diagnosis['decode_mode'] = mode
+          diagnosis['decoded_bytes'] = len(decoded)
+          import hashlib
+          diagnosis['decoded_sha256'] = hashlib.sha256(decoded).hexdigest()
+          Path('runs/import-archive-diagnostic.json').write_text(json.dumps(diagnosis, indent=2) + '\n')
+          PY
           git add runs/import-archive-diagnostic.json
-          git commit -m "chore: record research archive diagnostic ${GITHUB_RUN_ID}"
+          git commit -m "chore: record decoded research archive ${GITHUB_RUN_ID}"
           git push origin "HEAD:${TARGET_BRANCH}"
 
       - name: Validate and extract archive
