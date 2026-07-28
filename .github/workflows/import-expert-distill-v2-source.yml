@@ -1,0 +1,100 @@
+name: Import expert-distillation v2 source
+
+on:
+  push:
+    branches:
+      - agent/alignment-tolerant-expert-distill-v2
+    paths:
+      - ".github/workflows/import-expert-distill-v2-source.yml"
+      - ".github/import/expert-distill-v2-source/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-expert-distill-v2-source-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  import-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMEXPR_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify and reconstruct source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat >/tmp/expert-distill-v2-fragments.sha256 <<'EOF'
+          5f24da9ee9c28ceb7f9c5a07cbb3535e7704d4b093510ec57ce013e09a7b506a  .github/import/expert-distill-v2-source/part-00.b64
+          19dd646bf5eb0f62ad53603726ba720ccde11f35a86d3985334000f1b1d464e1  .github/import/expert-distill-v2-source/part-01.b64
+          6bca5a1b6b2b113daa3dbaea2a9a73ec8c62f5e519b1d1408a94afef930eb4bd  .github/import/expert-distill-v2-source/part-02.b64
+          15c02b85d21a6ae803008c49e05b384a09490a4ae22a4e7b3f4fb9fafe73d64d  .github/import/expert-distill-v2-source/part-03.b64
+          f27f172758ca62302c89b36228c45aef459d52590cdb49ce253261f97a9c2587  .github/import/expert-distill-v2-source/part-04.b64
+          EOF
+          sha256sum -c /tmp/expert-distill-v2-fragments.sha256
+          cat .github/import/expert-distill-v2-source/part-*.b64 \
+            | base64 --decode > /tmp/expert-distill-v2-source.tar.xz
+          echo "29c7ff8654c3c3b2bf4b2cea2104860d61061f68f8940cbe2cfb380eeeccb7e0  /tmp/expert-distill-v2-source.tar.xz" \
+            | sha256sum -c -
+          tar -xJf /tmp/expert-distill-v2-source.tar.xz -C "$GITHUB_WORKSPACE"
+      - name: Install test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Validate preregistered implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q \
+            tests/test_expert_distillation_v2.py \
+            tests/test_alignment_tolerant.py \
+            tests/test_teacher_width_result_layout.py \
+            tests/test_modal.py \
+            tests/test_metrics.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import yaml
+          config = yaml.safe_load(Path('configs/pre_qwen_alignment_expert_distill_v2.yaml').read_text(encoding='utf-8'))
+          assert config['protocol_version'] == 'pre-qwen-alignment-tolerant-expert-distillation-v2'
+          assert config['status'].startswith('preregistered')
+          assert len(config['seeds']) == 5
+          for stage in ('stage1', 'local', 'joint'):
+              weights = config['training'][stage]['weights']
+              assert abs(sum(float(v) for v in weights.values()) - 1.0) < 1e-9
+          Path('runs/expert-distill-v2/source-import.json').parent.mkdir(parents=True, exist_ok=True)
+          Path('runs/expert-distill-v2/source-import.json').write_text(json.dumps({
+              'status': 'PASS',
+              'protocol_version': config['protocol_version'],
+              'archive_sha256': '29c7ff8654c3c3b2bf4b2cea2104860d61061f68f8940cbe2cfb380eeeccb7e0',
+              'source_commit': __import__('os').environ.get('GITHUB_SHA'),
+              'run_id': __import__('os').environ.get('GITHUB_RUN_ID'),
+          }, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+      - name: Commit readable source and preregistration
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .github/import/expert-distill-v2-source
+          rm -f .github/workflows/import-expert-distill-v2-source.yml
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add -A
+          git commit -m "experiment: preregister alignment-tolerant expert-distillation v2"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
