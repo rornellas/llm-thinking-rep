@@ -1,5 +1,6 @@
 name: Import native alignment research bundle
 
+# Retriggered after integrating the complete pre-Qwen branch into main.
 on:
   push:
     paths:
