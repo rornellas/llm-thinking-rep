@@ -6,8 +6,8 @@
   "fragment_check_returncode": 1,
   "observed_decoded_bytes": 37465,
   "observed_decoded_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
-  "recorded_at": "2026-07-28T19:10:20.891563+00:00",
-  "run_id": "30390722798",
-  "source_sha": "df1fa8378c14f1cdf6c1d3ae394e2edb6fbb1ee8",
+  "recorded_at": "2026-07-28T19:11:14.698282+00:00",
+  "run_id": "30390821188",
+  "source_sha": "87694d05dd234be40d6c5df233e6cab24501fee3",
   "status": "FAIL"
 }
