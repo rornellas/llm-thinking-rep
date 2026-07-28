@@ -1,460 +1,54 @@
 {
-  "candidates": {
-    "full-continuation-control": {
-      "compute_ratio": 1.0,
-      "hypothesis": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-hypothesis-v1-doc-0000",
-          "teacher-width-hypothesis-v1-doc-0001",
-          "teacher-width-hypothesis-v1-doc-0002",
-          "teacher-width-hypothesis-v1-doc-0003",
-          "teacher-width-hypothesis-v1-doc-0004",
-          "teacher-width-hypothesis-v1-doc-0005",
-          "teacher-width-hypothesis-v1-doc-0006",
-          "teacher-width-hypothesis-v1-doc-0007",
-          "teacher-width-hypothesis-v1-doc-0008",
-          "teacher-width-hypothesis-v1-doc-0009",
-          "teacher-width-hypothesis-v1-doc-0010",
-          "teacher-width-hypothesis-v1-doc-0011",
-          "teacher-width-hypothesis-v1-doc-0012",
-          "teacher-width-hypothesis-v1-doc-0013",
-          "teacher-width-hypothesis-v1-doc-0014",
-          "teacher-width-hypothesis-v1-doc-0015",
-          "teacher-width-hypothesis-v1-doc-0016",
-          "teacher-width-hypothesis-v1-doc-0017",
-          "teacher-width-hypothesis-v1-doc-0018",
-          "teacher-width-hypothesis-v1-doc-0019"
-        ],
-        "effective_cells": 100,
-        "kl_mean": 0.007971841395696759,
-        "lcb": -0.012282525901993113,
-        "local_nrmse_mean": 0.027156516526304828,
-        "mean": -0.00808909257253011,
-        "per_seed": {
-          "91121": -0.011140714585781097,
-          "92129": -0.009366594751675924,
-          "93133": -0.00613627831141154,
-          "94151": -0.0054019451141357425,
-          "95153": -0.008399930099646251
-        },
-        "top1_mean": 0.9708333351214726,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": -0.004186047958830992
-      },
-      "ood": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-ood-v1-doc-0000",
-          "teacher-width-ood-v1-doc-0001",
-          "teacher-width-ood-v1-doc-0002",
-          "teacher-width-ood-v1-doc-0003",
-          "teacher-width-ood-v1-doc-0004",
-          "teacher-width-ood-v1-doc-0005",
-          "teacher-width-ood-v1-doc-0006",
-          "teacher-width-ood-v1-doc-0007",
-          "teacher-width-ood-v1-doc-0008",
-          "teacher-width-ood-v1-doc-0009",
-          "teacher-width-ood-v1-doc-0010",
-          "teacher-width-ood-v1-doc-0011"
-        ],
-        "effective_cells": 60,
-        "kl_mean": 0.013681433921816212,
-        "lcb": -0.011306505103905993,
-        "local_nrmse_mean": 0.028182946003743926,
-        "mean": -0.0017774343490600587,
-        "per_seed": {
-          "91121": -0.011357082260979546,
-          "92129": 0.0045139458444383405,
-          "93133": 0.0014481875631544325,
-          "94151": 0.010042713748084174,
-          "95153": -0.013534936639997695
-        },
-        "top1_mean": 0.9488425933652453,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.008294804791609444
-      },
-      "parameter_ratio": 1.0
+  "audit_passed": true,
+  "comparison": {
+    "documents": [
+      "teacher-width-hypothesis-v1-doc-0000",
+      "teacher-width-hypothesis-v1-doc-0001",
+      "teacher-width-hypothesis-v1-doc-0002",
+      "teacher-width-hypothesis-v1-doc-0003",
+      "teacher-width-hypothesis-v1-doc-0004",
+      "teacher-width-hypothesis-v1-doc-0005",
+      "teacher-width-hypothesis-v1-doc-0006",
+      "teacher-width-hypothesis-v1-doc-0007",
+      "teacher-width-hypothesis-v1-doc-0008",
+      "teacher-width-hypothesis-v1-doc-0009",
+      "teacher-width-hypothesis-v1-doc-0010",
+      "teacher-width-hypothesis-v1-doc-0011",
+      "teacher-width-hypothesis-v1-doc-0012",
+      "teacher-width-hypothesis-v1-doc-0013",
+      "teacher-width-hypothesis-v1-doc-0014",
+      "teacher-width-hypothesis-v1-doc-0015",
+      "teacher-width-hypothesis-v1-doc-0016",
+      "teacher-width-hypothesis-v1-doc-0017",
+      "teacher-width-hypothesis-v1-doc-0018",
+      "teacher-width-hypothesis-v1-doc-0019"
+    ],
+    "lcb": -0.029596116897960496,
+    "mean": -0.020841347078482307,
+    "per_seed": {
+      "91121": -0.017141835391521455,
+      "92129": -0.022463836272557575,
+      "93133": -0.025802346070607503,
+      "94151": -0.025433527926603954,
+      "95153": -0.013365189731121063
     },
-    "magnitude-init-35": {
-      "compute_ratio": 0.35,
-      "hypothesis": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-hypothesis-v1-doc-0000",
-          "teacher-width-hypothesis-v1-doc-0001",
-          "teacher-width-hypothesis-v1-doc-0002",
-          "teacher-width-hypothesis-v1-doc-0003",
-          "teacher-width-hypothesis-v1-doc-0004",
-          "teacher-width-hypothesis-v1-doc-0005",
-          "teacher-width-hypothesis-v1-doc-0006",
-          "teacher-width-hypothesis-v1-doc-0007",
-          "teacher-width-hypothesis-v1-doc-0008",
-          "teacher-width-hypothesis-v1-doc-0009",
-          "teacher-width-hypothesis-v1-doc-0010",
-          "teacher-width-hypothesis-v1-doc-0011",
-          "teacher-width-hypothesis-v1-doc-0012",
-          "teacher-width-hypothesis-v1-doc-0013",
-          "teacher-width-hypothesis-v1-doc-0014",
-          "teacher-width-hypothesis-v1-doc-0015",
-          "teacher-width-hypothesis-v1-doc-0016",
-          "teacher-width-hypothesis-v1-doc-0017",
-          "teacher-width-hypothesis-v1-doc-0018",
-          "teacher-width-hypothesis-v1-doc-0019"
-        ],
-        "effective_cells": 100,
-        "kl_mean": 0.10193480519930088,
-        "lcb": 0.06327780501544474,
-        "local_nrmse_mean": 0.24440523100443226,
-        "mean": 0.08005459974209467,
-        "per_seed": {
-          "91121": 0.0766871174176534,
-          "92129": 0.08298059900601705,
-          "93133": 0.0813487763206164,
-          "94151": 0.08429310123125712,
-          "95153": 0.0749634047349294
-        },
-        "top1_mean": 0.8765277777115504,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.09743803069988882
-      },
-      "ood": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-ood-v1-doc-0000",
-          "teacher-width-ood-v1-doc-0001",
-          "teacher-width-ood-v1-doc-0002",
-          "teacher-width-ood-v1-doc-0003",
-          "teacher-width-ood-v1-doc-0004",
-          "teacher-width-ood-v1-doc-0005",
-          "teacher-width-ood-v1-doc-0006",
-          "teacher-width-ood-v1-doc-0007",
-          "teacher-width-ood-v1-doc-0008",
-          "teacher-width-ood-v1-doc-0009",
-          "teacher-width-ood-v1-doc-0010",
-          "teacher-width-ood-v1-doc-0011"
-        ],
-        "effective_cells": 60,
-        "kl_mean": 0.3806132330666164,
-        "lcb": -0.07670987321270831,
-        "local_nrmse_mean": 0.33148131584811996,
-        "mean": -0.030564423402150473,
-        "per_seed": {
-          "91121": -0.028865257898966473,
-          "92129": -0.05542597505781385,
-          "93133": 0.012969606452518039,
-          "94151": -0.007024553087022569,
-          "95153": -0.07447593741946751
-        },
-        "top1_mean": 0.684722222884496,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.017086737950642906
-      },
-      "parameter_ratio": 0.35
-    },
-    "magnitude-init-50": {
-      "compute_ratio": 0.5,
-      "hypothesis": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-hypothesis-v1-doc-0000",
-          "teacher-width-hypothesis-v1-doc-0001",
-          "teacher-width-hypothesis-v1-doc-0002",
-          "teacher-width-hypothesis-v1-doc-0003",
-          "teacher-width-hypothesis-v1-doc-0004",
-          "teacher-width-hypothesis-v1-doc-0005",
-          "teacher-width-hypothesis-v1-doc-0006",
-          "teacher-width-hypothesis-v1-doc-0007",
-          "teacher-width-hypothesis-v1-doc-0008",
-          "teacher-width-hypothesis-v1-doc-0009",
-          "teacher-width-hypothesis-v1-doc-0010",
-          "teacher-width-hypothesis-v1-doc-0011",
-          "teacher-width-hypothesis-v1-doc-0012",
-          "teacher-width-hypothesis-v1-doc-0013",
-          "teacher-width-hypothesis-v1-doc-0014",
-          "teacher-width-hypothesis-v1-doc-0015",
-          "teacher-width-hypothesis-v1-doc-0016",
-          "teacher-width-hypothesis-v1-doc-0017",
-          "teacher-width-hypothesis-v1-doc-0018",
-          "teacher-width-hypothesis-v1-doc-0019"
-        ],
-        "effective_cells": 100,
-        "kl_mean": 0.056816894827364614,
-        "lcb": 0.020143947017689557,
-        "local_nrmse_mean": 0.1720192554265869,
-        "mean": 0.030967250665028895,
-        "per_seed": {
-          "91121": 0.02724357694387436,
-          "92129": 0.03526584953069687,
-          "93133": 0.024933740993340812,
-          "94151": 0.04027310113112132,
-          "95153": 0.027119984726111095
-        },
-        "top1_mean": 0.9109722208976746,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.041967563579479845
-      },
-      "ood": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-ood-v1-doc-0000",
-          "teacher-width-ood-v1-doc-0001",
-          "teacher-width-ood-v1-doc-0002",
-          "teacher-width-ood-v1-doc-0003",
-          "teacher-width-ood-v1-doc-0004",
-          "teacher-width-ood-v1-doc-0005",
-          "teacher-width-ood-v1-doc-0006",
-          "teacher-width-ood-v1-doc-0007",
-          "teacher-width-ood-v1-doc-0008",
-          "teacher-width-ood-v1-doc-0009",
-          "teacher-width-ood-v1-doc-0010",
-          "teacher-width-ood-v1-doc-0011"
-        ],
-        "effective_cells": 60,
-        "kl_mean": 0.23398576182610056,
-        "lcb": -0.06546901348564357,
-        "local_nrmse_mean": 0.25017056126309634,
-        "mean": -0.024856428305308025,
-        "per_seed": {
-          "91121": -0.06818289226955837,
-          "92129": -0.03178266021940443,
-          "93133": 0.01620932420094808,
-          "94151": 0.006225466728210449,
-          "95153": -0.04675137996673584
-        },
-        "top1_mean": 0.7559027764532301,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.01162678069538535
-      },
-      "parameter_ratio": 0.5
-    },
-    "magnitude-init-65": {
-      "compute_ratio": 0.65,
-      "hypothesis": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-hypothesis-v1-doc-0000",
-          "teacher-width-hypothesis-v1-doc-0001",
-          "teacher-width-hypothesis-v1-doc-0002",
-          "teacher-width-hypothesis-v1-doc-0003",
-          "teacher-width-hypothesis-v1-doc-0004",
-          "teacher-width-hypothesis-v1-doc-0005",
-          "teacher-width-hypothesis-v1-doc-0006",
-          "teacher-width-hypothesis-v1-doc-0007",
-          "teacher-width-hypothesis-v1-doc-0008",
-          "teacher-width-hypothesis-v1-doc-0009",
-          "teacher-width-hypothesis-v1-doc-0010",
-          "teacher-width-hypothesis-v1-doc-0011",
-          "teacher-width-hypothesis-v1-doc-0012",
-          "teacher-width-hypothesis-v1-doc-0013",
-          "teacher-width-hypothesis-v1-doc-0014",
-          "teacher-width-hypothesis-v1-doc-0015",
-          "teacher-width-hypothesis-v1-doc-0016",
-          "teacher-width-hypothesis-v1-doc-0017",
-          "teacher-width-hypothesis-v1-doc-0018",
-          "teacher-width-hypothesis-v1-doc-0019"
-        ],
-        "effective_cells": 100,
-        "kl_mean": 0.03121498680430696,
-        "lcb": 0.0009658076241612459,
-        "local_nrmse_mean": 0.11875791709977535,
-        "mean": 0.010125903586546579,
-        "per_seed": {
-          "91121": 0.010101741552352906,
-          "92129": 0.012802013258139292,
-          "93133": -0.0008686050772666931,
-          "94151": 0.014839573204517365,
-          "95153": 0.01375479499499003
-        },
-        "top1_mean": 0.937638888557752,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.016712581276893616
-      },
-      "ood": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-ood-v1-doc-0000",
-          "teacher-width-ood-v1-doc-0001",
-          "teacher-width-ood-v1-doc-0002",
-          "teacher-width-ood-v1-doc-0003",
-          "teacher-width-ood-v1-doc-0004",
-          "teacher-width-ood-v1-doc-0005",
-          "teacher-width-ood-v1-doc-0006",
-          "teacher-width-ood-v1-doc-0007",
-          "teacher-width-ood-v1-doc-0008",
-          "teacher-width-ood-v1-doc-0009",
-          "teacher-width-ood-v1-doc-0010",
-          "teacher-width-ood-v1-doc-0011"
-        ],
-        "effective_cells": 60,
-        "kl_mean": 0.1318815431132488,
-        "lcb": -0.033475549221038806,
-        "local_nrmse_mean": 0.1803471585314956,
-        "mean": -0.010897941059536405,
-        "per_seed": {
-          "91121": -0.014656729168362088,
-          "92129": -0.012188441223568387,
-          "93133": 0.0005646612909105089,
-          "94151": -0.02666436963611179,
-          "95153": -0.001544826560550266
-        },
-        "top1_mean": 0.8103009263674418,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.011506579783227675
-      },
-      "parameter_ratio": 0.65
-    },
-    "magnitude-init-75": {
-      "compute_ratio": 0.75,
-      "hypothesis": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-hypothesis-v1-doc-0000",
-          "teacher-width-hypothesis-v1-doc-0001",
-          "teacher-width-hypothesis-v1-doc-0002",
-          "teacher-width-hypothesis-v1-doc-0003",
-          "teacher-width-hypothesis-v1-doc-0004",
-          "teacher-width-hypothesis-v1-doc-0005",
-          "teacher-width-hypothesis-v1-doc-0006",
-          "teacher-width-hypothesis-v1-doc-0007",
-          "teacher-width-hypothesis-v1-doc-0008",
-          "teacher-width-hypothesis-v1-doc-0009",
-          "teacher-width-hypothesis-v1-doc-0010",
-          "teacher-width-hypothesis-v1-doc-0011",
-          "teacher-width-hypothesis-v1-doc-0012",
-          "teacher-width-hypothesis-v1-doc-0013",
-          "teacher-width-hypothesis-v1-doc-0014",
-          "teacher-width-hypothesis-v1-doc-0015",
-          "teacher-width-hypothesis-v1-doc-0016",
-          "teacher-width-hypothesis-v1-doc-0017",
-          "teacher-width-hypothesis-v1-doc-0018",
-          "teacher-width-hypothesis-v1-doc-0019"
-        ],
-        "effective_cells": 100,
-        "kl_mean": 0.022483428837757346,
-        "lcb": -0.006044591647883257,
-        "local_nrmse_mean": 0.09061385684885537,
-        "mean": -0.00035336057345072407,
-        "per_seed": {
-          "91121": 2.542982498804728e-05,
-          "92129": -0.0034661253293355307,
-          "93133": -0.0034715309739112854,
-          "94151": 0.007040210564931234,
-          "95153": -0.0018947869539260864
-        },
-        "top1_mean": 0.9488888903458913,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.005304387624065081
-      },
-      "ood": {
-        "bootstrap_samples": 20000,
-        "confidence": 0.95,
-        "documents": [
-          "teacher-width-ood-v1-doc-0000",
-          "teacher-width-ood-v1-doc-0001",
-          "teacher-width-ood-v1-doc-0002",
-          "teacher-width-ood-v1-doc-0003",
-          "teacher-width-ood-v1-doc-0004",
-          "teacher-width-ood-v1-doc-0005",
-          "teacher-width-ood-v1-doc-0006",
-          "teacher-width-ood-v1-doc-0007",
-          "teacher-width-ood-v1-doc-0008",
-          "teacher-width-ood-v1-doc-0009",
-          "teacher-width-ood-v1-doc-0010",
-          "teacher-width-ood-v1-doc-0011"
-        ],
-        "effective_cells": 60,
-        "kl_mean": 0.08888284929218658,
-        "lcb": -0.026708432303534604,
-        "local_nrmse_mean": 0.13995723237462895,
-        "mean": -0.010942255126105416,
-        "per_seed": {
-          "91121": -0.021800094180636935,
-          "92129": -0.016192866696251765,
-          "93133": 0.0049976375367906355,
-          "94151": -0.004640532864464654,
-          "95153": -0.017075419425964355
-        },
-        "top1_mean": 0.8516203688250648,
-        "training_seeds": [
-          "91121",
-          "92129",
-          "93133",
-          "94151",
-          "95153"
-        ],
-        "ucb": 0.004714309440718731
-      },
-      "parameter_ratio": 0.75
-    }
+    "ucb": -0.012646814512709778
   },
-  "comparisons": {
-    "primary_minus_50": {
-      "bootstrap_samples": 20000,
-      "confidence": 0.95,
+  "gates_without_audit_gate": {
+    "anchor_failure_reproduced": true,
+    "capacity_pass": true,
+    "clean_data_audit_pass": true,
+    "every_seed_primary_pass": true,
+    "exact_primary_compute_ratio_pass": true,
+    "exact_primary_parameter_ratio_pass": true,
+    "full_control_hypothesis_pass": true,
+    "full_control_ood_pass": true,
+    "primary_hypothesis_pass": true,
+    "primary_ood_pass": true,
+    "primary_vs_comparator_pass": true
+  },
+  "leave_one_seed_out_primary_hypothesis": {
+    "91121": {
       "documents": [
         "teacher-width-hypothesis-v1-doc-0000",
         "teacher-width-hypothesis-v1-doc-0001",
@@ -477,58 +71,469 @@
         "teacher-width-hypothesis-v1-doc-0018",
         "teacher-width-hypothesis-v1-doc-0019"
       ],
-      "effective_cells": 100,
-      "lcb": -0.029596116897960496,
-      "mean": -0.020841347078482307,
-      "training_seeds": [
-        "91121",
-        "92129",
-        "93133",
-        "94151",
-        "95153"
+      "lcb": -0.0014061289218564805,
+      "mean": 0.010131944095094998,
+      "per_seed": {
+        "92129": 0.012802013258139294,
+        "93133": -0.0008686050772666924,
+        "94151": 0.014839573204517367,
+        "95153": 0.01375479499499003
+      },
+      "ucb": 0.0184078052919358
+    },
+    "92129": {
+      "documents": [
+        "teacher-width-hypothesis-v1-doc-0000",
+        "teacher-width-hypothesis-v1-doc-0001",
+        "teacher-width-hypothesis-v1-doc-0002",
+        "teacher-width-hypothesis-v1-doc-0003",
+        "teacher-width-hypothesis-v1-doc-0004",
+        "teacher-width-hypothesis-v1-doc-0005",
+        "teacher-width-hypothesis-v1-doc-0006",
+        "teacher-width-hypothesis-v1-doc-0007",
+        "teacher-width-hypothesis-v1-doc-0008",
+        "teacher-width-hypothesis-v1-doc-0009",
+        "teacher-width-hypothesis-v1-doc-0010",
+        "teacher-width-hypothesis-v1-doc-0011",
+        "teacher-width-hypothesis-v1-doc-0012",
+        "teacher-width-hypothesis-v1-doc-0013",
+        "teacher-width-hypothesis-v1-doc-0014",
+        "teacher-width-hypothesis-v1-doc-0015",
+        "teacher-width-hypothesis-v1-doc-0016",
+        "teacher-width-hypothesis-v1-doc-0017",
+        "teacher-width-hypothesis-v1-doc-0018",
+        "teacher-width-hypothesis-v1-doc-0019"
       ],
-      "ucb": -0.012646814512709778
+      "lcb": -0.0024032280811419043,
+      "mean": 0.009456876168648402,
+      "per_seed": {
+        "91121": 0.010101741552352906,
+        "93133": -0.0008686050772666924,
+        "94151": 0.014839573204517367,
+        "95153": 0.01375479499499003
+      },
+      "ucb": 0.017117036199197175
+    },
+    "93133": {
+      "documents": [
+        "teacher-width-hypothesis-v1-doc-0000",
+        "teacher-width-hypothesis-v1-doc-0001",
+        "teacher-width-hypothesis-v1-doc-0002",
+        "teacher-width-hypothesis-v1-doc-0003",
+        "teacher-width-hypothesis-v1-doc-0004",
+        "teacher-width-hypothesis-v1-doc-0005",
+        "teacher-width-hypothesis-v1-doc-0006",
+        "teacher-width-hypothesis-v1-doc-0007",
+        "teacher-width-hypothesis-v1-doc-0008",
+        "teacher-width-hypothesis-v1-doc-0009",
+        "teacher-width-hypothesis-v1-doc-0010",
+        "teacher-width-hypothesis-v1-doc-0011",
+        "teacher-width-hypothesis-v1-doc-0012",
+        "teacher-width-hypothesis-v1-doc-0013",
+        "teacher-width-hypothesis-v1-doc-0014",
+        "teacher-width-hypothesis-v1-doc-0015",
+        "teacher-width-hypothesis-v1-doc-0016",
+        "teacher-width-hypothesis-v1-doc-0017",
+        "teacher-width-hypothesis-v1-doc-0018",
+        "teacher-width-hypothesis-v1-doc-0019"
+      ],
+      "lcb": 0.007680204976350071,
+      "mean": 0.0128745307524999,
+      "per_seed": {
+        "91121": 0.010101741552352906,
+        "92129": 0.012802013258139294,
+        "94151": 0.014839573204517367,
+        "95153": 0.01375479499499003
+      },
+      "ucb": 0.018513812841847537
+    },
+    "94151": {
+      "documents": [
+        "teacher-width-hypothesis-v1-doc-0000",
+        "teacher-width-hypothesis-v1-doc-0001",
+        "teacher-width-hypothesis-v1-doc-0002",
+        "teacher-width-hypothesis-v1-doc-0003",
+        "teacher-width-hypothesis-v1-doc-0004",
+        "teacher-width-hypothesis-v1-doc-0005",
+        "teacher-width-hypothesis-v1-doc-0006",
+        "teacher-width-hypothesis-v1-doc-0007",
+        "teacher-width-hypothesis-v1-doc-0008",
+        "teacher-width-hypothesis-v1-doc-0009",
+        "teacher-width-hypothesis-v1-doc-0010",
+        "teacher-width-hypothesis-v1-doc-0011",
+        "teacher-width-hypothesis-v1-doc-0012",
+        "teacher-width-hypothesis-v1-doc-0013",
+        "teacher-width-hypothesis-v1-doc-0014",
+        "teacher-width-hypothesis-v1-doc-0015",
+        "teacher-width-hypothesis-v1-doc-0016",
+        "teacher-width-hypothesis-v1-doc-0017",
+        "teacher-width-hypothesis-v1-doc-0018",
+        "teacher-width-hypothesis-v1-doc-0019"
+      ],
+      "lcb": -0.0014105161124219369,
+      "mean": 0.008947486182053885,
+      "per_seed": {
+        "91121": 0.010101741552352906,
+        "92129": 0.012802013258139294,
+        "93133": -0.0008686050772666924,
+        "95153": 0.01375479499499003
+      },
+      "ucb": 0.015842315731570127
+    },
+    "95153": {
+      "documents": [
+        "teacher-width-hypothesis-v1-doc-0000",
+        "teacher-width-hypothesis-v1-doc-0001",
+        "teacher-width-hypothesis-v1-doc-0002",
+        "teacher-width-hypothesis-v1-doc-0003",
+        "teacher-width-hypothesis-v1-doc-0004",
+        "teacher-width-hypothesis-v1-doc-0005",
+        "teacher-width-hypothesis-v1-doc-0006",
+        "teacher-width-hypothesis-v1-doc-0007",
+        "teacher-width-hypothesis-v1-doc-0008",
+        "teacher-width-hypothesis-v1-doc-0009",
+        "teacher-width-hypothesis-v1-doc-0010",
+        "teacher-width-hypothesis-v1-doc-0011",
+        "teacher-width-hypothesis-v1-doc-0012",
+        "teacher-width-hypothesis-v1-doc-0013",
+        "teacher-width-hypothesis-v1-doc-0014",
+        "teacher-width-hypothesis-v1-doc-0015",
+        "teacher-width-hypothesis-v1-doc-0016",
+        "teacher-width-hypothesis-v1-doc-0017",
+        "teacher-width-hypothesis-v1-doc-0018",
+        "teacher-width-hypothesis-v1-doc-0019"
+      ],
+      "lcb": -0.0022286198319246345,
+      "mean": 0.009218680734435717,
+      "per_seed": {
+        "91121": 0.010101741552352906,
+        "92129": 0.012802013258139294,
+        "93133": -0.0008686050772666924,
+        "94151": 0.014839573204517367
+      },
+      "ucb": 0.017051102096835774
     }
   },
-  "decision": {
-    "frozen_no_go_changed": false,
-    "gates": {
-      "anchor_failure_reproduced": true,
-      "capacity_pass": true,
-      "clean_data_audit_pass": true,
-      "every_seed_primary_pass": true,
-      "exact_primary_compute_ratio_pass": true,
-      "exact_primary_parameter_ratio_pass": true,
-      "full_control_hypothesis_pass": true,
-      "full_control_ood_pass": true,
-      "independent_audit_pass": true,
-      "primary_hypothesis_pass": true,
-      "primary_ood_pass": true,
-      "primary_vs_comparator_pass": true
-    },
-    "interpretation": "A PASS identifies a reproducible small-model width region only. It does not validate Modal sharing, GPU speedup, OLMoE, or Qwen and does not change the frozen NO_GO_FOR_OLMOE_OR_QWEN.",
-    "verdict": "TEACHER_WIDTH_65_REPLICATION_PASS"
-  },
-  "metadata": {
-    "configuration_sha256": "98051e0a6a73f43934627262757ffaee1a359c7e407438d89b24148ef0de64b1",
-    "generated_at": "2026-07-28T19:28:55.805399+00:00",
-    "protocol_version": "pre-qwen-teacher-informed-width-fresh-replication-v1.1",
-    "seeds": [
-      91121,
-      92129,
-      93133,
-      94151,
-      95153
+  "mismatches": [],
+  "provenance": {
+    "checkpoint_hashes_unique": true,
+    "configuration_hashes": [
+      "98051e0a6a73f43934627262757ffaee1a359c7e407438d89b24148ef0de64b1"
     ],
     "source_commits": [
       "d8e90ed88a8d2ced44a6f6750ffba6a1c0bf7bb8"
-    ],
-    "teacher_tail_changes": {
-      "91121": -0.42142075300216675,
-      "92129": -0.3334815502166748,
-      "93133": -0.008910536766052246,
-      "94151": -0.20913302898406982,
-      "95153": -0.16812658309936523
+    ]
+  },
+  "rebuilt": {
+    "full-continuation-control": {
+      "hypothesis": {
+        "documents": [
+          "teacher-width-hypothesis-v1-doc-0000",
+          "teacher-width-hypothesis-v1-doc-0001",
+          "teacher-width-hypothesis-v1-doc-0002",
+          "teacher-width-hypothesis-v1-doc-0003",
+          "teacher-width-hypothesis-v1-doc-0004",
+          "teacher-width-hypothesis-v1-doc-0005",
+          "teacher-width-hypothesis-v1-doc-0006",
+          "teacher-width-hypothesis-v1-doc-0007",
+          "teacher-width-hypothesis-v1-doc-0008",
+          "teacher-width-hypothesis-v1-doc-0009",
+          "teacher-width-hypothesis-v1-doc-0010",
+          "teacher-width-hypothesis-v1-doc-0011",
+          "teacher-width-hypothesis-v1-doc-0012",
+          "teacher-width-hypothesis-v1-doc-0013",
+          "teacher-width-hypothesis-v1-doc-0014",
+          "teacher-width-hypothesis-v1-doc-0015",
+          "teacher-width-hypothesis-v1-doc-0016",
+          "teacher-width-hypothesis-v1-doc-0017",
+          "teacher-width-hypothesis-v1-doc-0018",
+          "teacher-width-hypothesis-v1-doc-0019"
+        ],
+        "lcb": -0.012282525901993113,
+        "mean": -0.00808909257253011,
+        "per_seed": {
+          "91121": -0.011140714585781097,
+          "92129": -0.009366594751675925,
+          "93133": -0.006136278311411539,
+          "94151": -0.0054019451141357425,
+          "95153": -0.008399930099646251
+        },
+        "ucb": -0.004186047958830992
+      },
+      "ood": {
+        "documents": [
+          "teacher-width-ood-v1-doc-0000",
+          "teacher-width-ood-v1-doc-0001",
+          "teacher-width-ood-v1-doc-0002",
+          "teacher-width-ood-v1-doc-0003",
+          "teacher-width-ood-v1-doc-0004",
+          "teacher-width-ood-v1-doc-0005",
+          "teacher-width-ood-v1-doc-0006",
+          "teacher-width-ood-v1-doc-0007",
+          "teacher-width-ood-v1-doc-0008",
+          "teacher-width-ood-v1-doc-0009",
+          "teacher-width-ood-v1-doc-0010",
+          "teacher-width-ood-v1-doc-0011"
+        ],
+        "lcb": -0.011306505103905993,
+        "mean": -0.0017774343490600587,
+        "per_seed": {
+          "91121": -0.011357082260979546,
+          "92129": 0.00451394584443834,
+          "93133": 0.0014481875631544327,
+          "94151": 0.010042713748084174,
+          "95153": -0.013534936639997696
+        },
+        "ucb": 0.008294804791609444
+      }
+    },
+    "magnitude-init-35": {
+      "hypothesis": {
+        "documents": [
+          "teacher-width-hypothesis-v1-doc-0000",
+          "teacher-width-hypothesis-v1-doc-0001",
+          "teacher-width-hypothesis-v1-doc-0002",
+          "teacher-width-hypothesis-v1-doc-0003",
+          "teacher-width-hypothesis-v1-doc-0004",
+          "teacher-width-hypothesis-v1-doc-0005",
+          "teacher-width-hypothesis-v1-doc-0006",
+          "teacher-width-hypothesis-v1-doc-0007",
+          "teacher-width-hypothesis-v1-doc-0008",
+          "teacher-width-hypothesis-v1-doc-0009",
+          "teacher-width-hypothesis-v1-doc-0010",
+          "teacher-width-hypothesis-v1-doc-0011",
+          "teacher-width-hypothesis-v1-doc-0012",
+          "teacher-width-hypothesis-v1-doc-0013",
+          "teacher-width-hypothesis-v1-doc-0014",
+          "teacher-width-hypothesis-v1-doc-0015",
+          "teacher-width-hypothesis-v1-doc-0016",
+          "teacher-width-hypothesis-v1-doc-0017",
+          "teacher-width-hypothesis-v1-doc-0018",
+          "teacher-width-hypothesis-v1-doc-0019"
+        ],
+        "lcb": 0.06327780501544474,
+        "mean": 0.08005459974209467,
+        "per_seed": {
+          "91121": 0.07668711741765341,
+          "92129": 0.08298059900601704,
+          "93133": 0.0813487763206164,
+          "94151": 0.08429310123125712,
+          "95153": 0.07496340473492942
+        },
+        "ucb": 0.09743803069988882
+      },
+      "ood": {
+        "documents": [
+          "teacher-width-ood-v1-doc-0000",
+          "teacher-width-ood-v1-doc-0001",
+          "teacher-width-ood-v1-doc-0002",
+          "teacher-width-ood-v1-doc-0003",
+          "teacher-width-ood-v1-doc-0004",
+          "teacher-width-ood-v1-doc-0005",
+          "teacher-width-ood-v1-doc-0006",
+          "teacher-width-ood-v1-doc-0007",
+          "teacher-width-ood-v1-doc-0008",
+          "teacher-width-ood-v1-doc-0009",
+          "teacher-width-ood-v1-doc-0010",
+          "teacher-width-ood-v1-doc-0011"
+        ],
+        "lcb": -0.07670987321270831,
+        "mean": -0.030564423402150473,
+        "per_seed": {
+          "91121": -0.028865257898966473,
+          "92129": -0.055425975057813874,
+          "93133": 0.012969606452518044,
+          "94151": -0.007024553087022568,
+          "95153": -0.0744759374194675
+        },
+        "ucb": 0.017086737950642906
+      }
+    },
+    "magnitude-init-50": {
+      "hypothesis": {
+        "documents": [
+          "teacher-width-hypothesis-v1-doc-0000",
+          "teacher-width-hypothesis-v1-doc-0001",
+          "teacher-width-hypothesis-v1-doc-0002",
+          "teacher-width-hypothesis-v1-doc-0003",
+          "teacher-width-hypothesis-v1-doc-0004",
+          "teacher-width-hypothesis-v1-doc-0005",
+          "teacher-width-hypothesis-v1-doc-0006",
+          "teacher-width-hypothesis-v1-doc-0007",
+          "teacher-width-hypothesis-v1-doc-0008",
+          "teacher-width-hypothesis-v1-doc-0009",
+          "teacher-width-hypothesis-v1-doc-0010",
+          "teacher-width-hypothesis-v1-doc-0011",
+          "teacher-width-hypothesis-v1-doc-0012",
+          "teacher-width-hypothesis-v1-doc-0013",
+          "teacher-width-hypothesis-v1-doc-0014",
+          "teacher-width-hypothesis-v1-doc-0015",
+          "teacher-width-hypothesis-v1-doc-0016",
+          "teacher-width-hypothesis-v1-doc-0017",
+          "teacher-width-hypothesis-v1-doc-0018",
+          "teacher-width-hypothesis-v1-doc-0019"
+        ],
+        "lcb": 0.020143947017689557,
+        "mean": 0.030967250665028895,
+        "per_seed": {
+          "91121": 0.02724357694387436,
+          "92129": 0.03526584953069688,
+          "93133": 0.024933740993340815,
+          "94151": 0.04027310113112133,
+          "95153": 0.02711998472611109
+        },
+        "ucb": 0.041967563579479845
+      },
+      "ood": {
+        "documents": [
+          "teacher-width-ood-v1-doc-0000",
+          "teacher-width-ood-v1-doc-0001",
+          "teacher-width-ood-v1-doc-0002",
+          "teacher-width-ood-v1-doc-0003",
+          "teacher-width-ood-v1-doc-0004",
+          "teacher-width-ood-v1-doc-0005",
+          "teacher-width-ood-v1-doc-0006",
+          "teacher-width-ood-v1-doc-0007",
+          "teacher-width-ood-v1-doc-0008",
+          "teacher-width-ood-v1-doc-0009",
+          "teacher-width-ood-v1-doc-0010",
+          "teacher-width-ood-v1-doc-0011"
+        ],
+        "lcb": -0.06546901348564357,
+        "mean": -0.024856428305308025,
+        "per_seed": {
+          "91121": -0.06818289226955838,
+          "92129": -0.03178266021940443,
+          "93133": 0.01620932420094808,
+          "94151": 0.006225466728210452,
+          "95153": -0.04675137996673583
+        },
+        "ucb": 0.01162678069538535
+      }
+    },
+    "magnitude-init-65": {
+      "hypothesis": {
+        "documents": [
+          "teacher-width-hypothesis-v1-doc-0000",
+          "teacher-width-hypothesis-v1-doc-0001",
+          "teacher-width-hypothesis-v1-doc-0002",
+          "teacher-width-hypothesis-v1-doc-0003",
+          "teacher-width-hypothesis-v1-doc-0004",
+          "teacher-width-hypothesis-v1-doc-0005",
+          "teacher-width-hypothesis-v1-doc-0006",
+          "teacher-width-hypothesis-v1-doc-0007",
+          "teacher-width-hypothesis-v1-doc-0008",
+          "teacher-width-hypothesis-v1-doc-0009",
+          "teacher-width-hypothesis-v1-doc-0010",
+          "teacher-width-hypothesis-v1-doc-0011",
+          "teacher-width-hypothesis-v1-doc-0012",
+          "teacher-width-hypothesis-v1-doc-0013",
+          "teacher-width-hypothesis-v1-doc-0014",
+          "teacher-width-hypothesis-v1-doc-0015",
+          "teacher-width-hypothesis-v1-doc-0016",
+          "teacher-width-hypothesis-v1-doc-0017",
+          "teacher-width-hypothesis-v1-doc-0018",
+          "teacher-width-hypothesis-v1-doc-0019"
+        ],
+        "lcb": 0.0009658076241612459,
+        "mean": 0.010125903586546579,
+        "per_seed": {
+          "91121": 0.010101741552352906,
+          "92129": 0.012802013258139294,
+          "93133": -0.0008686050772666924,
+          "94151": 0.014839573204517367,
+          "95153": 0.01375479499499003
+        },
+        "ucb": 0.016712581276893616
+      },
+      "ood": {
+        "documents": [
+          "teacher-width-ood-v1-doc-0000",
+          "teacher-width-ood-v1-doc-0001",
+          "teacher-width-ood-v1-doc-0002",
+          "teacher-width-ood-v1-doc-0003",
+          "teacher-width-ood-v1-doc-0004",
+          "teacher-width-ood-v1-doc-0005",
+          "teacher-width-ood-v1-doc-0006",
+          "teacher-width-ood-v1-doc-0007",
+          "teacher-width-ood-v1-doc-0008",
+          "teacher-width-ood-v1-doc-0009",
+          "teacher-width-ood-v1-doc-0010",
+          "teacher-width-ood-v1-doc-0011"
+        ],
+        "lcb": -0.033475549221038806,
+        "mean": -0.010897941059536405,
+        "per_seed": {
+          "91121": -0.014656729168362088,
+          "92129": -0.012188441223568386,
+          "93133": 0.0005646612909105085,
+          "94151": -0.026664369636111785,
+          "95153": -0.0015448265605502653
+        },
+        "ucb": 0.011506579783227675
+      }
+    },
+    "magnitude-init-75": {
+      "hypothesis": {
+        "documents": [
+          "teacher-width-hypothesis-v1-doc-0000",
+          "teacher-width-hypothesis-v1-doc-0001",
+          "teacher-width-hypothesis-v1-doc-0002",
+          "teacher-width-hypothesis-v1-doc-0003",
+          "teacher-width-hypothesis-v1-doc-0004",
+          "teacher-width-hypothesis-v1-doc-0005",
+          "teacher-width-hypothesis-v1-doc-0006",
+          "teacher-width-hypothesis-v1-doc-0007",
+          "teacher-width-hypothesis-v1-doc-0008",
+          "teacher-width-hypothesis-v1-doc-0009",
+          "teacher-width-hypothesis-v1-doc-0010",
+          "teacher-width-hypothesis-v1-doc-0011",
+          "teacher-width-hypothesis-v1-doc-0012",
+          "teacher-width-hypothesis-v1-doc-0013",
+          "teacher-width-hypothesis-v1-doc-0014",
+          "teacher-width-hypothesis-v1-doc-0015",
+          "teacher-width-hypothesis-v1-doc-0016",
+          "teacher-width-hypothesis-v1-doc-0017",
+          "teacher-width-hypothesis-v1-doc-0018",
+          "teacher-width-hypothesis-v1-doc-0019"
+        ],
+        "lcb": -0.006044591647883257,
+        "mean": -0.00035336057345072407,
+        "per_seed": {
+          "91121": 2.542982498804744e-05,
+          "92129": -0.0034661253293355307,
+          "93133": -0.0034715309739112854,
+          "94151": 0.0070402105649312345,
+          "95153": -0.0018947869539260864
+        },
+        "ucb": 0.005304387624065081
+      },
+      "ood": {
+        "documents": [
+          "teacher-width-ood-v1-doc-0000",
+          "teacher-width-ood-v1-doc-0001",
+          "teacher-width-ood-v1-doc-0002",
+          "teacher-width-ood-v1-doc-0003",
+          "teacher-width-ood-v1-doc-0004",
+          "teacher-width-ood-v1-doc-0005",
+          "teacher-width-ood-v1-doc-0006",
+          "teacher-width-ood-v1-doc-0007",
+          "teacher-width-ood-v1-doc-0008",
+          "teacher-width-ood-v1-doc-0009",
+          "teacher-width-ood-v1-doc-0010",
+          "teacher-width-ood-v1-doc-0011"
+        ],
+        "lcb": -0.026708432303534604,
+        "mean": -0.010942255126105416,
+        "per_seed": {
+          "91121": -0.02180009418063694,
+          "92129": -0.016192866696251765,
+          "93133": 0.004997637536790636,
+          "94151": -0.004640532864464652,
+          "95153": -0.017075419425964355
+        },
+        "ucb": 0.004714309440718731
+      }
     }
   }
 }

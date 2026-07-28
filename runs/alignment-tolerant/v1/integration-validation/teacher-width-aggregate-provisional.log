@@ -1,6 +1,6 @@
 # Teacher-informed narrow width — fresh replication v1
 
-**Decision:** **TEACHER_WIDTH_65_REPLICATION_PASS**
+**Decision:** **TEACHER_WIDTH_65_REPLICATION_FAIL**
 
 | Candidate | Params | Compute | Hyp Δ | UCB95 | OOD Δ | UCB95 | Worst seed | KL hyp | Top-1 hyp |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -25,8 +25,9 @@
 - `exact_primary_parameter_ratio_pass`: `True`.
 - `exact_primary_compute_ratio_pass`: `True`.
 - `clean_data_audit_pass`: `True`.
-- `independent_audit_pass`: `True`.
+- `independent_audit_pass`: `False`.
 
 No convergence claim is made for the teachers; tail changes are preserved in metrics.json.
 No runtime claim is made. Width ratios are exact routed matrix-operation and expert-parameter proxies.
 The frozen NO_GO_FOR_OLMOE_OR_QWEN is unchanged.
+

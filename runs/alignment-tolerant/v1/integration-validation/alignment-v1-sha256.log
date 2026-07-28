@@ -1,0 +1,14 @@
+results/pre-qwen-alignment-tolerant/v1/VERDICT.md: OK
+results/pre-qwen-alignment-tolerant/v1/adversarial-audit/VERDICT.md: OK
+results/pre-qwen-alignment-tolerant/v1/adversarial-audit/audit.json: OK
+results/pre-qwen-alignment-tolerant/v1/metrics.json: OK
+results/pre-qwen-alignment-tolerant/v1/seed-91121/frozen-candidates-seed-91121.pt: OK
+results/pre-qwen-alignment-tolerant/v1/seed-91121/seed-91121.json: OK
+results/pre-qwen-alignment-tolerant/v1/seed-92129/frozen-candidates-seed-92129.pt: OK
+results/pre-qwen-alignment-tolerant/v1/seed-92129/seed-92129.json: OK
+results/pre-qwen-alignment-tolerant/v1/seed-93133/frozen-candidates-seed-93133.pt: OK
+results/pre-qwen-alignment-tolerant/v1/seed-93133/seed-93133.json: OK
+results/pre-qwen-alignment-tolerant/v1/seed-94151/frozen-candidates-seed-94151.pt: OK
+results/pre-qwen-alignment-tolerant/v1/seed-94151/seed-94151.json: OK
+results/pre-qwen-alignment-tolerant/v1/seed-95153/frozen-candidates-seed-95153.pt: OK
+results/pre-qwen-alignment-tolerant/v1/seed-95153/seed-95153.json: OK
