@@ -5,7 +5,6 @@ on:
     branches:
       - agent/alignment-tolerant-v1
     paths:
-      - ".github/import/handoff-full-v1/**"
       - ".github/workflows/import-full-handoff-v1.yml"
   workflow_dispatch:
 
@@ -34,8 +33,12 @@ jobs:
           mkdir -p runs/handoff-import-v1
           expected_file=/tmp/expected-fragments.sha256
           cat > "$expected_file" <<'EOF'
-          a42b828e65e7041917638a8c495a311b8c3c7eda26a80ed576ffa059aebe8d84  .github/import/handoff-full-v1/part-00.b64
-          2bc670a080738f59a937d29755a981370185bb9e7735e71106336da768cdbf11  .github/import/handoff-full-v1/part-01.b64
+          1cc81745a7d457d81392673d04ea965de5f639e2f8e1ba59548e8e5bce6633f0  .github/import/handoff-full-v1/part-00-00.b64
+          1c985d22391de9e7e72fa25deba0a80dbfe9d733b73d5efeec1e2e619e0d2692  .github/import/handoff-full-v1/part-00-01.b64
+          e96d15a28e2b3d2fead79c043283e8bc5f71a3865087534b34d1c879f6dc74dc  .github/import/handoff-full-v1/part-00-02.b64
+          427357e669ef238270135f64aec9cc66478d2e4f4d18bc3fe4becbe7400e460a  .github/import/handoff-full-v1/part-01-00.b64
+          12dca03b18d7c04b8763a818660bdf86a7fa0e9d4a6214f24131de0b2be3740d  .github/import/handoff-full-v1/part-01-01.b64
+          b3a40222d8e8dab9ed0842d6b1a71d003ec5dc7ea0134554b5001433ff29b617  .github/import/handoff-full-v1/part-01-02.b64
           46bea8f5e8d881c9850de7c4f7595eeaf0d732d48627f38aef1ad0c19b271c67  .github/import/handoff-full-v1/part-02.b64
           4f55a732dc34f45d34d8670a2fbe3b1d83c6393c4990fabc390f0220b06fe10f  .github/import/handoff-full-v1/part-03.b64
           55c7c47e96f76b89e82d54b90c436329bb43d105dba1c0fb2c0f92d23c118c11  .github/import/handoff-full-v1/part-04.b64
