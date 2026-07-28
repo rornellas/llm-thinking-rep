@@ -50,7 +50,7 @@ pexpect==4.9.0
 pipx==1.16.0
 platformdirs==4.10.1
 pluggy==1.6.0
--e git+https://github.com/rornellas/llm-thinking-rep@93ade7827598cd46c31e3cb01d06162a78feb424#egg=pre_qwen_modal_certification
+-e git+https://github.com/rornellas/llm-thinking-rep@d8e90ed88a8d2ced44a6f6750ffba6a1c0bf7bb8#egg=pre_qwen_modal_certification
 ptyprocess==0.7.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8

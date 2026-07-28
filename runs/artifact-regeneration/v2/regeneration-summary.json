@@ -25,9 +25,69 @@
         "--output-dir",
         "results/pre-qwen-teacher-width-fresh/v1/seed-91121"
       ],
-      "returncode": 1,
-      "seconds": 1.4224419593811035
+      "returncode": 0,
+      "seconds": 171.49521565437317
+    },
+    {
+      "seed": 92129,
+      "command": [
+        "/usr/bin/python",
+        "scripts/run_teacher_width_fresh_seed.py",
+        "--config",
+        "configs/pre_qwen_teacher_width_fresh_v1.yaml",
+        "--seed",
+        "92129",
+        "--output-dir",
+        "results/pre-qwen-teacher-width-fresh/v1/seed-92129"
+      ],
+      "returncode": 0,
+      "seconds": 173.41784858703613
+    },
+    {
+      "seed": 93133,
+      "command": [
+        "/usr/bin/python",
+        "scripts/run_teacher_width_fresh_seed.py",
+        "--config",
+        "configs/pre_qwen_teacher_width_fresh_v1.yaml",
+        "--seed",
+        "93133",
+        "--output-dir",
+        "results/pre-qwen-teacher-width-fresh/v1/seed-93133"
+      ],
+      "returncode": 0,
+      "seconds": 167.49406790733337
+    },
+    {
+      "seed": 94151,
+      "command": [
+        "/usr/bin/python",
+        "scripts/run_teacher_width_fresh_seed.py",
+        "--config",
+        "configs/pre_qwen_teacher_width_fresh_v1.yaml",
+        "--seed",
+        "94151",
+        "--output-dir",
+        "results/pre-qwen-teacher-width-fresh/v1/seed-94151"
+      ],
+      "returncode": 0,
+      "seconds": 166.82374501228333
+    },
+    {
+      "seed": 95153,
+      "command": [
+        "/usr/bin/python",
+        "scripts/run_teacher_width_fresh_seed.py",
+        "--config",
+        "configs/pre_qwen_teacher_width_fresh_v1.yaml",
+        "--seed",
+        "95153",
+        "--output-dir",
+        "results/pre-qwen-teacher-width-fresh/v1/seed-95153"
+      ],
+      "returncode": 0,
+      "seconds": 168.08650302886963
     }
   ],
-  "source_commit": "93ade7827598cd46c31e3cb01d06162a78feb424"
+  "source_commit": "d8e90ed88a8d2ced44a6f6750ffba6a1c0bf7bb8"
 }
