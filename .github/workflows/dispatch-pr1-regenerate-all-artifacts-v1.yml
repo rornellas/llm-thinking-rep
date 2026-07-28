@@ -1,0 +1,31 @@
+name: Dispatch PR1 full artifact regeneration v1
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  actions: write
+  contents: read
+  pull-requests: read
+  issues: read
+
+jobs:
+  dispatch:
+    if: >-
+      github.event.issue.pull_request &&
+      github.event.issue.number == 1 &&
+      github.event.comment.author_association == 'OWNER' &&
+      contains(github.event.comment.body, '/dispatch-regenerate-all-artifacts-v1')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch regeneration on PR branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'regenerate-and-version-all-artifacts-v1.yml',
+              ref: 'agent/pre-qwen-certification-v2'
+            });
