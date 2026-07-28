@@ -1,5 +1,6 @@
 name: Import expert-distillation v2 into experiment branch
 
+# Retriggered after GitHub registered the dispatcher on the default branch.
 on:
   push:
     branches:
