@@ -1,4 +1,4 @@
-name: Import audited pre-Qwen research bundle
+name: Diagnose pre-Qwen research bundle
 
 on:
   pull_request:
@@ -12,49 +12,45 @@ permissions:
   contents: write
 
 concurrency:
-  group: import-preqwen-latest-pr-${{ github.event.pull_request.number || github.run_id }}
+  group: diagnose-preqwen-latest-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: false
 
 jobs:
-  import:
+  diagnose:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - name: Checkout import branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
-      - name: Diagnose, reconstruct and verify bundle
+      - name: Persist reconstruction diagnostics
         shell: bash
         run: |
-          set -euo pipefail
-          find .github/import/preqwen-latest -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
+          set -u
+          report=IMPORT_DIAGNOSTIC.txt
+          : > "$report"
+          find .github/import/preqwen-latest -maxdepth 1 -type f -printf '%f %s bytes\n' | sort >> "$report"
           for file in .github/import/preqwen-latest/part-*.b64; do
-            printf '%s ' "$file"
-            sha256sum "$file"
+            sha256sum "$file" >> "$report"
           done
           cat .github/import/preqwen-latest/part-*.b64 > /tmp/preqwen-latest.b64
-          printf 'combined-base64 '; sha256sum /tmp/preqwen-latest.b64
-          base64 -d /tmp/preqwen-latest.b64 > /tmp/preqwen-latest.tar.xz
-          printf 'reconstructed-tar '; sha256sum /tmp/preqwen-latest.tar.xz
-          xz -t /tmp/preqwen-latest.tar.xz
-          echo "3b53c763142b8f0cbaadee11a5fad0ece24a0a24fa32dabc777f6dc1793a0143  /tmp/preqwen-latest.tar.xz" | sha256sum -c -
-          tar -xJf /tmp/preqwen-latest.tar.xz -C "$GITHUB_WORKSPACE"
-          sha256sum -c LATEST_RESEARCH_MANIFEST.sha256
-          python -m compileall -q pre_qwen_certification tests
+          printf 'combined-base64 ' >> "$report"; sha256sum /tmp/preqwen-latest.b64 >> "$report"
+          base64 -d /tmp/preqwen-latest.b64 > /tmp/preqwen-latest.tar.xz 2>> "$report"
+          printf 'base64_rc=%s\n' "$?" >> "$report"
+          printf 'reconstructed-tar ' >> "$report"; sha256sum /tmp/preqwen-latest.tar.xz >> "$report"
+          xz -t /tmp/preqwen-latest.tar.xz 2>> "$report"
+          printf 'xz_rc=%s\n' "$?" >> "$report"
+          cat "$report"
 
-      - name: Commit verified research tree
+      - name: Commit diagnostic
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .github/import/preqwen-latest .github/import/preqwen-curated
-          rm -f .github/workflows/_import-preqwen-latest.yml
-          rm -f .github/workflows/_export-base-tree.yml BASE_TREE_SHA.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "research: add audited pre-Qwen certification and selective MoE preregistration"
+          git add IMPORT_DIAGNOSTIC.txt
+          git commit -m "ci: persist pre-Qwen import diagnostic" || true
           git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
