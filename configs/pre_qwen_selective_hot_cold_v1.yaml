@@ -1,0 +1,122 @@
+protocol_version: pre-qwen-selective-hot-cold-screen-v1
+status: exploratory_hypothesis_development
+scientific_question: Can exact preservation of training-selected high-contribution experts plus a shared Modal bank for the remaining experts improve the parameter/compute/quality frontier relative to uniform compression?
+warning: This is a preregistered development screen, not a sealed confirmation. It cannot reverse the frozen pre-Qwen v1.3 NO-GO decision. Selection may use training captures only; evaluation records may not influence hot-expert identity, architecture, or thresholds.
+threads: 2
+teacher_source:
+  config: configs/pre_qwen_mature_teacher_v1.yaml
+  checkpoint_dir: results/pre-qwen-mature-teacher/v1
+  convergence_status: not_demonstrated__loss_still_decreasing_at_final_checkpoint
+model:
+  seq_len: 48
+  batch_size: 8
+  d_model: 24
+  n_heads: 4
+  n_layers: 2
+  d_ff: 40
+  n_experts: 12
+  top_k: 4
+  teacher_steps: 900
+  learning_rate: 0.0004
+  student_learning_rate: 0.001
+  weight_decay: 0.02
+  aux_weight: 0.01
+  grad_clip: 1.0
+seeds:
+- 62131
+- 63137
+- 64151
+data:
+  train_documents: 12
+  train_seed: 10001
+  hypothesis_documents: 12
+  hypothesis_seed: 73031
+  hypothesis_split: selective-hypothesis-v1
+  ood_split: selective-ood-v2
+  windows_per_document: 2
+  evaluation_window_seed: 11939
+  capture_batches: 16
+  capture_batch_size: 8
+  local_batch_size: 96
+  near_duplicate_threshold: 0.85
+selection:
+  primary_metric: weighted-output-energy
+  definition: E[||pi_e(x) f_e(x)||_2^2] on frozen teacher routes and training captures
+  limitation: Diagonal local-ablation proxy; cross-expert cancellation and downstream loss curvature are not represented.
+  random_seed_offset: 44017
+primary_candidate: selective-energy-h3-k0
+primary_parameter_baseline: narrow-parameter-ceil
+primary_compute_baseline: narrow-train-compute-ceil
+primary_random_control: selective-random-h3-k0
+candidates:
+- name: selective-energy-h3-k0
+  metric: weighted-output-energy
+  hot_count: 3
+  cold_rank: 0
+  objective: aggregate
+  local_steps: 540
+  joint_steps: 180
+  role: primary
+- name: selective-random-h3-k0
+  metric: random
+  hot_count: 3
+  cold_rank: 0
+  objective: aggregate
+  local_steps: 540
+  joint_steps: 180
+  role: negative_selection_control
+- name: selective-frequency-h3-k0
+  metric: routing-frequency
+  hot_count: 3
+  cold_rank: 0
+  objective: aggregate
+  local_steps: 540
+  joint_steps: 180
+  role: scoring_ablation
+- name: selective-gate-h3-k0
+  metric: gate-mass
+  hot_count: 3
+  cold_rank: 0
+  objective: aggregate
+  local_steps: 540
+  joint_steps: 180
+  role: scoring_ablation
+- name: selective-energy-h2-k1
+  metric: weighted-output-energy
+  hot_count: 2
+  cold_rank: 1
+  objective: aggregate
+  local_steps: 540
+  joint_steps: 180
+  role: allocation_ablation
+- name: selective-energy-h4-k0
+  metric: weighted-output-energy
+  hot_count: 4
+  cold_rank: 0
+  objective: aggregate
+  local_steps: 540
+  joint_steps: 180
+  role: allocation_ablation
+baselines:
+  parameter_match_rounding: ceil
+  compute_match_rounding: ceil
+  compute_match_source: primary candidate code-adjusted route cost on training captures only
+  local_steps: 540
+  joint_steps: 180
+statistics:
+  bootstrap_samples: 12000
+  bootstrap_seed: 131071
+  confidence: 0.95
+gates:
+  primary_teacher_hypothesis_ucb_nats: 0.03
+  primary_teacher_ood_ucb_nats: 0.05
+  primary_vs_parameter_ucb_nats: 0.0
+  primary_vs_compute_margin_nats: 0.005
+  primary_vs_random_ucb_nats: 0.0
+  primary_train_adjusted_compute_max: 0.75
+  every_seed_hypothesis_loss_max: 0.06
+post_result_rules:
+- Do not alter candidate definitions, seeds, data, or gates after observing results.
+- A pass authorizes only a new sealed protocol; it is not a GO for OLMoE or Qwen.
+- A failure must be preserved and interpreted against both parameter-matched and route-compute-matched baselines.
+- Runtime speed is not claimed because this implementation is not a fused production kernel.
