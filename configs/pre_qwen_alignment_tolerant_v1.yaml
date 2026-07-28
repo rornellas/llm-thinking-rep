@@ -1,0 +1,126 @@
+protocol_version: pre-qwen-alignment-tolerant-shared-low-rank-v1
+status: preregistered_before_materializing_new_hypothesis_or_ood_documents
+purpose: >-
+  Test whether an alignment-tolerant full-width expert family, represented as a
+  shared full-rank base plus expert-specific bilateral low-rank residuals, can
+  match or beat the frozen teacher-informed conventional narrow-65 baseline on
+  fresh held-out documents while using less than 65% of the expert parameters
+  and routed matrix-operation proxy.
+claim_scope: exploratory_fixed_teacher_replication
+threads: 1
+source:
+  teacher_width_config: configs/pre_qwen_teacher_width_fresh_v1.yaml
+  teacher_width_results: results/pre-qwen-teacher-width-fresh/v1
+  required_source_verdict: TEACHER_WIDTH_65_REPLICATION_PASS
+  baseline_state: magnitude-init-65
+  full_control_state: full-continuation-control
+model:
+  seq_len: 48
+  batch_size: 8
+  d_model: 24
+  n_heads: 4
+  n_layers: 2
+  d_ff: 40
+  n_experts: 12
+  top_k: 4
+  teacher_steps: 2200
+  student_steps: 600
+  learning_rate: 0.0004
+  student_learning_rate: 0.001
+  weight_decay: 0.02
+  aux_weight: 0.01
+  grad_clip: 1.0
+seeds:
+  - 91121
+  - 92129
+  - 93133
+  - 94151
+  - 95153
+data:
+  train_documents: 28
+  train_seed: 24017
+  train_split: teacher-width-train-v1
+  hypothesis_documents: 20
+  hypothesis_seed: 89177
+  hypothesis_split: alignment-hypothesis-v1
+  ood_split: alignment-ood-v1
+  windows_per_document: 3
+  evaluation_window_seed: 31721
+  capture_batches: 36
+  capture_batch_size: 8
+  near_duplicate_threshold: 0.70
+training:
+  stage1_steps: 320
+  local_steps: 600
+  joint_steps: 180
+  local_batch_size: 128
+  joint_local_weight: 0.60
+  joint_kl_weight: 0.35
+  joint_ce_weight: 0.05
+candidates:
+  - name: shared-lora-r4
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 4
+    role: lower_compute_anchor
+    expected_parameter_ratio: 0.35
+    expected_compute_ratio: 0.5166666666666667
+  - name: shared-lora-r5
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 5
+    role: primary
+    expected_parameter_ratio: 0.4166666666666667
+    expected_compute_ratio: 0.5833333333333334
+  - name: shared-lora-r6
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 6
+    role: capacity_control_at_65_compute
+    expected_parameter_ratio: 0.48333333333333334
+    expected_compute_ratio: 0.65
+  - name: narrow65-frozen-baseline
+    architecture: conventional_teacher_informed_narrow
+    width: 26
+    role: frozen_primary_baseline
+    expected_parameter_ratio: 0.65
+    expected_compute_ratio: 0.65
+  - name: full-continuation-control
+    architecture: conventional_full_width
+    width: 40
+    role: frozen_recovery_control
+    expected_parameter_ratio: 1.0
+    expected_compute_ratio: 1.0
+statistics:
+  bootstrap_samples: 20000
+  bootstrap_seed: 417103
+  confidence: 0.95
+gates:
+  primary_hypothesis_ucb_max: 0.030
+  primary_ood_ucb_max: 0.050
+  every_seed_primary_hypothesis_delta_max: 0.060
+  primary_minus_narrow65_ucb_max: 0.000
+  capacity_hypothesis_ucb_max: 0.030
+  capacity_minus_narrow65_ucb_max: 0.000
+  full_control_hypothesis_ucb_max: 0.010
+  full_control_ood_ucb_max: 0.015
+  primary_parameter_ratio_strict_max: 0.65
+  primary_compute_ratio_strict_max: 0.65
+  arithmetic_tolerance: 0.000001
+  require_independent_audit: true
+decision_policy:
+  pass: >-
+    The rank-5 primary passes absolute hypothesis and OOD fidelity, every-seed,
+    arithmetic, clean-data, full-control, and independent-audit gates; its paired
+    crossed interval is non-inferior to the frozen narrow-65 baseline; and both
+    parameter and compute proxies are strictly below 65%.
+  promising: >-
+    The rank-5 primary misses only paired non-inferiority while rank-6, at exactly
+    65% compute and below 65% parameters, matches or beats narrow-65. This is a
+    development signal only and does not satisfy the less-than-65 compute target.
+  fail: >-
+    Rank-5 fails absolute fidelity, every-seed robustness, paired comparison,
+    arithmetic, data, or audit gates, and rank-6 does not provide a credible
+    capacity-control rescue.
+  consequence: >-
+    No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. A PASS only justifies a fresh
+    replication on plateaued teachers and a runtime implementation of the factorized
+    execution. A FAIL falsifies this rank range and initialization under fixed small
+    teachers; it does not falsify all alignment-tolerant architectures.
