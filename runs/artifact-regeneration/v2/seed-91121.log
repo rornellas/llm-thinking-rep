@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/runner/work/llm-thinking-rep/llm-thinking-rep/scripts/run_teacher_width_fresh_seed.py", line 308, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/runner/work/llm-thinking-rep/llm-thinking-rep/scripts/run_teacher_width_fresh_seed.py", line 148, in main
+    require_clean()
+  File "/home/runner/work/llm-thinking-rep/llm-thinking-rep/scripts/run_teacher_width_fresh_seed.py", line 65, in require_clean
+    raise RuntimeError("source tree must be committed and clean before a seed run")
+RuntimeError: source tree must be committed and clean before a seed run

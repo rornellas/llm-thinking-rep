@@ -1,0 +1,33 @@
+{
+  "runner": "scripts/run_teacher_width_fresh_seed.py",
+  "options": [
+    "--config",
+    "--output-dir",
+    "--seed"
+  ],
+  "seeds": [
+    91121,
+    92129,
+    93133,
+    94151,
+    95153
+  ],
+  "commands": [
+    {
+      "seed": 91121,
+      "command": [
+        "/usr/bin/python",
+        "scripts/run_teacher_width_fresh_seed.py",
+        "--config",
+        "configs/pre_qwen_teacher_width_fresh_v1.yaml",
+        "--seed",
+        "91121",
+        "--output-dir",
+        "results/pre-qwen-teacher-width-fresh/v1/seed-91121"
+      ],
+      "returncode": 1,
+      "seconds": 1.4224419593811035
+    }
+  ],
+  "source_commit": "93ade7827598cd46c31e3cb01d06162a78feb424"
+}

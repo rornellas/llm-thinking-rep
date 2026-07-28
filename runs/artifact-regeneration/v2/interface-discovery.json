@@ -1,4 +1,100 @@
 {
-  "scripts": [],
-  "configs": []
+  "scripts": [
+    {
+      "path": "scripts/aggregate_teacher_width_fresh.py",
+      "options": [
+        {
+          "names": [
+            "--config"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "ROOT / 'configs/pre_qwen_teacher_width_fresh_v1.yaml'"
+          }
+        },
+        {
+          "names": [
+            "--output-dir"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "ROOT / 'results/pre-qwen-teacher-width-fresh/v1'"
+          }
+        },
+        {
+          "names": [
+            "--audit-path"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "None"
+          }
+        }
+      ],
+      "help_returncode": 0,
+      "help": "usage: aggregate_teacher_width_fresh.py [-h] [--config CONFIG]\n                                        [--output-dir OUTPUT_DIR]\n                                        [--audit-path AUDIT_PATH]\n\noptions:\n  -h, --help            show this help message and exit\n  --config CONFIG\n  --output-dir OUTPUT_DIR\n  --audit-path AUDIT_PATH\n"
+    },
+    {
+      "path": "scripts/audit_teacher_width_fresh.py",
+      "options": [
+        {
+          "names": [
+            "--config"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "ROOT / 'configs/pre_qwen_teacher_width_fresh_v1.yaml'"
+          }
+        },
+        {
+          "names": [
+            "--output-dir"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "ROOT / 'results/pre-qwen-teacher-width-fresh/v1'"
+          }
+        }
+      ],
+      "help_returncode": 0,
+      "help": "usage: audit_teacher_width_fresh.py [-h] [--config CONFIG]\n                                    [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --config CONFIG\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "path": "scripts/run_teacher_width_fresh_seed.py",
+      "options": [
+        {
+          "names": [
+            "--seed"
+          ],
+          "keywords": {
+            "type": "int",
+            "required": "True"
+          }
+        },
+        {
+          "names": [
+            "--config"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "ROOT / 'configs/pre_qwen_teacher_width_fresh_v1.yaml'"
+          }
+        },
+        {
+          "names": [
+            "--output-dir"
+          ],
+          "keywords": {
+            "type": "Path",
+            "default": "ROOT / 'results/pre-qwen-teacher-width-fresh/v1'"
+          }
+        }
+      ],
+      "help_returncode": 0,
+      "help": "usage: run_teacher_width_fresh_seed.py [-h] --seed SEED [--config CONFIG]\n                                       [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --seed SEED\n  --config CONFIG\n  --output-dir OUTPUT_DIR\n"
+    }
+  ],
+  "configs": [
+    "configs/pre_qwen_teacher_width_fresh_v1.yaml"
+  ]
 }
