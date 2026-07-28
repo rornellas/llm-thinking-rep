@@ -1,0 +1,113 @@
+name: Import canonical research artifacts v4
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-canonical-research-artifacts-v4
+  cancel-in-progress: false
+
+env:
+  ARCHIVE_SHA256: af08cb79031ebefbae626e92760881461611a7c7927fb0bf90cb5b3dbc9032fb
+  ARCHIVE_BYTES: "142664"
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout dispatch ref
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify canonical archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/canonical-light-v4.tar.xz
+          mapfile -d '' parts < <(find .github/import/canonical-light-v4 -type f -name 'part-*.b64' -print0 | sort -z)
+          [[ "${#parts[@]}" -eq 10 ]] || { echo "expected 10 parts, found ${#parts[@]}" >&2; exit 1; }
+          cat "${parts[@]}" | base64 -d > "$archive"
+          actual_sha="$(sha256sum "$archive" | awk '{print $1}')"
+          actual_bytes="$(stat -c %s "$archive")"
+          [[ "$actual_sha" == "$ARCHIVE_SHA256" ]] || { echo "SHA mismatch: $actual_sha" >&2; exit 1; }
+          [[ "$actual_bytes" == "$ARCHIVE_BYTES" ]] || { echo "size mismatch: $actual_bytes" >&2; exit 1; }
+          xz --test "$archive"
+          tar -tJf "$archive" >/dev/null
+
+      - name: Extract canonical tree and preserve archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/canonical-light-v4.tar.xz
+          tar -xJf "$archive" -C "$GITHUB_WORKSPACE"
+          mkdir -p artifacts/2026-07-28/delivery runs
+          cp "$archive" artifacts/2026-07-28/delivery/canonical-light-v4.tar.xz
+          rm -rf .github/import/canonical-light-v4
+          rm -rf .github/import/all-current-research-minimal-v1
+          cat > runs/canonical-light-v4-import.json <<JSON
+          {
+            "status": "archive-verified-and-extracted",
+            "archive": "artifacts/2026-07-28/delivery/canonical-light-v4.tar.xz",
+            "sha256": "${ARCHIVE_SHA256}",
+            "bytes": ${ARCHIVE_BYTES},
+            "source_commit": "$(git rev-parse HEAD)",
+            "workflow_run_id": ${GITHUB_RUN_ID},
+            "fragment_count": 10
+          }
+          JSON
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.3'
+          python -m pip install 'numpy>=2.0' 'PyYAML>=6.0' 'pytest>=8.0'
+          python -m pip install -e .
+
+      - name: Validate canonical tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. pytest -q 2>&1 | tee runs/canonical-light-v4-pytest.log
+          python -m compileall -q pre_qwen_certification scripts
+          test -s docs/handoffs/HANDOFF_MODAL_MOE_RESEARCH_2026-07-28_FULL.md
+          test -s docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md
+          test -s docs/methodology/ARTIFACT_VERSIONING_POLICY.md
+          test -s results/VERDICT.md
+          test -s results/PRE_QWEN_GATE_STATUS.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('runs/canonical-light-v4-import.json')
+          data=json.loads(p.read_text())
+          data.update({'status':'validated','pytest':'passed','compileall':'passed'})
+          p.write_text(json.dumps(data,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Build manifests and clean generated caches
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -type d \( -name __pycache__ -o -name .pytest_cache -o -name '*.egg-info' \) -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          mkdir -p artifacts/2026-07-28
+          find configs docs pre_qwen_certification scripts tests results runs artifacts/2026-07-28/delivery \
+            -type f -print0 | sort -z | xargs -0 sha256sum \
+            > artifacts/2026-07-28/CANONICAL_LIGHT_V4_MANIFEST.sha256
+          sha256sum -c artifacts/2026-07-28/CANONICAL_LIGHT_V4_MANIFEST.sha256
+
+      - name: Commit validated canonical tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'research: import canonical source configs audits results and handoffs'
+          git push origin HEAD:${GITHUB_REF_NAME}
