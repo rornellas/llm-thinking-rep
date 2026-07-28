@@ -1,0 +1,164 @@
+name: Run alignment-tolerant shared low-rank screen v1
+
+on:
+  push:
+    branches:
+      - agent/alignment-tolerant-v1
+    paths:
+      - "configs/pre_qwen_alignment_tolerant_v1.yaml"
+      - "docs/prereg/PRE_QWEN_ALIGNMENT_TOLERANT_V1.md"
+      - "pre_qwen_certification/alignment_data.py"
+      - "pre_qwen_certification/alignment_tolerant.py"
+      - "scripts/run_alignment_tolerant_seed.py"
+      - "scripts/aggregate_alignment_tolerant.py"
+      - "scripts/audit_alignment_tolerant.py"
+      - "tests/test_alignment_tolerant.py"
+      - ".github/workflows/run-alignment-tolerant-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alignment-tolerant-v1-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run-and-persist:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMEXPR_NUM_THREADS: "1"
+      OUT: results/pre-qwen-alignment-tolerant/v1
+      RUN_DIR: runs/alignment-tolerant/v1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install controlled CPU environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+
+      - name: Validate source and factorized execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts
+          PYTHONPATH=. pytest -q \
+            tests/test_alignment_tolerant.py \
+            tests/test_teacher_width_fresh.py \
+            tests/test_modal.py \
+            tests/test_metrics.py
+
+      - name: Run five frozen teachers on fresh held-out documents
+        id: experiment
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$OUT" "$RUN_DIR"
+          mkdir -p "$OUT" "$RUN_DIR/logs"
+          for seed in 91121 92129 93133 94151 95153; do
+            mkdir -p "$OUT/seed-$seed"
+            PYTHONPATH=. python scripts/run_alignment_tolerant_seed.py \
+              --config configs/pre_qwen_alignment_tolerant_v1.yaml \
+              --seed "$seed" \
+              --output-dir "$OUT/seed-$seed" \
+              2>&1 | tee "$RUN_DIR/logs/seed-$seed.log"
+          done
+
+          PYTHONPATH=. python scripts/aggregate_alignment_tolerant.py \
+            --config configs/pre_qwen_alignment_tolerant_v1.yaml \
+            --output-dir "$OUT" \
+            2>&1 | tee "$RUN_DIR/logs/aggregate-provisional.log"
+
+          PYTHONPATH=. python scripts/audit_alignment_tolerant.py \
+            --config configs/pre_qwen_alignment_tolerant_v1.yaml \
+            --output-dir "$OUT" \
+            --allow-provisional-decision \
+            2>&1 | tee "$RUN_DIR/logs/audit-provisional.log"
+
+          PYTHONPATH=. python scripts/aggregate_alignment_tolerant.py \
+            --config configs/pre_qwen_alignment_tolerant_v1.yaml \
+            --output-dir "$OUT" \
+            --audit-path "$OUT/adversarial-audit/audit.json" \
+            2>&1 | tee "$RUN_DIR/logs/aggregate-final.log"
+
+          PYTHONPATH=. python scripts/audit_alignment_tolerant.py \
+            --config configs/pre_qwen_alignment_tolerant_v1.yaml \
+            --output-dir "$OUT" \
+            2>&1 | tee "$RUN_DIR/logs/audit-final.log"
+
+          PYTHONPATH=. python scripts/aggregate_alignment_tolerant.py \
+            --config configs/pre_qwen_alignment_tolerant_v1.yaml \
+            --output-dir "$OUT" \
+            --audit-path "$OUT/adversarial-audit/audit.json" \
+            > "$RUN_DIR/logs/aggregate-final-confirmed.log" 2>&1
+
+          find "$OUT" -type f ! -name sha256sums.txt -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            > "$OUT/sha256sums.txt"
+          sha256sum -c "$OUT/sha256sums.txt" \
+            > "$RUN_DIR/logs/sha256-check.log"
+          python -m pip freeze > "$RUN_DIR/pip-freeze.txt"
+
+      - name: Record workflow state
+        if: always()
+        shell: bash
+        env:
+          EXPERIMENT_OUTCOME: ${{ steps.experiment.outcome }}
+        run: |
+          mkdir -p "$RUN_DIR"
+          python - <<'PY'
+          import json, os, platform, sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload = {
+              "workflow": "alignment-tolerant-v1",
+              "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+              "source_sha": os.environ.get("GITHUB_SHA"),
+              "ref": os.environ.get("GITHUB_REF"),
+              "experiment_outcome": os.environ.get("EXPERIMENT_OUTCOME"),
+              "python": sys.version,
+              "platform": platform.platform(),
+              "recorded_at": datetime.now(timezone.utc).isoformat(),
+          }
+          Path(os.environ["RUN_DIR"]).joinpath("workflow-state.json").write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+          )
+          PY
+
+      - name: Commit every generated result and diagnostic
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A "$OUT" "$RUN_DIR"
+          if git diff --cached --quiet; then
+            echo "No generated evidence to commit"
+          else
+            git commit -m "results: record alignment-tolerant shared low-rank v1"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Fail after persisting diagnostics
+        if: steps.experiment.outcome != 'success'
+        shell: bash
+        run: exit 1
