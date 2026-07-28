@@ -1,0 +1,127 @@
+name: Import PR1 canonical light research tree v4
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: read
+  issues: read
+
+concurrency:
+  group: import-pr1-canonical-light-v4
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/pre-qwen-certification-v2
+  ARCHIVE_SHA256: af08cb79031ebefbae626e92760881461611a7c7927fb0bf90cb5b3dbc9032fb
+  ARCHIVE_BYTES: "142664"
+
+jobs:
+  import:
+    if: >-
+      github.event.issue.pull_request &&
+      github.event.issue.number == 1 &&
+      github.event.comment.author_association == 'OWNER' &&
+      contains(github.event.comment.body, '/import-canonical-light-v4')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: Reconstruct and cryptographically verify archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/canonical-light-v4.tar.xz
+          mapfile -d '' parts < <(find .github/import/canonical-light-v4 -type f -name 'part-*.b64' -print0 | sort -z)
+          [[ "${#parts[@]}" -eq 10 ]] || { echo "expected 10 parts, found ${#parts[@]}" >&2; exit 1; }
+          cat "${parts[@]}" | base64 -d > "$archive"
+          actual_sha="$(sha256sum "$archive" | awk '{print $1}')"
+          actual_bytes="$(stat -c %s "$archive")"
+          [[ "$actual_sha" == "$ARCHIVE_SHA256" ]] || { echo "SHA mismatch: $actual_sha" >&2; exit 1; }
+          [[ "$actual_bytes" == "$ARCHIVE_BYTES" ]] || { echo "size mismatch: $actual_bytes" >&2; exit 1; }
+          xz --test "$archive"
+          tar -tJf "$archive" >/dev/null
+
+      - name: Extract canonical tree and preserve exact archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive=/tmp/canonical-light-v4.tar.xz
+          tar -xJf "$archive" -C "$GITHUB_WORKSPACE"
+          mkdir -p artifacts/2026-07-28/delivery runs
+          cp "$archive" artifacts/2026-07-28/delivery/canonical-light-v4.tar.xz
+          rm -rf .github/import/canonical-light-v4
+          rm -rf .github/import/all-current-research-minimal-v1
+          cat > runs/canonical-light-v4-import.json <<JSON
+          {
+            "status": "archive-verified-and-extracted",
+            "archive": "artifacts/2026-07-28/delivery/canonical-light-v4.tar.xz",
+            "sha256": "${ARCHIVE_SHA256}",
+            "bytes": ${ARCHIVE_BYTES},
+            "source_commit": "$(git rev-parse HEAD)",
+            "workflow_run_id": ${GITHUB_RUN_ID},
+            "fragment_count": 10
+          }
+          JSON
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.3'
+          python -m pip install 'numpy>=2.0' 'PyYAML>=6.0' 'pytest>=8.0'
+          python -m pip install -e .
+
+      - name: Validate canonical source, tests, results, and audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. pytest -q 2>&1 | tee runs/canonical-light-v4-pytest.log
+          python -m compileall -q pre_qwen_certification scripts
+          test -s docs/handoffs/HANDOFF_MODAL_MOE_RESEARCH_2026-07-28_FULL.md
+          test -s docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md
+          test -s docs/methodology/ARTIFACT_VERSIONING_POLICY.md
+          test -s results/VERDICT.md
+          test -s results/PRE_QWEN_GATE_STATUS.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('runs/canonical-light-v4-import.json')
+          data = json.loads(p.read_text())
+          data.update({
+              'status': 'validated',
+              'pytest': 'passed',
+              'compileall': 'passed',
+          })
+          p.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n')
+          PY
+
+      - name: Build repository manifests and clean generated caches
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -type d \( -name __pycache__ -o -name .pytest_cache -o -name '*.egg-info' \) -prune -exec rm -rf {} +
+          find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          mkdir -p artifacts/2026-07-28
+          find configs docs pre_qwen_certification scripts tests results runs artifacts/2026-07-28/delivery \
+            -type f -print0 | sort -z | xargs -0 sha256sum \
+            > artifacts/2026-07-28/CANONICAL_LIGHT_V4_MANIFEST.sha256
+          sha256sum -c artifacts/2026-07-28/CANONICAL_LIGHT_V4_MANIFEST.sha256
+
+      - name: Commit canonical files to research branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'research: import canonical source configs audits results and handoffs'
+          git push origin "HEAD:${TARGET_BRANCH}"
