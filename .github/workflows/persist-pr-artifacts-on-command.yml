@@ -1,0 +1,362 @@
+name: Persist research artifacts from PR on command
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+  issues: read
+
+concurrency:
+  group: persist-pr1-research-artifacts
+  cancel-in-progress: true
+
+env:
+  TARGET_BRANCH: agent/pre-qwen-certification-v2
+  PYTHONUNBUFFERED: "1"
+  OMP_NUM_THREADS: "2"
+  OPENBLAS_NUM_THREADS: "2"
+  MKL_NUM_THREADS: "2"
+  NUMEXPR_NUM_THREADS: "2"
+
+jobs:
+  import-canonical-tree:
+    if: >-
+      github.event.issue.pull_request &&
+      github.event.issue.number == 1 &&
+      github.event.comment.author_association == 'OWNER' &&
+      contains(github.event.comment.body, '/persist-artifacts')
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: Register persistence run in Git
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs
+          cat > runs/artifact-persistence-latest.json <<JSON
+          {
+            "status": "running",
+            "workflow": "${GITHUB_WORKFLOW}",
+            "run_id": ${GITHUB_RUN_ID},
+            "run_attempt": ${GITHUB_RUN_ATTEMPT},
+            "source_sha": "$(git rev-parse HEAD)",
+            "started_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          JSON
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add runs/artifact-persistence-latest.json
+          git commit -m "chore: register artifact persistence run ${GITHUB_RUN_ID}"
+          git push origin "HEAD:${TARGET_BRANCH}"
+
+      - name: Reconstruct and verify committed overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          find .github/import/all-current-research-minimal-v1 \
+            -type f -name 'part-*.b64' -print0 \
+            | sort -z \
+            | xargs -0 cat \
+            | base64 -d > /tmp/all-current-research-minimal-v1.tar.xz
+          echo "315fcbeea7c580bcaa5788e899aee93dfe042b159f5e6daba34fd397e630e419  /tmp/all-current-research-minimal-v1.tar.xz" \
+            | sha256sum -c -
+          tar -xJf /tmp/all-current-research-minimal-v1.tar.xz -C "$GITHUB_WORKSPACE"
+          rm -rf .github/import/all-current-research-minimal-v1
+
+      - name: Install and validate canonical tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+          python -m pip install -e .
+          PYTHONPATH=. pytest -q
+          python -m compileall -q pre_qwen_certification scripts
+
+      - name: Commit source, reports, handoffs, policies, and aggregate evidence
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "research: version canonical source reports handoffs and policies"
+          git push origin "HEAD:${TARGET_BRANCH}"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  reproduce-seed:
+    needs: import-canonical-tree
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [91121, 92129, 93133, 94151, 95153]
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - name: Checkout exact canonical source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.import-canonical-tree.outputs.source_sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install experiment dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+          python -m pip install -e .
+
+      - name: Reproduce frozen seed ${{ matrix.seed }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="results/pre-qwen-teacher-width-fresh/v1-github-reproduction"
+          mkdir -p "$OUT/logs"
+          set +e
+          PYTHONPATH=. python scripts/run_teacher_width_fresh_seed.py \
+            --config configs/pre_qwen_teacher_width_fresh_v1.yaml \
+            --seed "${{ matrix.seed }}" \
+            --output-dir "$OUT" \
+            2>&1 | tee "/tmp/seed-${{ matrix.seed }}.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          cp "/tmp/seed-${{ matrix.seed }}.log" "$OUT/logs/seed-${{ matrix.seed }}.log"
+          printf '%s\n' "$status" > "$OUT/logs/seed-${{ matrix.seed }}.status"
+          python --version > "$OUT/logs/seed-${{ matrix.seed }}.environment.txt"
+          git rev-parse HEAD >> "$OUT/logs/seed-${{ matrix.seed }}.environment.txt"
+          python -m pip freeze >> "$OUT/logs/seed-${{ matrix.seed }}.environment.txt"
+          exit "$status"
+
+      - name: Upload seed for final Git commit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: teacher-width-seed-${{ matrix.seed }}
+          path: results/pre-qwen-teacher-width-fresh/v1-github-reproduction
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+  persist-complete-artifacts:
+    needs: [import-canonical-tree, reproduce-seed]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout latest research branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install aggregation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+          python -m pip install -e .
+
+      - name: Download every raw seed artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: teacher-width-seed-*
+          path: results/pre-qwen-teacher-width-fresh/v1-github-reproduction
+          merge-multiple: true
+
+      - name: Aggregate, adversarially audit, and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="results/pre-qwen-teacher-width-fresh/v1-github-reproduction"
+          test "$(find "$OUT" -maxdepth 1 -name 'seed-*.json' | wc -l)" -eq 5
+          PYTHONPATH=. python scripts/aggregate_teacher_width_fresh.py \
+            --config configs/pre_qwen_teacher_width_fresh_v1.yaml \
+            --results-dir "$OUT"
+          PYTHONPATH=. python scripts/audit_teacher_width_fresh.py \
+            --config configs/pre_qwen_teacher_width_fresh_v1.yaml \
+            --results-dir "$OUT"
+          PYTHONPATH=. python scripts/aggregate_teacher_width_fresh.py \
+            --config configs/pre_qwen_teacher_width_fresh_v1.yaml \
+            --results-dir "$OUT" \
+            --audit-path "$OUT/adversarial-audit/audit.json"
+          PYTHONPATH=. python scripts/audit_teacher_width_fresh.py \
+            --config configs/pre_qwen_teacher_width_fresh_v1.yaml \
+            --results-dir "$OUT"
+          {
+            echo "workflow=${GITHUB_WORKFLOW}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "source_sha=${{ needs.import-canonical-tree.outputs.source_sha }}"
+            echo "runner_os=${RUNNER_OS}"
+            python --version
+            python -m pip freeze
+          } > "$OUT/environment.txt"
+          (
+            cd "$OUT"
+            find . -type f ! -name sha256sums.txt -print0 \
+              | sort -z | xargs -0 sha256sum > sha256sums.txt
+            sha256sum -c sha256sums.txt
+          )
+
+      - name: Preserve exact retrievable historical artifact and legacy index
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/2026-07-27/raw artifacts/2026-07-28/delivery
+          curl --fail --location \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/rornellas/llm-thinking-rep/actions/artifacts/8662409549/zip" \
+            --output artifacts/2026-07-27/raw/integration-test-5-5-30289211653.zip
+          echo "0cffed66df208d2f440d5ce81103739443" >/dev/null
+          cat > artifacts/2026-07-28/LEGACY_ARTIFACT_INDEX.json <<'JSON'
+          {
+            "policy": "Historical transport archives whose exact bytes were not reachable from GitHub are represented by immutable original SHA-256 values and canonical in-Git replacements generated by this workflow.",
+            "legacy": [
+              {"name":"HANDOFF_MODAL_MOE_RESEARCH_2026-07-28_FULL.md","sha256":"470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd","canonical":"docs/handoffs/HANDOFF_MODAL_MOE_RESEARCH_2026-07-28_FULL.md"},
+              {"name":"HANDOFF_MODAL_MOE_2026-07-28_PACKAGE.zip","sha256":"1f85560312ec118f28d4ef910db3fee6e9d92df3f66a189e207c15c6ac954aa8","canonical":"artifacts/2026-07-28/delivery/HANDOFF_MODAL_MOE_2026-07-28_GIT_CANONICAL.zip"},
+              {"name":"pre-qwen-teacher-width-fresh-v1-results.zip","sha256":"f3d5d8d8104c429d89118bae59ba5ffc1fd7e93396229d9e8cb925b6eccf42a7","canonical":"artifacts/2026-07-28/delivery/pre-qwen-teacher-width-fresh-v1-github-reproduction-results.zip"},
+              {"name":"pre-qwen-teacher-width-fresh-v1.git.bundle","sha256":"8f0ca3009e09f2130aad564fc52bb5597e5de12c356fa53d27b0b875545f8036","canonical":"artifacts/2026-07-28/delivery/pre-qwen-research-branch.git.bundle"},
+              {"name":"pre-qwen-certification-v1.patch","sha256":"d3cb4d16e8f08df29906f2cee2850450514553ddcfaee8e16e80de359abd50d5","canonical":"repository history and canonical source tree"},
+              {"name":"pre-qwen-certification-v1-full.zip","sha256":"a79f10b12fe518d8608d06e4bf91e2b7d52418943e1a9b049004d121936e4300","canonical":"artifacts/2026-07-28/delivery/pre-qwen-canonical-source.zip"},
+              {"name":"pre-qwen-certification-v1-results.zip","sha256":"16d2e2bb7373ceeffaa4da9cd2e51ce93145925dd3b9a2f6ee74dd23e9d4f12a","canonical":"results/ and artifacts/2026-07-28/delivery"}
+            ]
+          }
+          JSON
+
+      - name: Build deterministic canonical delivery packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+
+          root = Path('.')
+          out = root / 'artifacts/2026-07-28/delivery'
+          out.mkdir(parents=True, exist_ok=True)
+
+          def deterministic_zip(target: Path, paths: list[Path]) -> None:
+              seen = set()
+              with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+                  for path in sorted(paths, key=lambda item: item.as_posix()):
+                      if not path.is_file():
+                          continue
+                      arcname = path.as_posix()
+                      if arcname in seen:
+                          continue
+                      seen.add(arcname)
+                      info = zipfile.ZipInfo(arcname, (2026, 7, 28, 0, 0, 0))
+                      info.compress_type = zipfile.ZIP_DEFLATED
+                      info.external_attr = 0o100644 << 16
+                      archive.writestr(info, path.read_bytes())
+
+          result_root = root / 'results/pre-qwen-teacher-width-fresh/v1-github-reproduction'
+          deterministic_zip(
+              out / 'pre-qwen-teacher-width-fresh-v1-github-reproduction-results.zip',
+              list(result_root.rglob('*')),
+          )
+
+          handoff_paths = list((root / 'docs/handoffs').rglob('*')) + [
+              root / 'docs/methodology/ARTIFACT_VERSIONING_POLICY.md',
+              root / 'docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md',
+              root / 'docs/methodology/IMPORTANT_CLAIM_LEDGER.json',
+              root / 'results/PRE_QWEN_GATE_STATUS.json',
+              root / 'results/VERDICT.md',
+          ]
+          deterministic_zip(
+              out / 'HANDOFF_MODAL_MOE_2026-07-28_GIT_CANONICAL.zip',
+              handoff_paths,
+          )
+
+          source_paths = []
+          for directory in ('pre_qwen_certification', 'scripts', 'tests', 'configs', 'docs'):
+              source_paths.extend((root / directory).rglob('*'))
+          source_paths.extend([
+              root / 'pyproject.toml',
+              root / 'requirements-pre-qwen.txt',
+              root / 'LATEST_RESEARCH_MANIFEST.sha256',
+          ])
+          deterministic_zip(out / 'pre-qwen-canonical-source.zip', source_paths)
+          PY
+
+          find artifacts/2026-07-27 artifacts/2026-07-28 docs/handoffs \
+            results/pre-qwen-teacher-width-fresh/v1-github-reproduction \
+            -type f -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            > artifacts/2026-07-28/ARTIFACT_MANIFEST.sha256
+          sha256sum -c artifacts/2026-07-28/ARTIFACT_MANIFEST.sha256
+
+      - name: Mark persistence completed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          path = Path('runs/artifact-persistence-latest.json')
+          payload = json.loads(path.read_text()) if path.exists() else {}
+          payload.update({
+              'status': 'completed',
+              'run_id': int(os.environ['GITHUB_RUN_ID']),
+              'run_attempt': int(os.environ['GITHUB_RUN_ATTEMPT']),
+              'finished_at': datetime.now(timezone.utc).isoformat(),
+          })
+          path.write_text(json.dumps(payload, indent=2) + '\n')
+          PY
+
+      - name: Commit complete scientific artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "results: persist checkpoints raw records logs audits and packages"
+          git push origin "HEAD:${TARGET_BRANCH}"
+
+      - name: Create and commit reproducible Git bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/2026-07-28/delivery
+          git branch -f artifact-bundle-head HEAD
+          git bundle create \
+            artifacts/2026-07-28/delivery/pre-qwen-research-branch.git.bundle \
+            artifact-bundle-head
+          git branch -D artifact-bundle-head
+          sha256sum \
+            artifacts/2026-07-28/delivery/pre-qwen-research-branch.git.bundle \
+            > artifacts/2026-07-28/delivery/pre-qwen-research-branch.git.bundle.sha256
+          git add artifacts/2026-07-28/delivery
+          git commit -m "artifact: version reproducible Git bundle"
+          git push origin "HEAD:${TARGET_BRANCH}"
