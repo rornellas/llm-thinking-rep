@@ -1,13 +1,14 @@
 name: Import expert-distillation v2 into experiment branch
 
 on:
-  issue_comment:
-    types: [created]
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/import-expert-distill-v2-dispatch.trigger"
 
 permissions:
   contents: write
-  issues: read
-  pull-requests: read
 
 concurrency:
   group: import-expert-distill-v2-dispatch
@@ -15,9 +16,6 @@ concurrency:
 
 jobs:
   import-source:
-    if: >-
-      github.actor == 'rornellas' &&
-      github.event.comment.body == '/import-expert-distill-v2-source-af29'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
