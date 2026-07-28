@@ -1,15 +1,13 @@
 name: Import expert-distillation v2 into experiment branch
 
-# Retriggered after GitHub registered the dispatcher on the default branch.
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/import-expert-distill-v2-dispatch.yml"
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: write
+  issues: read
+  pull-requests: read
 
 concurrency:
   group: import-expert-distill-v2-dispatch
@@ -17,6 +15,9 @@ concurrency:
 
 jobs:
   import-source:
+    if: >-
+      github.actor == 'rornellas' &&
+      github.event.comment.body == '/import-expert-distill-v2-source-af29'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
