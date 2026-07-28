@@ -1,5 +1,6 @@
 name: Repair canonical teacher-width result layout
 
+# Retriggered after GitHub registered the workflow definition.
 on:
   push:
     branches:
