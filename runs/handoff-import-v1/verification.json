@@ -1,13 +1,19 @@
 {
-  "base64_decode_returncode": 0,
-  "decoded_check_returncode": 0,
-  "expected_decoded_bytes": 37465,
-  "expected_decoded_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
-  "fragment_check_returncode": 1,
-  "observed_decoded_bytes": 37465,
-  "observed_decoded_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
-  "recorded_at": "2026-07-28T19:11:14.698282+00:00",
-  "run_id": "30390821188",
-  "source_sha": "87694d05dd234be40d6c5df233e6cab24501fee3",
-  "status": "FAIL"
+  "decoded_bytes": 37465,
+  "decoded_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
+  "fragment_sha256": {
+    ".github/import/handoff-full-v1/part-00-00.b64": "80c1b55efbd6bf405eaa4f333c8e52ece3925346f5be36f3c6291cb0589b60ee",
+    ".github/import/handoff-full-v1/part-00-01.b64": "367922e01c8fc9952333af3d133bcff10c9e62db07b71bdb47bec884aeefed27",
+    ".github/import/handoff-full-v1/part-00-02.b64": "b4d15f05931578bcebd89f328081ed59213b62091ae5c435836b45ad164038f1",
+    ".github/import/handoff-full-v1/part-01-00.b64": "b018c8836b6d92df06d75115f5a08f324cb9a363ff7352048a65c5be9c0c6822",
+    ".github/import/handoff-full-v1/part-01-01.b64": "996170881f249534b6a2926cee0a5925cfc2942136a38cd4a7059eb316b91c5c",
+    ".github/import/handoff-full-v1/part-01-02.b64": "1911355405626ccf36da2e5fb57034cbbbb5a775a02f2d98b4846cf5c9e3e819",
+    ".github/import/handoff-full-v1/part-02.b64": "46bea8f5e8d881c9850de7c4f7595eeaf0d732d48627f38aef1ad0c19b271c67",
+    ".github/import/handoff-full-v1/part-03.b64": "4f55a732dc34f45d34d8670a2fbe3b1d83c6393c4990fabc390f0220b06fe10f",
+    ".github/import/handoff-full-v1/part-04.b64": "55c7c47e96f76b89e82d54b90c436329bb43d105dba1c0fb2c0f92d23c118c11"
+  },
+  "recorded_at": "2026-07-28T19:16:50.902586+00:00",
+  "run_id": "30391243091",
+  "source_sha": "6ffceb370c521285923e6e257675ad134feec6ba",
+  "status": "PASS"
 }
