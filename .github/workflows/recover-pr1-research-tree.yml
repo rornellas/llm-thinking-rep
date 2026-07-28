@@ -39,16 +39,14 @@ jobs:
           mkdir -p runs
           python - <<'PY'
           from pathlib import Path
-          import base64, hashlib, json, re
+          import hashlib, json, re, subprocess
 
           root = Path('.github/import/all-current-research-minimal-v1')
           parts = sorted(root.glob('part-*.b64'))
           if not parts:
               raise SystemExit('no committed archive fragments found')
-
           allowed = set(b'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=')
-          rows = []
-          combined = bytearray()
+          rows, combined = [], bytearray()
           for path in parts:
               raw = path.read_bytes()
               clean = re.sub(rb'\s+', b'', raw)
@@ -64,21 +62,19 @@ jobs:
                   'sha256': hashlib.sha256(raw).hexdigest(),
               })
               combined.extend(clean)
-
           combined_bytes = bytes(combined)
-          middle_padding = [index for index, value in enumerate(combined_bytes[:-2]) if value == ord('=')]
           payload = {
               'status': 'fragment-inspection-complete',
-              'source_commit': __import__('subprocess').check_output(['git','rev-parse','HEAD'], text=True).strip(),
+              'workflow_run_id': int(__import__('os').environ['GITHUB_RUN_ID']),
+              'source_commit': subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(),
               'fragment_count': len(rows),
               'combined_clean_bytes': len(combined_bytes),
               'combined_mod4': len(combined_bytes) % 4,
               'combined_sha256': hashlib.sha256(combined_bytes).hexdigest(),
-              'middle_padding_count': len(middle_padding),
+              'middle_padding_count': sum(value == ord('=') for value in combined_bytes[:-2]),
               'fragments': rows,
           }
           Path('runs/import-fragment-diagnostic.json').write_text(json.dumps(payload, indent=2) + '\n')
-          Path('/tmp/combined-archive.b64').write_bytes(combined_bytes)
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -86,41 +82,86 @@ jobs:
           git commit -m "chore: record research archive fragment diagnostic ${GITHUB_RUN_ID}"
           git push origin "HEAD:${TARGET_BRANCH}"
 
-      - name: Decode archive using validated fragment topology
+      - name: Decode or deterministically repair archive
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
-          import base64, json, re
+          import base64, hashlib, json, re
 
-          diagnosis = json.loads(Path('runs/import-fragment-diagnostic.json').read_text())
+          expected = '315fcbeea7c580bcaa5788e899aee93dfe042b159f5e6daba34fd397e630e419'
           root = Path('.github/import/all-current-research-minimal-v1')
+          clean = lambda path: re.sub(rb'\s+', b'', path.read_bytes())
+          diagnosis = json.loads(Path('runs/import-fragment-diagnostic.json').read_text())
           parts = sorted(root.glob('part-*.b64'))
+          combined = b''.join(clean(path) for path in parts)
+          decoded = None
+          repair = None
+
+          if len(combined) % 4 == 0:
+              candidate = base64.b64decode(combined, validate=True)
+              if hashlib.sha256(candidate).hexdigest() == expected:
+                  decoded, repair = candidate, {'mode': 'combined-exact'}
+
+          if decoded is None:
+              p0 = clean(root / 'part-000.b64')
+              p1 = clean(root / 'part-001.b64')
+              p2 = clean(root / 'part-002.b64')
+              p3 = clean(root / 'part-003.b64')
+              p4 = clean(root / 'part-004.b64')
+              p5 = b''.join(clean(path) for path in sorted(root.glob('part-005-*.b64')))
+              p6 = b''.join(clean(path) for path in sorted(root.glob('part-006-*.b64')))
+              p7 = b''.join(clean(path) for path in sorted(root.glob('part-007-*.b64')))
+              alphabet = b'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+              moved_tail = p3[20000:]
+              p3 = p3[:20000]
+              positions = sorted(set(
+                  list(range(0, min(33, len(p2) + 1))) +
+                  list(range(max(0, len(p2) - 32), len(p2) + 1))
+              ))
+              for tail_order, restored_p7 in (
+                  ('moved-tail-before-part7', moved_tail + p7),
+                  ('moved-tail-after-part7', p7 + moved_tail),
+              ):
+                  for position in positions:
+                      for value in alphabet:
+                          repaired_p2 = p2[:position] + bytes([value]) + p2[position:]
+                          stream = p0 + p1 + repaired_p2 + p3 + p4 + p5 + p6 + restored_p7
+                          if len(stream) % 4:
+                              continue
+                          try:
+                              candidate = base64.b64decode(stream, validate=True)
+                          except Exception:
+                              continue
+                          digest = hashlib.sha256(candidate).hexdigest()
+                          if digest == expected:
+                              decoded = candidate
+                              repair = {
+                                  'mode': 'sha256-constrained-fragment-repair',
+                                  'inserted_character': chr(value),
+                                  'inserted_position_in_part_002': position,
+                                  'part_003_moved_tail_bytes': len(moved_tail),
+                                  'tail_order': tail_order,
+                              }
+                              break
+                      if decoded is not None:
+                          break
+                  if decoded is not None:
+                      break
+
+          if decoded is None:
+              raise SystemExit('no deterministic repair reproduced the immutable expected SHA-256')
           target = Path('/tmp/all-current-research-minimal-v1.tar.xz')
-
-          if diagnosis['middle_padding_count'] == 0 and diagnosis['combined_mod4'] == 0:
-              clean = re.sub(rb'\s+', b'', b''.join(path.read_bytes() for path in parts))
-              decoded = base64.b64decode(clean, validate=True)
-              mode = 'combined-stream'
-          elif all(row['clean_mod4'] == 0 and row['invalid_count'] == 0 for row in diagnosis['fragments']):
-              decoded = b''.join(
-                  base64.b64decode(re.sub(rb'\s+', b'', path.read_bytes()), validate=True)
-                  for path in parts
-              )
-              mode = 'independently-encoded-fragments'
-          else:
-              raise SystemExit('fragment topology is incomplete or corrupt; inspect runs/import-fragment-diagnostic.json')
-
           target.write_bytes(decoded)
-          diagnosis['decode_mode'] = mode
+          diagnosis['status'] = 'decoded-and-sha256-verified'
           diagnosis['decoded_bytes'] = len(decoded)
-          import hashlib
           diagnosis['decoded_sha256'] = hashlib.sha256(decoded).hexdigest()
+          diagnosis['repair'] = repair
           Path('runs/import-archive-diagnostic.json').write_text(json.dumps(diagnosis, indent=2) + '\n')
           PY
           git add runs/import-archive-diagnostic.json
-          git commit -m "chore: record decoded research archive ${GITHUB_RUN_ID}"
+          git commit -m "chore: record verified decoded research archive ${GITHUB_RUN_ID}"
           git push origin "HEAD:${TARGET_BRANCH}"
 
       - name: Validate and extract archive
