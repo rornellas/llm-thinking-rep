@@ -1,0 +1,114 @@
+{
+  "schema_version": "expert-distill-v2-checkpoint-v1",
+  "protocol_version": "pre-qwen-alignment-tolerant-expert-distillation-v2",
+  "branch": "agent/alignment-tolerant-expert-distill-v2",
+  "evidence_status": "PARTIAL_EVIDENCE_CHECKPOINT",
+  "decision": {
+    "verdict": "ALIGNMENT_TOLERANT_EXPERT_DISTILL_V2_FAIL",
+    "global_decision": "NO_GO_FOR_OLMOE_OR_QWEN",
+    "full_reproducibility_claimed": false
+  },
+  "primary_candidate": {
+    "name": "shared-lora-r5-expert-distill-v2",
+    "parameter_ratio": 0.416667,
+    "compute_ratio": 0.583333,
+    "hypothesis": {
+      "loss_delta_mean": -0.01735,
+      "loss_delta_lcb95": -0.05138,
+      "loss_delta_ucb95": 0.01366,
+      "kl_mean": 0.36538,
+      "kl_lcb95": 0.34437,
+      "kl_ucb95": 0.38879,
+      "top1_mean": 0.6834,
+      "top1_lcb95": 0.6688,
+      "top1_ucb95": 0.6985,
+      "local_nrmse_mean": 0.33787,
+      "local_nrmse_lcb95": 0.31743,
+      "local_nrmse_ucb95": 0.35550,
+      "expert_nrmse_mean": 0.42030,
+      "expert_nrmse_lcb95": 0.39980,
+      "expert_nrmse_ucb95": 0.43701
+    },
+    "ood": {
+      "loss_delta_mean": -0.06017,
+      "loss_delta_lcb95": -0.11420,
+      "loss_delta_ucb95": -0.00518
+    }
+  },
+  "comparisons": {
+    "v2_minus_narrow65_hypothesis_loss_delta": {
+      "mean": -0.01274,
+      "lcb95": -0.05144,
+      "ucb95": 0.02407
+    },
+    "v2_minus_v1_loss_delta": {
+      "mean": 0.00219,
+      "lcb95": -0.02431,
+      "ucb95": 0.03287
+    },
+    "v2_minus_v1_expert_nrmse": {
+      "mean": -0.30858,
+      "lcb95": -0.32293,
+      "ucb95": -0.29416
+    },
+    "v2_minus_v1_error_decomposition": {
+      "self_error": {
+        "mean": -0.30200,
+        "lcb95": -0.32618,
+        "ucb95": -0.27668
+      },
+      "cross_error": {
+        "mean": 0.29956,
+        "lcb95": 0.27477,
+        "ucb95": 0.32372
+      },
+      "aggregate_error": {
+        "mean": -0.00244,
+        "lcb95": -0.00608,
+        "ucb95": 0.00037
+      }
+    },
+    "v2_minus_narrow65_error_decomposition": {
+      "self_error": {
+        "mean": -0.00193,
+        "lcb95": -0.01319,
+        "ucb95": 0.00929
+      },
+      "cross_error": {
+        "mean": 0.08946,
+        "lcb95": 0.08232,
+        "ucb95": 0.09677
+      },
+      "aggregate_error": {
+        "mean": 0.08753,
+        "lcb95": 0.07720,
+        "ucb95": 0.09694
+      }
+    }
+  },
+  "error_decomposition_means": {
+    "rank5_v2": {
+      "self_error": 0.15131,
+      "cross_error": -0.03467,
+      "aggregate_error": 0.11664
+    },
+    "rank5_v1": {
+      "self_error": 0.45331,
+      "cross_error": -0.33423,
+      "aggregate_error": 0.11908
+    },
+    "narrow65": {
+      "self_error": 0.15324,
+      "cross_error": -0.12413,
+      "aggregate_error": 0.02911
+    }
+  },
+  "artifact_scope": {
+    "source_bundle_fragments_committed": true,
+    "analysis_committed": true,
+    "summary_metrics_committed": true,
+    "raw_seed_json_committed": false,
+    "binary_checkpoints_committed": false,
+    "independent_full_replay_committed": false
+  }
+}

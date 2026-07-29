@@ -1,0 +1,14 @@
+{
+  "status": "COMMITTED_CHECKPOINT",
+  "branch": "agent/alignment-tolerant-expert-distill-v2",
+  "protocol_version": "pre-qwen-alignment-tolerant-expert-distillation-v2",
+  "verdict": "ALIGNMENT_TOLERANT_EXPERT_DISTILL_V2_FAIL",
+  "global_decision": "NO_GO_FOR_OLMOE_OR_QWEN",
+  "pr_created": false,
+  "artifact_state": "PARTIAL_EVIDENCE_CHECKPOINT",
+  "notes": [
+    "Readable verdict, summary metrics and adversarial covariance analysis are committed.",
+    "The verified source bundle fragments remain committed under .github/import/expert-distill-v2-source/.",
+    "Raw per-seed JSON records and binary checkpoints remain to be persisted before claiming full reproducibility."
+  ]
+}
