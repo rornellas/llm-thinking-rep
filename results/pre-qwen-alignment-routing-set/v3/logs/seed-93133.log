@@ -1,0 +1,40 @@
+trained seed=93133 candidate=shared-lora-r5-routing-set-v3
+trained seed=93133 candidate=shared-lora-r5-expert-v2-control
+trained seed=93133 candidate=shared-lora-r5-aggregate-v1-control
+trained seed=93133 candidate=shared-lora-r6-routing-set-v3
+evaluated seed=93133 candidate=shared-lora-r5-routing-set-v3 phase=initial hyp=+0.533418
+evaluated seed=93133 candidate=shared-lora-r5-routing-set-v3 phase=final hyp=+0.033376
+evaluated seed=93133 candidate=shared-lora-r5-expert-v2-control phase=initial hyp=+0.533418
+evaluated seed=93133 candidate=shared-lora-r5-expert-v2-control phase=final hyp=+0.046910
+evaluated seed=93133 candidate=shared-lora-r5-aggregate-v1-control phase=initial hyp=+0.533418
+evaluated seed=93133 candidate=shared-lora-r5-aggregate-v1-control phase=final hyp=+0.048167
+evaluated seed=93133 candidate=shared-lora-r6-routing-set-v3 phase=initial hyp=+0.420007
+evaluated seed=93133 candidate=shared-lora-r6-routing-set-v3 phase=final hyp=-0.034486
+evaluated seed=93133 candidate=narrow65-frozen-baseline phase=initial hyp=+0.008468
+evaluated seed=93133 candidate=narrow65-frozen-baseline phase=final hyp=+0.008468
+evaluated seed=93133 candidate=full-continuation-control phase=initial hyp=-0.006970
+evaluated seed=93133 candidate=full-continuation-control phase=final hyp=-0.006970
+results/pre-qwen-alignment-routing-set/v3/seed-93133.json
+	Command being timed: "python scripts/run_alignment_routing_set_seed.py --seed 93133 --config configs/pre_qwen_alignment_routing_set_v3.yaml --output-dir results/pre-qwen-alignment-routing-set/v3"
+	User time (seconds): 50.46
+	System time (seconds): 1.93
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:53.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 432412
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 1236338
+	Voluntary context switches: 166
+	Involuntary context switches: 367
+	Swaps: 0
+	File system inputs: 7552
+	File system outputs: 4632
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

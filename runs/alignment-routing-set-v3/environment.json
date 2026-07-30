@@ -1,0 +1,9 @@
+{
+  "configuration_sha256": "fd6a20c3e0a7ccec8cceeebe7109a3c3a22388cb0f2f3bc461414d386d8df5fc",
+  "numpy": "2.5.1",
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "protocol_version": "pre-qwen-alignment-tolerant-routing-set-distillation-v3.1",
+  "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+  "source_commit": "edc6e5f5cd6c2fdcfa58a1a81e43d1dbb311f9eb",
+  "torch": "2.13.0+cpu"
+}
