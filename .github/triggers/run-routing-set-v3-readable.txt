@@ -1,3 +1,4 @@
 run pre-qwen-alignment-tolerant-routing-set-distillation-v3.1
-triggered_at=2026-07-30T01:05:00Z
+triggered_at=2026-07-30T01:12:00Z
 source_branch=agent/alignment-routing-set-distill-v3
+source_commit=6ca5a6d15b07e21693d90a1027963a06522baa2b
