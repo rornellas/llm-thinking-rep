@@ -1,3 +1,5 @@
 validate routing-coupled residual v4
-triggered_at=2026-07-30T04:05:00Z
+triggered_at=2026-07-30T04:25:00Z
 source_branch=agent/routing-coupled-residual-v4
+source_commit=8d29999a26fe42e4b94bd8aa59054b5dd1d62b46
+protocol=pre-qwen-routing-coupled-residual-v4
