@@ -1,0 +1,63 @@
+name: Validate routing-coupled residual v4
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/validate-routing-coupled-v4.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: validate-routing-coupled-v4
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      TARGET_BRANCH: agent/routing-coupled-residual-v4
+      PYTHONDONTWRITEBYTECODE: "1"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Compile and test new mechanism
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q \
+            tests/test_routing_coupled.py \
+            tests/test_routing_set_distillation.py \
+            tests/test_alignment_tolerant.py \
+            tests/test_modal.py \
+            tests/test_metrics.py
+      - name: Persist validation result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard HEAD
+          mkdir -p runs/routing-coupled-v4
+          if [[ "${{ job.status }}" == "success" ]]; then status=PASS; else status=FAIL; fi
+          printf '{"run_id":%s,"status":"%s","source_commit":"%s"}\n' "$GITHUB_RUN_ID" "$status" "$(git rev-parse HEAD)" > runs/routing-coupled-v4/mechanism-validation.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add runs/routing-coupled-v4/mechanism-validation.json
+          git commit -m "test: record routing-coupled v4 mechanism validation"
+          git push origin "HEAD:${TARGET_BRANCH}"
