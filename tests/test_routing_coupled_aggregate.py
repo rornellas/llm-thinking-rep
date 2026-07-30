@@ -33,8 +33,12 @@ def test_routing_aggregate_error_matches_direct_mixture_error() -> None:
         student_experts, aligned, routing.weights
     )
     teacher_mix = torch.einsum("nt,ntd->nd", routing.weights, teacher_experts)
-    scale = teacher_mix.square().mean().clamp_min(1e-8)
-    direct = (student_mix - teacher_mix).square().mean() / scale
+    # The diagnostic normalizes each token by its teacher mixture energy before
+    # averaging. This remains a direct, permutation-invariant function of the
+    # final mixture and matches the historical routing-set definition.
+    error_energy = (student_mix - teacher_mix).square().sum(dim=-1)
+    teacher_energy = teacher_mix.square().sum(dim=-1).clamp_min(1e-8)
+    direct = torch.mean(error_energy / teacher_energy)
     weights = RoutingSetWeights(
         mixture=0.2,
         expert=0.2,
