@@ -117,7 +117,7 @@ gates:
   primary_top1_lcb_min: 0.780
   primary_local_nrmse_ucb_max: 0.240
   primary_counterfactual_nrmse_ucb_max: 0.280
-  primary_cross_error_gap_vs_narrow_ucb_max: 0.040
+  primary_aggregate_error_gap_vs_narrow_ucb_max: 0.040
   disabled_minus_primary_kl_lcb_min: 0.010
   disabled_minus_primary_loss_lcb_min: 0.000
   primary_minus_mean_only_kl_ucb_max: 0.000
@@ -136,8 +136,9 @@ gates:
 decision_policy:
   pass: >-
     The primary passes absolute, every-seed, behavioral, paired narrow65,
-    rank6, frozen-v3 and mean-only comparisons, exact budget, clean-data,
-    causal-coupling, full-control, and independent-audit gates.
+    rank6, frozen-v3 and mean-only comparisons, invariant aggregate-error,
+    exact budget, clean-data, causal-coupling, full-control, and
+    independent-audit gates.
   functional_signal: >-
     The primary causally improves at least two preregistered behavioral metrics
     over the frozen v3 base, while preserving budget and integrity, but does not
