@@ -36,6 +36,7 @@ METRICS = (
     "counterfactual_nrmse",
     "routing_cross_error",
     "correction_energy_ratio",
+    "routing_aggregate_error",
 )
 
 
@@ -189,8 +190,6 @@ def clean_data(payloads: list[dict[str, Any]]) -> bool:
         audit = payload["metadata"]["data_audit"]
         if audit["exact_cross_split_duplicates"] or audit["near_cross_split_pairs"]:
             return False
-        # Any document-level duplicate inside the full train/hypothesis/OOD set
-        # reduces effective diversity and is disqualifying for this protocol.
         if audit.get("within_all_findings"):
             return False
     return True
@@ -209,7 +208,7 @@ def verdict_from_gates(gates: dict[str, bool | int], improvement_votes: int) -> 
         "primary_top1_pass",
         "primary_local_nrmse_pass",
         "primary_counterfactual_pass",
-        "primary_cross_error_gap_pass",
+        "primary_aggregate_error_gap_pass",
         "causal_coupling_pass",
         "full_control_hypothesis_pass",
         "full_control_ood_pass",
@@ -246,15 +245,16 @@ def write_verdict(path: Path, metrics: dict[str, Any]) -> None:
         "",
         f"**Decision:** **{metrics['decision']['verdict']}**",
         "",
-        "| Candidate | Params | Compute | Hyp delta | UCB95 | KL | Top-1 | Local NRMSE | CF NRMSE | Cross error | Correction energy |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Candidate | Params | Compute | Hyp delta | UCB95 | KL | Top-1 | Local NRMSE | CF NRMSE | Aggregate error | Cross error (diag.) | Correction energy |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for name in order:
         current = candidates[name]
         hyp = current["hypothesis"]
         lines.append(
             "| {name} | {p:.2%} | {c:.2%} | {loss:+.5f} | {loss_u:+.5f} | "
-            "{kl:.5f} | {top:.2%} | {local:.5f} | {cf:.5f} | {cross:+.5f} | {energy:.5f} |".format(
+            "{kl:.5f} | {top:.2%} | {local:.5f} | {cf:.5f} | {aggregate:.5f} | "
+            "{cross:+.5f} | {energy:.5f} |".format(
                 name=name,
                 p=float(current["parameter_ratio"]),
                 c=float(current["compute_ratio"]),
@@ -264,6 +264,7 @@ def write_verdict(path: Path, metrics: dict[str, Any]) -> None:
                 top=float(hyp["top1_agreement"]["mean"]),
                 local=float(hyp["local_nrmse"]["mean"]),
                 cf=float(hyp["counterfactual_nrmse"]["mean"]),
+                aggregate=float(hyp["routing_aggregate_error"]["mean"]),
                 cross=float(hyp["routing_cross_error"]["mean"]),
                 energy=float(hyp["correction_energy_ratio"]["mean"]),
             )
@@ -282,6 +283,7 @@ def write_verdict(path: Path, metrics: dict[str, Any]) -> None:
             "",
             f"Behavior-improvement votes versus frozen v3: `{metrics['decision']['improvement_votes']}`.",
             "",
+            "Cross error is diagnostic only because set-level corrections have no unique per-expert allocation.",
             "The teachers are inherited fixed checkpoints; no plateau claim is made.",
             "No runtime claim is made. Ratios are expert-only analytical proxies.",
             "The frozen `NO_GO_FOR_OLMOE_OR_QWEN` is unchanged.",
@@ -294,14 +296,10 @@ def write_verdict(path: Path, metrics: dict[str, Any]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--config",
-        type=Path,
-        default=ROOT / "configs/pre_qwen_routing_coupled_v4.yaml",
+        "--config", type=Path, default=ROOT / "configs/pre_qwen_routing_coupled_v4.yaml"
     )
     parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=ROOT / "results/pre-qwen-routing-coupled/v4",
+        "--output-dir", type=Path, default=ROOT / "results/pre-qwen-routing-coupled/v4"
     )
     parser.add_argument("--audit-path", type=Path, default=None)
     args = parser.parse_args()
@@ -355,7 +353,7 @@ def main() -> int:
         "disabled_minus_primary_kl": paired_bootstrap(records, DISABLED, PRIMARY, "hypothesis", "kl_teacher_to_candidate", cfg, 9110),
         "disabled_minus_primary_loss": paired_bootstrap(records, DISABLED, PRIMARY, "hypothesis", "loss_delta", cfg, 9111),
         "second_disabled_minus_primary_kl": paired_bootstrap(records, SECOND_DISABLED, PRIMARY, "hypothesis", "kl_teacher_to_candidate", cfg, 9112),
-        "primary_minus_narrow_cross_error": paired_bootstrap(records, PRIMARY, NARROW, "hypothesis", "routing_cross_error", cfg, 9113),
+        "primary_minus_narrow_aggregate_error": paired_bootstrap(records, PRIMARY, NARROW, "hypothesis", "routing_aggregate_error", cfg, 9113),
     }
 
     audit_payload: dict[str, Any] | None = None
@@ -370,7 +368,7 @@ def main() -> int:
     full_hyp = statistics[FULL]["hypothesis"]
     full_ood = statistics[FULL]["ood"]
     every_seed = max(primary_hyp["loss_delta"]["per_seed"].values())
-    cross_gap = comparisons["primary_minus_narrow_cross_error"]
+    aggregate_gap = comparisons["primary_minus_narrow_aggregate_error"]
 
     improvement_checks = {
         "loss": comparisons["primary_minus_v3_loss"]["ucb"] <= float(gates_cfg["primary_minus_v3_loss_ucb_max"]),
@@ -399,7 +397,7 @@ def main() -> int:
         "primary_top1_pass": primary_hyp["top1_agreement"]["lcb"] >= float(gates_cfg["primary_top1_lcb_min"]),
         "primary_local_nrmse_pass": primary_hyp["local_nrmse"]["ucb"] <= float(gates_cfg["primary_local_nrmse_ucb_max"]),
         "primary_counterfactual_pass": primary_hyp["counterfactual_nrmse"]["ucb"] <= float(gates_cfg["primary_counterfactual_nrmse_ucb_max"]),
-        "primary_cross_error_gap_pass": cross_gap["ucb"] <= float(gates_cfg["primary_cross_error_gap_vs_narrow_ucb_max"]),
+        "primary_aggregate_error_gap_pass": aggregate_gap["ucb"] <= float(gates_cfg["primary_aggregate_error_gap_vs_narrow_ucb_max"]),
         "causal_coupling_kl_pass": causal_kl,
         "causal_coupling_loss_pass": causal_loss,
         "causal_coupling_pass": causal_kl or causal_loss,
