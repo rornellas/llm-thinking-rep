@@ -189,23 +189,22 @@ def clean_data(payloads: list[dict[str, Any]]) -> bool:
         audit = payload["metadata"]["data_audit"]
         if audit["exact_cross_split_duplicates"] or audit["near_cross_split_pairs"]:
             return False
-        # Findings within a single split are retained for diagnosis but only a
-        # duplicate involving distinct documents is disqualifying.
-        for finding in audit.get("within_all_findings", []):
-            if str(finding.get("left_document_id")) != str(
-                finding.get("right_document_id")
-            ):
-                return False
+        # Any document-level duplicate inside the full train/hypothesis/OOD set
+        # reduces effective diversity and is disqualifying for this protocol.
+        if audit.get("within_all_findings"):
+            return False
     return True
 
 
-def verdict_from_gates(gates: dict[str, bool], improvement_votes: int) -> str:
+def verdict_from_gates(gates: dict[str, bool | int], improvement_votes: int) -> str:
     pass_keys = (
         "primary_hypothesis_pass",
         "primary_ood_pass",
         "every_seed_primary_pass",
         "primary_vs_narrow65_pass",
         "primary_vs_rank6_pass",
+        "primary_vs_v3_pass",
+        "primary_vs_mean_only_kl_pass",
         "primary_kl_pass",
         "primary_top1_pass",
         "primary_local_nrmse_pass",
@@ -220,17 +219,17 @@ def verdict_from_gates(gates: dict[str, bool], improvement_votes: int) -> str:
         "clean_data_audit_pass",
         "independent_audit_pass",
     )
-    if all(gates[key] for key in pass_keys):
+    if all(bool(gates[key]) for key in pass_keys):
         return "ROUTING_COUPLED_V4_PASS"
     signal_integrity = (
-        gates["primary_parameter_budget_pass"]
-        and gates["primary_compute_budget_pass"]
-        and gates["all_arithmetic_pass"]
-        and gates["clean_data_audit_pass"]
-        and gates["full_control_hypothesis_pass"]
-        and gates["full_control_ood_pass"]
-        and gates["independent_audit_pass"]
-        and gates["causal_coupling_pass"]
+        bool(gates["primary_parameter_budget_pass"])
+        and bool(gates["primary_compute_budget_pass"])
+        and bool(gates["all_arithmetic_pass"])
+        and bool(gates["clean_data_audit_pass"])
+        and bool(gates["full_control_hypothesis_pass"])
+        and bool(gates["full_control_ood_pass"])
+        and bool(gates["independent_audit_pass"])
+        and bool(gates["causal_coupling_pass"])
     )
     if signal_integrity and improvement_votes >= int(
         gates.get("required_improvement_votes", 2)
@@ -359,6 +358,7 @@ def main() -> int:
         "primary_minus_narrow_cross_error": paired_bootstrap(records, PRIMARY, NARROW, "hypothesis", "routing_cross_error", cfg, 9113),
     }
 
+    audit_payload: dict[str, Any] | None = None
     audit_pass = False
     if args.audit_path is not None and args.audit_path.exists():
         audit_payload = json.loads(args.audit_path.read_text(encoding="utf-8"))
@@ -394,6 +394,7 @@ def main() -> int:
         "primary_vs_narrow65_pass": comparisons["primary_minus_narrow_loss"]["ucb"] <= float(gates_cfg["primary_minus_narrow65_ucb_max"]),
         "primary_vs_rank6_pass": comparisons["primary_minus_rank6_loss"]["ucb"] <= float(gates_cfg["primary_minus_rank6_ucb_max"]),
         "primary_vs_v3_pass": comparisons["primary_minus_v3_loss"]["ucb"] <= float(gates_cfg["primary_minus_v3_ucb_max"]),
+        "primary_vs_mean_only_kl_pass": comparisons["primary_minus_mean_only_kl"]["ucb"] <= float(gates_cfg["primary_minus_mean_only_kl_ucb_max"]),
         "primary_kl_pass": primary_hyp["kl_teacher_to_candidate"]["ucb"] <= float(gates_cfg["primary_kl_ucb_max"]),
         "primary_top1_pass": primary_hyp["top1_agreement"]["lcb"] >= float(gates_cfg["primary_top1_lcb_min"]),
         "primary_local_nrmse_pass": primary_hyp["local_nrmse"]["ucb"] <= float(gates_cfg["primary_local_nrmse_ucb_max"]),
@@ -402,7 +403,6 @@ def main() -> int:
         "causal_coupling_kl_pass": causal_kl,
         "causal_coupling_loss_pass": causal_loss,
         "causal_coupling_pass": causal_kl or causal_loss,
-        "primary_vs_mean_only_kl_pass": comparisons["primary_minus_mean_only_kl"]["ucb"] <= float(gates_cfg["primary_minus_mean_only_kl_ucb_max"]),
         "full_control_hypothesis_pass": full_hyp["loss_delta"]["ucb"] <= float(gates_cfg["full_control_hypothesis_ucb_max"]),
         "full_control_ood_pass": full_ood["loss_delta"]["ucb"] <= float(gates_cfg["full_control_ood_ucb_max"]),
         "primary_parameter_budget_pass": observed[PRIMARY]["parameter_ratio"] < float(gates_cfg["primary_parameter_ratio_strict_max"]),
@@ -412,7 +412,13 @@ def main() -> int:
         "independent_audit_pass": audit_pass,
         "required_improvement_votes": int(gates_cfg["behavior_improvement_min_votes"]),
     }
-    verdict = verdict_from_gates({key: bool(value) if isinstance(value, bool) else value for key, value in gates.items()}, improvement_votes)
+    verdict = verdict_from_gates(gates, improvement_votes)
+    if audit_pass and audit_payload is not None:
+        expected_verdict = audit_payload.get("expected_final_verdict_if_audit_passes")
+        if expected_verdict is not None and str(expected_verdict) != verdict:
+            raise RuntimeError(
+                f"independent audit expected {expected_verdict}, aggregator produced {verdict}"
+            )
 
     output: dict[str, Any] = {
         "metadata": {
