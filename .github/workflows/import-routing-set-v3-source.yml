@@ -1,0 +1,81 @@
+name: Import routing-set distillation v3 source
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: import-routing-set-distillation-v3
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/alignment-routing-set-distill-v3
+  BUNDLE_PATH: .github/import/routing-set-v3/source.b64
+  ARCHIVE_SHA256: 8c9711925031f22f768c27d575e459a84ec6f4815715e9d17da89b976b33f008
+  ARCHIVE_BYTES: "23716"
+
+jobs:
+  import-source:
+    if: >-
+      github.actor == 'rornellas' &&
+      github.event.issue.pull_request &&
+      github.event.comment.body == '/import-alignment-routing-set-v3'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reconstruct and verify source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode "$BUNDLE_PATH" > /tmp/routing-set-v3-source.tar.xz
+          [[ "$(stat -c %s /tmp/routing-set-v3-source.tar.xz)" == "$ARCHIVE_BYTES" ]]
+          echo "$ARCHIVE_SHA256  /tmp/routing-set-v3-source.tar.xz" | sha256sum -c -
+          xz --test /tmp/routing-set-v3-source.tar.xz
+          tar -xJf /tmp/routing-set-v3-source.tar.xz -C "$GITHUB_WORKSPACE"
+      - name: Validate frozen preregistration and source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q \
+            tests/test_routing_set_distillation.py \
+            tests/test_teacher_width_fresh.py \
+            tests/test_modal.py \
+            tests/test_metrics.py \
+            tests/test_tiny_lm_smoke.py
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          config=yaml.safe_load(Path('configs/pre_qwen_alignment_routing_set_v3.yaml').read_text())
+          assert config['protocol_version']=='pre-qwen-alignment-tolerant-routing-set-distillation-v3.1'
+          assert config['status'].startswith('preregistered_fresh_confirmation')
+          assert len(config['seeds'])==5
+          for weights in config['objectives'].values():
+              assert abs(sum(float(v) for v in weights.values())-1.0)<1e-9
+          assert abs(sum(float(v) for v in config['training']['joint_weights'].values())-1.0)<1e-9
+          PY
+      - name: Commit readable source and preregistration
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .github/import/routing-set-v3
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "experiment: preregister routing-set distillation v3"
+          git push origin "HEAD:${TARGET_BRANCH}"
