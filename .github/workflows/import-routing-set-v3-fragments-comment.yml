@@ -52,12 +52,7 @@ jobs:
           python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
           python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
           python -m compileall -q pre_qwen_certification scripts tests
-          PYTHONPATH=. pytest -q \
-            tests/test_routing_set_distillation.py \
-            tests/test_teacher_width_fresh.py \
-            tests/test_modal.py \
-            tests/test_metrics.py \
-            tests/test_tiny_lm_smoke.py
+          PYTHONPATH=. pytest -q
       - name: Persist readable source
         shell: bash
         run: |
