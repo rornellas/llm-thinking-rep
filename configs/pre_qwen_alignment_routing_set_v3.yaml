@@ -1,0 +1,163 @@
+protocol_version: pre-qwen-alignment-tolerant-routing-set-distillation-v3.1
+status: preregistered_fresh_confirmation_after_engineering_smoke__smoke_holdouts_retired
+purpose: >-
+  Test whether deterministic counterfactual supervision over each routed expert
+  set preserves the joint geometry and error covariance that expert-wise v2
+  failed to reproduce, while retaining the rank-5 alignment-tolerant parameter
+  and compute advantage over the frozen conventional narrow-65 baseline.
+claim_scope: exploratory_fixed_teacher_mechanism_screen
+threads: 1
+source:
+  teacher_width_config: configs/pre_qwen_teacher_width_fresh_v1.yaml
+  teacher_width_results: results/pre-qwen-teacher-width-fresh/v1
+  required_source_verdict: TEACHER_WIDTH_65_REPLICATION_PASS
+  baseline_state: magnitude-init-65
+  full_control_state: full-continuation-control
+model:
+  seq_len: 48
+  batch_size: 8
+  d_model: 24
+  n_heads: 4
+  n_layers: 2
+  d_ff: 40
+  n_experts: 12
+  top_k: 4
+  teacher_steps: 2200
+  student_steps: 600
+  learning_rate: 0.0004
+  student_learning_rate: 0.001
+  weight_decay: 0.02
+  aux_weight: 0.01
+  grad_clip: 1.0
+seeds:
+  - 91121
+  - 92129
+  - 93133
+  - 94151
+  - 95153
+data:
+  train_documents: 28
+  train_seed: 24017
+  train_split: teacher-width-train-v1
+  hypothesis_documents: 20
+  hypothesis_seed: 286319
+  hypothesis_split: routing-set-hypothesis-v3-confirmation
+  ood_split: routing-set-ood-v3-confirmation
+  windows_per_document: 3
+  evaluation_window_seed: 47017
+  capture_batches: 36
+  capture_batch_size: 8
+  near_duplicate_threshold: 0.70
+training:
+  stage1_steps: 320
+  local_steps: 600
+  joint_steps: 180
+  local_batch_size: 128
+  stage1_learning_rate: 0.001
+  local_learning_rate: 0.001
+  joint_learning_rate: 0.001
+  joint_weights:
+    local: 0.35
+    kl: 0.55
+    ce: 0.10
+objectives:
+  aggregate_v1_control:
+    mixture: 0.90
+    expert: 0.00
+    counterfactual: 0.00
+    geometry: 0.00
+    cosine: 0.10
+  expert_v2_control:
+    mixture: 0.25
+    expert: 0.60
+    counterfactual: 0.00
+    geometry: 0.00
+    cosine: 0.15
+  routing_set_v3:
+    mixture: 0.20
+    expert: 0.20
+    counterfactual: 0.40
+    geometry: 0.10
+    cosine: 0.10
+candidates:
+  - name: shared-lora-r5-routing-set-v3
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 5
+    objective: routing_set_v3
+    role: primary
+    expected_parameter_ratio: 0.4166666666666667
+    expected_compute_ratio: 0.5833333333333334
+  - name: shared-lora-r5-expert-v2-control
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 5
+    objective: expert_v2_control
+    role: objective_control
+    expected_parameter_ratio: 0.4166666666666667
+    expected_compute_ratio: 0.5833333333333334
+  - name: shared-lora-r5-aggregate-v1-control
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 5
+    objective: aggregate_v1_control
+    role: objective_control
+    expected_parameter_ratio: 0.4166666666666667
+    expected_compute_ratio: 0.5833333333333334
+  - name: shared-lora-r6-routing-set-v3
+    architecture: shared_full_rank_base_plus_expert_bilateral_low_rank_residual
+    rank: 6
+    objective: routing_set_v3
+    role: capacity_control_at_65_compute
+    expected_parameter_ratio: 0.48333333333333334
+    expected_compute_ratio: 0.65
+  - name: narrow65-frozen-baseline
+    architecture: conventional_teacher_informed_narrow
+    width: 26
+    role: frozen_primary_baseline
+    expected_parameter_ratio: 0.65
+    expected_compute_ratio: 0.65
+  - name: full-continuation-control
+    architecture: conventional_full_width
+    width: 40
+    role: frozen_recovery_control
+    expected_parameter_ratio: 1.0
+    expected_compute_ratio: 1.0
+statistics:
+  bootstrap_samples: 20000
+  bootstrap_seed: 617309
+  confidence: 0.95
+gates:
+  primary_hypothesis_ucb_max: 0.030
+  primary_ood_ucb_max: 0.050
+  every_seed_primary_hypothesis_delta_max: 0.060
+  primary_minus_narrow65_ucb_max: 0.000
+  primary_minus_expert_v2_ucb_max: 0.000
+  primary_kl_ucb_max: 0.200
+  primary_top1_lcb_min: 0.780
+  primary_local_nrmse_ucb_max: 0.240
+  primary_counterfactual_nrmse_ucb_max: 0.280
+  primary_cross_error_gap_to_narrow_ucb_max: 0.040
+  capacity_hypothesis_ucb_max: 0.030
+  full_control_hypothesis_ucb_max: 0.010
+  full_control_ood_ucb_max: 0.015
+  primary_parameter_ratio_strict_max: 0.65
+  primary_compute_ratio_strict_max: 0.65
+  arithmetic_tolerance: 0.000001
+  require_independent_audit: true
+decision_policy:
+  pass: >-
+    Rank-5 routing-set v3 passes absolute CE, per-seed, KL, top-1, local,
+    counterfactual, covariance-gap, arithmetic, clean-data, full-control, and
+    independent-audit gates; is non-inferior to narrow65; and is non-inferior to
+    the expert-v2 objective under paired crossed intervals.
+  mechanism_signal: >-
+    The candidate materially improves KL, top-1, counterfactual fidelity, or the
+    covariance gap versus v2 but misses paired non-inferiority to narrow65. This
+    supports one fresh replication only if the improvement is consistent across
+    seeds and no absolute quality gate fails catastrophically.
+  fail: >-
+    The candidate fails absolute fidelity, covariance, behavioral, arithmetic,
+    data, or audit gates and does not improve the v2 mechanism. Objective-only
+    tuning is then closed; the next step must change architecture or train the
+    compact family natively before expert specialization hardens.
+  consequence: >-
+    No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. A PASS authorizes only a fresh
+    replication on plateaued teachers plus an optimized runtime implementation.
