@@ -127,20 +127,27 @@ gates:
   primary_compute_ratio_max: 0.65
   arithmetic_tolerance: 0.000001
   require_independent_audit: true
+  behavior_improvement_min_votes: 2
+  primary_minus_v3_loss_ucb_max: 0.000
+  primary_minus_v3_kl_ucb_max: 0.000
+  primary_minus_v3_top1_lcb_min: 0.000
+  primary_minus_v3_local_nrmse_ucb_max: 0.000
+  primary_minus_v3_counterfactual_nrmse_ucb_max: 0.000
 decision_policy:
   pass: >-
-    The primary passes absolute, every-seed, behavioral, paired narrow65 and
-    rank6 comparisons, exact budget, clean-data, causal-coupling, full-control,
-    and independent-audit gates.
+    The primary passes absolute, every-seed, behavioral, paired narrow65,
+    rank6, frozen-v3 and mean-only comparisons, exact budget, clean-data,
+    causal-coupling, full-control, and independent-audit gates.
   functional_signal: >-
-    The primary materially and causally improves the frozen v3 base on KL,
-    top-1, local or counterfactual fidelity while remaining below 65%, but does
-    not establish non-inferiority to narrow65. This permits one architecture
-    replication, not a real-checkpoint transplant.
+    The primary causally improves at least two preregistered behavioral metrics
+    over the frozen v3 base, while preserving budget and integrity, but does not
+    establish all narrow65 gates. This permits one architecture replication,
+    not a real-checkpoint transplant.
   fail: >-
-    The correction is not causally useful, does not improve behavioral fidelity,
-    exceeds budget, or fails integrity controls. In that case this coupling form
-    is closed and the native-training/heterogeneous-rank branch becomes primary.
+    The correction is not causally useful, does not improve at least two
+    behavioral metrics, exceeds budget, or fails integrity controls. In that
+    case this coupling form is closed and the native-training/heterogeneous-rank
+    branch becomes primary.
   consequence: >-
     No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. A PASS only authorizes a fresh
     replication on plateaued teachers plus measured runtime implementation.
