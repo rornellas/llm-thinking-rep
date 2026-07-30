@@ -1,0 +1,66 @@
+name: Import fragmented routing-set v3 source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/import-routing-set-v3-fragments.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-routing-set-v3-fragments
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/alignment-routing-set-distill-v3
+  ARCHIVE_SHA256: 52daa0765d5b686371fae5abb11414668410f144e47529c196bb3c6eec3c5c04
+  ARCHIVE_BYTES: "21776"
+
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reconstruct and verify fragmented bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find .github/import/routing-set-v3 -name 'part-*.b64' | wc -l)" -eq 8
+          cat .github/import/routing-set-v3/part-*.b64 | base64 --decode > /tmp/routing-set-v3.tar.xz
+          [[ "$(stat -c %s /tmp/routing-set-v3.tar.xz)" == "$ARCHIVE_BYTES" ]]
+          echo "$ARCHIVE_SHA256  /tmp/routing-set-v3.tar.xz" | sha256sum -c -
+          xz --test /tmp/routing-set-v3.tar.xz
+          tar -xJf /tmp/routing-set-v3.tar.xz -C "$GITHUB_WORKSPACE"
+      - name: Validate readable source and frozen protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q \
+            tests/test_routing_set_distillation.py \
+            tests/test_teacher_width_fresh.py \
+            tests/test_modal.py \
+            tests/test_metrics.py \
+            tests/test_tiny_lm_smoke.py
+      - name: Persist readable source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .github/import/routing-set-v3
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "experiment: preregister readable routing-set distillation v3"
+          git push origin "HEAD:${TARGET_BRANCH}"
