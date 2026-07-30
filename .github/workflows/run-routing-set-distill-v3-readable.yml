@@ -1,0 +1,207 @@
+name: Run readable routing-set distillation v3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/run-routing-set-v3-readable.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alignment-routing-set-distill-v3-readable
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/alignment-routing-set-distill-v3
+  CONFIG: configs/pre_qwen_alignment_routing_set_v3.yaml
+  OUTPUT: results/pre-qwen-alignment-routing-set/v3
+  PYTHONUNBUFFERED: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Validate frozen source and protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q
+          python - <<'PY'
+          from pathlib import Path
+          import os, yaml
+          c=yaml.safe_load(Path(os.environ['CONFIG']).read_text())
+          assert c['protocol_version']=='pre-qwen-alignment-tolerant-routing-set-distillation-v3.1'
+          assert c['status'].startswith('preregistered_fresh_confirmation')
+          assert c['seeds']==[91121,92129,93133,94151,95153]
+          for weights in c['objectives'].values():
+              assert abs(sum(map(float,weights.values()))-1.0)<1e-9
+          assert abs(sum(map(float,c['training']['joint_weights'].values()))-1.0)<1e-9
+          PY
+
+  seed:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        seed: [91121, 92129, 93133, 94151, 95153]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0"
+      - name: Run frozen seed
+        shell: bash
+        env:
+          SEED: ${{ matrix.seed }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUTPUT/logs" runs/alignment-routing-set-v3
+          /usr/bin/time -v python scripts/run_alignment_routing_set_seed.py \
+            --seed "$SEED" --config "$CONFIG" --output-dir "$OUTPUT" \
+            2>&1 | tee "$OUTPUT/logs/seed-$SEED.log"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,subprocess
+          seed=int(os.environ['SEED']); root=Path(os.environ['OUTPUT'])
+          files=[root/f'seed-{seed}.json',root/f'frozen-candidates-seed-{seed}.pt',root/'logs'/f'seed-{seed}.log']
+          payload={'seed':seed,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':[]}
+          for p in files:
+              payload['files'].append({'path':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          Path(f'runs/alignment-routing-set-v3/seed-{seed}-manifest.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: routing-set-v3-seed-${{ matrix.seed }}
+          path: |
+            results/pre-qwen-alignment-routing-set/v3/seed-${{ matrix.seed }}.json
+            results/pre-qwen-alignment-routing-set/v3/frozen-candidates-seed-${{ matrix.seed }}.pt
+            results/pre-qwen-alignment-routing-set/v3/logs/seed-${{ matrix.seed }}.log
+            runs/alignment-routing-set-v3/seed-${{ matrix.seed }}-manifest.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: seed
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: routing-set-v3-seed-*
+          path: .
+          merge-multiple: true
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Aggregate, independently audit, and finalize
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/aggregate_alignment_routing_set_v3.py --config "$CONFIG" --output-dir "$OUTPUT"
+          python scripts/audit_alignment_routing_set_v3.py --config "$CONFIG" --output-dir "$OUTPUT"
+          python scripts/aggregate_alignment_routing_set_v3.py --config "$CONFIG" --output-dir "$OUTPUT" --audit-path "$OUTPUT/adversarial-audit/audit.json"
+          PYTHONPATH=. pytest -q
+      - name: Record environment and hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/alignment-routing-set-v3 artifacts/2026-07-30/routing-set-v3
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,platform,subprocess,sys,yaml
+          import numpy,torch
+          config=Path('configs/pre_qwen_alignment_routing_set_v3.yaml')
+          payload={'python':sys.version,'platform':platform.platform(),'torch':torch.__version__,'numpy':numpy.__version__,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'configuration_sha256':hashlib.sha256(config.read_bytes()).hexdigest(),'protocol_version':yaml.safe_load(config.read_text())['protocol_version']}
+          Path('runs/alignment-routing-set-v3/environment.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+          find "$OUTPUT" runs/alignment-routing-set-v3 -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/2026-07-30/routing-set-v3/SHA256SUMS
+          sha256sum -c artifacts/2026-07-30/routing-set-v3/SHA256SUMS
+      - name: Commit all source and evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "results: record audited routing-set distillation v3"
+          git push origin "HEAD:${TARGET_BRANCH}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: routing-set-v3-complete
+          path: |
+            results/pre-qwen-alignment-routing-set/v3
+            runs/alignment-routing-set-v3
+            artifacts/2026-07-30/routing-set-v3
+          if-no-files-found: error
+          retention-days: 30
+
+  record-failure:
+    if: >-
+      always() &&
+      (needs.preflight.result != 'success' || needs.seed.result != 'success' || needs.aggregate.result != 'success')
+    needs: [preflight, seed, aggregate]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - name: Commit workflow failure marker
+        shell: bash
+        env:
+          PREFLIGHT: ${{ needs.preflight.result }}
+          SEEDS: ${{ needs.seed.result }}
+          AGGREGATE: ${{ needs.aggregate.result }}
+        run: |
+          set -euo pipefail
+          mkdir -p runs/alignment-routing-set-v3
+          cat > runs/alignment-routing-set-v3/latest-workflow-status.json <<EOF
+          {"run_id":${GITHUB_RUN_ID},"preflight":"${PREFLIGHT}","seed_matrix":"${SEEDS}","aggregate":"${AGGREGATE}","status":"failure"}
+          EOF
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add runs/alignment-routing-set-v3/latest-workflow-status.json
+          git commit -m "diagnostics: record readable routing-set v3 workflow failure"
+          git push origin "HEAD:${TARGET_BRANCH}"
