@@ -1,6 +1,6 @@
 {
-  "schema_version": "pre-qwen-gate-status-v2",
-  "generated_at": "2026-07-28T19:25:00+00:00",
+  "schema_version": "pre-qwen-gate-status-v4",
+  "generated_at": "2026-07-30T06:45:00+00:00",
   "decision": "NO_GO_FOR_OLMOE_OR_QWEN",
   "go_for_real_checkpoint": false,
   "important_claim_standard": "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md",
@@ -17,22 +17,7 @@
     "verdict": "CONTROLLED_TRANSPLANT_FUNCTIONAL_ONLY",
     "sealed_commitment_verified": true,
     "independent_audit_passed": true,
-    "gates": {
-      "closed_loop_fidelity": true,
-      "parameter_and_compute_compression": true,
-      "expert_code_causality": true,
-      "compute_matched_advantage": false
-    },
-    "modal_loss_delta": {
-      "mean": 0.007363920410474141,
-      "lcb95": 0.003223438064257305,
-      "ucb95": 0.012612212076783182
-    },
-    "modal_minus_narrow_loss_delta": {
-      "mean": 0.006447235743204753,
-      "lcb95": 0.0013884738087654124,
-      "ucb95": 0.013442741334438325
-    }
+    "compute_matched_advantage": false
   },
   "scalar_fail_resolution": {
     "claim_grade": "SUPPORTED_REPRESENTATIONAL_BOTTLENECK__NO_GO_UNCHANGED",
@@ -63,57 +48,78 @@
   },
   "alignment_tolerant_v1": {
     "protocol": "pre-qwen-alignment-tolerant-shared-low-rank-v1",
-    "architecture": "shared_full_rank_base_plus_expert_bilateral_low_rank_residual",
     "verdict": "ALIGNMENT_TOLERANT_SHARED_LORA_FAIL",
     "independent_audit_passed": true,
+    "primary_parameter_ratio": 0.4166666666666667,
+    "primary_compute_ratio": 0.5833333333333334,
+    "behavioral_fidelity_preserved": false,
+    "noninferiority_to_narrow65": false
+  },
+  "expert_distillation_v2": {
+    "protocol": "pre-qwen-alignment-tolerant-expert-distillation-v2",
+    "verdict": "ALIGNMENT_TOLERANT_EXPERT_DISTILL_V2_FAIL",
+    "expert_nrmse_improved": true,
+    "aggregate_behavior_improved": false,
+    "diagnosis": "individual_error_reduced_but_favorable_cross_expert_covariance_lost"
+  },
+  "routing_set_v3": {
+    "protocol": "pre-qwen-alignment-tolerant-routing-set-distillation-v3.1",
+    "automatic_verdict": "ALIGNMENT_TOLERANT_ROUTING_SET_V3_MECHANISM_SIGNAL",
+    "adversarial_disposition": "OBJECTIVE_ONLY_LINE_CLOSED__ARCHITECTURE_CHANGE_REQUIRED",
+    "independent_audit_passed": true,
+    "primary_parameter_ratio": 0.4166666666666667,
+    "primary_compute_ratio": 0.5833333333333334,
+    "kl_improvement_vs_v2_established": true,
+    "cross_error_improvement_vs_v2_established": true,
+    "absolute_behavioral_gates_passed": false,
+    "identical_replication_approved": false
+  },
+  "routing_coupled_v4": {
+    "protocol": "pre-qwen-routing-coupled-residual-v4",
+    "automatic_verdict": "ROUTING_COUPLED_V4_FAIL",
+    "adversarial_disposition": "ROUTING_COUPLED_V4_CAUSAL_BUT_INSUFFICIENT__MOMENT_COUPLING_CLOSED",
+    "independent_audit_passed": true,
     "audit_mismatches": 0,
-    "fresh_document_overlap_audit_passed": true,
+    "seeds": [91121, 92129, 93133, 94151, 95153],
     "primary": {
-      "name": "shared-lora-r5",
-      "rank": 5,
-      "expert_parameter_ratio": 0.4166666666666667,
-      "routed_matrix_compute_ratio": 0.5833333333333334,
-      "hypothesis_loss_delta_mean": -0.00764,
-      "hypothesis_loss_delta_ucb95": 0.02589,
-      "ood_loss_delta_mean": -0.04516,
-      "ood_loss_delta_ucb95": 0.02483,
-      "worst_seed_hypothesis_loss_delta": 0.02640,
-      "hypothesis_kl_mean": 0.37658,
-      "hypothesis_top1_agreement": 0.6844,
-      "hypothesis_local_nrmse": 0.34904
+      "name": "rank5-coupled-q8-h8-v4",
+      "expert_parameter_ratio": 0.4428240740740741,
+      "routed_matrix_compute_ratio": 0.625,
+      "hypothesis_loss_delta_mean": -0.07459402243296305,
+      "hypothesis_loss_delta_ucb95": -0.02306664959589649,
+      "ood_loss_delta_mean": -0.06465905374950832,
+      "ood_loss_delta_ucb95": 0.008611742191844407,
+      "hypothesis_kl_mean": 0.3864374335601431,
+      "hypothesis_kl_ucb95": 0.4273785715681925,
+      "hypothesis_top1_mean": 0.6764583332339923,
+      "hypothesis_top1_lcb95": 0.654789928369224,
+      "hypothesis_local_nrmse_mean": 0.3651719356678313,
+      "hypothesis_local_nrmse_ucb95": 0.387928151195377,
+      "hypothesis_counterfactual_nrmse_mean": 0.4609113277284749,
+      "hypothesis_counterfactual_nrmse_ucb95": 0.48372988718719995,
+      "hypothesis_routing_aggregate_error_mean": 0.1515812750533223,
+      "correction_energy_ratio_mean": 0.00276
     },
-    "frozen_narrow65": {
-      "hypothesis_loss_delta_mean": -0.00388,
-      "hypothesis_loss_delta_ucb95": 0.01539,
-      "hypothesis_kl_mean": 0.11450,
-      "hypothesis_top1_agreement": 0.8334,
-      "hypothesis_local_nrmse": 0.17163
+    "established_improvements_vs_v3": {
+      "kl": true,
+      "top1": true,
+      "local_nrmse": true,
+      "loss": false,
+      "counterfactual_nrmse": false
     },
-    "primary_minus_narrow65": {
-      "mean": -0.00376,
-      "lcb95": -0.03058,
-      "ucb95": 0.02035,
-      "noninferiority_established": false
+    "causal_ablation": {
+      "disabled_minus_primary_kl_mean": 0.012101862574652284,
+      "disabled_minus_primary_kl_lcb95": 0.007258022290828301,
+      "disabled_minus_primary_kl_ucb95": 0.017261028256121833,
+      "statistically_positive": true,
+      "minimum_magnitude_gate_passed": false
     },
-    "capacity_rank6_minus_narrow65": {
-      "mean": -0.00932,
-      "lcb95": -0.03889,
-      "ucb95": 0.01778,
-      "noninferiority_established": false
-    },
-    "gates": {
-      "absolute_hypothesis_fidelity": true,
-      "absolute_ood_fidelity": true,
-      "every_seed_limit": true,
-      "strict_parameter_budget_below_65": true,
-      "strict_compute_budget_below_65": true,
-      "full_controls": true,
-      "arithmetic": true,
-      "data_audit": true,
-      "independent_audit": true,
-      "paired_noninferiority_to_narrow65": false
-    },
-    "interpretation": "parameter_and_compute_signal_without_established_narrow65_noninferiority__behavioral_fidelity_worse"
+    "second_moment_advantage_established": false,
+    "larger_q12_capacity_rescue": false,
+    "primary_minus_narrow65_loss_noninferior": true,
+    "behavioral_fidelity_to_narrow65": false,
+    "routing_aggregate_error_gap_vs_narrow65_mean": 0.11724003103561699,
+    "moment_coupling_line_closed": true
   },
   "runtime": {
     "analytic_operation_proxies_available": true,
@@ -121,26 +127,41 @@
     "measured_end_to_end_runtime": false
   },
   "artifact_integrity": {
-    "teacher_width_manifest": "results/pre-qwen-teacher-width-fresh/v1/sha256sums.txt",
-    "alignment_v1_manifest": "results/pre-qwen-alignment-tolerant/v1/sha256sums.txt",
-    "alignment_v1_workflow_run_id": "30388401467",
-    "alignment_v1_workflow_outcome": "success",
-    "full_handoff_path": "docs/HANDOFF_MODAL_MOE_RESEARCH_2026-07-28_FULL.md",
-    "full_handoff_bytes": 37465,
-    "full_handoff_sha256": "470b1b04801bbe2d163016ef593b553fe43dc3dd2274c26b7a732bcdcb2357fd",
-    "full_handoff_verification": "runs/handoff-import-v1/verification.json"
+    "routing_v3_manifest": "artifacts/2026-07-30/routing-set-v3/SHA256SUMS",
+    "routing_v4_manifest": "artifacts/2026-07-30/routing-coupled-v4/SHA256SUMS",
+    "routing_v4_audit": "results/pre-qwen-routing-coupled/v4/adversarial-audit/audit.json",
+    "routing_v4_report": "docs/results/2026-07-30-routing-coupled-v4-analysis.md",
+    "routing_v4_multilens_review": "docs/audits/2026-07-30-routing-coupled-v4-multilens-review.md"
   },
+  "closed_lines": [
+    "global_scalar_rank_increase",
+    "existing_coordinate_selection_35",
+    "conditional_backward_pruning_35",
+    "static_router_semantic_basis_clusters",
+    "objective_only_rank5_tuning",
+    "routing_set_first_second_moment_correction"
+  ],
   "next_action": {
-    "protocol": "pre-qwen-alignment-tolerant-expert-distillation-v2",
-    "hypothesis": "aggregate-output distillation permits cancellation of expert-specific errors across routing mixtures",
-    "required_changes": [
-      "explicit weighted routed-expert output loss",
-      "aggregate layer-output loss",
-      "stronger closed-loop KL",
-      "fresh hypothesis and OOD documents",
-      "frozen v1 rank5 and narrow65 comparators",
-      "behavioral KL top1 and local-NRMSE gates",
-      "independent recalculation before final verdict"
+    "protocol_family": "budgeted_heterogeneous_nested_rank",
+    "primary_candidate": {
+      "max_rank": 7,
+      "active_rank_sum_per_token": 20,
+      "stored_parameter_ratio": 0.55,
+      "projected_compute_ratio": 0.5833333333333334
+    },
+    "capacity_candidate": {
+      "max_rank": 8,
+      "active_rank_sum_per_token": 24,
+      "stored_parameter_ratio": 0.6166666666666667,
+      "projected_compute_ratio": 0.65
+    },
+    "required_controls": [
+      "uniform_rank5",
+      "uniform_rank6",
+      "narrow65",
+      "full_control",
+      "routing_weight_only_allocation",
+      "static_heterogeneous_allocation"
     ],
     "scale_up_blocked": true
   },
@@ -149,6 +170,6 @@
     "teachers not at demonstrated plateau",
     "synthetic document families",
     "no measured runtime",
-    "alignment v1 point estimates are not confirmatory noninferiority evidence"
+    "post_hoc_conversion_only_so_far"
   ]
 }
