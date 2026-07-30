@@ -1,0 +1,240 @@
+name: Run alignment routing-set distillation v3
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: alignment-routing-set-distill-v3
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: agent/alignment-routing-set-distill-v3
+  CONFIG: configs/pre_qwen_alignment_routing_set_v3.yaml
+  OUTPUT: results/pre-qwen-alignment-routing-set/v3
+  PYTHONUNBUFFERED: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  authorize:
+    if: >-
+      github.actor == 'rornellas' &&
+      github.event.issue.pull_request &&
+      github.event.comment.body == '/run-alignment-routing-set-v3'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "authorized"
+
+  preflight:
+    needs: authorize
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Materialize frozen source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .github/import/routing-set-v3/source.b64 ]]; then
+            base64 --decode .github/import/routing-set-v3/source.b64 > /tmp/routing-set-v3-source.tar.xz
+            [[ "$(stat -c %s /tmp/routing-set-v3-source.tar.xz)" == "23716" ]]
+            echo "8c9711925031f22f768c27d575e459a84ec6f4815715e9d17da89b976b33f008  /tmp/routing-set-v3-source.tar.xz" | sha256sum -c -
+            xz --test /tmp/routing-set-v3-source.tar.xz
+            tar -xJf /tmp/routing-set-v3-source.tar.xz -C "$GITHUB_WORKSPACE"
+          fi
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Validate frozen source and protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q \
+            tests/test_routing_set_distillation.py \
+            tests/test_teacher_width_fresh.py \
+            tests/test_modal.py \
+            tests/test_metrics.py \
+            tests/test_tiny_lm_smoke.py
+          python - <<'PY'
+          from pathlib import Path
+          import os,yaml
+          c=yaml.safe_load(Path(os.environ["CONFIG"]).read_text())
+          assert c["protocol_version"] == "pre-qwen-alignment-tolerant-routing-set-distillation-v3.1"
+          assert c["status"].startswith("preregistered_fresh_confirmation")
+          assert len(c["seeds"]) == 5
+          for weights in c["objectives"].values():
+              assert abs(sum(float(v) for v in weights.values())-1.0) < 1e-9
+          assert abs(sum(float(v) for v in c["training"]["joint_weights"].values())-1.0) < 1e-9
+          PY
+
+  seed:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        seed: [91121, 92129, 93133, 94151, 95153]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Materialize frozen source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .github/import/routing-set-v3/source.b64 ]]; then
+            base64 --decode .github/import/routing-set-v3/source.b64 > /tmp/routing-set-v3-source.tar.xz
+            [[ "$(stat -c %s /tmp/routing-set-v3-source.tar.xz)" == "23716" ]]
+            echo "8c9711925031f22f768c27d575e459a84ec6f4815715e9d17da89b976b33f008  /tmp/routing-set-v3-source.tar.xz" | sha256sum -c -
+            xz --test /tmp/routing-set-v3-source.tar.xz
+            tar -xJf /tmp/routing-set-v3-source.tar.xz -C "$GITHUB_WORKSPACE"
+          fi
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0"
+      - name: Run frozen seed
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUTPUT/logs" "runs/alignment-routing-set-v3"
+          /usr/bin/time -v python scripts/run_alignment_routing_set_seed.py \
+            --seed "${{ matrix.seed }}" \
+            --config "$CONFIG" \
+            --output-dir "$OUTPUT" \
+            2>&1 | tee "$OUTPUT/logs/seed-${{ matrix.seed }}.log"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,subprocess
+          seed=int(os.environ["SEED"])
+          root=Path(os.environ["OUTPUT"])
+          files=[root/f"seed-{seed}.json",root/f"frozen-candidates-seed-{seed}.pt",root/"logs"/f"seed-{seed}.log"]
+          payload={"seed":seed,"source_commit":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),"files":[]}
+          for p in files:
+              payload["files"].append({"path":str(p),"bytes":p.stat().st_size,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()})
+          path=Path("runs/alignment-routing-set-v3")/f"seed-{seed}-manifest.json"
+          path.write_text(json.dumps(payload,indent=2,sort_keys=True)+"\n")
+          PY
+        env:
+          SEED: ${{ matrix.seed }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: routing-set-v3-seed-${{ matrix.seed }}
+          path: |
+            results/pre-qwen-alignment-routing-set/v3/seed-${{ matrix.seed }}.json
+            results/pre-qwen-alignment-routing-set/v3/frozen-candidates-seed-${{ matrix.seed }}.pt
+            results/pre-qwen-alignment-routing-set/v3/logs/seed-${{ matrix.seed }}.log
+            runs/alignment-routing-set-v3/seed-${{ matrix.seed }}-manifest.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: seed
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Materialize frozen source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .github/import/routing-set-v3/source.b64 ]]; then
+            base64 --decode .github/import/routing-set-v3/source.b64 > /tmp/routing-set-v3-source.tar.xz
+            [[ "$(stat -c %s /tmp/routing-set-v3-source.tar.xz)" == "23716" ]]
+            echo "8c9711925031f22f768c27d575e459a84ec6f4815715e9d17da89b976b33f008  /tmp/routing-set-v3-source.tar.xz" | sha256sum -c -
+            xz --test /tmp/routing-set-v3-source.tar.xz
+            tar -xJf /tmp/routing-set-v3-source.tar.xz -C "$GITHUB_WORKSPACE"
+          fi
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: routing-set-v3-seed-*
+          path: .
+          merge-multiple: true
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Aggregate, independently audit, and finalize verdict
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/aggregate_alignment_routing_set_v3.py \
+            --config "$CONFIG" --output-dir "$OUTPUT"
+          python scripts/audit_alignment_routing_set_v3.py \
+            --config "$CONFIG" --output-dir "$OUTPUT"
+          python scripts/aggregate_alignment_routing_set_v3.py \
+            --config "$CONFIG" --output-dir "$OUTPUT" \
+            --audit-path "$OUTPUT/adversarial-audit/audit.json"
+          PYTHONPATH=. pytest -q
+      - name: Record environment and integrity manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/alignment-routing-set-v3 artifacts/2026-07-30/routing-set-v3
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,platform,subprocess,sys
+          import numpy,torch,yaml
+          config=Path("configs/pre_qwen_alignment_routing_set_v3.yaml")
+          payload={
+            "python":sys.version,"platform":platform.platform(),"torch":torch.__version__,"numpy":numpy.__version__,
+            "source_commit":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),
+            "configuration_sha256":hashlib.sha256(config.read_bytes()).hexdigest(),
+            "protocol_version":yaml.safe_load(config.read_text())["protocol_version"],
+          }
+          Path("runs/alignment-routing-set-v3/environment.json").write_text(json.dumps(payload,indent=2,sort_keys=True)+"\n")
+          PY
+          find "$OUTPUT" runs/alignment-routing-set-v3 -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/2026-07-30/routing-set-v3/SHA256SUMS
+          sha256sum -c artifacts/2026-07-30/routing-set-v3/SHA256SUMS
+      - name: Commit every scientific artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm -rf .github/import/routing-set-v3
+          git add -A
+          git commit -m "results: record audited routing-set distillation v3"
+          git push origin "HEAD:${TARGET_BRANCH}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: routing-set-v3-complete
+          path: |
+            results/pre-qwen-alignment-routing-set/v3
+            runs/alignment-routing-set-v3
+            artifacts/2026-07-30/routing-set-v3
+          if-no-files-found: error
+          retention-days: 30
