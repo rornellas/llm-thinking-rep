@@ -1,0 +1,146 @@
+protocol_version: pre-qwen-routing-coupled-residual-v4
+status: preregistered_before_materializing_v4_hypothesis_or_ood
+purpose: >-
+  Test whether an explicit permutation-invariant correction conditioned on the
+  routed expert set can preserve teacher behavior and beat the frozen narrow65
+  baseline while keeping expert parameters and dominant matrix compute below 65%.
+claim_scope: exploratory_fixed_teacher_architecture_screen
+threads: 1
+source:
+  routing_set_config: configs/pre_qwen_alignment_routing_set_v3.yaml
+  routing_set_results: results/pre-qwen-alignment-routing-set/v3
+  required_source_verdict: ALIGNMENT_TOLERANT_ROUTING_SET_V3_MECHANISM_SIGNAL
+  required_adversarial_disposition: OBJECTIVE_ONLY_LINE_CLOSED__ARCHITECTURE_CHANGE_REQUIRED
+  primary_base_state: shared-lora-r5-routing-set-v3
+  rank6_state: shared-lora-r6-routing-set-v3
+  narrow_state: narrow65-frozen-baseline
+  full_state: full-continuation-control
+model:
+  seq_len: 48
+  batch_size: 8
+  d_model: 24
+  n_heads: 4
+  n_layers: 2
+  d_ff: 40
+  n_experts: 12
+  top_k: 4
+  learning_rate: 0.0004
+  student_learning_rate: 0.001
+  weight_decay: 0.02
+  aux_weight: 0.01
+  grad_clip: 1.0
+seeds: [91121, 92129, 93133, 94151, 95153]
+data:
+  train_documents: 28
+  train_seed: 24017
+  train_split: teacher-width-train-v1
+  hypothesis_documents: 20
+  hypothesis_seed: 611953
+  hypothesis_split: routing-coupled-hypothesis-v4-confirmation
+  ood_split: routing-coupled-ood-v4-confirmation
+  windows_per_document: 3
+  evaluation_window_seed: 749123
+  capture_batches: 36
+  capture_batch_size: 8
+  near_duplicate_threshold: 0.70
+objective:
+  mixture: 0.20
+  expert: 0.20
+  counterfactual: 0.40
+  geometry: 0.10
+  cosine: 0.10
+training:
+  coupling_only_steps: 480
+  joint_steps: 180
+  local_batch_size: 128
+  joint_weights:
+    local: 0.35
+    kl: 0.55
+    ce: 0.10
+candidates:
+  - name: rank5-coupled-q8-h8-v4
+    architecture: rank5_shared_lora_plus_routing_set_moments
+    role: primary
+    set_dim: 8
+    hidden_dim: 8
+    use_second_moment: true
+    expected_parameter_ratio: 0.4428240740740741
+    expected_compute_ratio: 0.625
+  - name: rank5-coupled-q8-h8-mean-only-control
+    architecture: rank5_shared_lora_plus_routing_set_mean_only
+    role: equal_budget_mechanism_control
+    set_dim: 8
+    hidden_dim: 8
+    use_second_moment: false
+    expected_parameter_ratio: 0.4428240740740741
+    expected_compute_ratio: 0.625
+  - name: rank5-coupled-q12-h8-v4
+    architecture: rank5_shared_lora_plus_routing_set_moments
+    role: coupling_capacity_control
+    set_dim: 12
+    hidden_dim: 8
+    use_second_moment: true
+    expected_parameter_ratio: 0.453125
+    expected_compute_ratio: 0.6375
+  - name: rank5-v3-frozen-baseline
+    architecture: shared_lora_rank5
+    role: frozen_architecture_baseline
+    expected_parameter_ratio: 0.4166666666666667
+    expected_compute_ratio: 0.5833333333333334
+  - name: rank6-v3-frozen-capacity
+    architecture: shared_lora_rank6
+    role: frozen_equal_compute_capacity
+    expected_parameter_ratio: 0.48333333333333334
+    expected_compute_ratio: 0.65
+  - name: narrow65-frozen-baseline
+    architecture: conventional_teacher_informed_narrow
+    role: frozen_primary_baseline
+    expected_parameter_ratio: 0.65
+    expected_compute_ratio: 0.65
+  - name: full-continuation-control
+    architecture: conventional_full_width
+    role: frozen_recovery_control
+    expected_parameter_ratio: 1.0
+    expected_compute_ratio: 1.0
+statistics:
+  bootstrap_samples: 20000
+  bootstrap_seed: 863117
+  confidence: 0.95
+gates:
+  primary_hypothesis_ucb_max: 0.030
+  primary_ood_ucb_max: 0.050
+  every_seed_primary_hypothesis_delta_max: 0.060
+  primary_minus_narrow65_ucb_max: 0.000
+  primary_minus_rank6_ucb_max: 0.000
+  primary_minus_v3_ucb_max: 0.000
+  primary_kl_ucb_max: 0.200
+  primary_top1_lcb_min: 0.780
+  primary_local_nrmse_ucb_max: 0.240
+  primary_counterfactual_nrmse_ucb_max: 0.280
+  primary_cross_error_gap_vs_narrow_ucb_max: 0.040
+  disabled_minus_primary_kl_lcb_min: 0.010
+  disabled_minus_primary_loss_lcb_min: 0.000
+  primary_minus_mean_only_kl_ucb_max: 0.000
+  full_control_hypothesis_ucb_max: 0.010
+  full_control_ood_ucb_max: 0.015
+  primary_parameter_ratio_strict_max: 0.65
+  primary_compute_ratio_max: 0.65
+  arithmetic_tolerance: 0.000001
+  require_independent_audit: true
+decision_policy:
+  pass: >-
+    The primary passes absolute, every-seed, behavioral, paired narrow65 and
+    rank6 comparisons, exact budget, clean-data, causal-coupling, full-control,
+    and independent-audit gates.
+  functional_signal: >-
+    The primary materially and causally improves the frozen v3 base on KL,
+    top-1, local or counterfactual fidelity while remaining below 65%, but does
+    not establish non-inferiority to narrow65. This permits one architecture
+    replication, not a real-checkpoint transplant.
+  fail: >-
+    The correction is not causally useful, does not improve behavioral fidelity,
+    exceeds budget, or fails integrity controls. In that case this coupling form
+    is closed and the native-training/heterogeneous-rank branch becomes primary.
+  consequence: >-
+    No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. A PASS only authorizes a fresh
+    replication on plateaued teachers plus measured runtime implementation.
