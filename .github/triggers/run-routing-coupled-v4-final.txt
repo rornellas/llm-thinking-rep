@@ -1,0 +1,5 @@
+run pre-qwen-routing-coupled-residual-v4 final
+triggered_at=2026-07-30T06:10:00Z
+source_branch=agent/routing-coupled-residual-v4
+source_commit=ff8b506be2acea4980adaa524665dbc31db54e5b
+validated_source_commit=d98432e377eae3fe6dbbabef7b8d3935dcc22eff
