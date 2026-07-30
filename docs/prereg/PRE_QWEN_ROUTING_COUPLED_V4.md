@@ -89,10 +89,12 @@ Nenhum documento v1–v3 será utilizado para seleção ou decisão v4.
 - top-1 agreement;
 - NRMSE local;
 - NRMSE contrafactual;
-- gap do termo cruzado contra narrow65;
+- erro agregado da mistura roteada contra narrow65;
 - ablação com acoplador desligado;
 - controle mean-only;
 - parâmetros e compute analítico.
+
+O termo `cross-error` permanece diagnóstico. Ele não é gate porque uma correção definida no conjunto não possui decomposição única entre experts; repartir a mesma correção por slot altera artificialmente self/cross sem alterar a saída agregada. O `routing_aggregate_error` é identificável e invariável.
 
 ## Estatística
 
@@ -114,7 +116,7 @@ O `PASS` exige simultaneamente:
 - top-1 LCB95 `>= 0.78`;
 - local NRMSE UCB95 `<= 0.24`;
 - counterfactual NRMSE UCB95 `<= 0.28`;
-- gap de cross-error para narrow65 UCB95 `<= 0.04`;
+- gap de `routing_aggregate_error` para narrow65 UCB95 `<= 0.04`;
 - o primário não é inferior ao controle mean-only em KL;
 - desligar o acoplador piora KL em pelo menos `0.01` no LCB95 ou piora loss com LCB95 não negativo;
 - parâmetros `<65%`, compute `<=65%`;
