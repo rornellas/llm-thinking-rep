@@ -2,7 +2,7 @@
 """Independent adversarial audit for routing-coupled residual v4.
 
 This script intentionally does not import the aggregator or the project's
-bootstrap helpers.  It rebuilds seed-document cells, crossed intervals,
+bootstrap helpers. It rebuilds seed-document cells, crossed intervals,
 provenance, arithmetic, gates, and leave-one-seed-out sensitivity from raw
 per-seed records.
 """
@@ -25,6 +25,7 @@ RANK6 = "rank6-v3-frozen-capacity"
 NARROW = "narrow65-frozen-baseline"
 FULL = "full-continuation-control"
 DISABLED = "rank5-coupled-q8-h8-v4__coupling-disabled"
+SECOND_DISABLED = "rank5-coupled-q8-h8-v4__second-moment-disabled"
 
 
 def sha256_file(path: Path) -> str:
@@ -149,7 +150,13 @@ def stat(
     )
 
 
-def close(label: str, actual: float, expected: float, mismatches: list[str], tolerance: float = 1e-10) -> None:
+def close(
+    label: str,
+    actual: float,
+    expected: float,
+    mismatches: list[str],
+    tolerance: float = 1e-10,
+) -> None:
     if abs(actual - expected) > tolerance:
         mismatches.append(f"{label}: rebuilt={actual} machine={expected}")
 
@@ -167,7 +174,7 @@ def expected_verdict(gates: dict[str, bool], improvement_votes: int, required_vo
         "primary_top1_pass",
         "primary_local_nrmse_pass",
         "primary_counterfactual_pass",
-        "primary_cross_error_gap_pass",
+        "primary_aggregate_error_gap_pass",
         "causal_coupling_pass",
         "full_control_hypothesis_pass",
         "full_control_ood_pass",
@@ -218,8 +225,6 @@ def main() -> int:
     machine = json.loads((args.output_dir / "metrics.json").read_text(encoding="utf-8"))
     mismatches: list[str] = []
 
-    # Rebuild every load-bearing statistic using the same preregistered random
-    # streams but an independent implementation.
     primary_hyp = {
         "loss": stat(records, PRIMARY, "hypothesis", "loss_delta", samples=samples, random_seed=base_seed + 0, confidence=confidence),
         "kl": stat(records, PRIMARY, "hypothesis", "kl_teacher_to_candidate", samples=samples, random_seed=base_seed + 1, confidence=confidence),
@@ -227,6 +232,7 @@ def main() -> int:
         "local": stat(records, PRIMARY, "hypothesis", "local_nrmse", samples=samples, random_seed=base_seed + 3, confidence=confidence),
         "counterfactual": stat(records, PRIMARY, "hypothesis", "counterfactual_nrmse", samples=samples, random_seed=base_seed + 4, confidence=confidence),
         "cross": stat(records, PRIMARY, "hypothesis", "routing_cross_error", samples=samples, random_seed=base_seed + 5, confidence=confidence),
+        "aggregate": stat(records, PRIMARY, "hypothesis", "routing_aggregate_error", samples=samples, random_seed=base_seed + 7, confidence=confidence),
     }
     primary_ood = stat(records, PRIMARY, "ood", "loss_delta", samples=samples, random_seed=base_seed + 100, confidence=confidence)
     full_hyp = stat(records, FULL, "hypothesis", "loss_delta", samples=samples, random_seed=base_seed + 6000, confidence=confidence)
@@ -244,7 +250,7 @@ def main() -> int:
         "primary_minus_mean_only_loss": paired(records, PRIMARY, MEAN_ONLY, "loss_delta", samples=samples, random_seed=base_seed + 9109, confidence=confidence),
         "disabled_minus_primary_kl": paired(records, DISABLED, PRIMARY, "kl_teacher_to_candidate", samples=samples, random_seed=base_seed + 9110, confidence=confidence),
         "disabled_minus_primary_loss": paired(records, DISABLED, PRIMARY, "loss_delta", samples=samples, random_seed=base_seed + 9111, confidence=confidence),
-        "primary_minus_narrow_cross_error": paired(records, PRIMARY, NARROW, "routing_cross_error", samples=samples, random_seed=base_seed + 9113, confidence=confidence),
+        "primary_minus_narrow_aggregate_error": paired(records, PRIMARY, NARROW, "routing_aggregate_error", samples=samples, random_seed=base_seed + 9113, confidence=confidence),
     }
 
     machine_primary = machine["candidates"][PRIMARY]
@@ -254,6 +260,7 @@ def main() -> int:
         ("primary top1", primary_hyp["top1"], machine_primary["hypothesis"]["top1_agreement"]),
         ("primary local", primary_hyp["local"], machine_primary["hypothesis"]["local_nrmse"]),
         ("primary counterfactual", primary_hyp["counterfactual"], machine_primary["hypothesis"]["counterfactual_nrmse"]),
+        ("primary aggregate", primary_hyp["aggregate"], machine_primary["hypothesis"]["routing_aggregate_error"]),
         ("primary OOD loss", primary_ood, machine_primary["ood"]["loss_delta"]),
     ):
         for field in ("mean", "lcb", "ucb"):
@@ -263,7 +270,6 @@ def main() -> int:
         for field in ("mean", "lcb", "ucb"):
             close(f"{name} {field}", float(rebuilt[field]), float(expected[field]), mismatches)
 
-    # Provenance, completeness, hashes, and data isolation.
     config_hash = sha256_file(args.config)
     protocol = str(cfg["protocol_version"])
     source_commits = {str(payload["metadata"]["source_commit"]) for payload in payloads}
@@ -272,18 +278,28 @@ def main() -> int:
     source_hashes: list[str] = []
     required_candidates = {
         str(row["name"]) for row in cfg["candidates"]
-    } | {DISABLED, "rank5-coupled-q8-h8-v4__second-moment-disabled"}
+    } | {DISABLED, SECOND_DISABLED}
     coverage_pass = True
     data_pass = True
+    source_file_pass = True
     for seed, payload in zip(seeds, payloads, strict=True):
         checkpoint = args.output_dir / f"frozen-candidates-seed-{seed}.pt"
         actual_checkpoint_hash = sha256_file(checkpoint)
         checkpoint_hashes.append(actual_checkpoint_hash)
         if actual_checkpoint_hash != str(payload["metadata"]["checkpoint_sha256"]):
             mismatches.append(f"checkpoint hash mismatch for seed {seed}")
-        source_hashes.append(str(payload["metadata"]["source_v3_checkpoint_sha256"]))
+        source_hash = str(payload["metadata"]["source_v3_checkpoint_sha256"])
+        source_hashes.append(source_hash)
+        source_path = ROOT / str(payload["metadata"]["source_v3_checkpoint"])
+        if not source_path.exists() or sha256_file(source_path) != source_hash:
+            source_file_pass = False
+            mismatches.append(f"source v3 checkpoint mismatch for seed {seed}")
         audit = payload["metadata"]["data_audit"]
-        if audit["exact_cross_split_duplicates"] or audit["near_cross_split_pairs"]:
+        if (
+            audit["exact_cross_split_duplicates"]
+            or audit["near_cross_split_pairs"]
+            or audit.get("within_all_findings")
+        ):
             data_pass = False
         if any(str(row["candidate"]) not in required_candidates for row in payload["records"]):
             coverage_pass = False
@@ -342,7 +358,7 @@ def main() -> int:
         "primary_top1_pass": primary_hyp["top1"]["lcb"] >= float(gates_cfg["primary_top1_lcb_min"]),
         "primary_local_nrmse_pass": primary_hyp["local"]["ucb"] <= float(gates_cfg["primary_local_nrmse_ucb_max"]),
         "primary_counterfactual_pass": primary_hyp["counterfactual"]["ucb"] <= float(gates_cfg["primary_counterfactual_nrmse_ucb_max"]),
-        "primary_cross_error_gap_pass": comparisons["primary_minus_narrow_cross_error"]["ucb"] <= float(gates_cfg["primary_cross_error_gap_vs_narrow_ucb_max"]),
+        "primary_aggregate_error_gap_pass": comparisons["primary_minus_narrow_aggregate_error"]["ucb"] <= float(gates_cfg["primary_aggregate_error_gap_vs_narrow_ucb_max"]),
         "causal_coupling_kl_pass": causal_kl,
         "causal_coupling_loss_pass": causal_loss,
         "causal_coupling_pass": causal_kl or causal_loss,
@@ -357,7 +373,9 @@ def main() -> int:
     machine_gates = machine["decision"]["gates"]
     for name, value in gates.items():
         if bool(machine_gates.get(name)) != bool(value):
-            mismatches.append(f"gate mismatch {name}: rebuilt={value} machine={machine_gates.get(name)}")
+            mismatches.append(
+                f"gate mismatch {name}: rebuilt={value} machine={machine_gates.get(name)}"
+            )
     if int(machine["decision"]["improvement_votes"]) != improvement_votes:
         mismatches.append("improvement vote mismatch")
 
@@ -379,10 +397,25 @@ def main() -> int:
             confidence=confidence,
         )
 
+    audit_passed = (
+        not mismatches
+        and coverage_pass
+        and data_pass
+        and arithmetic_pass
+        and source_file_pass
+        and len(source_commits) == 1
+        and configuration_hashes == {config_hash}
+        and len(set(checkpoint_hashes)) == len(checkpoint_hashes)
+        and len(set(source_hashes)) == len(source_hashes)
+        and all(len(value) == 64 for value in checkpoint_hashes + source_hashes)
+    )
     audit = {
-        "audit_passed": not mismatches and coverage_pass and len(source_commits) == 1 and configuration_hashes == {config_hash} and all(len(value) == 64 for value in checkpoint_hashes + source_hashes),
+        "audit_passed": bool(audit_passed),
         "mismatches": mismatches,
         "coverage_pass": coverage_pass,
+        "data_pass": data_pass,
+        "arithmetic_pass": bool(arithmetic_pass),
+        "source_file_pass": source_file_pass,
         "provenance": {
             "protocol": protocol,
             "source_commits": sorted(source_commits),
@@ -410,18 +443,19 @@ def main() -> int:
     )
     (audit_dir / "VERDICT.md").write_text(
         "# Independent audit — routing-coupled residual v4\n\n"
-        f"**Audit:** **{'PASS' if audit['audit_passed'] else 'FAIL'}**\n\n"
+        f"**Audit:** **{'PASS' if audit_passed else 'FAIL'}**\n\n"
         f"Mismatches: `{len(mismatches)}`.\n\n"
         f"Expected final verdict if the audit passes: `{expected_final}`.\n\n"
         "The auditor independently rebuilt seed-document cells, crossed intervals, "
-        "causal ablations, behavior-improvement votes, arithmetic, data isolation, "
-        "provenance, gates, and leave-one-seed-out sensitivity.\n",
+        "causal ablations, behavior-improvement votes, invariant aggregate-error, "
+        "arithmetic, data isolation, provenance, gates, source hashes, and "
+        "leave-one-seed-out sensitivity.\n",
         encoding="utf-8",
     )
-    print("Audit:", "PASS" if audit["audit_passed"] else "FAIL")
+    print("Audit:", "PASS" if audit_passed else "FAIL")
     if mismatches:
         print("\n".join(mismatches))
-    return 0 if audit["audit_passed"] else 1
+    return 0 if audit_passed else 1
 
 
 if __name__ == "__main__":
