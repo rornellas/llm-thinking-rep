@@ -1,0 +1,43 @@
+trained seed=94151 candidate=rank5-coupled-q8-h8-v4
+trained seed=94151 candidate=rank5-coupled-q8-h8-mean-only-control
+trained seed=94151 candidate=rank5-coupled-q12-h8-v4
+evaluated seed=94151 candidate=rank5-coupled-q8-h8-v4 phase=initial hyp=-0.052765
+evaluated seed=94151 candidate=rank5-coupled-q8-h8-v4 phase=final hyp=-0.025560
+evaluated seed=94151 candidate=rank5-coupled-q8-h8-mean-only-control phase=initial hyp=-0.052765
+evaluated seed=94151 candidate=rank5-coupled-q8-h8-mean-only-control phase=final hyp=-0.027527
+evaluated seed=94151 candidate=rank5-coupled-q12-h8-v4 phase=initial hyp=-0.052765
+evaluated seed=94151 candidate=rank5-coupled-q12-h8-v4 phase=final hyp=-0.019146
+evaluated seed=94151 candidate=rank5-v3-frozen-baseline phase=initial hyp=-0.052765
+evaluated seed=94151 candidate=rank5-v3-frozen-baseline phase=final hyp=-0.052765
+evaluated seed=94151 candidate=rank6-v3-frozen-capacity phase=initial hyp=-0.065943
+evaluated seed=94151 candidate=rank6-v3-frozen-capacity phase=final hyp=-0.065943
+evaluated seed=94151 candidate=narrow65-frozen-baseline phase=initial hyp=-0.032781
+evaluated seed=94151 candidate=narrow65-frozen-baseline phase=final hyp=-0.032781
+evaluated seed=94151 candidate=full-continuation-control phase=initial hyp=+0.007304
+evaluated seed=94151 candidate=full-continuation-control phase=final hyp=+0.007304
+evaluated seed=94151 candidate=rank5-coupled-q8-h8-v4__coupling-disabled phase=final hyp=-0.032413
+evaluated seed=94151 candidate=rank5-coupled-q8-h8-v4__second-moment-disabled phase=final hyp=-0.030508
+results/pre-qwen-routing-coupled/v4/seed-94151.json
+	Command being timed: "python scripts/run_routing_coupled_v4_seed.py --seed 94151 --config configs/pre_qwen_routing_coupled_v4.yaml --output-dir results/pre-qwen-routing-coupled/v4"
+	User time (seconds): 71.09
+	System time (seconds): 2.52
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:14.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 422888
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 1027817
+	Voluntary context switches: 168
+	Involuntary context switches: 461
+	Swaps: 0
+	File system inputs: 7424
+	File system outputs: 5728
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
