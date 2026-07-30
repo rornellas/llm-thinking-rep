@@ -102,22 +102,35 @@ Nenhum documento v1–v3 será utilizado para seleção ou decisão v4.
 - valores por seed e leave-one-seed-out obrigatórios;
 - comparação pareada em todas as diferenças load-bearing.
 
-## Gates
+## Gates de `PASS`
 
 O `PASS` exige simultaneamente:
 
 - hypothesis UCB95 `<= +0.030 nat`;
 - OOD UCB95 `<= +0.050 nat`;
 - cada seed `<= +0.060 nat`;
-- não-inferioridade pareada a narrow65 e rank-6;
+- não-inferioridade pareada a narrow65, rank-6 e rank-5 v3;
 - KL UCB95 `<= 0.20`;
 - top-1 LCB95 `>= 0.78`;
 - local NRMSE UCB95 `<= 0.24`;
 - counterfactual NRMSE UCB95 `<= 0.28`;
 - gap de cross-error para narrow65 UCB95 `<= 0.04`;
+- o primário não é inferior ao controle mean-only em KL;
 - desligar o acoplador piora KL em pelo menos `0.01` no LCB95 ou piora loss com LCB95 não negativo;
 - parâmetros `<65%`, compute `<=65%`;
 - full controls, dados, aritmética e auditor independente aprovados.
+
+## Gate de `FUNCTIONAL_SIGNAL`
+
+Um sinal funcional exige integridade, orçamento, full controls, auditoria e causalidade do acoplador, além de **pelo menos dois de cinco** efeitos estabelecidos contra o rank-5 v3 congelado:
+
+1. loss: UCB95 de `v4-v3 <= 0`;
+2. KL: UCB95 de `v4-v3 <= 0`;
+3. top-1: LCB95 de `v4-v3 >= 0`;
+4. local NRMSE: UCB95 de `v4-v3 <= 0`;
+5. counterfactual NRMSE: UCB95 de `v4-v3 <= 0`.
+
+Esse rótulo não substitui o `PASS`, não autoriza checkpoint real e não pode ser concedido se desligar o acoplador não causar dano mensurável.
 
 ## Interpretação adversarial antecipada
 
