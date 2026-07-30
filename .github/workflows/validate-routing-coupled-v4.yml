@@ -16,7 +16,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 40
     env:
       TARGET_BRANCH: agent/routing-coupled-residual-v4
       PYTHONDONTWRITEBYTECODE: "1"
@@ -36,17 +36,26 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
           python -m pip install "numpy>=2.0" "PyYAML>=6.0" "pytest>=8.0"
-      - name: Compile and test new mechanism
+      - name: Compile and test complete frozen source
         shell: bash
         run: |
           set -euo pipefail
           python -m compileall -q pre_qwen_certification scripts tests
-          PYTHONPATH=. pytest -q \
-            tests/test_routing_coupled.py \
-            tests/test_routing_set_distillation.py \
-            tests/test_alignment_tolerant.py \
-            tests/test_modal.py \
-            tests/test_metrics.py
+          PYTHONPATH=. pytest -q
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          c=yaml.safe_load(Path('configs/pre_qwen_routing_coupled_v4.yaml').read_text())
+          assert c['protocol_version']=='pre-qwen-routing-coupled-residual-v4'
+          assert c['status']=='preregistered_before_materializing_v4_hypothesis_or_ood'
+          assert c['seeds']==[91121,92129,93133,94151,95153]
+          assert abs(sum(map(float,c['objective'].values()))-1.0)<1e-9
+          assert abs(sum(map(float,c['training']['joint_weights'].values()))-1.0)<1e-9
+          assert c['gates']['behavior_improvement_min_votes']==2
+          expected={row['name']:(float(row['expected_parameter_ratio']),float(row['expected_compute_ratio'])) for row in c['candidates']}
+          assert expected['rank5-coupled-q8-h8-v4']==(0.4428240740740741,0.625)
+          assert expected['rank5-coupled-q12-h8-v4']==(0.453125,0.6375)
+          PY
       - name: Persist validation result
         if: always()
         shell: bash
