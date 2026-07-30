@@ -67,7 +67,6 @@ class SharedLowRankResidualMoE(nn.Module):
     """Full-width SwiGLU experts with shared bases and bilateral side factors.
 
     For every expert and every SwiGLU matrix, the deployed weight is
-
     ``W_e = W_shared + L_e @ R_e``.
 
     The implementation executes the factorization directly. Shared projections
@@ -175,6 +174,51 @@ class SharedLowRankResidualMoE(nn.Module):
             compute_ratio=student_macs / teacher_macs,
         )
 
+    def routed_expert_outputs(
+        self,
+        x: torch.Tensor,
+        *,
+        forced_top_ids: torch.Tensor,
+    ) -> torch.Tensor:
+        """Return unweighted outputs of the routed experts, shape ``[N,T,D]``."""
+        g = self.geometry
+        if tuple(forced_top_ids.shape) != (x.shape[0], g.top_k):
+            raise ValueError("forced_top_ids has invalid shape")
+        flat_ids = forced_top_ids.reshape(-1)
+        n = x.shape[0]
+
+        common_gate = F.linear(x, self.common_gate)[:, None, :]
+        gate_right = self.gate_right.index_select(0, flat_ids).reshape(
+            n, g.top_k, self.rank, g.d_model
+        )
+        gate_left = self.gate_left.index_select(0, flat_ids).reshape(
+            n, g.top_k, g.d_ff, self.rank
+        )
+        gate_latent = torch.einsum("ntrd,nd->ntr", gate_right, x)
+        gate_values = common_gate + torch.einsum("nthr,ntr->nth", gate_left, gate_latent)
+
+        common_up = F.linear(x, self.common_up)[:, None, :]
+        up_right = self.up_right.index_select(0, flat_ids).reshape(
+            n, g.top_k, self.rank, g.d_model
+        )
+        up_left = self.up_left.index_select(0, flat_ids).reshape(
+            n, g.top_k, g.d_ff, self.rank
+        )
+        up_latent = torch.einsum("ntrd,nd->ntr", up_right, x)
+        up_values = common_up + torch.einsum("nthr,ntr->nth", up_left, up_latent)
+        hidden = F.silu(gate_values) * up_values
+
+        common_output = F.linear(hidden, self.common_down)
+        down_right = self.down_right.index_select(0, flat_ids).reshape(
+            n, g.top_k, self.rank, g.d_ff
+        )
+        down_left = self.down_left.index_select(0, flat_ids).reshape(
+            n, g.top_k, g.d_model, self.rank
+        )
+        down_latent = torch.einsum("ntrh,nth->ntr", down_right, hidden)
+        residual_output = torch.einsum("ntdr,ntr->ntd", down_left, down_latent)
+        return common_output + residual_output
+
     def forward(
         self,
         x: torch.Tensor,
@@ -187,46 +231,8 @@ class SharedLowRankResidualMoE(nn.Module):
         natural = route_topk(x, self.router.weight, g.top_k)
         top_ids = natural.top_ids if forced_top_ids is None else forced_top_ids
         weights = natural.weights if forced_weights is None else forced_weights
-        flat_ids = top_ids.reshape(-1)
-        n = x.shape[0]
-
-        common_gate = F.linear(x, self.common_gate)[:, None, :]
-        gate_right = self.gate_right.index_select(0, flat_ids).reshape(
-            n, g.top_k, self.rank, g.d_model
-        )
-        gate_left = self.gate_left.index_select(0, flat_ids).reshape(
-            n, g.top_k, g.d_ff, self.rank
-        )
-        gate_latent = torch.einsum("ntrd,nd->ntr", gate_right, x)
-        gate_values = common_gate + torch.einsum(
-            "nthr,ntr->nth", gate_left, gate_latent
-        )
-
-        common_up = F.linear(x, self.common_up)[:, None, :]
-        up_right = self.up_right.index_select(0, flat_ids).reshape(
-            n, g.top_k, self.rank, g.d_model
-        )
-        up_left = self.up_left.index_select(0, flat_ids).reshape(
-            n, g.top_k, g.d_ff, self.rank
-        )
-        up_latent = torch.einsum("ntrd,nd->ntr", up_right, x)
-        up_values = common_up + torch.einsum(
-            "nthr,ntr->nth", up_left, up_latent
-        )
-
-        hidden = F.silu(gate_values) * up_values
-        mixed_hidden = torch.einsum("nt,nth->nh", weights, hidden)
-        common_output = F.linear(mixed_hidden, self.common_down)
-
-        down_right = self.down_right.index_select(0, flat_ids).reshape(
-            n, g.top_k, self.rank, g.d_ff
-        )
-        down_left = self.down_left.index_select(0, flat_ids).reshape(
-            n, g.top_k, g.d_model, self.rank
-        )
-        down_latent = torch.einsum("ntrh,nth->ntr", down_right, hidden)
-        residual_output = torch.einsum("ntdr,ntr->ntd", down_left, down_latent)
-        output = common_output + torch.einsum("nt,ntd->nd", weights, residual_output)
+        expert_outputs = self.routed_expert_outputs(x, forced_top_ids=top_ids)
+        output = torch.einsum("nt,ntd->nd", weights, expert_outputs)
         return output, Routing(natural.logits, top_ids, weights)
 
     @torch.no_grad()
