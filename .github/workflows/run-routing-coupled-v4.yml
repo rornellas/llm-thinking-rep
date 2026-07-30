@@ -15,7 +15,7 @@ concurrency:
 
 env:
   TARGET_BRANCH: agent/routing-coupled-residual-v4
-  SOURCE_COMMIT: bec59757de5316c49b69924eab297a6053d6203e
+  SOURCE_COMMIT: 0d85ea806247e06cfe0e91bbf165bde7b2c7742c
   VALIDATED_SOURCE_COMMIT: d98432e377eae3fe6dbbabef7b8d3935dcc22eff
   CONFIG: configs/pre_qwen_routing_coupled_v4.yaml
   OUTPUT: results/pre-qwen-routing-coupled/v4
@@ -64,7 +64,8 @@ jobs:
           assert abs(sum(map(float,c['training']['joint_weights'].values()))-1.0)<1e-9
           assert c['gates']['behavior_improvement_min_votes']==2
           PY
-          test -z "$(git status --porcelain=v1)"
+          git diff --quiet
+          git diff --cached --quiet
 
   seed:
     needs: preflight
