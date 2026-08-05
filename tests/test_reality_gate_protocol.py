@@ -13,6 +13,8 @@ def test_reality_gate_protocol_is_frozen_and_budgeted() -> None:
     assert config["data"]["dataset_source"] == "Salesforce/wikitext"
     assert config["data"]["dataset_subset"] == "wikitext-2-raw-v1"
     assert config["data"]["dataset_revision"] == "b08601e04326c79dfdd32d625aee71d232d685c3"
+    script = Path("scripts/prepare_reality_gate_wikitext.py").read_text()
+    assert f'DATASET_REVISION = "{config["data"]["dataset_revision"]}"' in script
     assert abs(sum(config["training"]["joint_weights"].values()) - 1.0) < 1e-12
     for scale in config["scales"].values():
         model = scale["model"]
