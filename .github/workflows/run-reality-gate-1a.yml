@@ -1,0 +1,339 @@
+name: Run Reality Gate 1A
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/run-reality-gate-1a.txt"
+
+permissions:
+  contents: write
+
+env:
+  SOURCE_COMMIT: ${{ github.sha }}
+  CONFIG: configs/reality_gate_1a.yaml
+  DATA_ROOT: data/reality-gate-1a
+  OUTPUT: results/reality-gate-1a
+  PYTHONUNBUFFERED: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONPYCACHEPREFIX: /tmp/reality-gate-pycache
+  OMP_NUM_THREADS: "2"
+  OPENBLAS_NUM_THREADS: "2"
+  MKL_NUM_THREADS: "2"
+  NUMEXPR_NUM_THREADS: "2"
+
+concurrency:
+  group: reality-gate-1a
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "scipy>=1.11" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Verify frozen source, algebra, protocol, and decision code
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q
+          python - <<'PY'
+          from pathlib import Path
+          import os, yaml
+          config=yaml.safe_load(Path(os.environ['CONFIG']).read_text())
+          assert config['protocol_version']=='reality-gate-1a-static-heterogeneous-rank-v1'
+          assert config['status']=='preregistered_before_data_preparation_or_scientific_training'
+          assert config['seeds']==[111731,121747,131759,141767]
+          assert config['gates']['routing_loss_difference_ucb_max']==0.0
+          assert config['gates']['signal_min_scales']==1
+          assert abs(sum(map(float,config['training']['joint_weights'].values()))-1.0)<1e-12
+          PY
+          git diff --quiet
+          git diff --cached --quiet
+
+  prepare-data:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install data dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy>=2.0" "datasets>=3.0" "tokenizers>=0.20" "huggingface_hub>=0.25"
+      - name: Prepare pinned article-preserving WikiText-2 data
+        run: |
+          set -euo pipefail
+          python scripts/prepare_reality_gate_wikitext.py \
+            --root "$DATA_ROOT"
+          python - <<'PY'
+          from pathlib import Path
+          import json, os
+          root=Path(os.environ['DATA_ROOT'])
+          manifest=json.loads((root/'manifest.json').read_text())
+          assert manifest['schema_version']=='reality-gate-wikitext-article-v2'
+          assert manifest['splits']['train']['documents'] > 20
+          assert manifest['splits']['validation']['documents'] > 5
+          assert manifest['splits']['test']['documents'] > 5
+          assert manifest['splits']['ood']['documents'] == 12
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reality-gate-1a-data
+          path: data/reality-gate-1a
+          if-no-files-found: error
+          retention-days: 30
+
+  pilot:
+    needs: [preflight, prepare-data]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: reality-gate-1a-data
+          path: data/reality-gate-1a
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "scipy>=1.11" "PyYAML>=6.0"
+      - name: Run plateau and engineering pilot without test/OOD access
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v python scripts/run_reality_gate_1a_seed.py \
+            --scale small --seed 9091 --pilot \
+            --config "$CONFIG" --data-root "$DATA_ROOT" --output-dir "$OUTPUT" \
+            2>&1 | tee pilot.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reality-gate-1a-pilot
+          path: |
+            results/reality-gate-1a/pilot
+            pilot.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  scientific-cell:
+    needs: [pilot, prepare-data]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        scale: [small, medium]
+        seed: [111731, 121747, 131759, 141767]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: reality-gate-1a-data
+          path: data/reality-gate-1a
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "scipy>=1.11" "PyYAML>=6.0"
+      - name: Restore immutable source and run cell
+        shell: bash
+        env:
+          SCALE: ${{ matrix.scale }}
+          SEED: ${{ matrix.seed }}
+        run: |
+          set -euo pipefail
+          git reset --hard "$SOURCE_COMMIT"
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          mkdir -p "$OUTPUT/$SCALE/logs" runs/reality-gate-1a
+          /usr/bin/time -v python scripts/run_reality_gate_1a_seed.py \
+            --scale "$SCALE" --seed "$SEED" \
+            --config "$CONFIG" --data-root "$DATA_ROOT" --output-dir "$OUTPUT" \
+            2>&1 | tee "$OUTPUT/$SCALE/logs/seed-$SEED.log"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, subprocess
+          scale=os.environ['SCALE']; seed=int(os.environ['SEED'])
+          root=Path(os.environ['OUTPUT'])/scale
+          files=[root/f'seed-{seed}.json',root/f'frozen-candidates-seed-{seed}.pt',root/'logs'/f'seed-{seed}.log']
+          payload={'scale':scale,'seed':seed,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':[]}
+          for path in files:
+              payload['files'].append({'path':str(path),'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+          Path(f'runs/reality-gate-1a/{scale}-seed-{seed}-manifest.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reality-gate-1a-${{ matrix.scale }}-${{ matrix.seed }}
+          path: |
+            results/reality-gate-1a/${{ matrix.scale }}/seed-${{ matrix.seed }}.json
+            results/reality-gate-1a/${{ matrix.scale }}/frozen-candidates-seed-${{ matrix.seed }}.pt
+            results/reality-gate-1a/${{ matrix.scale }}/logs/seed-${{ matrix.seed }}.log
+            runs/reality-gate-1a/${{ matrix.scale }}-seed-${{ matrix.seed }}-manifest.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    needs: [scientific-cell, prepare-data, pilot]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: reality-gate-1a-data
+          path: data/reality-gate-1a
+      - uses: actions/download-artifact@v4
+        with:
+          name: reality-gate-1a-pilot
+          path: .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: reality-gate-1a-small-*
+          path: .
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: reality-gate-1a-medium-*
+          path: .
+          merge-multiple: true
+      - name: Install aggregation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0" "scipy>=1.11" "PyYAML>=6.0" "pytest>=8.0"
+      - name: Aggregate, independently audit, finalize, and test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/aggregate_reality_gate_1a.py --config "$CONFIG" --output-dir "$OUTPUT"
+          python scripts/audit_reality_gate_1a.py --config "$CONFIG" --output-dir "$OUTPUT" --data-root "$DATA_ROOT"
+          python scripts/aggregate_reality_gate_1a.py \
+            --config "$CONFIG" --output-dir "$OUTPUT" \
+            --audit-path "$OUTPUT/adversarial-audit/audit.json"
+          python scripts/report_reality_gate_1a.py \
+            --metrics "$OUTPUT/metrics.json" \
+            --audit "$OUTPUT/adversarial-audit/audit.json" \
+            --output docs/results/2026-08-05-reality-gate-1a-analysis.md
+          PYTHONPATH=. pytest -q
+      - name: Record environment and integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/reality-gate-1a artifacts/2026-08-05/reality-gate-1a
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,platform,subprocess,sys,yaml
+          import numpy,torch
+          config=Path(os.environ['CONFIG'])
+          data_manifest=Path(os.environ['DATA_ROOT'])/'manifest.json'
+          payload={
+            'python':sys.version,'platform':platform.platform(),'torch':torch.__version__,'numpy':numpy.__version__,
+            'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'configuration_sha256':hashlib.sha256(config.read_bytes()).hexdigest(),
+            'data_manifest_sha256':hashlib.sha256(data_manifest.read_bytes()).hexdigest(),
+            'protocol_version':yaml.safe_load(config.read_text())['protocol_version'],
+            'workflow_run_id':int(os.environ['GITHUB_RUN_ID']),
+          }
+          Path('runs/reality-gate-1a/environment.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          Path('runs/reality-gate-1a/latest-workflow-status.json').write_text(json.dumps({'run_id':int(os.environ['GITHUB_RUN_ID']),'status':'success'},sort_keys=True)+'\n')
+          PY
+          find "$DATA_ROOT" "$OUTPUT" runs/reality-gate-1a docs/results/2026-08-05-reality-gate-1a-analysis.md \
+            -type f -print0 | sort -z | xargs -0 sha256sum \
+            > artifacts/2026-08-05/reality-gate-1a/SHA256SUMS
+          sha256sum -c artifacts/2026-08-05/reality-gate-1a/SHA256SUMS
+      - name: Commit every scientific artifact directly to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "results: record audited Reality Gate 1A"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reality-gate-1a-complete
+          path: |
+            data/reality-gate-1a
+            results/reality-gate-1a
+            runs/reality-gate-1a
+            artifacts/2026-08-05/reality-gate-1a
+            docs/results/2026-08-05-reality-gate-1a-analysis.md
+          if-no-files-found: warn
+          retention-days: 30
+
+  record-failure:
+    if: >-
+      always() &&
+      (needs.preflight.result != 'success' || needs.prepare-data.result != 'success' || needs.pilot.result != 'success' || needs.scientific-cell.result != 'success' || needs.aggregate.result != 'success')
+    needs: [preflight, prepare-data, pilot, scientific-cell, aggregate]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Commit failure marker directly to main
+        shell: bash
+        env:
+          PREFLIGHT: ${{ needs.preflight.result }}
+          DATA: ${{ needs.prepare-data.result }}
+          PILOT: ${{ needs.pilot.result }}
+          CELLS: ${{ needs.scientific-cell.result }}
+          AGGREGATE: ${{ needs.aggregate.result }}
+        run: |
+          set -euo pipefail
+          mkdir -p runs/reality-gate-1a
+          printf '{"run_id":%s,"preflight":"%s","data":"%s","pilot":"%s","cells":"%s","aggregate":"%s","status":"failure"}\n' \
+            "$GITHUB_RUN_ID" "$PREFLIGHT" "$DATA" "$PILOT" "$CELLS" "$AGGREGATE" \
+            > runs/reality-gate-1a/latest-workflow-status.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add runs/reality-gate-1a/latest-workflow-status.json
+          git commit -m "diagnostics: record Reality Gate 1A workflow failure"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
