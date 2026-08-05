@@ -100,11 +100,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git checkout -- .github/workflows/run-reality-gate-1a.yml
           rm -rf .github/import/reality-gate-1a
           rm -f .github/triggers/import-reality-gate-1a.txt
-          rm -f .github/workflows/import-reality-gate-1a.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "experiment: preregister Reality Gate 1A static heterogeneous rank"
+          git fetch origin main
+          git rebase origin/main
           git push origin HEAD:main
