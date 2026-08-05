@@ -1,0 +1,3 @@
+protocol=native-compact-gate-2a-v1
+preregistered_source_commit=75c37d8f1507e06c2a33d7341450c2149c0085b3
+launched_at=2026-08-05T15:10:00Z
