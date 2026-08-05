@@ -1,174 +1,227 @@
 {
   "claims": [
     {
+      "id": "C-HARNESS-001",
       "claim": "The synthetic capture/replay and known-truth harness detects the preregistered positive, negative, leakage, and wiring controls in its tested small-model scope.",
       "grade": "VERIFIED_WITHIN_TESTED_SCOPE",
-      "id": "C-HARNESS-001",
       "independent_check": "tests plus artifact verifier",
-      "limitations": [
-        "synthetic template family",
-        "small CPU models"
-      ],
+      "limitations": ["synthetic template family", "small controlled models"],
       "primary_evidence": [
         "results/pre-qwen-certification/v1/metrics.json",
         "results/pre-qwen-certification/v1/VERDICT.md"
       ]
     },
     {
+      "id": "C-TRANSPLANT-001",
       "claim": "Scalar Modal K2 can functionally replace one conventional tiny-MoE layer under the frozen v1.3 controlled protocol.",
       "grade": "SUPPORTED",
-      "id": "C-TRANSPLANT-001",
       "independent_check": "results/controlled-small-moe-transplant/v1.3/independent_audit.json",
-      "limitations": [
-        "three teacher seeds",
-        "300-step teachers not converged",
-        "synthetic documents"
-      ],
-      "primary_evidence": [
-        "results/controlled-small-moe-transplant/v1.3/metrics.json"
-      ]
+      "limitations": ["three teacher seeds", "300-step teachers not converged", "synthetic documents"],
+      "primary_evidence": ["results/controlled-small-moe-transplant/v1.3/metrics.json"]
     },
     {
+      "id": "C-EQUAL-COMPUTE-001",
       "claim": "Scalar Modal K2 is superior or non-inferior to conventional narrowing at comparable dominant matrix arithmetic.",
       "grade": "REFUTED_IN_CURRENT_CONTROLLED_SCREENS",
-      "id": "C-EQUAL-COMPUTE-001",
       "independent_check": "results/adversarial-audit/v1/metrics.json; results/followup-adversarial-audit/v1/metrics.json",
-      "limitations": [
-        "analytic compute, not runtime",
-        "tiny model",
-        "teachers not at demonstrated plateau"
-      ],
+      "limitations": ["analytic compute, not runtime", "small models", "historical teachers not at demonstrated plateau"],
       "primary_evidence": [
         "results/controlled-small-moe-transplant/v1.3/metrics.json",
         "results/pre-qwen-mature-teacher/v1/metrics.json"
       ]
     },
     {
+      "id": "C-RANK-BOTTLENECK-001",
       "claim": "For the longer-budget top-4 controlled teachers, global scalar expert-axis modes require a non-compute-reducing K to approach the fidelity gate.",
       "grade": "SUPPORTED_IN_CURRENT_SCREEN",
-      "id": "C-RANK-BOTTLENECK-001",
       "independent_check": "results/followup-adversarial-audit/v1/metrics.json",
-      "limitations": [
-        "three seeds",
-        "900-step teachers still descending",
-        "development distribution"
-      ],
-      "primary_evidence": [
-        "results/pre-qwen-mature-rank-curve/v1/metrics.json"
-      ]
+      "limitations": ["three seeds", "900-step teachers still descending", "development distribution"],
+      "primary_evidence": ["results/pre-qwen-mature-rank-curve/v1/metrics.json"]
     },
     {
-      "claim": "Expert-specific low-rank residuals solve the equal-compute transplant failure.",
-      "grade": "REFUTED_IN_CURRENT_SCREEN",
       "id": "C-RESIDUAL-001",
+      "claim": "Expert-specific low-rank residuals around scalar Modal solve the equal-compute transplant failure.",
+      "grade": "REFUTED_IN_CURRENT_SCREEN",
       "independent_check": "results/pre-qwen-mature-residual/v1/adversarial-audit/metrics.json",
-      "limitations": [
-        "tested ranks and objective only"
-      ],
-      "primary_evidence": [
-        "results/pre-qwen-mature-residual/v1/metrics.json"
-      ]
+      "limitations": ["tested ranks and objectives only"],
+      "primary_evidence": ["results/pre-qwen-mature-residual/v1/metrics.json"]
     },
     {
+      "id": "C-CLUSTER-001",
       "claim": "Router-semantic clustered bases solve the equal-compute transplant failure.",
       "grade": "REFUTED_IN_CURRENT_SCREEN",
-      "id": "C-CLUSTER-001",
       "independent_check": "results/followup-adversarial-audit/v1/metrics.json",
-      "limitations": [
-        "two or three fixed groups",
-        "low-rank residual family",
-        "development distribution"
-      ],
-      "primary_evidence": [
-        "results/pre-qwen-mature-clustered/v1/metrics.json"
-      ]
+      "limitations": ["two or three fixed groups", "tested low-rank residual family", "development distribution"],
+      "primary_evidence": ["results/pre-qwen-mature-clustered/v1/metrics.json"]
     },
     {
-      "claim": "A conventional teacher-informed narrow student retaining 65% of expert width passes the preregistered cross-entropy fidelity gates in five fresh small teachers and is superior to the 50% comparator.",
-      "grade": "VERIFIED_WITHIN_TESTED_SCOPE",
       "id": "C-TEACHER-WIDTH-065-001",
+      "claim": "A conventional teacher-informed narrow student retaining about 65% of expert width passes the preregistered cross-entropy fidelity gates in five fresh small teachers and is superior to the 50% comparator.",
+      "grade": "VERIFIED_WITHIN_TESTED_SCOPE",
       "independent_check": "results/pre-qwen-teacher-width-fresh/v1/adversarial-audit/audit.json",
-      "limitations": [
-        "teachers not at demonstrated plateau",
-        "small character language models",
-        "analytic width/compute proxy",
-        "no runtime measurement"
-      ],
+      "limitations": ["teachers not at demonstrated plateau", "small character language models", "analytic compute proxy", "no runtime measurement"],
       "primary_evidence": [
         "results/pre-qwen-teacher-width-fresh/v1/metrics.json",
         "docs/results/2026-07-28-teacher-informed-width-fresh-replication.md"
       ]
     },
     {
-      "claim": "The shared-base plus bilateral expert-specific rank-5 residual architecture meets the preregistered absolute cross-entropy gates with 41.67% of expert parameters and 58.33% of the routed matrix-operation proxy in the alignment-tolerant v1 screen.",
-      "grade": "VERIFIED_WITHIN_SCREEN",
       "id": "C-ALIGNMENT-ABSOLUTE-001",
-      "independent_check": "results/pre-qwen-alignment-tolerant/v1/adversarial-audit/audit.json",
-      "limitations": [
-        "same five frozen non-plateaued teachers as teacher-width screen",
-        "fresh synthetic held-out documents",
-        "expert-only analytic compute proxy",
-        "no measured runtime"
-      ],
+      "claim": "The shared-base plus bilateral expert-specific rank-5 residual architecture can meet absolute cross-entropy gates under a strongly compressed analytical budget in controlled screens.",
+      "grade": "VERIFIED_WITHIN_SCREEN",
+      "independent_check": "alignment-tolerant independent audits",
+      "limitations": ["absolute CE is not behavioral preservation", "small models", "no measured runtime"],
       "primary_evidence": [
         "results/pre-qwen-alignment-tolerant/v1/metrics.json",
-        "results/pre-qwen-alignment-tolerant/v1/VERDICT.md"
+        "results/pre-qwen-alignment-routing-set/v3/metrics.json",
+        "results/pre-qwen-routing-coupled/v4/metrics.json"
       ]
     },
     {
-      "claim": "The shared-base plus bilateral expert-specific rank-5 residual architecture is non-inferior or superior to the frozen narrow65 baseline.",
-      "grade": "NOT_ESTABLISHED_IN_V1_SCREEN",
       "id": "C-ALIGNMENT-NARROW65-001",
-      "independent_check": "results/pre-qwen-alignment-tolerant/v1/adversarial-audit/audit.json",
-      "limitations": [
-        "point estimate favors rank-5 but the crossed 95% interval includes inferior outcomes",
-        "five teacher seeds",
-        "fresh synthetic held-out documents"
-      ],
+      "claim": "The post-hoc shared-base bilateral low-rank family is non-inferior or superior to narrow65 in behavioral fidelity.",
+      "grade": "REFUTED_IN_CURRENT_SCREENS",
+      "independent_check": "v1-v4 audits plus Reality Gate 1A audit",
+      "limitations": ["models remain controlled and small", "no real checkpoint"],
       "primary_evidence": [
         "results/pre-qwen-alignment-tolerant/v1/metrics.json",
-        "docs/results/2026-07-28-alignment-tolerant-v1-analysis.md"
+        "results/pre-qwen-alignment-routing-set/v3/metrics.json",
+        "results/pre-qwen-routing-coupled/v4/metrics.json",
+        "results/reality-gate-1a/metrics.json"
       ]
     },
     {
-      "claim": "The alignment-tolerant rank-5 candidate preserves teacher distributional behavior as well as narrow65.",
-      "grade": "REFUTED_IN_V1_SCREEN",
-      "id": "C-ALIGNMENT-BEHAVIOR-001",
-      "independent_check": "independent recomputation of KL, top-1 agreement, and local NRMSE",
-      "limitations": [
-        "behavioral metrics are proxies within a small character language model"
-      ],
+      "id": "C-ROUTING-SET-001",
+      "claim": "Routing-set counterfactual supervision materially improves selected error-geometry endpoints over expert-wise supervision.",
+      "grade": "SUPPORTED_WITHIN_V3_SCREEN",
+      "independent_check": "results/pre-qwen-alignment-routing-set/v3/adversarial-audit/audit.json",
+      "limitations": ["absolute KL, top-1, local and counterfactual fidelity remained poor", "fixed non-plateaued teachers"],
       "primary_evidence": [
-        "results/pre-qwen-alignment-tolerant/v1/metrics.json",
-        "docs/results/2026-07-28-alignment-tolerant-v1-analysis.md"
+        "results/pre-qwen-alignment-routing-set/v3/metrics.json",
+        "docs/audits/2026-07-30-routing-set-v3-multilens-review.md"
       ]
     },
     {
-      "claim": "The current student family is ready for an OLMoE/Qwen checkpoint transplant.",
-      "grade": "REFUTED__NO_GO",
+      "id": "C-MOMENT-COUPLING-001",
+      "claim": "The v4 route-set moment correction has a causal effect on KL after training.",
+      "grade": "SUPPORTED_BUT_INSUFFICIENT",
+      "independent_check": "results/pre-qwen-routing-coupled/v4/adversarial-audit/audit.json",
+      "limitations": ["effect missed preregistered minimum magnitude", "second moment did not beat mean-only", "behavioral gap remained large"],
+      "primary_evidence": [
+        "results/pre-qwen-routing-coupled/v4/metrics.json",
+        "docs/audits/2026-07-30-routing-coupled-v4-multilens-review.md"
+      ]
+    },
+    {
+      "id": "C-REALITY-DATA-001",
+      "claim": "Reality Gate 1A used an immutable official WikiText-2 revision, article-level statistical units, train-only tokenizer fitting, and heldout arrays opened only after candidate freeze.",
+      "grade": "VERIFIED",
+      "independent_check": "results/reality-gate-1a/adversarial-audit/audit.json plus data manifest hashes",
+      "limitations": ["WikiText-2 is a small data regime", "OOD set is deterministic and small"],
+      "primary_evidence": [
+        "data/reality-gate-1a/manifest.json",
+        "results/reality-gate-1a/adversarial-audit/audit.json",
+        "runs/reality-gate-1a/environment.json"
+      ]
+    },
+    {
+      "id": "C-REALITY-PLATEAU-001",
+      "claim": "All eight scientific Reality Gate 1A teachers reached the frozen plateau criterion.",
+      "grade": "REFUTED",
+      "independent_check": "independent reconstruction of plateau status and teacher histories",
+      "limitations": ["a longer separately preregistered maturity study could establish later plateau"],
+      "primary_evidence": [
+        "results/reality-gate-1a/metrics.json",
+        "results/reality-gate-1a/adversarial-audit/audit.json",
+        "docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"
+      ]
+    },
+    {
+      "id": "C-HETERO-STATIC-001",
+      "claim": "Static spectral heterogeneous rank improves over uniform rank at matched parameter and expected-compute budgets in Reality Gate 1A.",
+      "grade": "REFUTED_IN_CURRENT_SCREEN",
+      "independent_check": "results/reality-gate-1a/adversarial-audit/audit.json",
+      "limitations": ["scientific teachers did not reach plateau", "two controlled scales", "spectral utility tested, not every possible utility"],
+      "primary_evidence": [
+        "results/reality-gate-1a/metrics.json",
+        "results/reality-gate-1a/VERDICT.md",
+        "docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"
+      ]
+    },
+    {
+      "id": "C-HETERO-ALLOCATION-001",
+      "claim": "The Reality Gate 1A spectral allocator discovers material rank heterogeneity under the frozen budgets.",
+      "grade": "REFUTED_IN_CURRENT_SCREEN",
+      "independent_check": "persisted rank vectors and independent budget reconstruction",
+      "limitations": ["one small-scale seed produced a minimal redistribution", "other architectures may create different utility landscapes"],
+      "primary_evidence": [
+        "results/reality-gate-1a/small/seed-141767.json",
+        "results/reality-gate-1a/medium/seed-111731.json",
+        "docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"
+      ]
+    },
+    {
+      "id": "C-HETERO-SPECTRAL-VS-ROUTING-001",
+      "claim": "Spectral marginal utility adds established value beyond routing frequency alone in Reality Gate 1A.",
+      "grade": "REFUTED_IN_CURRENT_SCREEN",
+      "independent_check": "paired spectral versus routing-only comparisons",
+      "limitations": ["same post-hoc shared-base factorization", "no plateau"],
+      "primary_evidence": ["results/reality-gate-1a/metrics.json"]
+    },
+    {
+      "id": "C-RESIDUAL-RANK-RICH-001",
+      "claim": "The Reality Gate residual expert matrices exhibit slow spectral decay relative to the executed low-rank budgets.",
+      "grade": "SUPPORTED_IN_CURRENT_SCREEN",
+      "independent_check": "trajectory effective-rank summaries across four seeds and two scales",
+      "limitations": ["weight-space energy is not a complete functional metric", "teachers did not plateau"],
+      "primary_evidence": [
+        "results/reality-gate-1a/small/seed-111731.json",
+        "results/reality-gate-1a/medium/seed-111731.json",
+        "docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"
+      ]
+    },
+    {
+      "id": "C-DYNAMIC-RANK-001",
+      "claim": "The current static utility evidence justifies implementing a dynamic per-token rank controller as the next primary experiment.",
+      "grade": "REFUTED__BLOCKED",
+      "independent_check": "Reality Gate 1A stop rule and adversarial review",
+      "limitations": ["a materially different native-training regime may later justify dynamic control"],
+      "primary_evidence": [
+        "docs/prereg/REALITY_GATE_1A.md",
+        "results/reality-gate-1a/VERDICT.md",
+        "docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"
+      ]
+    },
+    {
+      "id": "C-HETERO-UNIVERSAL-001",
+      "claim": "Heterogeneous rank can never help MoE compression.",
+      "grade": "NOT_ESTABLISHED",
+      "independent_check": "scope review",
+      "limitations": ["Reality Gate tested one spectral formulation and one routing-only control", "teachers did not plateau", "native training untested"],
+      "primary_evidence": ["docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"]
+    },
+    {
       "id": "C-GO-001",
-      "independent_check": "results/followup-adversarial-audit/v1/VERDICT.md plus current alignment audit",
-      "limitations": [
-        "new materially different function classes or training objectives may change this conclusion"
-      ],
+      "claim": "The current student family is ready for an OLMoE or Qwen checkpoint transplant.",
+      "grade": "REFUTED__NO_GO",
+      "independent_check": "canonical gate status plus current independent audit",
+      "limitations": ["a materially different native architecture may change the conclusion"],
       "primary_evidence": [
         "results/VERDICT.md",
         "results/PRE_QWEN_GATE_STATUS.json",
-        "results/pre-qwen-alignment-tolerant/v1/VERDICT.md"
+        "results/reality-gate-1a/VERDICT.md"
       ]
     },
     {
-      "claim": "The current Modal/residual/clustered/alignment-tolerant candidates provide measured runtime speedup.",
-      "grade": "UNTESTED",
       "id": "C-RUNTIME-001",
+      "claim": "The current Modal, residual, coupling, or heterogeneous candidates provide measured runtime speedup.",
+      "grade": "UNTESTED",
       "independent_check": "not applicable",
-      "limitations": [
-        "only analytic operation-count proxies exist"
-      ],
+      "limitations": ["only analytical expected operation-count proxies exist"],
       "primary_evidence": []
     }
   ],
-  "schema_version": "important-claim-ledger-v1",
+  "schema_version": "important-claim-ledger-v2",
   "standard": "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md",
-  "updated_at": "2026-07-28T18:55:00+00:00"
+  "updated_at": "2026-08-05T14:35:00+00:00"
 }
