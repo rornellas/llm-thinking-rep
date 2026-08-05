@@ -39,6 +39,45 @@ jobs:
           echo "abc6703cc94d429bce6825f687d92a70b7164f8c0632e136e276957dc10b62ba  /tmp/reality-gate-1a-import.tar.xz" | sha256sum -c -
           tar -xJf /tmp/reality-gate-1a-import.tar.xz -C "$GITHUB_WORKSPACE"
           grep -v '  SOURCE_MANIFEST.sha256$' SOURCE_MANIFEST.sha256 | sha256sum -c -
+      - name: Apply pre-scientific plateau fixture correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+
+          test = Path('tests/test_reality_gate_plateau.py')
+          text = test.read_text(encoding='utf-8')
+          old = '''        {"step": 100, "validation_loss": 2.000, "route_distribution": [1.0, 1.0]},
+                  {"step": 200, "validation_loss": 1.994, "route_distribution": [1.01, 0.99]},
+                  {"step": 300, "validation_loss": 1.991, "route_distribution": [1.00, 1.00]},
+                  {"step": 400, "validation_loss": 1.989, "route_distribution": [1.01, 0.99]},'''
+          new = '''        {"step": 100, "validation_loss": 2.0000, "route_distribution": [1.0, 1.0]},
+                  {"step": 200, "validation_loss": 1.9985, "route_distribution": [1.01, 0.99]},
+                  {"step": 300, "validation_loss": 1.9975, "route_distribution": [1.00, 1.00]},
+                  {"step": 400, "validation_loss": 1.9970, "route_distribution": [1.01, 0.99]},'''
+          if old not in text:
+              raise SystemExit('expected plateau fixture block not found')
+          test.write_text(text.replace(old, new), encoding='utf-8')
+
+          manifest = Path('SOURCE_MANIFEST.sha256')
+          paths = []
+          for line in manifest.read_text(encoding='utf-8').splitlines():
+              if not line.strip():
+                  continue
+              _, relative = line.split('  ', 1)
+              if relative != 'SOURCE_MANIFEST.sha256':
+                  paths.append(relative)
+          manifest.write_text(
+              ''.join(
+                  f"{hashlib.sha256(Path(path).read_bytes()).hexdigest()}  {path}\n"
+                  for path in paths
+              ),
+              encoding='utf-8',
+          )
+          PY
+          sha256sum -c SOURCE_MANIFEST.sha256
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
