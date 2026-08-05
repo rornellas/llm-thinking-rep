@@ -1,16 +1,17 @@
-# Pre-Qwen gate verdict — audited status through routing-coupled v4
+# Pre-Qwen gate verdict — audited status through Reality Gate 1A
 
 **Frozen decision:** **`NO_GO_FOR_OLMOE_OR_QWEN`**
 
-## Current scientific state
+## Executive state
 
-The program has established five load-bearing conclusions:
+The research program has now established six load-bearing conclusions:
 
-1. the methodological harness, controls, sealed evaluation, replay, and independent audit work in the tested small-model scope;
+1. the methodological harness, positive/negative controls, sealed evaluation, replay, and independent audit work in the tested controlled scope;
 2. global scalar expert-axis Modal compression is functionally possible but does not beat strong conventional narrowing at comparable dominant matrix arithmetic;
-3. shared-base plus bilateral low-rank residuals offer a real parameter-efficiency signal, but uniform low rank does not preserve teacher behavior as well as narrow65;
-4. expert-wise and routing-set objectives can move specific error components, yet changing the objective alone does not close the behavioral gap;
-5. an explicit route-set moment correction has a statistically detectable causal effect, but the effect is too small and the moment-coupling form is insufficient.
+3. shared-base plus bilateral expert low-rank residuals provide a real parameter-efficiency signal, but post-hoc uniform low rank preserves teacher behavior substantially worse than `narrow65`;
+4. expert-wise, routing-set, and explicit route-set coupling objectives move specific error components, but none closes the behavioral gap;
+5. a first/second-moment route-set correction has a small causal KL effect, but is insufficient and that coupling line is closed;
+6. static spectral heterogeneous rank did not improve over uniform rank in a two-scale WikiText-2 Reality Gate, usually collapsed exactly to uniform, and does not justify dynamic rank allocation.
 
 ## Confirmed foundation
 
@@ -18,166 +19,213 @@ The program has established five load-bearing conclusions:
 - Controlled conventional-MoE transplant: **FUNCTIONAL_ONLY**.
 - Exact replay and independent frozen-result audits: **PASS**.
 - Important-claim double-check and adversarial review: **MANDATORY**.
-- Conventional teacher-informed narrow65 baseline: **PASS** in five fresh small teachers.
-- Runtime speedup: **UNTESTED**.
-- Teacher plateau: **NOT_DEMONSTRATED**.
+- Conventional teacher-informed `narrow65`: **STRONG BASELINE**.
+- Measured runtime speedup: **UNTESTED**.
+- Real-checkpoint transfer: **BLOCKED**.
 
-## Strong conventional baseline
+## Historical negative-result sequence
+
+| Line | Audited conclusion |
+|---|---|
+| Scalar global modes | fidelity approaches target only at non-compute-reducing rank |
+| Existing-coordinate selection/pruning | fails absolute fidelity at 35% |
+| Expert-specific residuals around scalar Modal | parameter signal, equal-compute gate fails |
+| Router-semantic clustered bases | equal-compute gate fails |
+| Shared-base bilateral low rank v1 | absolute CE signal, behavioral fidelity and narrow65 gate fail |
+| Expert-wise objective v2 | individual expert error improves, final mixture does not |
+| Routing-set objective v3.1 | KL/covariance mechanism signal, absolute behavior fails |
+| Explicit moment coupling v4 | small causal KL effect, insufficient; moment coupling closed |
+| Static spectral heterogeneous rank | no advantage over uniform; usually identical allocation |
+
+## Reality Gate 1A
+
+Protocol:
 
 ```text
-narrow teacher-informed 65%
-expert parameters/full:       65.000%
-routed matrix compute/full:   65.000%
-hypothesis delta loss:        +0.01325 nat
-crossed UCB95:                +0.01914 nat
-65% minus 50% mean:           -0.01648 nat
-65% minus 50% IC95:           [-0.02611, -0.00570]
+reality-gate-1a-static-heterogeneous-rank-v1
 ```
 
-This remains the minimum strong comparator for shared architectures. It is conventional, small-scale, synthetic, and has no measured runtime claim.
-
-## Alignment-tolerant sequence
-
-### v1 — aggregate-output objective
+Data and provenance:
 
 ```text
-architecture: shared base + bilateral expert low-rank residual
-primary: rank 5
-parameters: 41.67%
-compute proxy: 58.33%
-verdict: ALIGNMENT_TOLERANT_SHARED_LORA_FAIL
-```
-
-Absolute CE gates passed, but non-inferiority to narrow65 was not established and behavioral fidelity was much worse.
-
-### v2 — expert-wise objective
-
-```text
-verdict: ALIGNMENT_TOLERANT_EXPERT_DISTILL_V2_FAIL
-```
-
-Expert NRMSE improved strongly, but favorable cross-expert error cancellation was lost. The final mixture and behavioral fidelity did not improve sufficiently.
-
-### v3.1 — routing-set counterfactual objective
-
-```text
-verdict: ALIGNMENT_TOLERANT_ROUTING_SET_V3_MECHANISM_SIGNAL
-adversarial disposition:
-OBJECTIVE_ONLY_LINE_CLOSED__ARCHITECTURE_CHANGE_REQUIRED
-```
-
-KL and cross-error improved relative to v2, but KL, top-1, local NRMSE, and counterfactual NRMSE still failed by large margins. The automatic mechanism signal was preserved, while an identical replication was rejected.
-
-### v4 — explicit route-set moment correction
-
-Primary architecture:
-
-```text
-rank-5 shared low-rank base
-+ expert-aligned routed latent pooling
-+ weighted first/second moments
-+ zero-initialized shared correction MLP
-```
-
-Budget:
-
-```text
-expert parameters/full:       44.2824%
-routed matrix compute/full:   62.5000%
+Salesforce/wikitext
+subset: wikitext-2-raw-v1
+revision: b08601e04326c79dfdd32d625aee71d232d685c3
+four seeds × two scales
+article-level statistical units
+source commit: 456c3beb87eace9a196a46bd24ab33090b0bc2eb
+workflow run: 31011802255
+results commit: cd57ba42d69036f188b1bc067a895f98e72ef43e
+independent audit: PASS, zero mismatches
 ```
 
 Automatic verdict:
 
 ```text
-ROUTING_COUPLED_V4_FAIL
+REALITY_GATE_1A_FAIL
 ```
 
 Adversarial disposition:
 
 ```text
-ROUTING_COUPLED_V4_CAUSAL_BUT_INSUFFICIENT__MOMENT_COUPLING_CLOSED
+STATIC_HETEROGENEITY_NOT_SUPPORTED
+DYNAMIC_RANK_BLOCKED
+POST_HOC_ALIGNMENT_TOLERANT_CONVERSION_DEPRIORITIZED
+NATIVE_COMPACT_TRAINING_BECOMES_PRIMARY
 ```
 
-The v4 primary improved three behavioral endpoints relative to frozen v3:
+### Plateau
+
+None of the eight scientific teachers passed the frozen plateau criterion:
 
 ```text
-v4 - v3 KL:       -0.034643  95% [-0.049048, -0.021484]
-v4 - v3 top-1:    +0.015278  95% [+0.005139, +0.024792]
-v4 - v3 local:    -0.005396  95% [-0.007168, -0.003669]
+small:  0 / 4
+medium: 0 / 4
+total:  0 / 8
 ```
 
-The post-training ablation established a small causal KL contribution:
+Loss slopes remained approximately one order of magnitude more negative than the allowed thresholds, and routing distributions continued to move materially. Therefore the experiment does not support a mature-teacher universal refutation.
+
+### Allocation behavior
+
+At the final checkpoint:
 
 ```text
-coupling-disabled - primary KL:
-mean  +0.012102
-95%   [+0.007258, +0.017261]
+medium spectral allocation:
+  exactly uniform in 4/4 seeds
+
+small spectral allocation:
+  exactly uniform in 3/4 seeds
+  one minimal redistribution in 1/4 seeds
+
+routing-only allocation:
+  exactly uniform in all final cells
 ```
 
-The effect failed the preregistered minimum-magnitude gate `LCB95 >= +0.010`. The second moment did not beat the equal-budget mean-only control, and q12 did not rescue the architecture.
+In medium, spectral, routing-only, and uniform candidates were therefore functionally identical. The rare small-scale deviation produced no established advantage.
 
-The gap to narrow65 remained large:
+### Compressibility trajectory
+
+The residual rank required for 95% spectral energy remained high from 25% of training through the final checkpoint:
 
 ```text
-v4 - narrow65 routing aggregate error:
-mean  +0.117240
-95%   [+0.104094, +0.132075]
+small:  mean final rank 25.32 of 32, observed 24–26
+medium: mean final rank 37.80 of 48, observed 37–39
 ```
 
-Absolute v4 behavioral endpoints:
+The executed ranks were 8 and 12. Redistributing the same rank total cannot recover capacity when residual spectra are high-rank and similar across experts.
+
+### Small scale
 
 ```text
-KL:                  0.38644
-Top-1:              67.65%
-local NRMSE:         0.36517
-counterfactual:      0.46091
-routing aggregate:   0.15158
+spectral:
+  parameters             45.83%
+  compute proxy          62.50%
+  hypothesis delta loss  +0.00604
+  KL                     0.01453
+  top-1                  84.51%
+  local NRMSE            0.19035
+
+spectral - uniform loss:
+  mean +0.000087
+  95%  [-0.000145, +0.000495]
+
+spectral - narrow65 loss:
+  mean +0.007460
+  95%  [+0.005427, +0.009378]
+
+spectral - narrow65 top-1:
+  mean -0.071135
+  95%  [-0.077942, -0.064773]
 ```
 
-Cross-entropy was significantly better than narrow65 on the fresh small corpus, but this is not teacher-behavior preservation and cannot support a general superiority claim.
+### Medium scale
 
-## Closed lines
+```text
+spectral:
+  parameters             43.75%
+  compute proxy          62.50%
+  hypothesis delta loss  +0.00800
+  KL                     0.02074
+  top-1                  83.05%
+  local NRMSE            0.21355
 
-The following are not approved as the next primary experiment:
+spectral - uniform:
+  exactly 0 on all load-bearing endpoints
+
+spectral - narrow65 loss:
+  mean +0.011128
+  95%  [+0.008783, +0.013631]
+
+spectral - narrow65 top-1:
+  mean -0.068028
+  95%  [-0.073236, -0.062648]
+```
+
+`narrow65` used only approximately 2–3 percentage points more analytical compute than the low-rank family, but preserved teacher behavior substantially better in both scales.
+
+## What is and is not refuted
+
+Supported:
+
+- the tested spectral and routing-frequency allocators did not create useful static heterogeneity;
+- the current static mechanism does not justify a dynamic controller;
+- post-hoc shared-base low-rank compression remains behind conventional narrowing in behavioral fidelity;
+- the next primary line should impose compact structure during training.
+
+Not supported:
+
+- a universal claim that heterogeneous rank can never work;
+- a mature-teacher asymptotic claim, because plateau was not reached;
+- any runtime or hardware claim;
+- any OLMoE/Qwen transfer claim.
+
+## Closed or blocked lines
+
+The following are no longer approved as the next primary experiment:
 
 - increasing global scalar K;
-- selecting only existing teacher coordinates at 35%;
-- conditional backward pruning of existing coordinates;
-- static router-semantic basis clusters;
-- another round of objective-only tuning for the same rank-5 family;
-- another first/second-moment route-set correction with only larger pooling dimension.
+- existing-coordinate selection or conditional backward pruning;
+- router-semantic static basis clusters;
+- another objective-only rank-5 distillation round;
+- another first/second-moment route-set correction;
+- static spectral rank redistribution under the Reality Gate 1A formulation;
+- dynamic rank allocation built on that static utility;
+- scale-up to OLMoE or Qwen;
+- hardware specialization before a GPU-visible software advantage.
 
-## Next falsifiable experiment
+## Next primary experiment
 
-The next architecture reallocates low-rank capacity per token under a strict total-rank budget:
+The approved next line is **native compact training**. The architecture must be constrained from initialization, before conventional experts develop high-rank residuals that are expensive to compress post hoc.
+
+Required comparison from scratch, with equal training data and controlled training compute:
+
+1. conventional full MoE;
+2. conventional `narrow65`;
+3. shared-base plus expert-local factors trained natively;
+4. shared-base plus nested prefixes trained across multiple budgets;
+5. MoSE-like nested-width baseline;
+6. RFID-like static heterogeneous-rank baseline;
+7. the combined native shared-base + nested-prefix candidate.
+
+Claims must be staged:
 
 ```text
-max rank 7 per expert, active rank sum 20
-stored expert parameters: 55%
-projected routed matrix compute: 58.33%
-
-max rank 8 per expert, active rank sum 24
-stored expert parameters: 61.67%
-projected routed matrix compute: 65%
+A. native compact architecture moves quality-compute Pareto
+B. smaller prefixes are independently functional
+C. heterogeneous allocation adds value over uniform
+D. dynamic per-token control adds value over static
+E. analytical savings become measured GPU runtime savings
+F. only then test a real MoE checkpoint
 ```
-
-The active prefix allocated to each routed expert will depend on router weight and train-only marginal mode utility. Prefixes will be trained under multiple budgets so smaller prefixes remain useful.
-
-Required comparators:
-
-- uniform rank-5;
-- uniform rank-6;
-- narrow65;
-- full control;
-- routing-weight-only allocation control;
-- static heterogeneous allocation control.
-
-If budgeted heterogeneous rank does not move the quality-compute frontier, post-hoc alignment-tolerant conversion will be deprioritized and native constrained training from early checkpoints becomes the primary research branch.
 
 ## Decision
 
-No tested candidate is eligible for OLMoE or Qwen scale-up. There is evidence for reusable structure and for small causal route-set corrections, but no architecture yet combines behavioral fidelity with a decisive compute advantage.
+No tested candidate combines behavioral fidelity, parameter efficiency, compute advantage, scale robustness, and measured runtime. The research remains scientifically healthy because negative evidence is changing the theory rather than being explained away.
 
 ```text
 NO_GO_FOR_OLMOE_OR_QWEN
+NO_DYNAMIC_RANK
+NO_RUNTIME_CLAIM
+NATIVE_COMPACT_TRAINING_PRIMARY
 ```
