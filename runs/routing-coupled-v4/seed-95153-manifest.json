@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "bytes": 1463725,
+      "path": "results/pre-qwen-routing-coupled/v4/seed-95153.json",
+      "sha256": "fb97af19c804db119d7f4978028b8b9d7dcb7c78235d85b870a9b817f48c9353"
+    },
+    {
+      "bytes": 1461799,
+      "path": "results/pre-qwen-routing-coupled/v4/frozen-candidates-seed-95153.pt",
+      "sha256": "d5e5d70388ccb010b6e6dd429e286b27e78cf510033ca921077a7e90fb7ff7db"
+    },
+    {
+      "bytes": 2498,
+      "path": "results/pre-qwen-routing-coupled/v4/logs/seed-95153.log",
+      "sha256": "a634e78997a8bb3195720f835dcfe3e728748193fd7711ff4f998093b0b3d696"
+    }
+  ],
+  "seed": 95153,
+  "source_commit": "ff8b506be2acea4980adaa524665dbc31db54e5b"
+}

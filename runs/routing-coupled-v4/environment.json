@@ -1,0 +1,10 @@
+{
+  "configuration_sha256": "be7cbd79e8798d8656aad224e1f0c243999f4c80753b79933dfb47d67a37e45e",
+  "numpy": "2.5.1",
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "protocol_version": "pre-qwen-routing-coupled-residual-v4",
+  "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+  "source_commit": "ff8b506be2acea4980adaa524665dbc31db54e5b",
+  "torch": "2.13.0+cpu",
+  "workflow_run_id": 30514440835
+}
