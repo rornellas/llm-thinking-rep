@@ -81,6 +81,9 @@ scales:
     max_rank: 16
     narrow_fraction: 0.65
 data:
+  dataset_source: Salesforce/wikitext
+  dataset_subset: wikitext-2-raw-v1
+  dataset_revision: b08601e04326c79dfdd32d625aee71d232d685c3
   train_document_tokens: 8192
   calibration_document_tokens: 8192
   hypothesis_document_tokens: 8192
