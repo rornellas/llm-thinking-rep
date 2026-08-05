@@ -38,7 +38,7 @@ jobs:
           cat .github/import/reality-gate-1a/part-*.b64 | base64 -d > /tmp/reality-gate-1a-import.tar.xz
           echo "abc6703cc94d429bce6825f687d92a70b7164f8c0632e136e276957dc10b62ba  /tmp/reality-gate-1a-import.tar.xz" | sha256sum -c -
           tar -xJf /tmp/reality-gate-1a-import.tar.xz -C "$GITHUB_WORKSPACE"
-          sha256sum -c SOURCE_MANIFEST.sha256
+          grep -v '  SOURCE_MANIFEST.sha256$' SOURCE_MANIFEST.sha256 | sha256sum -c -
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
