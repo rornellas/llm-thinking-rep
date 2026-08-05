@@ -1,0 +1,91 @@
+name: Diagnose Native Compact Gate 2A
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/diagnose-native-compact-gate-2a.txt"
+
+permissions:
+  contents: write
+
+env:
+  CONFIG: configs/native_compact_gate_2a.yaml
+  DATA_MANIFEST: data/native-compact-gate-2a/manifest.json
+  RESULTS_DIR: results/native-compact-gate-2a
+  OUTPUT_JSON: results/native-compact-gate-2a/posthoc-diagnostics.json
+  REPORT: docs/audits/2026-08-05-native-compact-gate-2a-posthoc-diagnostics.md
+  PYTHONUNBUFFERED: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONPYCACHEPREFIX: /tmp/native-compact-diagnostic-pycache
+  OMP_NUM_THREADS: "2"
+  OPENBLAS_NUM_THREADS: "2"
+  MKL_NUM_THREADS: "2"
+
+concurrency:
+  group: diagnose-native-compact-gate-2a
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install diagnostic dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0,<3" "PyYAML>=6.0,<7" "pytest>=8.0,<9"
+      - name: Test and diagnose frozen checkpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q tests/test_native_compact_posthoc_diagnostics.py
+          python scripts/diagnose_native_compact_gate_2a.py \
+            --config "$CONFIG" \
+            --data-manifest "$DATA_MANIFEST" \
+            --results-dir "$RESULTS_DIR" \
+            --output-json "$OUTPUT_JSON" \
+            --report "$REPORT"
+          python - <<'PY'
+          from pathlib import Path
+          import json, os
+          payload = json.loads(Path(os.environ['OUTPUT_JSON']).read_text())
+          assert payload['posthoc_not_preregistered'] is True
+          assert payload['cannot_change_frozen_verdict'] is True
+          assert payload['frozen_verdict'] == 'NATIVE_COMPACT_GATE_2A_FAIL'
+          assert set(payload['scales']) == {'small', 'medium'}
+          PY
+      - name: Record integrity and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/2026-08-05/native-compact-gate-2a-posthoc
+          sha256sum "$OUTPUT_JSON" "$REPORT" \
+            > artifacts/2026-08-05/native-compact-gate-2a-posthoc/SHA256SUMS
+          sha256sum -c artifacts/2026-08-05/native-compact-gate-2a-posthoc/SHA256SUMS
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$OUTPUT_JSON" "$REPORT" artifacts/2026-08-05/native-compact-gate-2a-posthoc/SHA256SUMS
+          git commit -m "diagnostics: analyze Native Compact Gate 2A rank utilization"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-compact-gate-2a-posthoc-diagnostics
+          path: |
+            results/native-compact-gate-2a/posthoc-diagnostics.json
+            docs/audits/2026-08-05-native-compact-gate-2a-posthoc-diagnostics.md
+            artifacts/2026-08-05/native-compact-gate-2a-posthoc
+          if-no-files-found: warn
+          retention-days: 30

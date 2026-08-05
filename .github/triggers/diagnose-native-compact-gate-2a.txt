@@ -1,0 +1,5 @@
+protocol=native-compact-gate-2a-v1
+frozen_results_commit=560e470f08a553acb2a2f9df26a11a67f2402a9f
+analysis=posthoc_rank_utilization
+cannot_change_frozen_verdict=true
+launched_at=2026-08-05T16:22:00Z
