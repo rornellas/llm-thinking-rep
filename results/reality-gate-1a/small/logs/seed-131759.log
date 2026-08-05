@@ -1,0 +1,30 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/pre_qwen_certification/reality_gate_data.py:165: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  article = torch.as_tensor(
+trained scale=small seed=131759 candidate=uniform-rank
+trained scale=small seed=131759 candidate=heterogeneous-spectral
+trained scale=small seed=131759 candidate=heterogeneous-routing
+trained scale=small seed=131759 candidate=narrow65
+results/reality-gate-1a/small/seed-131759.json
+	Command being timed: "python scripts/run_reality_gate_1a_seed.py --scale small --seed 131759 --config configs/reality_gate_1a.yaml --data-root data/reality-gate-1a --output-dir results/reality-gate-1a"
+	User time (seconds): 841.73
+	System time (seconds): 17.24
+	Percent of CPU this job got: 199%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 7:11.33
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 674000
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 1825802
+	Voluntary context switches: 170
+	Involuntary context switches: 4237
+	Swaps: 0
+	File system inputs: 4832
+	File system outputs: 9960
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

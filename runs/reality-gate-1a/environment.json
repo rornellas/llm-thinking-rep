@@ -1,0 +1,11 @@
+{
+  "configuration_sha256": "6bcd7a4fec53b40ecb6793c64bf355b49923a8a99967ff7cb7f791fb8e262eac",
+  "data_manifest_sha256": "d6b15fe1884644c0213b7f36f8bcbabc2bf562a5411bdf53b0278c0c9ecfde8d",
+  "numpy": "2.5.1",
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "protocol_version": "reality-gate-1a-static-heterogeneous-rank-v1",
+  "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+  "source_commit": "456c3beb87eace9a196a46bd24ab33090b0bc2eb",
+  "torch": "2.13.0+cpu",
+  "workflow_run_id": 31011802255
+}

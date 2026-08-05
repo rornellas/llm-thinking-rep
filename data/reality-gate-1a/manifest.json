@@ -1,0 +1,51 @@
+{
+  "dataset_fingerprints": {
+    "test": "a46124b21ac53738",
+    "train": "5d4fb603254a7a5b",
+    "validation": "51d84d52d095f90d"
+  },
+  "environment": {
+    "datasets": "5.0.1",
+    "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+    "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+    "tokenizers": "0.23.1"
+  },
+  "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "schema_version": "reality-gate-wikitext-article-v2",
+  "sha256": {
+    "ood-offsets.npy": "6c07f73a4248dbc6639ed9685ac5a312d99da3db70156c4319811be18df8ecda",
+    "ood-tokens.npy": "c2141f25f83ec9739f5586399dff8745953083b7dddf07ce2d6fb7c69141cee6",
+    "test-offsets.npy": "c07aaf91ccfdf0b8121f52f371fffa51d39b795b4338f29b657c5cda894b8150",
+    "test-tokens.npy": "bf7535206ab9c47e7649ed050ccad3e436fe845233ac182d7830f76709795500",
+    "tokenizer.json": "4151a5a9cea800b38df7ddecf8b627d7b42530be03266951b7fb3d20ae404f23",
+    "train-offsets.npy": "099fe4e5815aa16ba3b92e1115a3ac7718d4b3cabbd132967e41a4dc37c9d197",
+    "train-tokens.npy": "abddbd2958e07ca6e9e9f84abec8564da9d4a5cf2e269a9c14b58ea2184f8083",
+    "validation-offsets.npy": "6e47259c2206355f9fe6dc3e445aafad327cfd5af8187053a6ddd7dc2c1e957e",
+    "validation-tokens.npy": "6ab2214c7a86f79f1ff39e1d953bbe17df0242e1e0aa3d029e5dfa01cab7e369"
+  },
+  "source": "Salesforce/wikitext",
+  "splits": {
+    "ood": {
+      "documents": 12,
+      "source_documents": 12,
+      "tokens": 220000
+    },
+    "test": {
+      "documents": 240,
+      "source_documents": 706,
+      "tokens": 220000
+    },
+    "train": {
+      "documents": 1407,
+      "source_documents": 6211,
+      "tokens": 1200000
+    },
+    "validation": {
+      "documents": 279,
+      "source_documents": 620,
+      "tokens": 220000
+    }
+  },
+  "subset": "wikitext-2-raw-v1",
+  "vocab_size": 512
+}

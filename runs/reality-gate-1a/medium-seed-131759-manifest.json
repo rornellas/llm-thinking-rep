@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "bytes": 2118012,
+      "path": "results/reality-gate-1a/medium/seed-131759.json",
+      "sha256": "2780dbd6e0bd18455eaad1f99c0d77a3825186cd86947867252ba24aa121fc4e"
+    },
+    {
+      "bytes": 9293747,
+      "path": "results/reality-gate-1a/medium/frozen-candidates-seed-131759.pt",
+      "sha256": "e04741a5381f69a7307c1bdcf589de9d62c26e392edb9b8b4d3d5ae611cb27d2"
+    },
+    {
+      "bytes": 1768,
+      "path": "results/reality-gate-1a/medium/logs/seed-131759.log",
+      "sha256": "ce84bd8df208028ac373d86f440954432ec990de9272b347ecac33bc88555623"
+    }
+  ],
+  "scale": "medium",
+  "seed": 131759,
+  "source_commit": "456c3beb87eace9a196a46bd24ab33090b0bc2eb"
+}
