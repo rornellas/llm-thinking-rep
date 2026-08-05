@@ -14,14 +14,16 @@ Se essa afirmação falhar, não será implementado rank dinâmico por token. Is
 
 ## 2. Dados
 
-O eixo principal usa `Salesforce/wikitext`, subset `wikitext-2-raw-v1`, tokenizado com BPE byte-level de 512 tokens treinado somente no split de treino.
+O eixo principal usa `Salesforce/wikitext`, subset `wikitext-2-raw-v1`, revisão imutável `b08601e04326c79dfdd32d625aee71d232d685c3`, tokenizado com BPE byte-level de 512 tokens treinado somente no split de treino.
 
 - `train`: treinamento do teacher, captura e treinamento dos students;
 - `validation`: plateau e calibração da alocação;
 - `test`: hypothesis final;
 - OOD: código, SQL, matemática, português e estruturas determinísticas codificados pelo mesmo tokenizer.
 
-A preparação resolve e registra o SHA do repositório do dataset, fingerprints, versões e SHA-256 de todos os arrays. Os artigos são preservados por offsets e nenhum documento estatístico atravessa fronteiras de artigo; artigos longos podem ser subdivididos, mas nunca concatenados entre si. O runner inicialmente abre apenas `train` e `validation`. `test` e `ood` são carregados somente depois que os candidatos e o checkpoint foram congelados.
+A revisão do dataset foi congelada antes da primeira preparação científica. A preparação rejeita qualquer revisão diferente e registra o SHA, fingerprints, versões e SHA-256 de todos os arrays. Os artigos são preservados por offsets e nenhum documento estatístico atravessa fronteiras de artigo; artigos longos podem ser subdivididos, mas nunca concatenados entre si. O runner inicialmente abre apenas `train` e `validation`. `test` e `ood` são carregados somente depois que os candidatos e o checkpoint foram congelados.
+
+A fixação explícita da revisão foi adicionada depois da validação unitária do código, mas antes de qualquer carregamento do dataset, piloto, teacher ou holdout; ela é uma correção pré-científica de reprodutibilidade, sem alteração de hipótese, candidates, seeds, endpoints ou gates.
 
 ## 3. Escalas e seeds
 
