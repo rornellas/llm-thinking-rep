@@ -1,125 +1,144 @@
 {
-  "schema_version": "pre-qwen-gate-status-v4",
-  "generated_at": "2026-07-30T06:45:00+00:00",
+  "schema_version": "pre-qwen-gate-status-v5",
+  "generated_at": "2026-08-05T14:30:00+00:00",
   "decision": "NO_GO_FOR_OLMOE_OR_QWEN",
   "go_for_real_checkpoint": false,
+  "dynamic_rank_authorized": false,
+  "runtime_claim_authorized": false,
+  "primary_research_line": "native_compact_training",
   "important_claim_standard": "docs/methodology/IMPORTANT_CLAIM_VERIFICATION_STANDARD.md",
   "important_claim_ledger": "docs/methodology/IMPORTANT_CLAIM_LEDGER.json",
   "canonical_verdict": "results/VERDICT.md",
-  "exact_scientific_replay": true,
   "synthetic_harness": {
-    "passed": true,
     "verdict": "PRE_QWEN_SYNTHETIC_CERTIFIED",
+    "passed": true,
     "scope": "small synthetic controlled models"
   },
   "controlled_transplant": {
     "protocol": "controlled-small-moe-transplant-v1.3",
     "verdict": "CONTROLLED_TRANSPLANT_FUNCTIONAL_ONLY",
-    "sealed_commitment_verified": true,
     "independent_audit_passed": true,
     "compute_matched_advantage": false
   },
   "scalar_fail_resolution": {
-    "claim_grade": "SUPPORTED_REPRESENTATIONAL_BOTTLENECK__NO_GO_UNCHANGED",
     "global_scalar_compute_reducing_rank_passed": false,
-    "higher_rank_near_fidelity_requires_non_reducing_compute": true,
-    "low_rank_residual_equal_compute_passed": false,
-    "clustered_basis_equal_compute_passed": false,
-    "existing_coordinate_selection_35_passed": false,
-    "conditional_iterative_pruning_35_passed": false,
-    "teacher_plateau_demonstrated": false
+    "near_fidelity_requires_non_reducing_rank": true,
+    "existing_coordinate_selection_passed": false,
+    "conditional_pruning_passed": false,
+    "clustered_basis_passed": false
   },
   "teacher_width_65": {
     "protocol": "pre-qwen-teacher-informed-width-fresh-replication-v1.1",
     "verdict": "TEACHER_WIDTH_65_REPLICATION_PASS",
-    "independent_audit_passed": true,
-    "seeds": [91121, 92129, 93133, 94151, 95153],
+    "role": "strong_conventional_baseline",
     "expert_parameter_ratio": 0.65,
     "routed_matrix_compute_ratio": 0.65,
-    "hypothesis_loss_delta_mean": 0.01325,
-    "hypothesis_loss_delta_ucb95": 0.01914,
-    "worst_seed_hypothesis_loss_delta": 0.01608,
-    "primary_minus_50_mean": -0.01648,
-    "primary_minus_50_lcb95": -0.02611,
-    "primary_minus_50_ucb95": -0.00570,
     "teacher_plateau_demonstrated": false,
-    "runtime_measured": false,
-    "role": "frozen_strong_baseline"
+    "runtime_measured": false
   },
-  "alignment_tolerant_v1": {
-    "protocol": "pre-qwen-alignment-tolerant-shared-low-rank-v1",
-    "verdict": "ALIGNMENT_TOLERANT_SHARED_LORA_FAIL",
-    "independent_audit_passed": true,
-    "primary_parameter_ratio": 0.4166666666666667,
-    "primary_compute_ratio": 0.5833333333333334,
-    "behavioral_fidelity_preserved": false,
-    "noninferiority_to_narrow65": false
+  "alignment_tolerant_sequence": {
+    "v1": {
+      "verdict": "ALIGNMENT_TOLERANT_SHARED_LORA_FAIL",
+      "parameter_signal": true,
+      "behavioral_fidelity_preserved": false,
+      "noninferiority_to_narrow65": false
+    },
+    "v2": {
+      "verdict": "ALIGNMENT_TOLERANT_EXPERT_DISTILL_V2_FAIL",
+      "expert_error_improved": true,
+      "final_behavior_improved": false
+    },
+    "v3": {
+      "automatic_verdict": "ALIGNMENT_TOLERANT_ROUTING_SET_V3_MECHANISM_SIGNAL",
+      "adversarial_disposition": "OBJECTIVE_ONLY_LINE_CLOSED__ARCHITECTURE_CHANGE_REQUIRED",
+      "absolute_behavioral_gates_passed": false
+    },
+    "v4": {
+      "automatic_verdict": "ROUTING_COUPLED_V4_FAIL",
+      "adversarial_disposition": "ROUTING_COUPLED_V4_CAUSAL_BUT_INSUFFICIENT__MOMENT_COUPLING_CLOSED",
+      "small_causal_kl_effect": true,
+      "minimum_causal_magnitude_passed": false,
+      "second_moment_advantage_established": false,
+      "moment_coupling_line_closed": true
+    }
   },
-  "expert_distillation_v2": {
-    "protocol": "pre-qwen-alignment-tolerant-expert-distillation-v2",
-    "verdict": "ALIGNMENT_TOLERANT_EXPERT_DISTILL_V2_FAIL",
-    "expert_nrmse_improved": true,
-    "aggregate_behavior_improved": false,
-    "diagnosis": "individual_error_reduced_but_favorable_cross_expert_covariance_lost"
-  },
-  "routing_set_v3": {
-    "protocol": "pre-qwen-alignment-tolerant-routing-set-distillation-v3.1",
-    "automatic_verdict": "ALIGNMENT_TOLERANT_ROUTING_SET_V3_MECHANISM_SIGNAL",
-    "adversarial_disposition": "OBJECTIVE_ONLY_LINE_CLOSED__ARCHITECTURE_CHANGE_REQUIRED",
-    "independent_audit_passed": true,
-    "primary_parameter_ratio": 0.4166666666666667,
-    "primary_compute_ratio": 0.5833333333333334,
-    "kl_improvement_vs_v2_established": true,
-    "cross_error_improvement_vs_v2_established": true,
-    "absolute_behavioral_gates_passed": false,
-    "identical_replication_approved": false
-  },
-  "routing_coupled_v4": {
-    "protocol": "pre-qwen-routing-coupled-residual-v4",
-    "automatic_verdict": "ROUTING_COUPLED_V4_FAIL",
-    "adversarial_disposition": "ROUTING_COUPLED_V4_CAUSAL_BUT_INSUFFICIENT__MOMENT_COUPLING_CLOSED",
+  "reality_gate_1a": {
+    "protocol": "reality-gate-1a-static-heterogeneous-rank-v1",
+    "automatic_verdict": "REALITY_GATE_1A_FAIL",
+    "adversarial_disposition": "STATIC_HETEROGENEITY_NOT_SUPPORTED__DYNAMIC_RANK_BLOCKED__POST_HOC_DEPRIORITIZED",
     "independent_audit_passed": true,
     "audit_mismatches": 0,
-    "seeds": [91121, 92129, 93133, 94151, 95153],
-    "primary": {
-      "name": "rank5-coupled-q8-h8-v4",
-      "expert_parameter_ratio": 0.4428240740740741,
-      "routed_matrix_compute_ratio": 0.625,
-      "hypothesis_loss_delta_mean": -0.07459402243296305,
-      "hypothesis_loss_delta_ucb95": -0.02306664959589649,
-      "ood_loss_delta_mean": -0.06465905374950832,
-      "ood_loss_delta_ucb95": 0.008611742191844407,
-      "hypothesis_kl_mean": 0.3864374335601431,
-      "hypothesis_kl_ucb95": 0.4273785715681925,
-      "hypothesis_top1_mean": 0.6764583332339923,
-      "hypothesis_top1_lcb95": 0.654789928369224,
-      "hypothesis_local_nrmse_mean": 0.3651719356678313,
-      "hypothesis_local_nrmse_ucb95": 0.387928151195377,
-      "hypothesis_counterfactual_nrmse_mean": 0.4609113277284749,
-      "hypothesis_counterfactual_nrmse_ucb95": 0.48372988718719995,
-      "hypothesis_routing_aggregate_error_mean": 0.1515812750533223,
-      "correction_energy_ratio_mean": 0.00276
+    "source_commit": "456c3beb87eace9a196a46bd24ab33090b0bc2eb",
+    "results_commit": "cd57ba42d69036f188b1bc067a895f98e72ef43e",
+    "workflow_run_id": 31011802255,
+    "dataset": {
+      "source": "Salesforce/wikitext",
+      "subset": "wikitext-2-raw-v1",
+      "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+      "article_level_units": true,
+      "test_opened_after_candidate_freeze": true,
+      "data_audit_passed": true
     },
-    "established_improvements_vs_v3": {
-      "kl": true,
-      "top1": true,
-      "local_nrmse": true,
-      "loss": false,
-      "counterfactual_nrmse": false
+    "seeds": [111731, 121747, 131759, 141767],
+    "scales": ["small", "medium"],
+    "plateau": {
+      "scientific_cells_passed": 0,
+      "scientific_cells_total": 8,
+      "confirmatory_mature_teacher_claim_available": false
     },
-    "causal_ablation": {
-      "disabled_minus_primary_kl_mean": 0.012101862574652284,
-      "disabled_minus_primary_kl_lcb95": 0.007258022290828301,
-      "disabled_minus_primary_kl_ucb95": 0.017261028256121833,
-      "statistically_positive": true,
-      "minimum_magnitude_gate_passed": false
+    "allocation": {
+      "medium_spectral_exactly_uniform_seeds": 4,
+      "medium_total_seeds": 4,
+      "small_spectral_exactly_uniform_seeds": 3,
+      "small_total_seeds": 4,
+      "routing_only_exactly_uniform_final_cells": 8,
+      "spectral_advantage_over_uniform_established": false,
+      "spectral_advantage_over_routing_established": false
     },
-    "second_moment_advantage_established": false,
-    "larger_q12_capacity_rescue": false,
-    "primary_minus_narrow65_loss_noninferior": true,
-    "behavioral_fidelity_to_narrow65": false,
-    "routing_aggregate_error_gap_vs_narrow65_mean": 0.11724003103561699,
-    "moment_coupling_line_closed": true
+    "residual_effective_rank_95": {
+      "small_mean_final": 25.32,
+      "small_matrix_rank": 32,
+      "small_observed_range": [24, 26],
+      "medium_mean_final": 37.80,
+      "medium_matrix_rank": 48,
+      "medium_observed_range": [37, 39]
+    },
+    "small": {
+      "primary_parameter_ratio": 0.4583,
+      "primary_compute_ratio": 0.625,
+      "hypothesis_loss_delta_mean": 0.00604,
+      "hypothesis_loss_delta_ucb95": 0.00798,
+      "hypothesis_kl_mean": 0.01453,
+      "hypothesis_top1_mean": 0.8451,
+      "hypothesis_local_nrmse_mean": 0.19035,
+      "primary_minus_uniform_loss_mean": 0.000087,
+      "primary_minus_uniform_loss_lcb95": -0.000145,
+      "primary_minus_uniform_loss_ucb95": 0.000495,
+      "primary_minus_narrow_loss_mean": 0.007460,
+      "primary_minus_narrow_top1_mean": -0.071135
+    },
+    "medium": {
+      "primary_parameter_ratio": 0.4375,
+      "primary_compute_ratio": 0.625,
+      "hypothesis_loss_delta_mean": 0.00800,
+      "hypothesis_loss_delta_ucb95": 0.01020,
+      "hypothesis_kl_mean": 0.02074,
+      "hypothesis_top1_mean": 0.8305,
+      "hypothesis_local_nrmse_mean": 0.21355,
+      "primary_minus_uniform_loss_mean": 0.0,
+      "primary_minus_uniform_loss_lcb95": 0.0,
+      "primary_minus_uniform_loss_ucb95": 0.0,
+      "primary_minus_narrow_loss_mean": 0.011128,
+      "primary_minus_narrow_top1_mean": -0.068028
+    },
+    "conclusions": {
+      "static_spectral_heterogeneity_supported": false,
+      "dynamic_rank_supported": false,
+      "narrow65_behaviorally_superior": true,
+      "universal_heterogeneous_rank_refutation": false,
+      "post_hoc_conversion_primary": false,
+      "native_compact_training_primary": true
+    }
   },
   "runtime": {
     "analytic_operation_proxies_available": true,
@@ -127,49 +146,49 @@
     "measured_end_to_end_runtime": false
   },
   "artifact_integrity": {
-    "routing_v3_manifest": "artifacts/2026-07-30/routing-set-v3/SHA256SUMS",
-    "routing_v4_manifest": "artifacts/2026-07-30/routing-coupled-v4/SHA256SUMS",
-    "routing_v4_audit": "results/pre-qwen-routing-coupled/v4/adversarial-audit/audit.json",
-    "routing_v4_report": "docs/results/2026-07-30-routing-coupled-v4-analysis.md",
-    "routing_v4_multilens_review": "docs/audits/2026-07-30-routing-coupled-v4-multilens-review.md"
+    "reality_gate_manifest": "artifacts/2026-08-05/reality-gate-1a/SHA256SUMS",
+    "reality_gate_metrics": "results/reality-gate-1a/metrics.json",
+    "reality_gate_audit": "results/reality-gate-1a/adversarial-audit/audit.json",
+    "reality_gate_report": "docs/results/2026-08-05-reality-gate-1a-analysis.md",
+    "reality_gate_multilens_review": "docs/audits/2026-08-05-reality-gate-1a-multilens-review.md"
   },
-  "closed_lines": [
+  "closed_or_blocked_lines": [
     "global_scalar_rank_increase",
-    "existing_coordinate_selection_35",
-    "conditional_backward_pruning_35",
-    "static_router_semantic_basis_clusters",
+    "existing_coordinate_selection",
+    "conditional_backward_pruning",
+    "router_semantic_basis_clusters",
     "objective_only_rank5_tuning",
-    "routing_set_first_second_moment_correction"
+    "routing_set_moment_correction",
+    "static_spectral_rank_redistribution_v1",
+    "dynamic_rank_on_static_spectral_utility",
+    "olmoe_or_qwen_scale_up",
+    "hardware_specialization_before_gpu_software_gain"
   ],
   "next_action": {
-    "protocol_family": "budgeted_heterogeneous_nested_rank",
-    "primary_candidate": {
-      "max_rank": 7,
-      "active_rank_sum_per_token": 20,
-      "stored_parameter_ratio": 0.55,
-      "projected_compute_ratio": 0.5833333333333334
-    },
-    "capacity_candidate": {
-      "max_rank": 8,
-      "active_rank_sum_per_token": 24,
-      "stored_parameter_ratio": 0.6166666666666667,
-      "projected_compute_ratio": 0.65
-    },
-    "required_controls": [
-      "uniform_rank5",
-      "uniform_rank6",
-      "narrow65",
-      "full_control",
-      "routing_weight_only_allocation",
-      "static_heterogeneous_allocation"
+    "protocol_family": "native_compact_shared_basis_nested_prefix_training",
+    "required_baselines": [
+      "conventional_full_moe",
+      "conventional_narrow65",
+      "shared_base_local_factors_native",
+      "mose_like_nested_width",
+      "rfid_like_static_heterogeneous_rank"
+    ],
+    "claim_order": [
+      "native_architecture_moves_quality_compute_pareto",
+      "smaller_prefixes_are_functional",
+      "heterogeneous_static_allocation_adds_value",
+      "dynamic_token_control_adds_value",
+      "analytic_savings_become_gpu_runtime_savings",
+      "real_checkpoint_transfer"
     ],
     "scale_up_blocked": true
   },
   "limitations": [
-    "small character language models",
-    "teachers not at demonstrated plateau",
-    "synthetic document families",
-    "no measured runtime",
-    "post_hoc_conversion_only_so_far"
+    "teachers_did_not_reach_plateau",
+    "two_controlled_scales",
+    "wikitext2_small_data_regime",
+    "ood_set_small_and_deterministic",
+    "no_measured_runtime",
+    "no_real_checkpoint"
   ]
 }
