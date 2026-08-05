@@ -1,0 +1,7 @@
+{
+  "aggregation_source_commit": "0dc8708ddddfeffdb6f28793a5b88328a0718840",
+  "reason": "duplicate chunk-local window coordinates within the same OOD article",
+  "resolution": "pair after averaging within the preregistered seed-by-article statistical unit",
+  "scientific_cells_reused_without_retraining": true,
+  "scientific_run_id": 31021913119
+}

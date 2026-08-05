@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "bytes": 900633,
+      "path": "results/native-compact-gate-2a/small/seed-202781.json",
+      "sha256": "195b6f7032086a9794d0b83b5d06e33ff827c816b56b2d87aca267dd74765907"
+    },
+    {
+      "bytes": 3708699,
+      "path": "results/native-compact-gate-2a/small/frozen-candidates-seed-202781.pt",
+      "sha256": "0db6ae621b4dfa4a25f12a185d3b35819dded2bc5738d6de6f970ad89629e020"
+    },
+    {
+      "bytes": 1558,
+      "path": "results/native-compact-gate-2a/small/logs/seed-202781.log",
+      "sha256": "f1a1e0edeb64b7b002d6dace7b883deb66e86933f38071a3eeddff1298192ef0"
+    }
+  ],
+  "scale": "small",
+  "seed": 202781,
+  "source_commit": "8f40b69e39da274c835bf672522d02ee84398cde"
+}

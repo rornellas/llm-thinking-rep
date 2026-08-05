@@ -1,0 +1,13 @@
+{
+  "aggregation_source_commit": "0dc8708ddddfeffdb6f28793a5b88328a0718840",
+  "configuration_sha256": "00e27b3ca6e2fd995043d279a2f4fd3e1207d9e910ca8bfbc673fad2ba9ae81d",
+  "data_manifest_sha256": "d6012d40910a956ee2a6de163e53ffab2a5b6c91c88b764f2b6f638da731c51d",
+  "finalize_workflow_run_id": 31024180611,
+  "numpy": "2.5.1",
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "protocol_version": "native-compact-gate-2a-v1",
+  "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+  "scientific_run_id": 31021913119,
+  "scientific_source_commit": "8f40b69e39da274c835bf672522d02ee84398cde",
+  "torch": "2.13.0+cpu"
+}

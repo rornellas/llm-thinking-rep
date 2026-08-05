@@ -1,0 +1,52 @@
+{
+  "dataset_fingerprints": {
+    "test": "c30409b5a24d230f",
+    "train": "7dabb830ac9ebb0d",
+    "validation": "ea37ea707fafbf9f"
+  },
+  "environment": {
+    "datasets": "5.0.1",
+    "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+    "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]",
+    "tokenizers": "0.23.1"
+  },
+  "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "schema_version": "native-compact-wikitext103-article-v1",
+  "sha256": {
+    "ood-offsets.npy": "a0a566bbfdc90bd3e182ffc09a1fec8795f1f4d103bf63103bf12ba35423dc04",
+    "ood-tokens.npy": "f324240ea818e1fed546fdf93cdf26100e93ea138031c3295c98711d033ce416",
+    "test-offsets.npy": "5fb19da21757d1ddadd687f1f3bc46f78a368b45ee9c7eafaf53c61fb79dc113",
+    "test-tokens.npy": "6a093f81b0ed1cb498d632856c1fcccc1d2abca0354215d02c9583ffe827359f",
+    "tokenizer.json": "3264a70c6b243b5926eaca048774c1a282b6f4b06a5a539498582d92c7705a83",
+    "train-offsets.npy": "f9bd44e9b6c9cff5d38705c2b07bdbadf4e0822e0719e2380ffab25b88975d8c",
+    "train-tokens.npy": "e98fd44ff87db568c0272a1968949fc7a2a06f12b9079d9d3142f45e53e0750d",
+    "validation-offsets.npy": "af1dc1e10fc02a4fd1c0f914e44b75a6524db047e87a69ab9e6d0d6c2e81a4b5",
+    "validation-tokens.npy": "678e9c4961e07af6b8dcc44d662a3d75b2f1e9d9dbce10398ac6a1dd035c3c3d"
+  },
+  "source": "Salesforce/wikitext",
+  "splits": {
+    "ood": {
+      "documents": 16,
+      "source_documents": 16,
+      "tokens": 130846
+    },
+    "test": {
+      "documents": 136,
+      "source_documents": 706,
+      "tokens": 140000
+    },
+    "train": {
+      "documents": 986,
+      "source_documents": 305074,
+      "tokens": 800000
+    },
+    "validation": {
+      "documents": 192,
+      "source_documents": 620,
+      "tokens": 140000
+    }
+  },
+  "subset": "wikitext-103-raw-v1",
+  "tokenizer_training_documents": 2048,
+  "vocab_size": 512
+}
