@@ -10,6 +10,9 @@ def test_reality_gate_protocol_is_frozen_and_budgeted() -> None:
     assert config["protocol_version"] == "reality-gate-1a-static-heterogeneous-rank-v1"
     assert config["status"] == "preregistered_before_data_preparation_or_scientific_training"
     assert config["seeds"] == [111731, 121747, 131759, 141767]
+    assert config["data"]["dataset_source"] == "Salesforce/wikitext"
+    assert config["data"]["dataset_subset"] == "wikitext-2-raw-v1"
+    assert config["data"]["dataset_revision"] == "b08601e04326c79dfdd32d625aee71d232d685c3"
     assert abs(sum(config["training"]["joint_weights"].values()) - 1.0) < 1e-12
     for scale in config["scales"].values():
         model = scale["model"]
