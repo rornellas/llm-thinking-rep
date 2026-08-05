@@ -107,7 +107,7 @@ def main() -> int:
     parser.add_argument("--calibration-tokens", type=int, default=140000)
     parser.add_argument("--hypothesis-tokens", type=int, default=140000)
     parser.add_argument("--ood-tokens", type=int, default=140000)
-    parser.add_argument("--ood-blocks-per-document", type=int, default=170)
+    parser.add_argument("--ood-blocks-per-document", type=int, default=75)
     args = parser.parse_args()
 
     args.root.mkdir(parents=True, exist_ok=True)
