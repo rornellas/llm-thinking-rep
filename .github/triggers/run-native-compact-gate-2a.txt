@@ -1,3 +1,5 @@
 protocol=native-compact-gate-2a-v1
 preregistered_source_commit=75c37d8f1507e06c2a33d7341450c2149c0085b3
-launched_at=2026-08-05T15:10:00Z
+engineering_fix_commit=1da0eaf592ae39d3ecb39c3e1c8381b2824dc8bc
+retry=1
+launched_at=2026-08-05T15:38:00Z
