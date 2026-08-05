@@ -1,6 +1,0 @@
-import Reality Gate 1A source
-triggered_at=2026-08-05T13:45:00Z
-retry=4
-bundle_sha256=abc6703cc94d429bce6825f687d92a70b7164f8c0632e136e276957dc10b62ba
-fixture_correction=plateau_stability_only
-workflow_written_by_connector=true

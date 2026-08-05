@@ -1,0 +1,155 @@
+protocol_version: reality-gate-1a-static-heterogeneous-rank-v1
+status: preregistered_before_data_preparation_or_scientific_training
+claim_scope: two_scale_real_text_controlled_screen
+threads: 2
+seeds: [111731, 121747, 131759, 141767]
+pilot:
+  seed: 9091
+  scale: small
+  minimum_steps: 1800
+  maximum_steps: 3200
+  evaluation_interval: 250
+  patience: 2
+  student_steps: 40
+scales:
+  small:
+    model:
+      seq_len: 64
+      batch_size: 8
+      d_model: 32
+      n_heads: 4
+      n_layers: 3
+      d_ff: 64
+      n_experts: 12
+      top_k: 4
+      teacher_steps: 3200
+      student_steps: 280
+      learning_rate: 0.0003
+      student_learning_rate: 0.0006
+      weight_decay: 0.02
+      aux_weight: 0.01
+      grad_clip: 1.0
+    plateau:
+      evaluation_interval: 250
+      minimum_steps: 1800
+      maximum_steps: 3200
+      window: 4
+      patience: 2
+      maximum_negative_slope_per_step: 0.000012
+      maximum_positive_slope_per_step: 0.000012
+      maximum_window_improvement: 0.025
+      maximum_window_range: 0.040
+      maximum_route_l1_change: 0.10
+      validation_windows_per_document: 1
+      validation_seed: 411037
+    trajectory_fractions: [0.25, 0.50, 0.75]
+    uniform_rank: 8
+    max_rank: 12
+    narrow_fraction: 0.65
+  medium:
+    model:
+      seq_len: 64
+      batch_size: 6
+      d_model: 48
+      n_heads: 6
+      n_layers: 4
+      d_ff: 96
+      n_experts: 16
+      top_k: 4
+      teacher_steps: 4500
+      student_steps: 320
+      learning_rate: 0.00025
+      student_learning_rate: 0.0005
+      weight_decay: 0.02
+      aux_weight: 0.01
+      grad_clip: 1.0
+    plateau:
+      evaluation_interval: 300
+      minimum_steps: 2600
+      maximum_steps: 4500
+      window: 4
+      patience: 2
+      maximum_negative_slope_per_step: 0.000008
+      maximum_positive_slope_per_step: 0.000008
+      maximum_window_improvement: 0.020
+      maximum_window_range: 0.035
+      maximum_route_l1_change: 0.10
+      validation_windows_per_document: 1
+      validation_seed: 421051
+    trajectory_fractions: [0.25, 0.50, 0.75]
+    uniform_rank: 12
+    max_rank: 16
+    narrow_fraction: 0.65
+data:
+  train_document_tokens: 8192
+  calibration_document_tokens: 8192
+  hypothesis_document_tokens: 8192
+  ood_document_tokens: 8192
+  maximum_train_tokens: 900000
+  maximum_calibration_tokens: 180000
+  maximum_hypothesis_tokens: 180000
+  maximum_ood_tokens: 180000
+  capture_batch_size: 6
+  trajectory_capture_batches: 12
+  final_capture_batches: 24
+  trajectory_windows_per_document: 1
+  evaluation_windows_per_document: 2
+  calibration_window_seed: 511109
+  evaluation_window_seed: 521111
+training:
+  trajectory_local_steps: 80
+  final_local_steps: 280
+  joint_steps: 160
+  local_batch_size: 256
+  joint_weights:
+    local: 0.45
+    kl: 0.45
+    ce: 0.10
+statistics:
+  bootstrap_samples: 20000
+  bootstrap_seed: 611123
+  confidence: 0.95
+gates:
+  budget_tolerance: 0.000001
+  heldout_compute_tolerance: 0.020
+  absolute_loss_ucb_max: 0.030
+  absolute_kl_ucb_max: 0.200
+  absolute_top1_lcb_min: 0.780
+  absolute_local_nrmse_ucb_max: 0.240
+  ood_loss_ucb_max: 0.050
+  ood_kl_ucb_max: 0.250
+  every_seed_loss_delta_max: 0.060
+  uniform_loss_difference_ucb_max: 0.000
+  uniform_kl_difference_ucb_max: 0.000
+  uniform_top1_difference_lcb_min: 0.000
+  uniform_local_difference_ucb_max: 0.000
+  uniform_behavior_min_votes: 2
+  routing_loss_difference_ucb_max: 0.000
+  narrow_loss_difference_ucb_max: 0.010
+  narrow_kl_difference_ucb_max: 0.050
+  narrow_top1_difference_lcb_min: -0.030
+  narrow_local_difference_ucb_max: 0.050
+  identity_absolute_tolerance: 0.00000001
+  signal_uniform_loss_ucb_max: 0.010
+  signal_behavior_min_votes: 2
+  signal_min_scales: 1
+  maximum_scale_trend_regression: 0.005
+decision_policy:
+  pass: >-
+    Both scales reach the frozen plateau criterion; spectral heterogeneous rank
+    remains within uniform parameter and expected-compute budgets on train and
+    held-out routing; it beats uniform rank in loss and at least two behavioral
+    endpoints; it is non-inferior to narrow65; scale trend, identity, data, and
+    independent audit gates all pass.
+  mechanism_signal: >-
+    At least one plateaued scale establishes loss non-inferiority to uniform rank
+    plus two behavioral improvements, with intact budgets and audit, but the full
+    two-scale/narrow65 gate is not reached. This permits one fresh replication,
+    not dynamic routing or a real checkpoint.
+  fail: >-
+    Plateau is not established, spectral allocation does not beat uniform rank,
+    gains are explained by routing frequency alone, budgets drift on held-out
+    routes, or integrity controls fail. Dynamic rank allocation is then blocked.
+  consequence: >-
+    No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. Runtime and real-checkpoint work
+    remain blocked until a later explicit gate.
