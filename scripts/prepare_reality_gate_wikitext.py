@@ -12,9 +12,13 @@ import sys
 import numpy as np
 import datasets
 from datasets import load_dataset
-from huggingface_hub import HfApi
 import tokenizers
 from tokenizers import Tokenizer, decoders, models, pre_tokenizers, trainers
+
+
+DATASET_SOURCE = "Salesforce/wikitext"
+DATASET_SUBSET = "wikitext-2-raw-v1"
+DATASET_REVISION = "b08601e04326c79dfdd32d625aee71d232d685c3"
 
 
 OOD_TEMPLATES = (
@@ -108,9 +112,9 @@ def main() -> int:
     args = parser.parse_args()
 
     args.root.mkdir(parents=True, exist_ok=True)
-    source = "Salesforce/wikitext"
-    subset = "wikitext-2-raw-v1"
-    revision = HfApi().dataset_info(source).sha
+    source = DATASET_SOURCE
+    subset = DATASET_SUBSET
+    revision = DATASET_REVISION
     dataset = load_dataset(source, subset, revision=revision)
     source_articles = {
         split: group_wikitext_articles([row["text"] for row in dataset[split]])
