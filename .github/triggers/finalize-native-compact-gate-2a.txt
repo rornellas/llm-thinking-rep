@@ -1,0 +1,5 @@
+protocol=native-compact-gate-2a-v1
+scientific_run_id=31021913119
+scientific_source_commit=8f40b69e39da274c835bf672522d02ee84398cde
+aggregation_fix_commit=ef4a282ae2cbaac690f1d86e124dc44cd31c0067
+launched_at=2026-08-05T16:13:00Z
