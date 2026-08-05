@@ -1,0 +1,91 @@
+protocol_version: native-compact-gate-2a-v1
+status: preregistered_before_data_preparation_or_scientific_training
+claim_scope: fixed_budget_native_training_two_scale_wikitext103_screen
+threads: 2
+seeds: [202781, 212789, 222793, 232801]
+pilot:
+  seed: 19081
+  scale: small
+  steps: 80
+  evaluation_interval: 40
+scales:
+  small:
+    model:
+      seq_len: 64
+      batch_size: 8
+      d_model: 32
+      n_heads: 4
+      n_layers: 2
+      d_ff: 64
+      n_experts: 12
+      top_k: 4
+      training_steps: 2200
+      learning_rate: 0.0003
+      weight_decay: 0.02
+      aux_weight: 0.01
+      grad_clip: 1.0
+    evaluation_interval: 275
+    native_rank: 8
+    narrow_d_ff: 42
+  medium:
+    model:
+      seq_len: 64
+      batch_size: 6
+      d_model: 40
+      n_heads: 5
+      n_layers: 3
+      d_ff: 80
+      n_experts: 16
+      top_k: 4
+      training_steps: 3000
+      learning_rate: 0.00025
+      weight_decay: 0.02
+      aux_weight: 0.01
+      grad_clip: 1.0
+    evaluation_interval: 375
+    native_rank: 10
+    narrow_d_ff: 52
+data:
+  maximum_document_tokens: 2048
+  maximum_train_tokens: 700000
+  maximum_calibration_tokens: 120000
+  maximum_hypothesis_tokens: 120000
+  maximum_ood_tokens: 120000
+evaluation:
+  calibration_windows_per_document: 1
+  windows_per_document: 2
+  calibration_seed: 731117
+  window_seed: 741121
+statistics:
+  bootstrap_samples: 10000
+  bootstrap_seed: 751133
+  confidence: 0.95
+gates:
+  budget_tolerance: 0.000000001
+  minimum_expert_parameter_advantage: 0.15
+  primary_vs_narrow_hypothesis_loss_ucb_max: 0.010
+  primary_vs_narrow_ood_loss_ucb_max: 0.020
+  primary_vs_full_hypothesis_loss_ucb_max: 0.035
+  every_seed_primary_minus_narrow_loss_max: 0.025
+  signal_primary_vs_narrow_hypothesis_loss_ucb_max: 0.020
+  signal_min_scales: 1
+  maximum_scale_regression: 0.005
+  maximum_dead_experts: 0
+decision_policy:
+  pass: >-
+    In both scales, native-shared-rank uses at least 15 percentage points fewer
+    expert parameters than conventional-narrow65, does not exceed its analytical
+    active expert compute, is hypothesis-loss non-inferior within +0.010 nat,
+    is OOD-loss non-inferior within +0.020 nat, has no seed worse than +0.025
+    nat, preserves routing health, and the independent audit passes.
+  mechanism_signal: >-
+    At least one scale meets the wider +0.020 nat hypothesis margin with intact
+    parameter, compute, routing, provenance, and audit controls. This permits a
+    fresh nested-prefix replication, not dynamic routing or a real checkpoint.
+  fail: >-
+    Native shared rank is materially worse than narrow65 under the matched update
+    budget, loses its parameter or compute advantage, develops routing collapse,
+    or fails integrity controls. Native nested/dynamic rank is then blocked.
+  consequence: >-
+    No outcome changes NO_GO_FOR_OLMOE_OR_QWEN. A PASS only authorizes Native
+    Compact Gate 2B with nested prefixes and a MoSE-inspired control.

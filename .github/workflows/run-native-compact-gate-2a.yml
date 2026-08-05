@@ -1,0 +1,361 @@
+name: Run Native Compact Gate 2A
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/run-native-compact-gate-2a.txt"
+
+permissions:
+  contents: write
+
+env:
+  SOURCE_COMMIT: ${{ github.sha }}
+  CONFIG: configs/native_compact_gate_2a.yaml
+  DATA_ROOT: data/native-compact-gate-2a
+  OUTPUT: results/native-compact-gate-2a
+  PYTHONUNBUFFERED: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONPYCACHEPREFIX: /tmp/native-compact-pycache
+  OMP_NUM_THREADS: "2"
+  OPENBLAS_NUM_THREADS: "2"
+  MKL_NUM_THREADS: "2"
+  NUMEXPR_NUM_THREADS: "2"
+
+concurrency:
+  group: native-compact-gate-2a
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0,<3" "scipy>=1.11,<2" "PyYAML>=6.0,<7" "pytest>=8.0,<9"
+      - name: Verify frozen source, algebra, protocol, and tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          python -m compileall -q pre_qwen_certification scripts tests
+          PYTHONPATH=. pytest -q
+          python - <<'PY'
+          from pathlib import Path
+          import os, yaml
+          config = yaml.safe_load(Path(os.environ['CONFIG']).read_text())
+          assert config['protocol_version'] == 'native-compact-gate-2a-v1'
+          assert config['status'] == 'preregistered_before_data_preparation_or_scientific_training'
+          assert config['seeds'] == [202781, 212789, 222793, 232801]
+          assert config['gates']['minimum_expert_parameter_advantage'] == 0.15
+          assert config['gates']['signal_min_scales'] == 1
+          PY
+          git diff --quiet
+          git diff --cached --quiet
+
+  prepare-data:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install data dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy>=2.0,<3" "datasets>=3.0" "tokenizers>=0.20" "huggingface_hub>=0.25"
+      - name: Prepare pinned article-preserving WikiText-103 data
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/prepare_native_compact_wikitext103.py --root "$DATA_ROOT"
+          python - <<'PY'
+          from pathlib import Path
+          import json, os
+          root = Path(os.environ['DATA_ROOT'])
+          manifest = json.loads((root / 'manifest.json').read_text())
+          assert manifest['schema_version'] == 'native-compact-wikitext103-article-v1'
+          assert manifest['subset'] == 'wikitext-103-raw-v1'
+          assert manifest['tokenizer_training_documents'] == 2048
+          assert manifest['splits']['train']['documents'] > 100
+          assert manifest['splits']['validation']['documents'] > 20
+          assert manifest['splits']['test']['documents'] > 20
+          assert manifest['splits']['ood']['documents'] == 16
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-compact-gate-2a-data
+          path: data/native-compact-gate-2a
+          if-no-files-found: error
+          retention-days: 30
+
+  pilot:
+    needs: [preflight, prepare-data]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-compact-gate-2a-data
+          path: data/native-compact-gate-2a
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0,<3" "PyYAML>=6.0,<7"
+      - name: Run engineering pilot without test or OOD access
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v python scripts/run_native_compact_gate_2a_seed.py \
+            --scale small --seed 19081 --pilot \
+            --config "$CONFIG" --data-root "$DATA_ROOT" --output-dir "$OUTPUT" \
+            2>&1 | tee pilot.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-compact-gate-2a-pilot
+          path: |
+            results/native-compact-gate-2a/pilot
+            pilot.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  scientific-cell:
+    needs: [pilot, prepare-data]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        scale: [small, medium]
+        seed: [202781, 212789, 222793, 232801]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-compact-gate-2a-data
+          path: data/native-compact-gate-2a
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0,<3" "PyYAML>=6.0,<7"
+      - name: Restore immutable source and run paired cell
+        shell: bash
+        env:
+          SCALE: ${{ matrix.scale }}
+          SEED: ${{ matrix.seed }}
+        run: |
+          set -euo pipefail
+          git reset --hard "$SOURCE_COMMIT"
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          mkdir -p "$OUTPUT/$SCALE/logs" runs/native-compact-gate-2a
+          /usr/bin/time -v python scripts/run_native_compact_gate_2a_seed.py \
+            --scale "$SCALE" --seed "$SEED" \
+            --config "$CONFIG" --data-root "$DATA_ROOT" --output-dir "$OUTPUT" \
+            2>&1 | tee "$OUTPUT/$SCALE/logs/seed-$SEED.log"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, subprocess
+          scale = os.environ['SCALE']; seed = int(os.environ['SEED'])
+          root = Path(os.environ['OUTPUT']) / scale
+          files = [
+              root / f'seed-{seed}.json',
+              root / f'frozen-candidates-seed-{seed}.pt',
+              root / 'logs' / f'seed-{seed}.log',
+          ]
+          payload = {
+              'scale': scale,
+              'seed': seed,
+              'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'files': [],
+          }
+          for path in files:
+              payload['files'].append({
+                  'path': str(path),
+                  'bytes': path.stat().st_size,
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+              })
+          Path(f'runs/native-compact-gate-2a/{scale}-seed-{seed}-manifest.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n'
+          )
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-compact-gate-2a-${{ matrix.scale }}-${{ matrix.seed }}
+          path: |
+            results/native-compact-gate-2a/${{ matrix.scale }}/seed-${{ matrix.seed }}.json
+            results/native-compact-gate-2a/${{ matrix.scale }}/frozen-candidates-seed-${{ matrix.seed }}.pt
+            results/native-compact-gate-2a/${{ matrix.scale }}/logs/seed-${{ matrix.seed }}.log
+            runs/native-compact-gate-2a/${{ matrix.scale }}-seed-${{ matrix.seed }}-manifest.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    needs: [scientific-cell, prepare-data, pilot]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-compact-gate-2a-data
+          path: data/native-compact-gate-2a
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-compact-gate-2a-pilot
+          path: .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: native-compact-gate-2a-small-*
+          path: .
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: native-compact-gate-2a-medium-*
+          path: .
+          merge-multiple: true
+      - name: Install aggregation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.3"
+          python -m pip install "numpy>=2.0,<3" "PyYAML>=6.0,<7" "pytest>=8.0,<9"
+      - name: Aggregate, audit independently, finalize, and test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/aggregate_native_compact_gate_2a.py \
+            --config "$CONFIG" --output-dir "$OUTPUT"
+          python scripts/audit_native_compact_gate_2a.py \
+            --config "$CONFIG" --output-dir "$OUTPUT" --data-root "$DATA_ROOT"
+          python scripts/aggregate_native_compact_gate_2a.py \
+            --config "$CONFIG" --output-dir "$OUTPUT" \
+            --audit-path "$OUTPUT/adversarial-audit/audit.json"
+          PYTHONPATH=. pytest -q
+      - name: Record environment and integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/native-compact-gate-2a artifacts/2026-08-05/native-compact-gate-2a
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, platform, subprocess, sys, yaml
+          import numpy, torch
+          config = Path(os.environ['CONFIG'])
+          data_manifest = Path(os.environ['DATA_ROOT']) / 'manifest.json'
+          payload = {
+              'python': sys.version,
+              'platform': platform.platform(),
+              'torch': torch.__version__,
+              'numpy': numpy.__version__,
+              'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'configuration_sha256': hashlib.sha256(config.read_bytes()).hexdigest(),
+              'data_manifest_sha256': hashlib.sha256(data_manifest.read_bytes()).hexdigest(),
+              'protocol_version': yaml.safe_load(config.read_text())['protocol_version'],
+              'workflow_run_id': int(os.environ['GITHUB_RUN_ID']),
+          }
+          Path('runs/native-compact-gate-2a/environment.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n'
+          )
+          Path('runs/native-compact-gate-2a/latest-workflow-status.json').write_text(
+              json.dumps({'run_id': int(os.environ['GITHUB_RUN_ID']), 'status': 'success'}, sort_keys=True) + '\n'
+          )
+          PY
+          find "$DATA_ROOT" "$OUTPUT" runs/native-compact-gate-2a \
+            docs/results/2026-08-05-native-compact-gate-2a-analysis.md \
+            -type f -print0 | sort -z | xargs -0 sha256sum \
+            > artifacts/2026-08-05/native-compact-gate-2a/SHA256SUMS
+          sha256sum -c artifacts/2026-08-05/native-compact-gate-2a/SHA256SUMS
+      - name: Commit every scientific artifact directly to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "results: record audited Native Compact Gate 2A"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-compact-gate-2a-complete
+          path: |
+            data/native-compact-gate-2a
+            results/native-compact-gate-2a
+            runs/native-compact-gate-2a
+            artifacts/2026-08-05/native-compact-gate-2a
+            docs/results/2026-08-05-native-compact-gate-2a-analysis.md
+          if-no-files-found: warn
+          retention-days: 30
+
+  record-failure:
+    if: >-
+      always() &&
+      (needs.preflight.result != 'success' || needs.prepare-data.result != 'success' || needs.pilot.result != 'success' || needs.scientific-cell.result != 'success' || needs.aggregate.result != 'success')
+    needs: [preflight, prepare-data, pilot, scientific-cell, aggregate]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Commit failure marker directly to main
+        shell: bash
+        env:
+          PREFLIGHT: ${{ needs.preflight.result }}
+          DATA: ${{ needs.prepare-data.result }}
+          PILOT: ${{ needs.pilot.result }}
+          CELLS: ${{ needs.scientific-cell.result }}
+          AGGREGATE: ${{ needs.aggregate.result }}
+        run: |
+          set -euo pipefail
+          mkdir -p runs/native-compact-gate-2a
+          printf '{"run_id":%s,"preflight":"%s","data":"%s","pilot":"%s","cells":"%s","aggregate":"%s","status":"failure"}\n' \
+            "$GITHUB_RUN_ID" "$PREFLIGHT" "$DATA" "$PILOT" "$CELLS" "$AGGREGATE" \
+            > runs/native-compact-gate-2a/latest-workflow-status.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add runs/native-compact-gate-2a/latest-workflow-status.json
+          git commit -m "diagnostics: record Native Compact Gate 2A workflow failure"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
