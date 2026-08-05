@@ -1,0 +1,5 @@
+run Reality Gate 1A
+triggered_at=2026-08-05T13:55:00Z
+protocol=reality-gate-1a-static-heterogeneous-rank-v1
+dataset_revision=b08601e04326c79dfdd32d625aee71d232d685c3
+mode=pilot_then_two_scale_confirmation
