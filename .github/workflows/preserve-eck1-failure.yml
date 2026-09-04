@@ -1,0 +1,107 @@
+name: Preserve ECK-1 failure
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/preserve-eck1-failure.yml']
+permissions:
+  contents: write
+  actions: read
+env:
+  OMP_NUM_THREADS: '2'
+  MKL_NUM_THREADS: '2'
+  OPENBLAS_NUM_THREADS: '2'
+  PYTHONUNBUFFERED: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+jobs:
+  preserve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: eck1-cell-*
+          run-id: 33920705855
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: /tmp/eck1-original
+      - name: Preserve every cell including failures
+        run: |
+          mkdir -p results/exact-compact-kernel-1/attempt-1
+          for i in 0 1 2 3; do cp -r /tmp/eck1-original/eck1-cell-$i results/exact-compact-kernel-1/attempt-1/cell-$i; done
+      - name: Install diagnostic dependencies
+        run: |
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
+          python -m pip install numpy==2.3.5 PyYAML==6.0.3 scipy==1.17.0
+      - name: Trace routing sensitivity without changing implementation or tolerances
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/diagnose_eck1_failure.py 2>&1 | tee results/exact-compact-kernel-1/failure-diagnostic.log
+      - name: Record failed verdict and data-unit correction
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          root=Path('results/exact-compact-kernel-1')
+          report={'protocol':'ECK-1','workflow_run':33920705855,
+            'verdict':'FAIL_INVALID_FOR_SPEEDUP_CLAIM','source_commit':'d2accdef24534ee36b35060e1dee1c76efebde19',
+            'cell_status':{'0':'failed_calibration_logit_parity','1':'failed_calibration_logit_parity','2':'completed','3':'completed'},
+            'full_aggregation_performed':False,'successful_cells_not_selected_for_speed_claim':True,
+            'original_tolerance':{'atol':2e-5,'rtol':2e-5},
+            'observed_cell0_max_logit_difference':0.05667674541473389,
+            'tolerance_relaxed':False,'benchmark_rerun':False,'global_decision':'NO_GO_FOR_OLMOE_OR_QWEN'}
+          (root/'failure-summary.json').write_text(json.dumps(report,indent=2)+'\n')
+          correction={'affected_protocol':'FA-1','raw_field':'unique_articles','raw_value':142,
+            'correct_unit':'legacy segment IDs, not independently sampled true top-level articles',
+            'cause':'legacy group_articles splits on every heading, including subsections',
+            'FA1_statistics_affected':False,'reason':'FA-1 uncertainty was seed-only conditional on fixed windows',
+            'raw_metrics_rewritten':False,'FCC1_uses_true_top_level_article_boundaries':True,
+            'earlier_article_bootstrap_independence_claims':'Require separate audit; do not elevate on the basis of this correction alone.'}
+          p=Path('results/functional-ablation-1/data-unit-correction.json');p.write_text(json.dumps(correction,indent=2)+'\n')
+          target=Path('docs/results/2026-09-04-functional-ablation-1.md')
+          text=target.read_text()
+          text=text.replace('150 windows from 142 original article IDs.','150 windows from 142 legacy segment IDs, not 142 independent top-level articles.')
+          text+='\n## Data-unit correction (2026-09-04)\n\nThe legacy splitter treated subsection headings as document boundaries. The raw `unique_articles` field counts segment IDs. Seed-only confidence intervals above are unchanged because they were conditional on fixed windows. This correction must not be used to assume article independence in older analyses. FCC-1 uses top-level article boundaries. See `data-unit-correction.json`; raw metrics are retained unchanged.\n'
+          target.write_text(text)
+          diag=json.loads((root/'failure-diagnostic.json').read_text())
+          lines=['# ECK-1 — failed exact-kernel certification','',
+            '**Verdict: FAIL_INVALID_FOR_SPEEDUP_CLAIM.** Synthetic algebra/gradient tests passed, but cells0 and1 failed full trained-model FP32 logit parity. Cells2 and3 are preserved, not selected as a successful benchmark.','',
+            'Observed first cell0 maximum logit difference:0.05667674541473389. Original allclose atol2e-5/rtol2e-5 is unchanged. No valid aggregate speedup is claimed.','',
+            'All original raw outputs are in `results/exact-compact-kernel-1/attempt-1/`. No benchmark was repeated for this report.','',
+            '## Posthoc mechanism trace','',f"Diagnostic status: `{diag['status']}`. See `failure-diagnostic.json` for layer inputs, selected experts, routing margins and the fixed-routing counterfactual.",'',
+            'Forcing original routes, if it reduces the mismatch, supports that mechanism for this example only; it does not reverse the failed certification or establish safe serving behavior.','',
+            'Compression-fidelity claims from FA-1/FCC-1 use the original loop implementation, not this failed vectorized kernel.']
+          Path('docs/results/2026-09-04-exact-compact-kernel-1.md').write_text('\n'.join(lines)+'\n')
+          files=sorted(p for p in root.rglob('*') if p.is_file() and p.name!='FAILURE_SHA256SUMS')
+          (root/'FAILURE_SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+str(p)+'\n' for p in files))
+          PY
+          sha256sum -c results/exact-compact-kernel-1/FAILURE_SHA256SUMS
+      - name: Commit negative evidence and correction to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/exact-compact-kernel-1 results/functional-ablation-1/data-unit-correction.json docs/results/2026-09-04-exact-compact-kernel-1.md docs/results/2026-09-04-functional-ablation-1.md
+          git commit -m 'audit: preserve failed ECK-1 certification and correct FA-1 article terminology'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eck1-failure-preserved
+          path: |
+            results/exact-compact-kernel-1
+            docs/results/2026-09-04-exact-compact-kernel-1.md
+          retention-days: 30
+          if-no-files-found: warn
