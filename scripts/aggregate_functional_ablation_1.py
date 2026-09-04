@@ -19,8 +19,10 @@ def sha(path):
 def stats(values):
     assert len(values)==4 and all(math.isfinite(x) for x in values)
     m=statistics.mean(values); se=statistics.stdev(values)/2
-    return {'per_seed':values,'mean':m,'ci95':[m-t.ppf(.975,3)*se,m+t.ppf(.975,3)*se],
-            'ucb95':m+t.ppf(.95,3)*se}
+    # Native floats ensure downstream comparisons produce JSON-safe Python bools.
+    q_two=float(t.ppf(.975,3)); q_one=float(t.ppf(.95,3))
+    return {'per_seed':values,'mean':m,'ci95':[m-q_two*se,m+q_two*se],
+            'ucb95':m+q_one*se}
 
 def main():
     cells=[json.loads((OUT/f'cell-{i}/results.json').read_text()) for i in range(4)]
