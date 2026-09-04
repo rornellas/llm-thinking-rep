@@ -1,0 +1,35 @@
+name: Export development workspace
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/export-development-workspace.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Package source and development data only
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/development-workspace/data/native-compact-gate-2a /tmp/development-workspace/results/native-compact-gate-2a
+          cp -r pre_qwen_certification scripts configs tests docs AGENTS.md README.md /tmp/development-workspace/
+          cp data/native-compact-gate-2a/{train-tokens.npy,train-offsets.npy,validation-tokens.npy,validation-offsets.npy,manifest.json,tokenizer.json} /tmp/development-workspace/data/native-compact-gate-2a/
+          cp -r results/native-compact-gate-2a/small /tmp/development-workspace/results/native-compact-gate-2a/
+          cp -r results/mode-utilization-intervention-1 /tmp/development-workspace/results/
+          git rev-parse HEAD > /tmp/development-workspace/EXPORTED_SOURCE_COMMIT
+          cd /tmp/development-workspace
+          find . -type f -not -name EXPORT_SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > EXPORT_SHA256SUMS
+          test -z "$(find data -type f \( -iname '*test*' -o -iname '*ood*' \))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: development-workspace
+          path: /tmp/development-workspace
+          retention-days: 14
+          if-no-files-found: error
