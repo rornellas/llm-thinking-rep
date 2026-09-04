@@ -1,0 +1,12 @@
+{
+  "workflow_run_id": 33919586684,
+  "source_commit": "e6fed20ce21d0c61234236463522c21ca9d16adb",
+  "status": "INVALID_NO_GITHUB_SCIENTIFIC_EVALUATION_STARTED",
+  "failed_stage": "preflight",
+  "passed_tests": 12,
+  "failed_tests": 1,
+  "failure": "ModuleNotFoundError: No module named scipy in inherited heterogeneous-rank allocator test",
+  "correction_commit": "f3f58a6bc537bc8b29ca8368f79bdf72def76621",
+  "correction": "Install scipy==1.17.0 and preserve preflight logs. No test skipped, no scientific source, protocol, candidates, endpoints, or thresholds changed.",
+  "local_evaluation_disclosure": "While the GitHub job was being inspected, unchanged committed scientific code was independently run locally on MUI-1 legacy seed 904031 and Gate2A native-shared-rank seed 202781. Their outputs are development diagnostics, not a blinded confirmatory study. No scientific decisions were tuned from these outputs before the dependency correction."
+}
