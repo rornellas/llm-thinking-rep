@@ -1,0 +1,110 @@
+name: Finalize Functional Ablation 1
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/finalize-functional-ablation-1.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  OMP_NUM_THREADS: '2'
+  MKL_NUM_THREADS: '2'
+  OPENBLAS_NUM_THREADS: '2'
+  PYTHONUNBUFFERED: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fa1-cell-*
+          run-id: 33919779426
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: /tmp/fa1-frozen
+      - name: Restore frozen scientific outputs without rerunning timings
+        run: |
+          mkdir -p results/functional-ablation-1
+          for i in 0 1 2 3; do cp -r /tmp/fa1-frozen/fa1-cell-$i results/functional-ablation-1/cell-$i; done
+          for i in 0 1 2 3; do sha256sum -c results/functional-ablation-1/cell-$i/SOURCE_SHA256SUMS; done
+      - name: Install pinned audit dependencies
+        run: |
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
+          python -m pip install numpy==2.3.5 scipy==1.17.0 PyYAML==6.0.3 pytest==8.4.2
+      - name: Regression tests and corrected aggregation
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. pytest -q tests/test_fa1_statistics.py tests/test_functional_ablation.py
+          python scripts/aggregate_functional_ablation_1.py
+          sha256sum -c results/functional-ablation-1/SHA256SUMS
+      - name: Independent all-expert materialized checkpoint reexecution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/audit_functional_ablation_1.py 2>&1 | tee /tmp/fa1-independent-audit.log
+          cp /tmp/fa1-independent-audit.log results/functional-ablation-1/independent-audit.log
+      - name: Record audit outcome without changing original screen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('results/functional-ablation-1')
+          audit=json.loads((root/'independent-audit.json').read_text())
+          assert audit['passed'] and audit['primary_checkpoints_reexecuted']==2
+          summary=json.loads((root/'summary.json').read_text())
+          record={'source_run':33919779426,'scientific_source_commit':summary['source_commit'],
+                  'finalizer_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+                  'aggregation_correction':'Native float casts only; no statistical endpoint or threshold changed.',
+                  'original_screen_verdict':summary['screen_verdict'],
+                  'independent_reexecution_status':'PASS','global_decision':'NO_GO_FOR_OLMOE_OR_QWEN',
+                  'audited_development_compression_signal':any(v['cross_budget_fidelity_storage'] for v in summary['primary_screens'].values())}
+          (root/'finalization.json').write_text(json.dumps(record,indent=2,sort_keys=True)+'\n')
+          report=Path('docs/results/2026-09-04-functional-ablation-1.md')
+          report.write_text(report.read_text()+'\n## Finalization audit\n\nIndependent materialized all-expert forwards and Gram-eigenvector rank-one reconstruction: **PASS** on two primary checkpoints, all 16 interventions. Export storage and raw arithmetic were also checked. See `results/functional-ablation-1/independent-audit.json` and `finalization.json`. The pending label above records the pre-audit aggregation state; the audit is now complete. No heldout generalization or novel-architecture claim is added.\n')
+          failure={'workflow_run':33919779426,'scientific_cells':'all_four_passed','failed_stage':'aggregation_json_serialization',
+                   'error':'numpy boolean from scipy quantile comparison was not JSON serializable',
+                   'correction_commit':'635717da1a0554af6e19faf901ccaf176f74aa8d',
+                   'scientific_rerun':False,'criteria_changed':False}
+          p=Path('runs/functional-ablation-1/aggregation-failure-33919779426.json');p.parent.mkdir(parents=True,exist_ok=True)
+          p.write_text(json.dumps(failure,indent=2)+'\n')
+          files=sorted(p for p in root.rglob('*') if p.is_file() and p.name not in ('SHA256SUMS','FINAL_SHA256SUMS'))
+          (root/'FINAL_SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+str(p)+'\n' for p in files))
+          PY
+          sha256sum -c results/functional-ablation-1/FINAL_SHA256SUMS
+      - name: Preserve results directly on main
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/functional-ablation-1 runs/functional-ablation-1 docs/results/2026-09-04-functional-ablation-1.md
+          git commit -m 'results: finalize audited FA-1 without resampling or repeating timings'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fa1-finalized
+          path: |
+            results/functional-ablation-1
+            docs/results/2026-09-04-functional-ablation-1.md
+            docs/prereg/FUNCTIONAL_ABLATION_1.md
+            scripts/run_functional_ablation_1.py
+            scripts/aggregate_functional_ablation_1.py
+            scripts/audit_functional_ablation_1.py
+            pre_qwen_certification/functional_ablation.py
+            tests/test_functional_ablation.py
+            tests/test_fa1_statistics.py
+          if-no-files-found: warn
+          retention-days: 30
