@@ -1,0 +1,81 @@
+{
+  "articles": 256,
+  "duplicate_window_intersection": 0,
+  "environment": {
+    "datasets": "5.0.1",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 13 2026, 02:47:42) [GCC 13.3.0]",
+    "tokenizers": "0.23.1"
+  },
+  "last_tokenizer_true_article": 206,
+  "last_training_true_article": 97,
+  "license": "Source WikiText: CC-BY-SA-3.0 / GFDL; retain source/revision attribution.",
+  "nominal_split": "train",
+  "old_window_hash_count": 939574,
+  "parent_array_sha256": {
+    "train-tokens.npy": "e98fd44ff87db568c0272a1968949fc7a2a06f12b9079d9d3142f45e53e0750d",
+    "validation-tokens.npy": "678e9c4961e07af6b8dcc44d662a3d75b2f1e9d9dbce10398ac6a1dd035c3c3d"
+  },
+  "parent_manifest_sha256": "d6012d40910a956ee2a6de163e53ffab2a5b6c91c88b764f2b6f638da731c51d",
+  "parent_prefix_exact_reproduction": true,
+  "pool_bounds": [
+    8192,
+    16384
+  ],
+  "prediction_tokens_per_window": 64,
+  "prereg_sha256": "1d15467efea3757d84848252f08afc4e6ad12b46dc01dfef14ff3118e4d32963",
+  "protocol": "FCC-1",
+  "rejections": [
+    {
+      "article_id": 13747,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 12302,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 8785,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 13097,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 15501,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 16122,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 10225,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 12990,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 14427,
+      "reason": "too_short"
+    }
+  ],
+  "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "role_for_these_checkpoints": "fresh_holdout_outside_bounded_training_and_tokenizer_prefix",
+  "selection_seed": 904301,
+  "sha256": {
+    "articles.json": "08480679de6dfbfcebc97aeb36253cd5a6a2b811ec62e749af46f4810a4ca94b",
+    "windows.npy": "08cb1976bd81b997733a535418816e8d45b7383fd24a87e7a390a432228e9c73"
+  },
+  "source": "Salesforce/wikitext",
+  "source_script_sha256": "2fa5ff8a389240a9f06450cac0b62f05ee9a929a88ac26b66d50df19a315f680",
+  "subset": "wikitext-103-raw-v1",
+  "tokenizer_sha256": "3264a70c6b243b5926eaca048774c1a282b6f4b06a5a539498582d92c7705a83",
+  "tokens_per_window": 65,
+  "window_seed": 904307,
+  "windows_per_article": 4
+}

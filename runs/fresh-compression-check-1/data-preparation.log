@@ -1,0 +1,40 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 645049.82 examples/s]
+Generating train split:   0%|          | 0/1801350 [00:00<?, ? examples/s]Generating train split:   8%|▊         | 137000/1801350 [00:00<00:01, 1360233.23 examples/s]Generating train split:  16%|█▌        | 284000/1801350 [00:00<00:01, 1423644.89 examples/s]Generating train split:  24%|██▍       | 432000/1801350 [00:00<00:00, 1448083.14 examples/s]Generating train split:  32%|███▏      | 579000/1801350 [00:00<00:00, 1433298.20 examples/s]Generating train split:  41%|████      | 737000/1801350 [00:00<00:00, 1483594.52 examples/s]Generating train split:  53%|█████▎    | 948675/1801350 [00:00<00:00, 1447410.10 examples/s]Generating train split:  61%|██████    | 1100675/1801350 [00:00<00:00, 1464490.66 examples/s]Generating train split:  69%|██████▉   | 1248675/1801350 [00:00<00:00, 1464607.29 examples/s]Generating train split:  77%|███████▋  | 1395675/1801350 [00:00<00:00, 1464418.00 examples/s]Generating train split:  90%|████████▉ | 1613675/1801350 [00:01<00:00, 1453473.67 examples/s]Generating train split:  98%|█████████▊| 1760675/1801350 [00:01<00:00, 1455336.42 examples/s]Generating train split: 100%|██████████| 1801350/1801350 [00:01<00:00, 1452472.60 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 924635.50 examples/s]
+{
+  "protocol": "FCC-1",
+  "source": "Salesforce/wikitext",
+  "subset": "wikitext-103-raw-v1",
+  "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "nominal_split": "train",
+  "role_for_these_checkpoints": "fresh_holdout_outside_bounded_training_and_tokenizer_prefix",
+  "parent_prefix_exact_reproduction": true,
+  "last_training_true_article": 97,
+  "last_tokenizer_true_article": 206,
+  "pool_bounds": [
+    8192,
+    16384
+  ],
+  "selection_seed": 904301,
+  "window_seed": 904307,
+  "articles": 256,
+  "windows_per_article": 4,
+  "tokens_per_window": 65,
+  "prediction_tokens_per_window": 64,
+  "duplicate_window_intersection": 0,
+  "old_window_hash_count": 939574,
+  "parent_array_sha256": {
+    "train-tokens.npy": "e98fd44ff87db568c0272a1968949fc7a2a06f12b9079d9d3142f45e53e0750d",
+    "validation-tokens.npy": "678e9c4961e07af6b8dcc44d662a3d75b2f1e9d9dbce10398ac6a1dd035c3c3d"
+  },
+  "tokenizer_sha256": "3264a70c6b243b5926eaca048774c1a282b6f4b06a5a539498582d92c7705a83",
+  "parent_manifest_sha256": "d6012d40910a956ee2a6de163e53ffab2a5b6c91c88b764f2b6f638da731c51d",
+  "sha256": {
+    "windows.npy": "08cb1976bd81b997733a535418816e8d45b7383fd24a87e7a390a432228e9c73",
+    "articles.json": "08480679de6dfbfcebc97aeb36253cd5a6a2b811ec62e749af46f4810a4ca94b"
+  },
+  "source_script_sha256": "2fa5ff8a389240a9f06450cac0b62f05ee9a929a88ac26b66d50df19a315f680",
+  "prereg_sha256": "1d15467efea3757d84848252f08afc4e6ad12b46dc01dfef14ff3118e4d32963",
+  "license": "Source WikiText: CC-BY-SA-3.0 / GFDL; retain source/revision attribution."
+}

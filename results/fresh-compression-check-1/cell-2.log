@@ -1,0 +1,2 @@
+{"cohort": "mui1", "seed": 904051, "mean": {"delta_nll": 0.00011326279491186142, "kl": 1.0048556614136102e-05, "top1_agreement": 0.9989166259765625}, "audit": {"required": false, "passed": null}}
+{"cohort": "gate2a", "seed": 222793, "mean": {"delta_nll": 0.0005453974008560181, "kl": 0.00016444528480667837, "top1_agreement": 0.9793853759765625}, "audit": {"required": false, "passed": null}}

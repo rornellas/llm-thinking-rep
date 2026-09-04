@@ -1,0 +1,333 @@
+{
+  "protocol": "FCC-1",
+  "source_commit": "5f9a18b8615def758528930b2d2cbb0b67a7154b",
+  "data_manifest_sha256": "4cb49c650c7b2c70a68c0722a0de87cac56bd56a4157ef3ef2436bbefa1d83a5",
+  "articles": 256,
+  "windows": 1024,
+  "tokens_scored_per_model": 65536,
+  "cohorts": {
+    "mui1": {
+      "metrics": {
+        "delta_nll": {
+          "seed_t": {
+            "mean": 7.981539238244295e-05,
+            "per_seed": [
+              8.190004155039787e-05,
+              6.162049248814583e-05,
+              0.00011326279491186142,
+              6.247824057936668e-05
+            ],
+            "ci95": [
+              4.1332065750523295e-05,
+              0.00011829871901436261
+            ],
+            "ucb95": 0.00010827313999462811
+          },
+          "crossed_bootstrap": {
+            "ci95": [
+              4.858982574660331e-05,
+              0.0001127654395531863
+            ],
+            "ucb95": 0.00010739744175225496,
+            "replicates": 10000,
+            "audit_max_difference": 0.0
+          }
+        },
+        "kl": {
+          "seed_t": {
+            "mean": 1.4340540805840888e-05,
+            "per_seed": [
+              2.7150870167220962e-05,
+              1.5892419517420585e-05,
+              1.0048556614136102e-05,
+              4.270316924585907e-06
+            ],
+            "ci95": [
+              -1.205294162738494e-06,
+              2.9886375774420273e-05
+            ],
+            "ucb95": 2.583641412749833e-05
+          },
+          "crossed_bootstrap": {
+            "ci95": [
+              6.867607020267884e-06,
+              2.3176622552308973e-05
+            ],
+            "ucb95": 2.1720093764622798e-05,
+            "replicates": 10000,
+            "audit_max_difference": 2.710505431213761e-20
+          }
+        },
+        "top1_agreement": {
+          "seed_t": {
+            "mean": 0.9979705810546875,
+            "per_seed": [
+              0.9975738525390625,
+              0.996795654296875,
+              0.9989166259765625,
+              0.99859619140625
+            ],
+            "ci95": [
+              0.9964266747820059,
+              0.9995144873273691
+            ],
+            "ucb95": 0.9991122727661417
+          },
+          "crossed_bootstrap": {
+            "ci95": [
+              0.9970855712890625,
+              0.9987984657287597
+            ],
+            "ucb95": 0.9986763000488281,
+            "replicates": 10000,
+            "audit_max_difference": 0.0
+          }
+        }
+      },
+      "conditions": {
+        "delta_nll_seed_t": true,
+        "delta_nll_crossed_bootstrap": true,
+        "kl_seed_t": true,
+        "kl_crossed_bootstrap": true,
+        "every_seed_delta_le_0025": true,
+        "parameters_le_075": true
+      },
+      "passed": true,
+      "accounting": {
+        "full": {
+          "expert_matrix_macs_per_token": 49152,
+          "expert_parameters": 147456,
+          "parameter_bytes": 701696,
+          "router_parameters": 768,
+          "total_parameters": 175424
+        },
+        "narrow65": {
+          "expert_matrix_macs_per_token": 32256,
+          "expert_parameters": 96768,
+          "parameter_bytes": 498944,
+          "router_parameters": 768,
+          "total_parameters": 124736
+        },
+        "original": {
+          "expert_matrix_macs_per_token": 30720,
+          "expert_parameters": 67584,
+          "parameter_bytes": 382208,
+          "router_parameters": 768,
+          "total_parameters": 95552
+        },
+        "rank1": {
+          "expert_matrix_macs_per_token": 14592,
+          "expert_parameters": 19200,
+          "parameter_bytes": 188672,
+          "router_parameters": 768,
+          "total_parameters": 47168
+        }
+      },
+      "contextual_controls": {
+        "original": {
+          "mean_loss": 5.09271625103429,
+          "per_seed_loss": [
+            5.0828357907012105,
+            5.149325213395059,
+            5.056969091761857,
+            5.0817349082790315
+          ]
+        },
+        "rank1": {
+          "mean_loss": 5.092796066426672,
+          "per_seed_loss": [
+            5.082917690742761,
+            5.149386833887547,
+            5.057082354556769,
+            5.081797386519611
+          ]
+        },
+        "narrow65": {
+          "mean_loss": 5.167028691153973,
+          "per_seed_loss": [
+            5.12865816289559,
+            5.240326922852546,
+            5.2099735755473375,
+            5.08915610332042
+          ]
+        },
+        "full": {
+          "mean_loss": 5.083768365904689,
+          "per_seed_loss": [
+            5.150221488438547,
+            5.069030458107591,
+            5.083031639456749,
+            5.032789877615869
+          ]
+        }
+      }
+    },
+    "gate2a": {
+      "metrics": {
+        "delta_nll": {
+          "seed_t": {
+            "mean": 0.0005794239696115255,
+            "per_seed": [
+              0.0004974189214408398,
+              -1.2638280168175697e-05,
+              0.0005453974008560181,
+              0.00128751783631742
+            ],
+            "ci95": [
+              -0.0002724464599194031,
+              0.0014312943991424542
+            ],
+            "ucb95": 0.0012093672672308991
+          },
+          "crossed_bootstrap": {
+            "ci95": [
+              0.00012899190332973378,
+              0.0010784903555759225
+            ],
+            "ucb95": 0.0009880285797407848,
+            "replicates": 10000,
+            "audit_max_difference": 0.0
+          }
+        },
+        "kl": {
+          "seed_t": {
+            "mean": 0.00026651650749583145,
+            "per_seed": [
+              0.00017064391507778321,
+              0.00020169029298157493,
+              0.0001644452848066784,
+              0.0005292865371172891
+            ],
+            "ci95": [
+              -1.343721058553695e-05,
+              0.0005464702255771998
+            ],
+            "ucb95": 0.00047353739029145714
+          },
+          "crossed_bootstrap": {
+            "ci95": [
+              0.00016677480074004386,
+              0.00044169592593508195
+            ],
+            "ucb95": 0.00043213374318205525,
+            "replicates": 10000,
+            "audit_max_difference": 4.336808689942018e-19
+          }
+        },
+        "top1_agreement": {
+          "seed_t": {
+            "mean": 0.9768142700195312,
+            "per_seed": [
+              0.984466552734375,
+              0.980804443359375,
+              0.9793853759765625,
+              0.9626007080078125
+            ],
+            "ci95": [
+              0.9613563241260586,
+              0.9922722159130039
+            ],
+            "ucb95": 0.9882451509058626
+          },
+          "crossed_bootstrap": {
+            "ci95": [
+              0.9672125816345215,
+              0.9832077980041504
+            ],
+            "ucb95": 0.982666015625,
+            "replicates": 10000,
+            "audit_max_difference": 0.0
+          }
+        }
+      },
+      "conditions": {
+        "delta_nll_seed_t": true,
+        "delta_nll_crossed_bootstrap": true,
+        "kl_seed_t": true,
+        "kl_crossed_bootstrap": true,
+        "every_seed_delta_le_0025": true,
+        "parameters_le_075": true
+      },
+      "passed": true,
+      "accounting": {
+        "full": {
+          "expert_matrix_macs_per_token": 49152,
+          "expert_parameters": 147456,
+          "parameter_bytes": 701696,
+          "router_parameters": 768,
+          "total_parameters": 175424
+        },
+        "narrow65": {
+          "expert_matrix_macs_per_token": 32256,
+          "expert_parameters": 96768,
+          "parameter_bytes": 498944,
+          "router_parameters": 768,
+          "total_parameters": 124736
+        },
+        "original": {
+          "expert_matrix_macs_per_token": 30720,
+          "expert_parameters": 67584,
+          "parameter_bytes": 382208,
+          "router_parameters": 768,
+          "total_parameters": 95552
+        },
+        "rank1": {
+          "expert_matrix_macs_per_token": 14592,
+          "expert_parameters": 19200,
+          "parameter_bytes": 188672,
+          "router_parameters": 768,
+          "total_parameters": 47168
+        }
+      },
+      "contextual_controls": {
+        "original": {
+          "mean_loss": 4.5015550419921055,
+          "per_seed_loss": [
+            4.496305028442293,
+            4.504864807706326,
+            4.483936407836154,
+            4.521113923983648
+          ]
+        },
+        "rank1": {
+          "mean_loss": 4.502134465961717,
+          "per_seed_loss": [
+            4.496802447363734,
+            4.504852169426158,
+            4.48448180523701,
+            4.522401441819966
+          ]
+        },
+        "narrow65": {
+          "mean_loss": 4.481951759837102,
+          "per_seed_loss": [
+            4.49481596192345,
+            4.453601899789646,
+            4.508673904696479,
+            4.470715272938833
+          ]
+        },
+        "full": {
+          "mean_loss": 4.449600282590836,
+          "per_seed_loss": [
+            4.459771817782894,
+            4.430747391888872,
+            4.435288819950074,
+            4.472593100741506
+          ]
+        }
+      }
+    }
+  },
+  "global_decision": "NO_GO_FOR_OLMOE_OR_QWEN",
+  "integrity_audit": {
+    "passed": true,
+    "exact_duplicate_window_intersections": 0,
+    "article_level_statistics": true,
+    "independent_materialized_subset_reexecutions": 2,
+    "bootstrap_second_numeric_path": true
+  },
+  "scope": "Fresh article confirmation of compression fidelity for eight small checkpoints; not a model-capacity frontier or novel-architecture claim.",
+  "passed": true,
+  "verdict": "FRESH_COMPRESSION_FIDELITY_PASS"
+}

@@ -1,0 +1,13 @@
+08480679de6dfbfcebc97aeb36253cd5a6a2b811ec62e749af46f4810a4ca94b  data/fresh-compression-check-1/articles.json
+4cb49c650c7b2c70a68c0722a0de87cac56bd56a4157ef3ef2436bbefa1d83a5  data/fresh-compression-check-1/manifest.json
+08cb1976bd81b997733a535418816e8d45b7383fd24a87e7a390a432228e9c73  data/fresh-compression-check-1/windows.npy
+03b365398f3b3ec1f762977c98e36156c8b48930c222d7cf53d3557bdf6c526f  results/fresh-compression-check-1/bootstrap-draws.npz
+94a2f70b25e7a9918f6edfd7af26bebf4a2944a50f7a5463f63d03f9372ad2ae  results/fresh-compression-check-1/cell-0.json
+754c1cad2be5a2f8107f34e30e94699479a518efb4d26b1c9c782e74002fab91  results/fresh-compression-check-1/cell-0.log
+fa0124de2ad98d4659f524e2d07300ceadc88673cb3816f146c33669714c1498  results/fresh-compression-check-1/cell-1.json
+c241a3cb1a5a48626f0fb46b9dff890d7364771cfadd1e4dca721ef6d3e85e74  results/fresh-compression-check-1/cell-1.log
+f3b1846d968f5bc13502d072550d4a761def3a35393335593d6cc473f5c89db9  results/fresh-compression-check-1/cell-2.json
+345230b1ebd4aead45ce881a9bf6c99d2f0e603afb5bd91ba4f08939c6b082af  results/fresh-compression-check-1/cell-2.log
+362c639161a2e591375455262904f095cb04c381f09eae2643fdc07671d8f58f  results/fresh-compression-check-1/cell-3.json
+ba4c60f22973423c9c80e2f7d321161550f92393a7188724477ef2d00d453e47  results/fresh-compression-check-1/cell-3.log
+f02097cf9cccfb94eafc1d86903be9e6c839c282fb7e27c0381df4f086d787b6  results/fresh-compression-check-1/summary.json
