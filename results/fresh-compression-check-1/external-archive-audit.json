@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "archive_file": "fcc1-complete.zip",
+  "archive_artifact_id": 9955307778,
+  "archive_expected_sha256": "d3775b483006330c140435e7013fea354a9f290b76de4ce2de7ec527264e2093",
+  "verified_manifest_files": 13,
+  "method": "Separate local runtime; raw-window math.fsum, hardcoded df3 t quantile, explicit nested Python resample sums and linear-interpolated percentile. No experiment-module import.",
+  "reproduction_script": "scripts/audit_fcc1_archive.py",
+  "scope": "Independent arithmetic path, not independent training or another research group.",
+  "checks": [
+    {"cohort":"mui1","metric":"delta_nll","mean":0.00007981539238244295,"seed_t_ucb95":0.00010827313999462815,"crossed_ucb95":0.00010739744175225496,"bootstrap_error":0.0},
+    {"cohort":"mui1","metric":"kl","mean":0.000014340540805840888,"seed_t_ucb95":0.000025836414127498347,"crossed_ucb95":0.000021720093764622794,"bootstrap_error":3.3881317890172014e-21},
+    {"cohort":"mui1","metric":"top1_agreement","mean":0.9979705810546875,"seed_t_ucb95":0.9991122727661417,"crossed_ucb95":0.9986763000488281,"bootstrap_error":0.0},
+    {"cohort":"gate2a","metric":"delta_nll","mean":0.0005794239696115255,"seed_t_ucb95":0.0012093672672309,"crossed_ucb95":0.0009880285797407848,"bootstrap_error":0.0},
+    {"cohort":"gate2a","metric":"kl","mean":0.0002665165074958314,"seed_t_ucb95":0.0004735373902914574,"crossed_ucb95":0.0004321337431820552,"bootstrap_error":5.421010862427522e-20},
+    {"cohort":"gate2a","metric":"top1_agreement","mean":0.9768142700195312,"seed_t_ucb95":0.9882451509058626,"crossed_ucb95":0.982666015625,"bootstrap_error":0.0}
+  ],
+  "verdict": "FRESH_COMPRESSION_FIDELITY_PASS"
+}
