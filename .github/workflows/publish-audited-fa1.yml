@@ -1,0 +1,64 @@
+name: Publish audited FA-1
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-audited-fa1.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: fa1-finalized
+          run-id: 33920315614
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: /tmp/fa1-audited
+      - name: Copy only verified results, never overwrite source from artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/fa1-audited
+          sha256sum -c results/functional-ablation-1/FINAL_SHA256SUMS
+          cd "$GITHUB_WORKSPACE"
+          python - <<'PY'
+          from pathlib import Path
+          import shutil,json
+          src=Path('/tmp/fa1-audited')
+          files=list((src/'results/functional-ablation-1').rglob('*'))+[src/'docs/results/2026-09-04-functional-ablation-1.md']
+          for p in files:
+              if not p.is_file():continue
+              dest=Path(p.relative_to(src))
+              if dest.exists() and dest.read_bytes()!=p.read_bytes():raise RuntimeError('Conflicting existing artifact: '+str(dest))
+              dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
+          audit=json.loads(Path('results/functional-ablation-1/independent-audit.json').read_text());assert audit['passed']
+          record={'source_scientific_run':33919779426,'audit_run':33920315614,'artifact_id':9954779264,
+            'artifact_zip_sha256':'fd1dc93645ede30c66fe8d58b7b7a9e456497b675631af04f316cbc015dbe3e6',
+            'failure_history':[
+              {'run':33919779426,'stage':'serialization','error':'numpy bool from scipy quantile; corrected to native float','changed_criteria':False},
+              {'run':33920315614,'stage':'push','error':'main advanced during push; science and audit passed','changed_scientific_data':False}],
+            'reexecuted_scientific_measurements_for_publication':False}
+          p=Path('runs/functional-ablation-1/publication.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(record,indent=2)+'\n')
+          PY
+      - name: Commit and retry fast-forward publication without force
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/functional-ablation-1 runs/functional-ablation-1/publication.json docs/results/2026-09-04-functional-ablation-1.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'results: publish audited FA-1 compression and 112 exported checkpoints'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
