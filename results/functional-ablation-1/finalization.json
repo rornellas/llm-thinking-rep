@@ -1,0 +1,10 @@
+{
+  "aggregation_correction": "Native float casts only; no statistical endpoint or threshold changed.",
+  "audited_development_compression_signal": true,
+  "finalizer_commit": "c80b6ac3c562663abdd4a726f89169e61fc05246",
+  "global_decision": "NO_GO_FOR_OLMOE_OR_QWEN",
+  "independent_reexecution_status": "PASS",
+  "original_screen_verdict": "DEVELOPMENT_COMPRESSION_SIGNAL_PENDING_REEXECUTION",
+  "scientific_source_commit": "f3f58a6bc537bc8b29ca8368f79bdf72def76621",
+  "source_run": 33919779426
+}

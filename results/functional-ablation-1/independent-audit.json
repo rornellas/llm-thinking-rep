@@ -1,0 +1,179 @@
+{
+  "environment": {
+    "numpy": "2.3.5",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 13 2026, 02:47:42) [GCC 13.3.0]",
+    "torch": "2.10.0+cpu"
+  },
+  "interventions_reexecuted": 16,
+  "max_arithmetic_difference": 1.1102230246251565e-16,
+  "method": "independent materialized all-expert forwards plus Gram eigenvector rank-one reconstruction",
+  "not_an_independent_training_replication": true,
+  "passed": true,
+  "primary_checkpoints_reexecuted": 2,
+  "rows": [
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "common-only",
+      "kl": 0.03951870517891816,
+      "loss": 5.159977922439575,
+      "max_window_kl_difference": 1.021338157797258e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "mean-matrices",
+      "kl": 0.03306856101459013,
+      "loss": 5.146869967778524,
+      "max_window_kl_difference": 9.103966996937274e-09,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "original",
+      "kl": 0.0,
+      "loss": 5.0939167054494225,
+      "max_window_kl_difference": 0.0,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "permute-1",
+      "kl": 0.03624571416572864,
+      "loss": 5.150676110585531,
+      "max_window_kl_difference": 1.036572020579607e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "permute-5",
+      "kl": 0.05343685050587409,
+      "loss": 5.183691215515137,
+      "max_window_kl_difference": 1.1943264793812247e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "permute-7",
+      "kl": 0.045555301232239345,
+      "loss": 5.169048827489217,
+      "max_window_kl_difference": 1.4880873012990126e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "rank1",
+      "kl": 2.3089189735199654e-05,
+      "loss": 5.093947372436523,
+      "max_window_kl_difference": 2.640095540730643e-10,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "legacy",
+      "cohort": "mui1",
+      "intervention": "uniform-selected",
+      "kl": 0.000279243927103986,
+      "loss": 5.09444598197937,
+      "max_window_kl_difference": 1.363235822837705e-09,
+      "max_window_loss_difference": 4.76837158203125e-07,
+      "seed": 904031
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "common-only",
+      "kl": 0.041021083466971926,
+      "loss": 4.556872711181641,
+      "max_window_kl_difference": 1.7274999146443815e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "mean-matrices",
+      "kl": 0.02052022764389389,
+      "loss": 4.531965506871542,
+      "max_window_kl_difference": 1.643181949534389e-08,
+      "max_window_loss_difference": 4.76837158203125e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "original",
+      "kl": 0.0,
+      "loss": 4.5025110467274985,
+      "max_window_kl_difference": 0.0,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "permute-1",
+      "kl": 0.029619136553084423,
+      "loss": 4.541194354693095,
+      "max_window_kl_difference": 1.299208439442534e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "permute-5",
+      "kl": 0.028789480303769217,
+      "loss": 4.541788884798685,
+      "max_window_kl_difference": 1.2808639072992012e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "permute-7",
+      "kl": 0.03127933020580739,
+      "loss": 4.5431537453333535,
+      "max_window_kl_difference": 2.0548490214933324e-08,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "rank1",
+      "kl": 0.00015972687291003091,
+      "loss": 4.50284544467926,
+      "max_window_kl_difference": 1.2437666529563438e-09,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    },
+    {
+      "arm": "native-shared-rank",
+      "cohort": "gate2a",
+      "intervention": "uniform-selected",
+      "kl": 0.0008284501232434335,
+      "loss": 4.504110094706218,
+      "max_window_kl_difference": 2.732550765088132e-09,
+      "max_window_loss_difference": 9.5367431640625e-07,
+      "seed": 202781
+    }
+  ],
+  "script_sha256": "30a1c77e0769a7fd5afee7a651b08b5c13f9f4977adf91662d621fc923f2c5d5",
+  "verified_exports": 112,
+  "verified_files": 129
+}

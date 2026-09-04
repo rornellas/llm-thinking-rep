@@ -1,0 +1,21 @@
+{
+  "source_scientific_run": 33919779426,
+  "audit_run": 33920315614,
+  "artifact_id": 9954779264,
+  "artifact_zip_sha256": "fd1dc93645ede30c66fe8d58b7b7a9e456497b675631af04f316cbc015dbe3e6",
+  "failure_history": [
+    {
+      "run": 33919779426,
+      "stage": "serialization",
+      "error": "numpy bool from scipy quantile; corrected to native float",
+      "changed_criteria": false
+    },
+    {
+      "run": 33920315614,
+      "stage": "push",
+      "error": "main advanced during push; science and audit passed",
+      "changed_scientific_data": false
+    }
+  ],
+  "reexecuted_scientific_measurements_for_publication": false
+}
