@@ -1,0 +1,12 @@
+{
+  "affected_protocol": "FA-1",
+  "raw_field": "unique_articles",
+  "raw_value": 142,
+  "correct_unit": "legacy segment IDs, not independently sampled true top-level articles",
+  "cause": "legacy group_articles splits on every heading, including subsections",
+  "FA1_statistics_affected": false,
+  "reason": "FA-1 uncertainty was seed-only conditional on fixed windows",
+  "raw_metrics_rewritten": false,
+  "FCC1_uses_true_top_level_article_boundaries": true,
+  "earlier_article_bootstrap_independence_claims": "Require separate audit; do not elevate on the basis of this correction alone."
+}

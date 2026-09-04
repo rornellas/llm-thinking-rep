@@ -4,7 +4,7 @@
 
 **Screen:** `DEVELOPMENT_COMPRESSION_SIGNAL_PENDING_REEXECUTION`. All historical gates remain unchanged.
 
-36 checkpoints; 112 real exports; 150 windows from 142 original article IDs.
+36 checkpoints; 112 real exports; 150 windows from 142 legacy segment IDs, not 142 independent top-level articles.
 
 ## Primary targets
 
@@ -48,3 +48,7 @@ The numeric audit verifies paired raw metrics and export hashes. Independent che
 ## Finalization audit
 
 Independent materialized all-expert forwards and Gram-eigenvector rank-one reconstruction: **PASS** on two primary checkpoints, all 16 interventions. Export storage and raw arithmetic were also checked. See `results/functional-ablation-1/independent-audit.json` and `finalization.json`. The pending label above records the pre-audit aggregation state; the audit is now complete. No heldout generalization or novel-architecture claim is added.
+
+## Data-unit correction (2026-09-04)
+
+The legacy splitter treated subsection headings as document boundaries. The raw `unique_articles` field counts segment IDs. Seed-only confidence intervals above are unchanged because they were conditional on fixed windows. This correction must not be used to assume article independence in older analyses. FCC-1 uses top-level article boundaries. See `data-unit-correction.json`; raw metrics are retained unchanged.

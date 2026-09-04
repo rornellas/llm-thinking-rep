@@ -1,0 +1,22 @@
+{
+  "protocol": "ECK-1",
+  "workflow_run": 33920705855,
+  "verdict": "FAIL_INVALID_FOR_SPEEDUP_CLAIM",
+  "source_commit": "d2accdef24534ee36b35060e1dee1c76efebde19",
+  "cell_status": {
+    "0": "failed_calibration_logit_parity",
+    "1": "failed_calibration_logit_parity",
+    "2": "completed",
+    "3": "completed"
+  },
+  "full_aggregation_performed": false,
+  "successful_cells_not_selected_for_speed_claim": true,
+  "original_tolerance": {
+    "atol": 2e-05,
+    "rtol": 2e-05
+  },
+  "observed_cell0_max_logit_difference": 0.05667674541473389,
+  "tolerance_relaxed": false,
+  "benchmark_rerun": false,
+  "global_decision": "NO_GO_FOR_OLMOE_OR_QWEN"
+}
