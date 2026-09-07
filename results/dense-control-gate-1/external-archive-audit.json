@@ -1,0 +1,80 @@
+{
+  "audit_script_sha256": "db80cb659d5068c63964c220e1fbdb3d6456f82ad26caeb54885c32753bec6f9",
+  "environment": {
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "torch": "2.10.0+cpu"
+  },
+  "max_timing_ratio_error": 0.0,
+  "models": [
+    {"arm":"dense104","parameters":47168,"seed":906101},
+    {"arm":"dense104","parameters":47168,"seed":906103},
+    {"arm":"dense104","parameters":47168,"seed":906107},
+    {"arm":"dense104","parameters":47168,"seed":906109},
+    {"arm":"dense104","parameters":47168,"seed":906119},
+    {"arm":"dense104","parameters":47168,"seed":906121},
+    {"arm":"dense164","parameters":58688,"seed":906101},
+    {"arm":"dense164","parameters":58688,"seed":906103},
+    {"arm":"dense164","parameters":58688,"seed":906107},
+    {"arm":"dense164","parameters":58688,"seed":906109},
+    {"arm":"dense164","parameters":58688,"seed":906119},
+    {"arm":"dense164","parameters":58688,"seed":906121},
+    {"arm":"dense80","parameters":42560,"seed":906101},
+    {"arm":"dense80","parameters":42560,"seed":906103},
+    {"arm":"dense80","parameters":42560,"seed":906107},
+    {"arm":"dense80","parameters":42560,"seed":906109},
+    {"arm":"dense80","parameters":42560,"seed":906119},
+    {"arm":"dense80","parameters":42560,"seed":906121},
+    {"arm":"native-rank1","parameters":47168,"seed":906101},
+    {"arm":"native-rank1","parameters":47168,"seed":906103},
+    {"arm":"native-rank1","parameters":47168,"seed":906107},
+    {"arm":"native-rank1","parameters":47168,"seed":906109},
+    {"arm":"native-rank1","parameters":47168,"seed":906119},
+    {"arm":"native-rank1","parameters":47168,"seed":906121},
+    {"arm":"native-rank8","parameters":95552,"seed":906101},
+    {"arm":"native-rank8","parameters":95552,"seed":906103},
+    {"arm":"native-rank8","parameters":95552,"seed":906107},
+    {"arm":"native-rank8","parameters":95552,"seed":906109},
+    {"arm":"native-rank8","parameters":95552,"seed":906119},
+    {"arm":"native-rank8","parameters":95552,"seed":906121},
+    {"arm":"rank8-to1","parameters":47168,"seed":906101},
+    {"arm":"rank8-to1","parameters":47168,"seed":906103},
+    {"arm":"rank8-to1","parameters":47168,"seed":906107},
+    {"arm":"rank8-to1","parameters":47168,"seed":906109},
+    {"arm":"rank8-to1","parameters":47168,"seed":906119},
+    {"arm":"rank8-to1","parameters":47168,"seed":906121}
+  ],
+  "not_an_independent_training_replication": true,
+  "passed": true,
+  "primary_contrasts": {
+    "native-rank1__minus__dense104": {
+      "crossed_upper": 0.05503143553311627,
+      "mean": 0.041685653190749385,
+      "passed": false,
+      "seed_upper": 0.0630235006098126
+    },
+    "native-rank1__minus__dense80": {
+      "crossed_upper": 0.023331392115990945,
+      "mean": 0.010291359154507518,
+      "passed": false,
+      "seed_upper": 0.032024852511326515
+    },
+    "rank8-to1__minus__dense104": {
+      "crossed_upper": 0.033615173037105706,
+      "mean": 0.021323023946024477,
+      "passed": false,
+      "seed_upper": 0.04165588489800704
+    },
+    "rank8-to1__minus__dense80": {
+      "crossed_upper": 0.0009226055097921471,
+      "mean": -0.010071270090217391,
+      "passed": false,
+      "seed_upper": 0.0077917806581089075
+    }
+  },
+  "scope": "archive arithmetic, real serialized storage and timing ratios; no new training",
+  "source_commit": "c056e605d8c3f11b5056918f6e6d01c3a78305b3",
+  "verified_files": 83,
+  "verified_model_exports": 36
+}
