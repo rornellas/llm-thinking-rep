@@ -1,0 +1,4610 @@
+[
+  {
+    "article_id": 17926,
+    "title": "= Students ' Building ( Vassar College ) =",
+    "raw_text_sha256": "90960bce2ce5fb2f2a928ab55247e15d33580b090bef9cfe3422b43444d23222",
+    "encoded_prefix_tokens": 2877,
+    "starts": [
+      550,
+      729,
+      1538,
+      2341
+    ],
+    "window_sha256": [
+      "3c1600a808b4fe13fdc5470c023cbf58a95090b2ef5dd5eef80adbcbb76cba66",
+      "f721c90ebad9c9653c48a3b487a7e9d353228b227d521da2920b421f94afaef5",
+      "1ac6ae85a0fb100216ff970bbf905b8dfe83f428247fe1c0fdbbf6c2110e667d",
+      "b483e1f36f1e0a3d18d812d454f58a5da89ce8ab2be2ebad7268a1dfd2457ea5"
+    ]
+  },
+  {
+    "article_id": 18062,
+    "title": "= Cosima Wagner =",
+    "raw_text_sha256": "e48114a3d655150ea124aab62f2fc2a220ba5bb7f80cec28c0519dd3ba1a097e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      807,
+      1593,
+      2234,
+      3231
+    ],
+    "window_sha256": [
+      "61034a3548a02b06e5e7b7486f1b6b34e29a8b936892e7d9893b08fc706f7be6",
+      "c08ddf31edd61e962dada8c43b49a54d8caef170bfa5f5c269266d25cacf4725",
+      "bf329deb361540d665f2fbfe2896704bddd1f1a39c8a56ba8359fa32e88c297e",
+      "d42666d4b6386a620c67dc8fc97f8c0fc2ea63b68ea2cb4bf961294d083acf56"
+    ]
+  },
+  {
+    "article_id": 23100,
+    "title": "= Eucteniza =",
+    "raw_text_sha256": "35820e9e0bebb22e3e157f7657f2ff7279b135380eb8a73f973314d57483981d",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      244,
+      1465,
+      2273,
+      3893
+    ],
+    "window_sha256": [
+      "91f2ce5307604477b1c14350df4b822789dd6204ad496859ccea2f86832d652b",
+      "b72c1ab3df4577b36cd263e120070af803c55c759a77c009c3bde999cfee30de",
+      "9a15878f75ceb43aec73e90648d017064f70f49b5932a366a48b6bf1638e1e2a",
+      "1742b11a46240835e9a15746366139aad664f8213ab3fb5ce2d728ae6d53b5d2"
+    ]
+  },
+  {
+    "article_id": 24071,
+    "title": "= Dignity ( album ) =",
+    "raw_text_sha256": "99f3e0bacdf424edb8db4be843022fb227c75180091cdabaf278474e1e151abf",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      679,
+      1138,
+      2024,
+      3912
+    ],
+    "window_sha256": [
+      "36f1a9f71793efd43c3dcc9ffae85e9616000ecd8d52f3e4d9b681d6e7d029f3",
+      "6e6f9638f7e5c53f3f3b773f660ad7a851399c53ccadc72044f28aacc3d2668a",
+      "c4c9ae3adbc80afd34a2a0f0fbc7080c3399a9cb8537b9cb8240f770e0d97c6d",
+      "ea4ee52db6183dbdd913a9e30416977ccaf071df204d006e2e6c8f52204b7132"
+    ]
+  },
+  {
+    "article_id": 17963,
+    "title": "= Fast Five =",
+    "raw_text_sha256": "84362ccb20919b0863878dd484942101753870fc810a0928d74a85c3deb8bf77",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      898,
+      1559,
+      2317,
+      3952
+    ],
+    "window_sha256": [
+      "869bae16a0339e2f4d49f4a0e43863f316efe975544f1ec09e831253204ea3a9",
+      "533dd988b78533343c241679c47929443a6969cf01229e72e7be08b3bd54c74c",
+      "81332cd5376e6af6dbbab3916bb59b0f1d99c937c03e3d33cc6d1400830c83cd",
+      "32f3c3f7f5e75f3acc911bfb684eff6f8aae2c341072a3fae38aecb0eb1b8a05"
+    ]
+  },
+  {
+    "article_id": 18893,
+    "title": "= Gunfight at the O.K. Corral =",
+    "raw_text_sha256": "d105d32b72ea365a81856c44e07164f7f96141fe77fc8caed6e7daddc90fb208",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      620,
+      1740,
+      2978,
+      3516
+    ],
+    "window_sha256": [
+      "058caba81f7536b9d42eb6fc0a23a568d95504851bf27ede50cc835c7d6bd550",
+      "30a2ec1fe881436191621ef7a242e0537cd9e428c4fbc29d6695bb524e8559ab",
+      "548cfe1abf3e334a52ee02cd74ce07ecc2c9bffdea6964842472678e30d9ddc9",
+      "e97a3ce3bb3c48cd8d67a083a03a122b1f4aca21fb822d4afd17c11a277921f8"
+    ]
+  },
+  {
+    "article_id": 17767,
+    "title": "= Keen Johnson =",
+    "raw_text_sha256": "8acbfbbc2ec192a2d97d52d2ba977d915277471e85d52f18e2240f9e0a36f96e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      25,
+      1391,
+      2947,
+      3279
+    ],
+    "window_sha256": [
+      "e73bf2eb0a697505af4aa2bc6ba7fae249898f81173d4b6469be4537c38083d3",
+      "74ab63218fbb678ab6e54d2dbf7cc5e5feb2911195cbbb290eab2242042cab51",
+      "c2bf337011df8302bd1a17a8b2941f4be2108afcaef28635d82ac75f4fbe8206",
+      "a196d075bd3061608b57e57a546fe11aa36ad9ea9a6e4a7fdcc5c4b52c6d9efd"
+    ]
+  },
+  {
+    "article_id": 23567,
+    "title": "= Hold On to Sixteen =",
+    "raw_text_sha256": "e4ee732ed0aca3b8448c136ff3640d36b226bc6948be75476a88d2bf26ee6e1d",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      429,
+      1975,
+      2382,
+      3453
+    ],
+    "window_sha256": [
+      "cb3eac5e3e13a9f8decdc82869b79e02634af73b0f2a82686d0a4d9921f30164",
+      "62233432e8ef77f501dc160d94ed6bf35d41315f40805f9c6808df6e7f23291b",
+      "d8747030a1cbabc134b1f30308e8d26f9fdcb475f1a610b8c6ed3bd83f9d7da0",
+      "56fb5038258878d9d06d4e5e3ff12c5e85ea6852f08db43fcfee74a0de426ffc"
+    ]
+  },
+  {
+    "article_id": 23083,
+    "title": "= Hall of Fame ( Big Sean album ) =",
+    "raw_text_sha256": "4d05b0d5406ff87116f8b6e24362e4caf81cab5d490280e34ffa51c287be3f98",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      968,
+      1419,
+      2854,
+      3531
+    ],
+    "window_sha256": [
+      "719e5c7a1403acdab0badebf369350cfffdb5fd3fe842facd8235ad342d6e47b",
+      "39d6f8e522655aa6f2acbae776a0b9828f6bc8f2bff3db814544534f89ea5ac9",
+      "8e07e6a03c820868b6235d4c01e4ca2551e49b63bdaa704ff08df5d307a84640",
+      "b0280d039a397b36aa252aa0474b955b5cb684e2e70c07f891c52dd52fc77d0f"
+    ]
+  },
+  {
+    "article_id": 23578,
+    "title": "= Robert Bloet =",
+    "raw_text_sha256": "d6f2962ddbe74b496ddba500471600632c2732053c20c3833ed99d623cdbe739",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      848,
+      1768,
+      2467,
+      3351
+    ],
+    "window_sha256": [
+      "35e15decc39079a23926ebdb81c9b9420d69c1524b6f8e1ebd690c5c994cfb56",
+      "8d37c8b10d63731c62ac0b7724c34296019f12da5d95326f0fcb28b43d03c091",
+      "5ee8741da2ed3d5aeabc58ac3542ae27b8b151f144b0c3392186628af3e7f069",
+      "a6e1cb3cd495eeaa53791aaa499b106efaa70a792f9bf8abbc00085ead60f154"
+    ]
+  },
+  {
+    "article_id": 21952,
+    "title": "= New York State Route 17A =",
+    "raw_text_sha256": "7c5b36e83e11a10e94f2e59a187194fddb39597d28af31f1095f1360e9413e56",
+    "encoded_prefix_tokens": 2231,
+    "starts": [
+      94,
+      834,
+      1091,
+      2029
+    ],
+    "window_sha256": [
+      "1e9d593aba474bd224c5c9cfea0870df8d75a8017c2749a4865d8f4898212778",
+      "4a8d4893dc525977342fd06cc452d76b208673e4cf11be795fc1d6567d75a047",
+      "b30db5b8cd95e045e298c6aa128f7cdca4ecf7fe2dcd814106c1f75f4cb8a667",
+      "15fce576c2b764ae8410c848a0f3f66e53704e32405adc85e3a8a95480a80364"
+    ]
+  },
+  {
+    "article_id": 19943,
+    "title": "= Subrahmanya Temple , Saluvankuppam =",
+    "raw_text_sha256": "4a1f3110f60bddde07e7cd3f69c443be21d244ccf0129f169945e4243f4bad21",
+    "encoded_prefix_tokens": 3302,
+    "starts": [
+      18,
+      1013,
+      2186,
+      2653
+    ],
+    "window_sha256": [
+      "d07bce4a669c9336e9f21fa30cf1c68513fcf07bb39438c3b8f12f9b48aa8904",
+      "bd6232bcde2e26c6736887941c767e63e48b09e3c76831c2c578f2b35745d011",
+      "446b5a328e74010e247384b88ad7fd6fa88d78cfcf6aa8caea363a1bada89185",
+      "fbf88fd75cdb6ab358ec715da1033fa94b0350faa046a7881191d62be59fe89d"
+    ]
+  },
+  {
+    "article_id": 22731,
+    "title": "= Blagdon Lake =",
+    "raw_text_sha256": "6c2fea4f7ff5abf01026f64ffc5df67403645cf373a3c7579c147a59d8cf5ebc",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      301,
+      1752,
+      2670,
+      3245
+    ],
+    "window_sha256": [
+      "647e65910f261474dfdb068e0ee319b3905cc4869512e6959788ef4f127e6348",
+      "49245f15c7a206923586a1b15c95161677e6d5bd1c1f9432464ef28f00992a62",
+      "cff0179c0a0c249456a5eb6d08c8cfa699b57e8e08e94171a73a98348e74bea9",
+      "7201e6a64f185fb711059522e273003d92f1759fbc283401ce97cc5fe3ef590d"
+    ]
+  },
+  {
+    "article_id": 20220,
+    "title": "= USS West Apaum ( ID @-@ 3221 ) =",
+    "raw_text_sha256": "39689623b833caa07889eee4f5f61ec132d5975c735d035c5d6279ae01dcc843",
+    "encoded_prefix_tokens": 2354,
+    "starts": [
+      284,
+      911,
+      1618,
+      2059
+    ],
+    "window_sha256": [
+      "9477890a35ec360138bbdfeef6523380ebbb059c943fc2788d22804e36e75066",
+      "25d668f32f5f68442c664a19666472c1981b128b14874e0b2d53a64af866c833",
+      "057d2de12cf27096bc680d6311431df0cbb0207c71b8af1f80eb6afd67f71688",
+      "10e8476e3c5a517f5dfa596e30695ebe7e90ede4eafb376d842d738a70f6ce6d"
+    ]
+  },
+  {
+    "article_id": 22739,
+    "title": "= Stork Club =",
+    "raw_text_sha256": "4d6d318694142a7482cfe6d1db55fddde56d248940acd60a828b76784b19b622",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      500,
+      1492,
+      2037,
+      3617
+    ],
+    "window_sha256": [
+      "aa8817644c047d00ced6c75c6ef2db07ed8b4e61d2bd3b9dfae680c3086359da",
+      "4542abdbc9c7a641463d8d5b601b54007b6fda33fbe53b72d890b0cba1b72dba",
+      "b69e62382b139eae017904849f37c19a67d3d60694e56468d52c9bf92bae95d6",
+      "b6edae6bc6cd02092a16381e109121836bf3d1955d5dae04be5baf1632627949"
+    ]
+  },
+  {
+    "article_id": 20438,
+    "title": "= Ashley Massaro =",
+    "raw_text_sha256": "86e7d4a19f59c67d2a932f18984ba15fea816fee570d0925fa731c1d2dbef343",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      751,
+      1755,
+      2487,
+      3988
+    ],
+    "window_sha256": [
+      "c6137a2de8a069f309ebaaad6d5c4a038802da07b850c527c72d8f9e856f672c",
+      "82bc5727b5e2bfeb877206299528d0c7604b21152644d5ecc16f90aa781b95cf",
+      "6788a399f4ba06d29756774ad49876583518bf7d76101a1bcbecb9f0afd00e33",
+      "632da8fab7a275269b16033c83e9277f2008a1e1c8572ec536d289798a9c30b5"
+    ]
+  },
+  {
+    "article_id": 20964,
+    "title": "= Wild Pilgrimage =",
+    "raw_text_sha256": "38de8d9baaf97c3f7f30c9753d4db1a77875edcd98bb80f101d5da2b76c1f95d",
+    "encoded_prefix_tokens": 2697,
+    "starts": [
+      244,
+      1287,
+      1635,
+      2463
+    ],
+    "window_sha256": [
+      "f9bea7b9a81e32d6cf1edff2ce81528ea383f74151731069a59e9f383f1563c7",
+      "c869a0ddb2eb66b7f9048010b9de07df4e7a45313b3554b471e2025a07c404d7",
+      "8ec9968dce7ab0aab3032146be640d7999497c7efa88e92f47ea91ace6835810",
+      "869895de66a912ecdb59084294df0876abf76453226602e0bfbc3c3e4a3e7f00"
+    ]
+  },
+  {
+    "article_id": 21287,
+    "title": "= The Truman Show =",
+    "raw_text_sha256": "9c8050bfbbd8a611f90a4ffae207f0f6d4568895eadf1e00061608a2e5909fab",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      1004,
+      2001,
+      2512,
+      3285
+    ],
+    "window_sha256": [
+      "559104fbfcdfae40bf405f75378dded29ce9d4ae4995a4af2d5ad7a750f4d70d",
+      "3212306410aaafb4b1ef3cb3b3854f4d37f8017b83d233a5244baeef5b040cc0",
+      "d807e9d10e7c964957099b658165d3d2df73132929bdcdbb7cf2d4e64415ab58",
+      "5dfa347d4f25d8dee24a74a6230cb3720f30d46fcd3da3044733bc2a32ae0c17"
+    ]
+  },
+  {
+    "article_id": 19092,
+    "title": "= Giraffe =",
+    "raw_text_sha256": "66d2ae17421b68989c743257d6f3308d23d12e2d721c3244fe5fc3819e6bed2c",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      717,
+      1697,
+      2734,
+      3951
+    ],
+    "window_sha256": [
+      "3c111efcbb68bb180884c559f210e3e9ff3e5b4a713e77b51f8fbcdd9e9fddb4",
+      "6ddd12aa2b9915236b0aa79b9fb41e637f0ab92f7b3bbe19f0b98e18075f6cab",
+      "930492574157324946c31779194116af22c68d1d4dc5b32864b49246504aa518",
+      "34a9cbd864d86744fd1cfe40184d30189a8467a1d0637c4827a9ca2deba6d423"
+    ]
+  },
+  {
+    "article_id": 17844,
+    "title": "= Ray of Light =",
+    "raw_text_sha256": "5e8741eb1d5a66fe4025444634d2a48cc19426b8d87d1e4e96332ab34f03a021",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      620,
+      1478,
+      2037,
+      3664
+    ],
+    "window_sha256": [
+      "df90e040f62cd096b442f37ac1b768195185aeaee8e910923fc4b3339e85b883",
+      "e04ddcb5bb5e03cdb958cffd770a0eda9614e0976ec76116bb5ec7f9dec34356",
+      "f6fb88b1b10ed8c984b36a04c4ff007eee540593f5dd5490a3ece6c1e3d1e17d",
+      "bb573e5fcd922d38976a2497220829b3c52824480f0ffee9520e8008a28218cc"
+    ]
+  },
+  {
+    "article_id": 22754,
+    "title": "= Lisa the Greek =",
+    "raw_text_sha256": "da79aaddcfd89e678129d385004d5f3892ea54b466879f833d934e131d1a089b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      861,
+      1845,
+      2164,
+      3976
+    ],
+    "window_sha256": [
+      "40e7efa399a540616bf34f3e47b371fc31f4cf32d3fb4d0e08515c2cfa9d1e7d",
+      "6ec4b835b80ce25056ba7545c3c528f6037873dbc9df9e0cd08b6d474f7456c5",
+      "c4c5e2b5c1d7d39583378a90c8ad0545e69846399ca60418ae80e3f65fe5bb2e",
+      "e473d97951bd3c41dabdb74298aff1d28bb3f06637180643e9a52e8146e13be5"
+    ]
+  },
+  {
+    "article_id": 19165,
+    "title": "= Michael Kidd =",
+    "raw_text_sha256": "29f474bc4009d89cf0931523438f45a2f9145c91fe76f7219f2ffa33c6e57ba6",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      535,
+      1542,
+      2922,
+      3789
+    ],
+    "window_sha256": [
+      "8e4c5bb5d5c6e8da6c66b250cdf7ef74be8b78c89a24ee30b521e14f53ae86ce",
+      "09a00a4db60d37ac48a4d011aeb5ce40a0e6b4bdfdd9d2a179e786c165b95456",
+      "05fb5f8f659ab5ff8a58475793e3a12e9f636e7c5fce2e931dba1f16de36f1b1",
+      "43f313c7ba52c777ee31e1deb71402fe3c2a33173278c5900bcaedd31151ec9c"
+    ]
+  },
+  {
+    "article_id": 22744,
+    "title": "= Junior Eurovision Song Contest =",
+    "raw_text_sha256": "dfe8c2dcc90fa4cddd165ee4696ad0f96928995631a7fd253c8c12c008d0d7cc",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      263,
+      1601,
+      2123,
+      3938
+    ],
+    "window_sha256": [
+      "b9507a5bee47492dd0a4dd27b8af507aca1ad22fac906affe94128a887a9da65",
+      "c22f963209def4b02c73d79f0d3d61bf3ff32ce42be5bed143fe146cf4027dc7",
+      "dac9ff6156ee2a6b62a61720d8b30660cd0052d28cb01408c6e2f7562052a9a4",
+      "d57581ef74be03dcbb3afecb31f4205257b93739d175cea112ea9662bb310eee"
+    ]
+  },
+  {
+    "article_id": 23649,
+    "title": "= Phantom 's Revenge =",
+    "raw_text_sha256": "caec67b82fc2ed77fa999878cc80ec668694e5641f6eed04dd92fda31c5b6200",
+    "encoded_prefix_tokens": 3198,
+    "starts": [
+      652,
+      1084,
+      1599,
+      2531
+    ],
+    "window_sha256": [
+      "5ea6c8f5abdd6e147e715b971128b268f375d672de583e3aca24fd5d0d60bb3d",
+      "275ce4948b1171ff1ca60c3715328f5858174e86fdf0fe0454c86e33c93c1ffd",
+      "70f9943a86e35fb9dfb40af913bda8bdaeaad10e682bb5c444d7ea877a3a10ba",
+      "a253867d1d7f0e362500df466798a577848b5895c0e2f99dbd0d212a61b4f5ae"
+    ]
+  },
+  {
+    "article_id": 20170,
+    "title": "= Unification of Germany =",
+    "raw_text_sha256": "f88e84d3263217f054ab9bf6771eb5ba91ea51b04e2bd7135c8020a05feeff25",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      1006,
+      1211,
+      2478,
+      3070
+    ],
+    "window_sha256": [
+      "9d45733577499fe28d3861fd73e11c25ac93d709fc634c4d6b0933fbdf3d9f5c",
+      "784706c795c4e0a3e5f7f6a6760a3e7632426c7d653575989765f3977b055272",
+      "4a40212735a1bcca4774545237f78ede1d0cf8420c1fc7089eb8fb762acd17d6",
+      "93570e76dd1743455e9b345c968d4565d16bb88858b6c08cfc2562a486c70ddc"
+    ]
+  },
+  {
+    "article_id": 19331,
+    "title": "= Montauk Point land claim =",
+    "raw_text_sha256": "9418d576745437642be81a56015e126fa74d772d35a2c4c4242697cd396941a0",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      387,
+      1761,
+      2398,
+      3615
+    ],
+    "window_sha256": [
+      "7b5bda3490ff7aeb00aa66cd7d5c3c586558d31f6428e9bf338e9d8951c013a2",
+      "6551f163ce90447546b77ebf5281e99947731ac11069e0e38089a2a6035aa10e",
+      "4437e91e54f79b852c44fb1592248ede31763888f915d615f03747c1d76ec3ef",
+      "1a312530e45452e571182144822dec32a6356e2febd53ac46682737b1988a306"
+    ]
+  },
+  {
+    "article_id": 23296,
+    "title": "= Bart 's Dog Gets an \" F \" =",
+    "raw_text_sha256": "ce58163f92076f49c6f4f6baefa86e04a23c4c2815676007e458b1649c2668cc",
+    "encoded_prefix_tokens": 3882,
+    "starts": [
+      390,
+      1258,
+      2603,
+      3495
+    ],
+    "window_sha256": [
+      "be0828de53ab4f1170dfc47238583b6fc272028f5b107a980ff6210eca770f5b",
+      "43fbaed3635e175c96fbb84e03e52f7683427ccb308cefc79f272d3b4cd452bc",
+      "393f48b04241815ce7db4d657c730c58cb234d27dd28cc0c47205c4364b9915e",
+      "369d0e72e873e2a0598a2f74c345a5590c661c01a3fdea125f174d90933869c9"
+    ]
+  },
+  {
+    "article_id": 23144,
+    "title": "= The Astonishing =",
+    "raw_text_sha256": "862cb015ba34bde06e911fa44b6ae87f028e4e60a0637922634ff6be3675e96c",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      9,
+      1379,
+      2349,
+      3426
+    ],
+    "window_sha256": [
+      "d8c4d86b0e22bf6e717b0b18f2c80d3c1d6081a473192961b821dd1e822efdcb",
+      "881e56bac3c77f815b0173102b52729670026f659c717edce685389dd3a2c4da",
+      "11a91c352b1dfdd44237e031e005a3e5dc7f4a9effa3af3aa1e870269369ff62",
+      "86538cb420714261d9b378fe73bc9e78904b59bdf99e6edb63809969a414d1ea"
+    ]
+  },
+  {
+    "article_id": 20893,
+    "title": "= Joe Danger =",
+    "raw_text_sha256": "b3208275903901fd76203b80f2c347a114b3fc0ed8e7ee670864e9dbeb701a29",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      258,
+      1047,
+      2372,
+      3114
+    ],
+    "window_sha256": [
+      "2bb7fd1917bb753399517017c0ea602917d38201421452a3db125c9f055ab80c",
+      "e35585a135fa6bae42a184bc1db6a6cce67af41f73c500f60c9769c483262149",
+      "45d86731864b22303b0d40d099c114dee77da47189fa6ba8a126972b93912055",
+      "6f48cbc62bfc4996afe3ec133c1c7de0e602977974d0e6d81add83db389fc9d9"
+    ]
+  },
+  {
+    "article_id": 23711,
+    "title": "= Buenos Aires Underground =",
+    "raw_text_sha256": "661cc1fe7bc7d1000c31d968d986288bfd6a721774f71eac8cb501b9f437db60",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      114,
+      1501,
+      2123,
+      3710
+    ],
+    "window_sha256": [
+      "eaffced7eb98a7f17f93b4f775c07e9c41e95e515aae6840fe055d9b63e4cba4",
+      "495cd7b530d25f097f2697db3149592fdd7d3e87a270262efef490e1b0d446f8",
+      "7164b3b8d59be5c39f68a708fc625df42ee1aaff89a966ba966352c1d88d3952",
+      "e8ab35dc4ff1d87ec2437f89e1c84ab73ed7d9bf0499bcabd7b46dd229f1bcc4"
+    ]
+  },
+  {
+    "article_id": 24028,
+    "title": "= It Takes a Village Idiot , and I Married One =",
+    "raw_text_sha256": "ce896a766c7db7162eda73402734e41a6bbe151afbcbc32b613446dc335e7586",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      888,
+      1147,
+      2846,
+      3241
+    ],
+    "window_sha256": [
+      "fcddfc718341eb8a568fd3f088f2f1d9dd4ba17ed6d58809776b6a2a8ccd3470",
+      "89fdc7d8db7f42c786e9dcea20315f70c531a94e57fee080b791b9e5b0415a0c",
+      "aad7ff0f9b0650f08644eb0238ae059a626e33003dccfba6e9fc144206f45c42",
+      "87771eb3b694762aba4649d99aeab559a7efbfd50b78d0cefbe193108a0b9963"
+    ]
+  },
+  {
+    "article_id": 21836,
+    "title": "= Rhode Island Route 99 =",
+    "raw_text_sha256": "467511849e26ddaa3b5a622839406f15274133fffd77df428fd1a963dd290394",
+    "encoded_prefix_tokens": 3828,
+    "starts": [
+      223,
+      1037,
+      2009,
+      2942
+    ],
+    "window_sha256": [
+      "e265f5298d4d859911ec3e20d7f951d87f54dcad4df91480640ba209435403aa",
+      "c6f72fbf88a38550bc614f4ebd6ff40eaaa3384883d88c2dd300eda935892fd9",
+      "7901ee5b3dbadef274361a01c904cd6d31d01584ad98fec8d4fbbe2985c7cf49",
+      "e7fff18ded58e814619e9d4e946fc06d163cd8c7861f37f46b278dab72b51935"
+    ]
+  },
+  {
+    "article_id": 21973,
+    "title": "= Bethena =",
+    "raw_text_sha256": "2c6f8baa2e45626c95328ca409a25732ebdcd08514e95fb12c7cf174aff96245",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      862,
+      1834,
+      2466,
+      3467
+    ],
+    "window_sha256": [
+      "ba1583fb7356baedef60782cf0352f6fa1503dc35e89b811fffec59e4a1c56e8",
+      "1eb65b41b17c73d318173222c25995062a3c437b574de46548411acf2bb47454",
+      "76ab252813bebe43901282f3fa975988230f8e97ed7ec64ca29860ba106196c3",
+      "7d950e3997b0634c51b90f872d38bf02f94fce2ca0a2369753f4ad044595e253"
+    ]
+  },
+  {
+    "article_id": 19733,
+    "title": "= Baynard 's Castle =",
+    "raw_text_sha256": "866d5588a4ed35674dc183f89c9aa42501537cb9b839448eda97e0eae4797459",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      588,
+      1666,
+      2233,
+      3469
+    ],
+    "window_sha256": [
+      "ab235782d50a0b38921412f78f78fa5904d6f726305bee54de4efc6bbcb3091a",
+      "bb5538942727473fdbeaeb3a16ddb0e778fd1d908eb0ac901540a418c2b7d4e1",
+      "048acdf398b6a08b99729e84ab7df02db9d7e682f171fb87cceb15bf8153c28a",
+      "0a9fde249120b40096be8d35c7a72c0bf34f7e335e6b9d57d11372f4357b9ddd"
+    ]
+  },
+  {
+    "article_id": 24081,
+    "title": "= External cardinal =",
+    "raw_text_sha256": "95fec8d541454e4d4314ce955953d1b16210801e5ec6f2f7cc9943b83c1dfb4b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      316,
+      1889,
+      2453,
+      3931
+    ],
+    "window_sha256": [
+      "cf4fa67902abf4a058f154c529b046bb9502b8764d3707f942613f537e07e939",
+      "12791fec1e6f5dd8f7e3b005b38bccf0bd758c10ef9d4db61fdffdf1df3e698e",
+      "354f72fca5b0fc5f390e841f6fa0fd2c86a4159aeb7c24d7e697e7e6fdc0eab7",
+      "68e0b14982bc628a8a57f9dde6e00a03cc3f0cdeb65191411b55d0610d272d0d"
+    ]
+  },
+  {
+    "article_id": 17086,
+    "title": "= Tantalum =",
+    "raw_text_sha256": "9b3794f1637c741d4b9b23016643270b29fe4a75c2473e07486ab85700c58ac8",
+    "encoded_prefix_tokens": 2331,
+    "starts": [
+      23,
+      1088,
+      1405,
+      1933
+    ],
+    "window_sha256": [
+      "aa252c3e774c1aa9248977faced017193f8c829fbc70174f1ced64e59858a752",
+      "babf4c83d12a0a845ebf952ca2744acd37c01ed97d5c5cf9c190d1226fd4cfae",
+      "d1a2c4dbca6f8be65e7740a58372b7bfd353cc525872c4eceabd719bd17748ad",
+      "c3344251c9399229a480bc599be09dcb0b4f0430dc0453aaf5f511cf36dd88ad"
+    ]
+  },
+  {
+    "article_id": 16951,
+    "title": "= BR Standard Class 6 =",
+    "raw_text_sha256": "8467649f802d2aca1fd02dfc86a0262848be12f02b2cba7a03d0b0cece7f6890",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      142,
+      1908,
+      2573,
+      3483
+    ],
+    "window_sha256": [
+      "566e9b90431341f8e2c7a2aed18d7b5931af64dc8c2214f481e4424298dcc983",
+      "a04bccfdccd4b4105c1d6400029c6e2039824101bc3d132303fcb742474abca3",
+      "eb58ba06686b83252a83361cfc0e8bf8f5a1c26a7f5310f0418bd8de9e7c62a5",
+      "282ef046c85e2aec6c1699f17903c402b41e8813b8cd9135b9a3cdcdf0215ed0"
+    ]
+  },
+  {
+    "article_id": 24530,
+    "title": "= Star Wars Episode I : Battle for Naboo =",
+    "raw_text_sha256": "d13ea8617da6984ae131164225e210e34e13f651abb1479fb4b6c26b3f3f4198",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      866,
+      1434,
+      2933,
+      4003
+    ],
+    "window_sha256": [
+      "452808793836eab9d071aa08be12d87b5abd72543f1defa02c116a57b3fba319",
+      "b15edc260d2ff782a0b83c8c11530fbf5e1198aa2874ca38f98aec781184a02c",
+      "dcc0ac98e89239a796ad9d5be16b7cd9edf82003fce83abedb8c0274e9a683a4",
+      "79af6673246000e45d73d4aa0de3396dc69feaca37c9a3155bce8277bb645d1f"
+    ]
+  },
+  {
+    "article_id": 22766,
+    "title": "= Angus McDonald ( Virginia militiaman ) =",
+    "raw_text_sha256": "289526109c5299802e9f0f10a036ad60e355b3ffa36ba271d4f2ede73ff4f84b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      929,
+      1069,
+      2446,
+      3184
+    ],
+    "window_sha256": [
+      "d862e32a7c184d3d002aadfde6136d9720fe5c4e780a317f94bb8c99b66ac985",
+      "ec2772614e05e08be3c956eb82a7df1bb59dc1ce586a7fda5f6263019f479e2b",
+      "5cabeb76296dbeabb53895e9b3efc4cc88e5a96ef62d7d3b529e5497ed52609f",
+      "acc31e7d5781d2832add56ebb5de49fd0a620ef4849b957f7276e6e17cc7e3ab"
+    ]
+  },
+  {
+    "article_id": 17966,
+    "title": "= IPad ( 3rd generation ) =",
+    "raw_text_sha256": "44f0e10e6220290f7ec1ae3e85f40accb490c5132dd00408c4e71a6bcae0037a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      81,
+      1771,
+      2182,
+      3457
+    ],
+    "window_sha256": [
+      "0e3f73f880fe50050a8eb58cd8e8d48959cb64d7ea142385de9e634a6fa0c42b",
+      "8a6085065a1465ae46db2215957db854a74d5029ad45817ad5bb2f7996e9f206",
+      "20ff3f5fea5cc5b27c1af7c8e7c017c8895bedb26a38041c938ba9b2baa07ca3",
+      "cf1311ade93ba72b5bc96c9473826f4bb5bb7959b0f5a1da3a074c0cf1c442a7"
+    ]
+  },
+  {
+    "article_id": 16497,
+    "title": "= Janet Jackson =",
+    "raw_text_sha256": "34146da2f54a3bb9bfd846c676027ecabd21ec77711cd1c60333610072b7ebe8",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      721,
+      1325,
+      2926,
+      3078
+    ],
+    "window_sha256": [
+      "091724dcb5b18634613b43cdc47af9c7d4a86a0d88d1187065796c827612ee7f",
+      "a9057062f5e54aaa3969d91200aa2a737f0c24c433db8a0f1e8ef237c6dfaed5",
+      "737347376972cbc9080aa4082e8e50056a6a032f95bb4b4edaf940e4caa37279",
+      "5d0cd2a0f58e5b6b47ff0e5c75623e942fc0014d8167514d01897b9fdb38f81a"
+    ]
+  },
+  {
+    "article_id": 22626,
+    "title": "= Halo 4 =",
+    "raw_text_sha256": "65cd1a9736f1acd630abb91b43306ad8638e9956b3038791677925236a618d50",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      427,
+      1216,
+      2216,
+      3880
+    ],
+    "window_sha256": [
+      "fde48815573ddfd9e508ae2126fa4cebec38ae01d75fd85f1b972d337c9d4329",
+      "9861ac1379c45b3ae5fdaadab9de12fce6bca0f73fdf3427f85faacccbe98f7e",
+      "64eb3c8b0907f06a7f6e4a8e10b05e50cbb22f0632d12d7efc8b645fae0b734a",
+      "704235f9d07ac742d2a5ff42251279a57788e4e3ca7acea1e896519e7fd19dfb"
+    ]
+  },
+  {
+    "article_id": 17459,
+    "title": "= M @-@ 36 ( Michigan highway ) =",
+    "raw_text_sha256": "a7d505ab78bfd5f23ea84b60e7de949928e7eeafd95aea17370daa48ec613dea",
+    "encoded_prefix_tokens": 2428,
+    "starts": [
+      223,
+      997,
+      1486,
+      2188
+    ],
+    "window_sha256": [
+      "cd8f0463829e3fd350973f535abb5902499682502cd897d943ec4f77c7faa772",
+      "98662df2c31edad93a34604df617d2f20a941b87f516614926b300a7e55202ff",
+      "4da67934f268c2d25a9c732dc626b9c8d8f38a4f1eeeeb4c596646396c97ef76",
+      "cb94a0e7499b73d78ffaecd522c37cecf59db248958775f9183d17c2188e4b39"
+    ]
+  },
+  {
+    "article_id": 23161,
+    "title": "= Reactive attachment disorder =",
+    "raw_text_sha256": "40cfd3ba5686c27f24afeaaba2b3387ed017943f1c3987013af589e2544b97b4",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      961,
+      1934,
+      2733,
+      3124
+    ],
+    "window_sha256": [
+      "755a373de638da5a05be29f9493df94141b7953c0800961247268dc50a9b44ca",
+      "0509644c46b15012919103406eb90b47b356e88fc5079961d7919b1d448a45d9",
+      "3dffd1243a09d23c652f8b1482f6f7587435b84efc5875d0c2a38375841cb19a",
+      "d1ae21514d37cf58e43818bf7bd6679456f14773599ccb0c3e7496f47e04b436"
+    ]
+  },
+  {
+    "article_id": 19578,
+    "title": "= Johann Peter Hebel =",
+    "raw_text_sha256": "897cdafc3cbece9ee7e6eda11986eade0dba93b0ae193339bea7ed5cd4561263",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      177,
+      1987,
+      2514,
+      3446
+    ],
+    "window_sha256": [
+      "817e00fcea1f0c4622171f26cf5c09741ed0b4f42188525e9075ffa2c401361f",
+      "00687dcd618eaccf9e4993df61ce7e73b3827e2df5480c6e7c8bfa6e41c8c677",
+      "915c897fd16bee38d7ef1752a445c014c6283c98a50bbf596257f6aa985a062c",
+      "7a1cb65fa75185a73c00ef93b990f400d9b76b9a73eceeda0c14e1507e4bbcc4"
+    ]
+  },
+  {
+    "article_id": 23374,
+    "title": "= Madagascar women 's national football team =",
+    "raw_text_sha256": "58f9267f731c31e8138a5feb4db954e76dcfd054bbc20859354ba4497202b068",
+    "encoded_prefix_tokens": 2199,
+    "starts": [
+      285,
+      1011,
+      1409,
+      1607
+    ],
+    "window_sha256": [
+      "7c4c01b956062452a0fe82c03b2a9547062c883c9f4361003f4fa70680d59d0a",
+      "3b939b491152d979715d508170cfce5664137a7a36f465d08ae2ff9a02a61f1b",
+      "528bdd58069faa716d8c8b7675ffc186a49bf3f431de094db377650ef460a1f2",
+      "cd76f1c00894ada1c7dfdb6e0d237e4c93f7affc798b7693d47d4e25ddb5d12f"
+    ]
+  },
+  {
+    "article_id": 21644,
+    "title": "= St Andrew 's Castle , Hamble =",
+    "raw_text_sha256": "67eb12372685199d2e14d94b9a2b88dbfbd2d31002579c41df5fa0507037f11a",
+    "encoded_prefix_tokens": 1981,
+    "starts": [
+      158,
+      756,
+      1278,
+      1478
+    ],
+    "window_sha256": [
+      "a123e5b09fbf3108240c5d89d6626ab3ed5e04536ef012e7e4547f7db2b374d9",
+      "392ece7945393f16851ca6c06d73d9c8ca0da488a612703a6abfb941f6c4d33b",
+      "2d77c1b28feedbbe4a8093d15d0edb452fde1dde5c04f6da8eeeaca47ba269bf",
+      "f67602fd1988f51771f84f6a249cd33c209aad02c17a26e28aa846ac9cd6b711"
+    ]
+  },
+  {
+    "article_id": 22771,
+    "title": "= Rosendale Trestle =",
+    "raw_text_sha256": "c73a2b536e1f9c25f170e5256e04cbb00c7dfeac832e5a404cd284528dafc562",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      362,
+      1768,
+      2117,
+      3973
+    ],
+    "window_sha256": [
+      "3727a9f077cfe7cd38caed450b63944df791cee7843dc4ed8182c754bdcdf5c6",
+      "a922d542f7a830c27804dacef82911f0a7da7a66d25a09bde1a3321a609219ac",
+      "954b17f5322dde39d7a40e2e689f4119e019caf3e52f5407501ab7d9a8803ff4",
+      "458b25e2fb3790f344f3acf1564a08c8e0b1de0f632028fa6ee28fc7ac725f3b"
+    ]
+  },
+  {
+    "article_id": 17967,
+    "title": "= Jack Kemp =",
+    "raw_text_sha256": "8b072e83157bdf64fab96b971d994ff91ee809f3daf38dcad0bc51e7342bb3e0",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      102,
+      1265,
+      2464,
+      3954
+    ],
+    "window_sha256": [
+      "456d5ec5df7582a49d0c0a46e118ec1d76f5c11d08afafef69704b511235da24",
+      "31cfc71ff50cbdc7a77a4fd174355265ba1a0edcdecafba7a74fbe08a2ca0def",
+      "a224df9dfe0b71a9dbe9ee98fb5b5a2057e4e96b91d825381fa2aa5a5793dca8",
+      "028bb36c4cfc3a05852e607a80ce4ca88a4389d88ebdcafee0f585a3020c3461"
+    ]
+  },
+  {
+    "article_id": 19620,
+    "title": "= Walter Oesau =",
+    "raw_text_sha256": "58641929e8c80a15d2ac5402c13c3d7f7427c954959eaa910b019660ba0cc088",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      132,
+      1760,
+      2995,
+      3254
+    ],
+    "window_sha256": [
+      "373643daf9d67486ff8b67bb2369413610ee768a082925a8e4f34ff70a74eaea",
+      "fd4edfb96f2e8ade21699274bdfb288005e9fd77de9b068f73ca3923132ced9a",
+      "c6ab9c921eefb69d681d9458521f861acb6c36424327bbb95d2657880c3a5907",
+      "e33ce7a0efe940c3c140cb9c697999587bfdb5c3e63532f72446425673506375"
+    ]
+  },
+  {
+    "article_id": 21355,
+    "title": "= Quiero Bailar ( song ) =",
+    "raw_text_sha256": "fc6b5116e3733d3427bbb2e4688e9f815bfb40d9369e8118e3d11bc347c80c15",
+    "encoded_prefix_tokens": 3113,
+    "starts": [
+      405,
+      1122,
+      2012,
+      2803
+    ],
+    "window_sha256": [
+      "b52daa294a3ad4423beea3402011c1890e9cdf8d5325c60649f1a2dfb855a343",
+      "70c9c68cb27451ead2724a29289284436fb27f44b930d7b009b1bfca0c80b91b",
+      "743d7c74ce478704cbffb2be4423ddafc87fc110373721876985487d810ecad4",
+      "3b7e3bfb85ab058d0afa303a3d4ec78f0e9e140c1d942769407a44edd95a159b"
+    ]
+  },
+  {
+    "article_id": 23298,
+    "title": "= Raasay =",
+    "raw_text_sha256": "70bb75f9fdf5f31e289bbca45b1c7361d68db37241db71580476289782307504",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      954,
+      1785,
+      2086,
+      3640
+    ],
+    "window_sha256": [
+      "b91260c83cfea8404f046f00b5b1bcfd4e9c06fe920343b17350e27a08dbdd8b",
+      "0852d4b4925e449180e05bac762c89d08ae25405019c11f72d39c4df760b3836",
+      "a8e14979829aa7dcc7829889ced9c87ae7bf52acfb46f453b8ef1de9633bb1b1",
+      "cc678af6ffcfbd931542dbbfc40355bb4045c40222f7c30c114820a332e1754c"
+    ]
+  },
+  {
+    "article_id": 20132,
+    "title": "= Bacon ice cream =",
+    "raw_text_sha256": "b7d952463fb8f50c97048fd13e655bbb3a61a911b2f4b102aee946ab66444bf7",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      406,
+      1839,
+      2452,
+      3814
+    ],
+    "window_sha256": [
+      "f86a79654cc8ae5e7de8f128491044e9af0867b0527742c6e8c5cffcea8a9999",
+      "ef715641a72069187e0cea01968ee51c1e7af81ec70e44f76537b7eddfb9c670",
+      "675c5b7948e1a0d9f943a1eeda2422c1aa572487ac7c6e2dbc33bc37bc0640b3",
+      "40c27b58c9e92a3981ad7af115fbd3d6ed945d8102f56bdd0300481dbba1ff65"
+    ]
+  },
+  {
+    "article_id": 17208,
+    "title": "= Northern Woods and Water Route =",
+    "raw_text_sha256": "a43bb217a19625c2cecbcce94e8d2fbced803b87794c40dbf9e44fc0967773b6",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      251,
+      1813,
+      2169,
+      3982
+    ],
+    "window_sha256": [
+      "05d4c0fb6e0dd92198b23511d4132a6915c7a9128d9d60bf923d82b26693f2ee",
+      "c68c47343201cad1a69c052b40744ca49495bd0932cefa4b54c5559ff098595d",
+      "bf5a8c6034eb965d6c60a8a392f71cf441bd70341eec07228f056455d33159a0",
+      "83897237464679bfeb1776cfb6aa0aaadc3dddf80fd365b889e2f6a19318d625"
+    ]
+  },
+  {
+    "article_id": 19638,
+    "title": "= Russian monitor Latnik =",
+    "raw_text_sha256": "206a6270d6e58879e15ff4cd530e919393b21c7aa58e70da1f385e571b721769",
+    "encoded_prefix_tokens": 2733,
+    "starts": [
+      509,
+      1188,
+      1730,
+      2093
+    ],
+    "window_sha256": [
+      "e950be8797e090b7d0336fbc2b721a01c37bf30332b4725ea45d11d24c89c2b1",
+      "2c7f97b287c3c404997072c2aed0cec3d2437755e8c678a87457841f890b4aa7",
+      "6340d1faf2ccdab8ad57ced3298ab807c1476562f0645cfaf7df6c19ffef5f9c",
+      "3cc4c0f9185defbf0acdab8b97561fdd9a538b8413e387b4c9bbf629cf5c1837"
+    ]
+  },
+  {
+    "article_id": 18090,
+    "title": "= French battleship Masséna =",
+    "raw_text_sha256": "32275e09c7c1003cbbeee4fd6dd21fe6c9548b83da63379858a12d75b71f9b09",
+    "encoded_prefix_tokens": 3996,
+    "starts": [
+      759,
+      1739,
+      2587,
+      3812
+    ],
+    "window_sha256": [
+      "ef7b8a2f02d43284277ba33998b75bcbaad36def61bd71657acd421ea3ce0d8e",
+      "39e9984d4e1318a42f74f5e307b0326f469ebae85f45cc67ad8bbf2309b7f75f",
+      "f3d3ded025542734bb2002859f5b95f1fa21c2b362cefba9213f2cf0743e2f28",
+      "c21698593d7727187ec874c9f4e2b7265cdd2298945d59f65e0b7b1ba998f643"
+    ]
+  },
+  {
+    "article_id": 24174,
+    "title": "= Divisional Cavalry Regiment ( New Zealand ) =",
+    "raw_text_sha256": "d958680c5597874226dec79b7a48891432a052c06d618c16e3cdcb2ad0d1ad87",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      872,
+      1563,
+      2630,
+      3372
+    ],
+    "window_sha256": [
+      "a7ae421c1c9f97184846c6b074132683fc71ea5954af6d27c1154a66a07773ce",
+      "d0156e8275c7a047006cf6f7d66b0632b4bf1e5f08f7f5aaaaa64bbc557cdd5c",
+      "143c7828318710f16df3e9818cd08c1b473aab29607d982759a508b2510e8b1f",
+      "c21f4a2ed2fb9e33d3e31ef855001b95c88451a808f651128bf2306f97a22c63"
+    ]
+  },
+  {
+    "article_id": 19546,
+    "title": "= Nikita Khrushchev =",
+    "raw_text_sha256": "60811712d6e9599ec214c28f82e8c7196c8a86726a43e96fc94ae3482dd1acc6",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      87,
+      1196,
+      2375,
+      3372
+    ],
+    "window_sha256": [
+      "e4518f38c18d989873f7f349432080f1a565b886a1d8ed8bac387bed76df437b",
+      "b6399fc3d71c338fa900b5087a860246ffcb4aa0d8d73812c310d81fcf883077",
+      "5d1a7ea9b8db46dc7ec62dfc559a37c22466ca56a80044907dcdb619ec8a42ca",
+      "6f967653776c271fddb90b5467b0a9f5a7207565bc6a2b7b540780ac2b413249"
+    ]
+  },
+  {
+    "article_id": 17129,
+    "title": "= Kota Kinabalu =",
+    "raw_text_sha256": "874a5974a5e89cef1a69097ad6b0d1141da09743a6b6411cf9881731ed7d89ef",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      961,
+      1723,
+      2699,
+      3997
+    ],
+    "window_sha256": [
+      "ee1faf69045f740db45ab80564ded2beb6a198ff7c6d8f1ddf0f9123f0d0b3f5",
+      "d17c3570519058eb4245848968730a5c20cc969b6b53d7ead7ee8b9a0b54b5e5",
+      "0e3aff10be128c5dcc5d42874f2494a1a24889fb94e0fd356c75fb572ca52bb0",
+      "12036ef453706b7c4bfcce163b07fe1a770f06a02051203fd091b18d6ca49e73"
+    ]
+  },
+  {
+    "article_id": 17464,
+    "title": "= USS Mahan ( DD @-@ 364 ) =",
+    "raw_text_sha256": "53896e0d7cce6d4bb9873c81581319654cfcd04e00637c91b2e514797e9ad816",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      148,
+      1508,
+      2623,
+      3748
+    ],
+    "window_sha256": [
+      "bf15b4dcb31cd635454060bb3d9f4cd34b663c46cb4f4f85797a02d1114cb256",
+      "2b35c5e8d69f97c0cbb68848d2cd89e85c1c5246e114e7a1ab05ccc856ad35dc",
+      "ac43e8adfac7ce0a52bde01bb29e8a97ed5e68c27003c01121b539e9089a3aff",
+      "2ce91cf331ccf8c8debc42e6a3c7a4881a5224a5a8de518fd73898b9b93034da"
+    ]
+  },
+  {
+    "article_id": 19790,
+    "title": "= Tropical Storm Becky ( 1970 ) =",
+    "raw_text_sha256": "ce0528a9f98ff76637c3128747da136763583c19f8e3c28f7b8e1ce93290a84d",
+    "encoded_prefix_tokens": 3121,
+    "starts": [
+      56,
+      1132,
+      2250,
+      2979
+    ],
+    "window_sha256": [
+      "616d3be8e6a58cea0707c01d6125a1b09e55b03244e7774197ee4cac6c7c1b1f",
+      "f2e3848e392bb98b81bf074b66d3511f1bcd302b890ea075ea946fac98046a0b",
+      "15770f29af61b63d7a545d3ee0bcb1a1133b99b160223faf7c8146a618ba596a",
+      "baab74757cf0eeb40eaa44c85ced9655bf8a23ef12636235aeec43c72a9b1335"
+    ]
+  },
+  {
+    "article_id": 19453,
+    "title": "= 1979 Atlantic hurricane season =",
+    "raw_text_sha256": "fbc399d22a083e4af9f0d0da332164294dfa194199a992afd46cc83d04199923",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      677,
+      1858,
+      2604,
+      3148
+    ],
+    "window_sha256": [
+      "7c5bf959d2264d4030da3d63288aad49ebfae3c3e6a760679981d2ed6e045333",
+      "b933eb8e8c1458cdbc3ebbf12b7fe127f54951f32247e13e966a51a0e8b676a9",
+      "b0a980b061b7a2b5600e3c8c30f43e355dee2137cfd06589a715e24cdeffea54",
+      "0ce1b47e3fe1f5cc4aa2ec32e0f80a077e684403d39e90e69cfdf4830f43ef06"
+    ]
+  },
+  {
+    "article_id": 23254,
+    "title": "= Katherine Ann Power =",
+    "raw_text_sha256": "86a78fa1ce1a96597d3282fdcb46750a4241cec3861edd76cffbcf0ee33bc271",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      796,
+      1815,
+      2516,
+      3338
+    ],
+    "window_sha256": [
+      "140ed17064ec53c68439787f3881d29765b2f4462643f5a51f16c263eca5b1ca",
+      "06c1db87bac0bdae3f7242dbcac5f146d8a2fdb007fde7c64983371839dd8db1",
+      "41ef6db968d26a005df6cfc702abbd25e9ff0dafcb8d8911ddd819fc1cdd0b48",
+      "1c28a4d979123084d3d3e311bbaa6471b9b20d3a323aa63cf55af2b088cc999c"
+    ]
+  },
+  {
+    "article_id": 24526,
+    "title": "= SMS Hessen =",
+    "raw_text_sha256": "e00150cda189cd9386636ecb87cebbbb8e8500b54ed849b57896abc797b5f403",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      823,
+      1901,
+      2971,
+      4013
+    ],
+    "window_sha256": [
+      "fd703282adcc54c87158a15ff4b5a0e94222b47e7d937f8520dbca699f225531",
+      "e7246a69cd7ef9a9e6006373d8c7900f5a0689cd55a967312afd3eb1beac3ebf",
+      "bfee78b7aaf067b513c84f1291989ffc6750be42aa7553256af7ae13b4f7e8a3",
+      "85c5af0c8432d5c7d4926591db210c3f7cfb431f2572d1ceed5e276cc3ae0109"
+    ]
+  },
+  {
+    "article_id": 18394,
+    "title": "= Professional wrestling in New Zealand =",
+    "raw_text_sha256": "d874720c7515d9e77fec767f0cb72e642dd1ee941d89447ec8c1f13da7a9e67e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      16,
+      1937,
+      2546,
+      3086
+    ],
+    "window_sha256": [
+      "82652c25d830fc5e6293bcec19757df824988746338ae6f9b09fcd12369ac28e",
+      "48fc0af34a6beeeaa9081bf8115ba984fd1585c371f43b97d2dd850a49c1558f",
+      "149158073d49292f69736cfb24be5aa91c866cceeeae286d83a84a28f3dfd668",
+      "273acf7e7430926d34018494d85c815058301e6f68b36d5ca428840c1a8192ad"
+    ]
+  },
+  {
+    "article_id": 22407,
+    "title": "= Born This Way : The Collection =",
+    "raw_text_sha256": "a0c81e8042d0398a5c6679e206f1a4d00a308a72512283a4e863da83a006827a",
+    "encoded_prefix_tokens": 1307,
+    "starts": [
+      170,
+      506,
+      797,
+      1123
+    ],
+    "window_sha256": [
+      "24b9c9bc6efa39a4491eed4e783ee2eec309c3d9bde115da543117ca66d30705",
+      "4a4c6a905fa8e7b466653a9dc76bfcad7f7b19745cd05120f905cdd8ea46a2b9",
+      "49910a173a587706d75a848f82a69070a39733cf43bbe294d78ad7907f841f33",
+      "bf32795b031db2ccac46431adb818d014427320d9936c7dd821e6195b0489019"
+    ]
+  },
+  {
+    "article_id": 24062,
+    "title": "= Outrageous ( song ) =",
+    "raw_text_sha256": "e20e51d189c0848b70b9c44d49301409401225ea12ef24374efac2a741251de9",
+    "encoded_prefix_tokens": 3893,
+    "starts": [
+      812,
+      1758,
+      2221,
+      3747
+    ],
+    "window_sha256": [
+      "1ab9a3ce9a14c138103e99d9da544b953219a292a557c3ffc64cffdba9d29e9e",
+      "64cfb150a7a4d66a25d33d7be44904be8d8b9e3f3bab7386c65ff0c780ad0ec1",
+      "72500381444500b5fac3f48813f06b9cc9d5a36c06ef544f4f8c0e013a360101",
+      "abcb6a98a0d733c625ca9032c081caa277b6e06a497c4229ff42b9cb19c2597e"
+    ]
+  },
+  {
+    "article_id": 23902,
+    "title": "= Haapsalu Castle =",
+    "raw_text_sha256": "a8799d3a81b5da8a4077e7190ccd73b376365cc631031f69b76bf8ad56796779",
+    "encoded_prefix_tokens": 3490,
+    "starts": [
+      634,
+      1257,
+      1929,
+      3067
+    ],
+    "window_sha256": [
+      "eef61eaaa218fd814c547624083bb62c738a0d5d7b1d97d3d78c8380f6719168",
+      "cef486ddee6771541e86d56efc31774460e124ac647b7f371c83086cc879fb8b",
+      "bcfb625c081098a479edbe9fd88e20dc23c967ff4b5c7669121f3c93ad5931ce",
+      "ed9a8e937fc63307df27afdb59fea3774492eb10a65f47fa56c9a4be3f5e9359"
+    ]
+  },
+  {
+    "article_id": 18680,
+    "title": "= Obsidian Entertainment =",
+    "raw_text_sha256": "96ba122d3df05989aa48598381a90ceb3cc6d8a4d2b46569697a41dfe4deab19",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      289,
+      1368,
+      2447,
+      3854
+    ],
+    "window_sha256": [
+      "5eb9c282bf5afb8ae2df0e7d1881e1c9e9ec4bd9ffa983b994cdb88b11577361",
+      "62a6ee2570f914753a3d6b218dce384c130a165b3ffbc4bb0d54b8d86a4a757e",
+      "4c14afc20117ab67d5c0433950aa78209490e5519ce345d3398bff656e7264b5",
+      "9d73607643914090387d422f36abcd13cb45312c388ded8963f9d9ef665a36c2"
+    ]
+  },
+  {
+    "article_id": 22590,
+    "title": "= German cruiser Nürnberg =",
+    "raw_text_sha256": "22dd100e2714ef5b0bcd0b7f445fe0507b48dee5eddfcb7b5dc9891611a53ea5",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      210,
+      1959,
+      2627,
+      3756
+    ],
+    "window_sha256": [
+      "19a47e6abe3137ab1c9a87ce8fef3f1100b250236448076d3d6c506345b13a00",
+      "baf37168b988c1246648dcce6eeb9d15d5f0edd8e8cbfdd404eadfcd6712abd9",
+      "7d36a947a7ded8770ead6d5ddc99317a3ae7177d8f7d2844fdbb056457bf7e16",
+      "050a64334d8f7ad2a5945df550bb0ee97ac55b3a90d5a8c8fd050c6a78d26191"
+    ]
+  },
+  {
+    "article_id": 24412,
+    "title": "= World Heavyweight Championship ( WWE ) =",
+    "raw_text_sha256": "6f4ab173ca844b16fe5a1de71b9f45cd73f8cdf0ff80cc111e43a64fdd7cd844",
+    "encoded_prefix_tokens": 3067,
+    "starts": [
+      421,
+      1380,
+      2228,
+      2657
+    ],
+    "window_sha256": [
+      "23c79622836719a2e7a44131ceba15809b84b4c768494eb2647795f812fadb4f",
+      "26724aa471bd4a398886cee233ed532d075f7ce3f18c2401f2410ffb72002701",
+      "5daa79bc12e9381475b146db075317d6d601afc02141cef92adcec0a466fe657",
+      "cd9c92c02c2249422436e0acdeaa8122608c3e3d32d91fe44eae4914122f366b"
+    ]
+  },
+  {
+    "article_id": 18140,
+    "title": "= Scaly @-@ breasted munia =",
+    "raw_text_sha256": "2feb083d65bddeb9293bf505a60a26426b5129ab1d1bf3289aa66c1911c2a161",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      406,
+      1825,
+      2583,
+      3074
+    ],
+    "window_sha256": [
+      "a8f575b83e671fe953b6b905413d651be7ab0a666e0feac5310825f186345d89",
+      "d9f172fcbe61c93ee3b24c2f2abcd382240f01b3b0faee1290612703ca847525",
+      "d5f25105fc365b66368662b3fd5ab5552c0b61a6cc1368470f7f29fa13bc5e18",
+      "5d2314cb865105cff8e7c27992ba09f5a41274f87d1a9316b396c37e7bf9b658"
+    ]
+  },
+  {
+    "article_id": 20069,
+    "title": "= Mars , Bars =",
+    "raw_text_sha256": "42ac625389d9e1b3483cd5a94def6b822571c3de9ea133b0df81697150ab02cd",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      478,
+      1342,
+      2627,
+      3146
+    ],
+    "window_sha256": [
+      "d7b92bb699681628ee4b302b4f71c91f54cb9359afb805f91079e8fecdd32cb3",
+      "2ac470351d0234f95dcde5f3ba7c02353effcfb98379af2c6d53f3f7989141f0",
+      "f401e91a16a5a7f25a28b5da6c3da5c4584acd29585f6b5079f2661422a9c445",
+      "5a902733ab9a1833d7def23dca47095350f11eaea9f72217df47a6f32fb29cdb"
+    ]
+  },
+  {
+    "article_id": 22551,
+    "title": "= Ring the Alarm =",
+    "raw_text_sha256": "58fb1937bae076ad7de8cb7dd19bb30ea95b3513fdc30c4cbc0f93d10a136e3d",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      942,
+      1666,
+      2889,
+      3672
+    ],
+    "window_sha256": [
+      "47b81709aa53fc731787a3a69ed91f2b52ef8b0074fe3877210f44f0aa891345",
+      "f77ee6c42041d6e8de0acdf20dd82b5e652c2287addfd239205a5f82517cf5f4",
+      "adcb310796c02fa466bf2491a9037b5219c4ae10e93cc34642e8e6c4d1b90dad",
+      "66e9a0007e456455827bb05239358cbec5787251b08750f550f637047fc0049e"
+    ]
+  },
+  {
+    "article_id": 17287,
+    "title": "= French ironclad Armide =",
+    "raw_text_sha256": "41d22f0e2f776f5a396dd2ca0c249c3b225fe7faba2a3c2962941abd68cac066",
+    "encoded_prefix_tokens": 2462,
+    "starts": [
+      217,
+      912,
+      1309,
+      2094
+    ],
+    "window_sha256": [
+      "1ca00e0c2e12455a79b5097153edad0f5ba3533b629cb082d05ae60c03e28e62",
+      "5065fe32e5238412723b58d12629ac7c42c240f15ed33db998bcc3b18c46d0e2",
+      "0fdb64ca8f1bcdc7c414ee3fafc3aaa48be6ec5239fa3e3674dfa09be1048522",
+      "b6459d2233009e7840429f18d645cd6f47c493ba086004c9ed5e10196c7b6d2e"
+    ]
+  },
+  {
+    "article_id": 21767,
+    "title": "= Change ( Sugababes song ) =",
+    "raw_text_sha256": "3194aa463474d17f1c2bda726ea1ce67edd1684c8458cbb34072516e4bd9b4b5",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      939,
+      1981,
+      2084,
+      3790
+    ],
+    "window_sha256": [
+      "54da30ab101092393c92bf051791f93cfffe77627b0deb6cef6670a0b803704a",
+      "9a5dd7023a277b654ba9ba95016cc4196b6b2fc14c6ecb99a089e8a5c225422a",
+      "b0e543af3f4b03ad944f6e169f310d00026f9f0f95eba7eaa57ab4dcbd19ee4c",
+      "770901f3ff1e8d58f902a0dbed85d646a1ae0f7197aca2ce34047d2cddd01b78"
+    ]
+  },
+  {
+    "article_id": 22777,
+    "title": "= New Jersey Route 168 =",
+    "raw_text_sha256": "0bd4ba71a832170d2f7bf1c1e2211d112fb4bc4358e202f3c22a48a9db65f6ac",
+    "encoded_prefix_tokens": 3867,
+    "starts": [
+      571,
+      1182,
+      2195,
+      3044
+    ],
+    "window_sha256": [
+      "20c2ed31b86e7be3aba46e3b3f2ae8d8aaf80ed95fa578c56bca2336e9a5cc39",
+      "539092c81d9f675b341137c79c4c73960709a3399a5efc2c515f898f2dc14e36",
+      "5ce232d6812d2da6e72b0d9720a9b42389ee87834f988b999f7b75bd22bba787",
+      "b3ab699b029033916527c8338c99c7b2fccf09e4f9fb999622ffa58ba98cf3cb"
+    ]
+  },
+  {
+    "article_id": 23640,
+    "title": "= Europa Point Lighthouse =",
+    "raw_text_sha256": "fcd86e4b928517a1d96702d6b4feeca069a49471c395005b1396525e53e78c58",
+    "encoded_prefix_tokens": 3895,
+    "starts": [
+      379,
+      1881,
+      2592,
+      3681
+    ],
+    "window_sha256": [
+      "be7f4d3cffec10eaac110fc928f9cc159222f602cec79d2c9e7bc0d92106e10e",
+      "2ee681e226a5d6716baeaba2605312a2495e9fa286f38e1141654670c9a050ed",
+      "da103640196f2f3c8fa6d1e060a871a4f5de300fa4c8e0a35810ac2722e1d198",
+      "ea1994e7c49f440b6430ad02463fa807f098c6931ef61ebdf43eede3cdb13c46"
+    ]
+  },
+  {
+    "article_id": 24442,
+    "title": "= Great Britain at the 2002 Winter Paralympics =",
+    "raw_text_sha256": "7904fe070c2765bd549b648d1344befa60e2dc60272a8eccfa7088e20a60f731",
+    "encoded_prefix_tokens": 1662,
+    "starts": [
+      72,
+      790,
+      823,
+      1289
+    ],
+    "window_sha256": [
+      "5aed574805836408cb6e12e839326203a5d0db379896657d4a7c0530a26d1a98",
+      "51e965026b87adf027333a678fd5e6522bb76d760c0a9a4eccd07ceb3a070e8c",
+      "9c84e83245bf5bbd7c489c98ddab1c10acf8172b6837e3b0a54a947acaea312e",
+      "ae88b354fb712e56612fc7fb402ae825d18739d6b6e3028cbcfb8f2dcc0cf162"
+    ]
+  },
+  {
+    "article_id": 23353,
+    "title": "= Enlargement of NATO =",
+    "raw_text_sha256": "744083efaf614f02c3600b1a5ef7ba6e8e8812e428f2af2912b304063222a52c",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      574,
+      1947,
+      2127,
+      3981
+    ],
+    "window_sha256": [
+      "5ca5237ef5ba8f81d70baa645073e4c297063bcdf4f80b33ae8eb86312468e0e",
+      "08bfab21209c065756225659f99016a0eeab18411599227f0e4faeda7b3736aa",
+      "c4187fd2ddf4316a27755a406a509353d12d85cb3573a3bcbf9be0b4dda48534",
+      "d2afd9df6dd1966583bdeefe225b1d68beed6d6f5a2ba955ddbb38a4c3192afd"
+    ]
+  },
+  {
+    "article_id": 19670,
+    "title": "= Love Profusion =",
+    "raw_text_sha256": "0cd8fe1e8baece9af6635fd8e3f76da10c290697d8e2bb970969a407c3d7a553",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      903,
+      1189,
+      2408,
+      3627
+    ],
+    "window_sha256": [
+      "b2e979ffceeec85b8b8315bc6bdb954577929e56dd6e65330698e9df11dfd77f",
+      "88d1327121d46c52e32359c6a900bfe688ae0a2525940a60814e9991a4da7ca4",
+      "11d03de3c24f99b1301684ea6b9405775b1accdfe313803334664dd7d79904b5",
+      "12edd7c7673208fda8514af29ee804c9426b4c1559bd24ef58744dce589c4d04"
+    ]
+  },
+  {
+    "article_id": 21464,
+    "title": "= Architecture in early modern Scotland =",
+    "raw_text_sha256": "c0cd483b749ff92fd43ee501c82069424b02ddf0b8bbdfb5ea5905ca00fd053f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      881,
+      1402,
+      2040,
+      3860
+    ],
+    "window_sha256": [
+      "f7d4ade4cab961101ca865f08cfb5e410f405fc19dfd81f74cefbf0fa5e1d2cb",
+      "ea07dde333d31b73cf148cd430d4b7eace3c8d808f866102c4eec324c22afc57",
+      "1891e3338555ae61758255135df2b0556e1925b893ca25c7613e136e3799e047",
+      "e715e8e664b8765cc76ea916794f0acd3b6ec503cb1208d53f1398100e78bd07"
+    ]
+  },
+  {
+    "article_id": 17491,
+    "title": "= Armero tragedy =",
+    "raw_text_sha256": "3f2efaf0fb743db1d6f20ede7c554d27d46b5f767752a9a6abbade1f0ee13b2d",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      1007,
+      1796,
+      2478,
+      3240
+    ],
+    "window_sha256": [
+      "c8546c56f2773767d6ce80be1073b02a6a7a1b396f769b76a71871a93c10e0fa",
+      "77fcf44a74c56ab144b90a7ab4350864917f906e8318f6ebdee07cb554d921ce",
+      "cf8a03cac9543ea05d14f398d07ff0debd4fd7c4530f748e834ba3bfe90cb9b9",
+      "942d678ce6ea1861e82c15a9dd8bd7c583767f6ca9fb2182e1dfedfd02e73409"
+    ]
+  },
+  {
+    "article_id": 19798,
+    "title": "= Peter Bynoe =",
+    "raw_text_sha256": "722df8a5ae255287f14048d375d8608a23406b40848cef3f899d6c426e7dd200",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      283,
+      1386,
+      2984,
+      3327
+    ],
+    "window_sha256": [
+      "07871ebb9ace2225f1d2e628710e054438ea8d582df746eca352578300176906",
+      "3f50213f46feba5f97b3a17eb02a8d52ebce25785ea0bdce39326e10dc3ff0e0",
+      "a9db09ae20087cd96164ee7f8bdfc60b65bb74196f7cebe011896e19624c6b8d",
+      "5009d9264817492a58688002fdc2f7b7cf3b6cb36af29c2f47c9db46721ec82c"
+    ]
+  },
+  {
+    "article_id": 24093,
+    "title": "= Ralph Neville =",
+    "raw_text_sha256": "8735b9d796c8edb6ba62a76e9fae308779b1d954f527f836e84eeffc6b3b3075",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      570,
+      1709,
+      2425,
+      3388
+    ],
+    "window_sha256": [
+      "e2e6cff729b266ad53c645c564f97c9eae2b06d0e9b0db8d93c26ebc912346f1",
+      "bff38b5d71d43282d40533b58cc9a65c54e6d6c44d44dd148cb3b1ce0f95df52",
+      "7a788ee42ab8d30d2b1f3f127cd103a1b5e14d8164f8be8c5c887f658dbcb943",
+      "522d861518b6ed5b5f42c3b0704517f7a381677e662ed433e945bb83bb540088"
+    ]
+  },
+  {
+    "article_id": 18163,
+    "title": "= Hagley , Tasmania =",
+    "raw_text_sha256": "05ecb59a7ece6fb1b4874c2b7158febc2c10d9cf0100013ea80feb80e954b492",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      955,
+      1765,
+      2101,
+      3916
+    ],
+    "window_sha256": [
+      "23f76ee388443935d2c2896063b463490aff7489a1a8f820f4f792f04568ec25",
+      "76f52f486e440409696344191640de1c6075de1248f2d5cf807a6d471b7a3b66",
+      "9a4cbbdd2c7301a75194ace4dab64728700d839d78b525df784944413901e1af",
+      "05027751981dbef62c6e551cf851ddf26d8f98920aded9a5d5d55abc801f55c3"
+    ]
+  },
+  {
+    "article_id": 16389,
+    "title": "= Nathan Drake ( character ) =",
+    "raw_text_sha256": "3e4e537e26c86c34a14aea2ed6b9702a2432c3b132be962e888910e17d73be37",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      547,
+      1986,
+      2576,
+      3779
+    ],
+    "window_sha256": [
+      "d3a56448793e747fa201c83c40b63ff6294baad2f4e2fc34388d46609e305727",
+      "fbeaf7ef223f24caafac70506cdf30cc9799bfabf8fd883f8b2b796fba02a45e",
+      "ecd0678a580f11a0d939dea5931d8343f501db9e36e41f85b2159fa42b82e3ec",
+      "e2693769853a652f8db831369a0d5db73cdbaf8cc5a514e4ea7c2b2a3e8bb08b"
+    ]
+  },
+  {
+    "article_id": 21904,
+    "title": "= USS Iowa turret explosion =",
+    "raw_text_sha256": "a9a66805e6f0a25fe15dbb7f51c1faea07cbbe043b5c38b9c6a57234bffbb4b0",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      712,
+      1942,
+      3005,
+      3264
+    ],
+    "window_sha256": [
+      "47f3319fc5131d331a1d1e085616c7eca95100a5f4dee1371684c961f4b706e5",
+      "d945145279f80fa6d17fd76ea70f74af7f4c014272c942a36e097b77fcd64f82",
+      "2b3bc9d3ecf69b497ec5d015ad6323531a1d5bd87e74c3ad8c38ea451aa19765",
+      "a1f66abf0b0231e54640e2c9aeb076a32b25e2db0bc83bd4073681776baee7df"
+    ]
+  },
+  {
+    "article_id": 19558,
+    "title": "= Italian ironclad Sicilia =",
+    "raw_text_sha256": "165fdde4ef1e89acb0c53e383fa9a48407af193aef09220f6dfdc49fcb45fbcd",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      514,
+      1265,
+      2843,
+      3526
+    ],
+    "window_sha256": [
+      "e63957774c93ea0d60622a555ce1dd6cb169c4f2aa73ad595f192ee3fa3e6fa7",
+      "09e9d242ce6731c634a233a3e7d1ecd6a678c86e721a21d41d50b46797eaa622",
+      "4b8547ba73454e1c09a5c6cceed88406b3dc7951bada266b6339e8dbd43d0e2f",
+      "fdfd703e6df38341b69bb1fe501921ce5dd89af2ca2a56285bc557988abf678d"
+    ]
+  },
+  {
+    "article_id": 22640,
+    "title": "= Bravely Default =",
+    "raw_text_sha256": "31bd5be9bbd0ad30cfa9ffa1a2fc022143c4087956721295f4c1921ea4f4a97b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      428,
+      1296,
+      3014,
+      3300
+    ],
+    "window_sha256": [
+      "5534409366c7c9068209a184bf13a1deea09563b77f474a08eb626ad65343b81",
+      "41c913402aa03ac07aa4bbb8040de9e13f3eb26945b6c5b62699e951ada1480d",
+      "b035950a586b2d2756ee4ea1e90a2e028b1e0207dca2e6c7595e3b19212c94a1",
+      "34e4904de1e9118ceb02bc4c50ede25765b3e6d3bccd5b839c8aa19349372786"
+    ]
+  },
+  {
+    "article_id": 17982,
+    "title": "= Hero ( Mariah Carey song ) =",
+    "raw_text_sha256": "c9663ce15c689d3ffc33e70587aaa9c2c60a337fa782fd11aad0c043981773ec",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      819,
+      1411,
+      2751,
+      3320
+    ],
+    "window_sha256": [
+      "fb02f4bca84ebe37a6b9e8f0cbbd5126c3794c18b79ddbb358f1595895afc31d",
+      "c2e82614b2323efb360ce176e9578ba861ec46df964e32f76f568cf5c2b7f0f9",
+      "8f3b595a90a2b29e16c76daa9d111d7a7b6ad8234ba6c2073dabbdb562e9035d",
+      "4149ba8fa1e04a4053063fa10b2fc8761780bca8a6acb2022daad5a57ea7912e"
+    ]
+  },
+  {
+    "article_id": 17365,
+    "title": "= Desperate Souls =",
+    "raw_text_sha256": "c92fb0ea03894786adfc014854f320e95590099f6c5df86c26529a6991f374bb",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      333,
+      1154,
+      2099,
+      3819
+    ],
+    "window_sha256": [
+      "d09fbdba0612c06683d9391dbdf49c38c5df449afd979b3bfa0239de704e8397",
+      "931a227f68234eed833f76f4bc856ea35528600072cafd2d7053ec13bdfb9787",
+      "dc030c70f6b46bca155e497b9558a3c8b64066bfdcd19f14364f6f3abd79d08d",
+      "984f5239cac5b86cb69e6fbe41221c073fc291fb82864b2e1ec06a8004b34d0f"
+    ]
+  },
+  {
+    "article_id": 16388,
+    "title": "= English Water Spaniel =",
+    "raw_text_sha256": "93e442181daa20a6bb11524209c4d5d411c6b09e6d9062c2a2a32a8e48935f91",
+    "encoded_prefix_tokens": 2931,
+    "starts": [
+      124,
+      1281,
+      1489,
+      2812
+    ],
+    "window_sha256": [
+      "d70a976a6a59572c0d331c6410eb6d5e8643cd9d1f37b28a6d67e5e52a3d3ddf",
+      "6b9638353564f60524a0abcd6ad090d27b9ef373ef4f6d7cb2a2b32d41cd92c5",
+      "7cd5bfd4f533edacc7d21e549af1be07abe8b47d6ad4aa5918dd4deca82c21ac",
+      "65663dec3f837eb0a41a7864f29668f87b6f173c4d0d0000de561cbc83351398"
+    ]
+  },
+  {
+    "article_id": 20693,
+    "title": "= Lagrivea =",
+    "raw_text_sha256": "e46f767af379c591e21b5be23018b798c5dda10a530b0712bbc0e53751e2a6fc",
+    "encoded_prefix_tokens": 2448,
+    "starts": [
+      29,
+      601,
+      1236,
+      1881
+    ],
+    "window_sha256": [
+      "62da7406daf5f9e2fc8de14a22499fb0eb68127307594ce523b2ec77583d219e",
+      "4454bef09d5fed04460b6f58566492aa5f2e48f8bae96a11b7cc5d45279b87b8",
+      "7fe5a42bfca25d2793d97011a7818f2013897f25092581f9e2020abba8c50a00",
+      "4f2d39dfbc3ae1b5ad327ccd3d911d2e2661d78a1be7636e6e592df20f00f75c"
+    ]
+  },
+  {
+    "article_id": 21550,
+    "title": "= Forskningsparken ( station ) =",
+    "raw_text_sha256": "3a711e02543bd98ce39c55264f3982a058712acc554eb2eb00c40ea4285121ce",
+    "encoded_prefix_tokens": 2103,
+    "starts": [
+      496,
+      757,
+      1447,
+      1651
+    ],
+    "window_sha256": [
+      "33958f455657f950db41972acc50864f5bdf9c9bcc600cfd75625ce870939939",
+      "6b4b940935c692c6ffeee13e5a7d1626a330836cc387bc33191f2457bc4eee87",
+      "4b83323813792a026cf3562ced04472cf2e6b9138d3490c07d18d698ace024d2",
+      "334a720231481004932a54b716f9727e4bd9dfb2ead0a9f1892736da6cd5531f"
+    ]
+  },
+  {
+    "article_id": 20419,
+    "title": "= Charles Villiers Stanford =",
+    "raw_text_sha256": "cb7feeb9460516a0be2840599edb5e171356a91f46380cec6350dfd1cec97c0a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      401,
+      1102,
+      2993,
+      3600
+    ],
+    "window_sha256": [
+      "80c3f23525279da564ae4be172baa2eec6fa0c066ad8eccef9a664ba9117ea45",
+      "9565fbe94f57181132113e34d18bd66ff5fb7aff1e30e95483c8888008660ee1",
+      "61bff833fd6348de4fca99251f5db66f372c5226bfdd3aa5d0e1b64f2e431e29",
+      "688d61c6ec9f323628c71bab99199415d9c56cdb1be2d3688f9326737e06dbf5"
+    ]
+  },
+  {
+    "article_id": 16880,
+    "title": "= Common blackbird =",
+    "raw_text_sha256": "171c780430fe81e10b83505705b23a1b99e7d9326f4c8efa9119e5c6e97bf3d7",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      206,
+      1048,
+      2966,
+      4010
+    ],
+    "window_sha256": [
+      "ae04a4409542f7cd1eca13a46154e813aa80df97ebe256042ed3fb0cabcda89a",
+      "5bdcc093b76b9439b5ecb512c814b30c157793d4536d24218028fb4e5060f406",
+      "ece147b3db13b7aad7c5f830e9dfca475c6b21dff01828b7c6d85e8a1ac265f7",
+      "adbc3a4c0123d0d63904b4c81bba765ed8b210692bae95bc578ac7aab8cd509e"
+    ]
+  },
+  {
+    "article_id": 23731,
+    "title": "= Alsos Mission =",
+    "raw_text_sha256": "cf15b5197365d7e5beaacbe0efb11f772f0638d829aacc7b9353898ea95218bb",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      511,
+      1626,
+      2594,
+      3204
+    ],
+    "window_sha256": [
+      "00c3eb3a4a4f920baddd3b75f495b20b7dff49d6ab4b9cff91d808934b08b011",
+      "a36fa5a249f7b401f10a70cca1c23848ab7776e072b543dad7ae95956ff137be",
+      "efa1316a85176487b9031d5eb6aa606b17592461bc33ad9956a7935e56787659",
+      "13f8f584e931906eb6cffd56ef1db10e3c4a1d1352056070a85b640c3531c99c"
+    ]
+  },
+  {
+    "article_id": 20169,
+    "title": "= Short @-@ beaked echidna =",
+    "raw_text_sha256": "5b5abdafd753b3c2c77aa98ba4527ff8278d7003cf264f73a8a1178da93019d1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      206,
+      1635,
+      2307,
+      3303
+    ],
+    "window_sha256": [
+      "f4f608c6043ce765b6e63d65061e5b57bdb3e9a39ea51534f97e91f571d8835d",
+      "d7d07ee981bc696497bc756fc6d7dee8e8ea1d9b01b29f42f38435c3cd0fb4c9",
+      "c5b444f937d699e7fe65a74e1df493f36fb2249e9396ec8d3ef0fff10f2363c3",
+      "1fad315fd3fcc9489f931e376f8caa29ba6db05d5729fccad10da55a128c6254"
+    ]
+  },
+  {
+    "article_id": 24133,
+    "title": "= What If ? : Serious Scientific Answers to Absurd Hypothetical Questions =",
+    "raw_text_sha256": "b243fe817ea517775541f350365bd60fc973ec72479f00b8d325eae5e0c61855",
+    "encoded_prefix_tokens": 3191,
+    "starts": [
+      522,
+      1481,
+      2324,
+      2984
+    ],
+    "window_sha256": [
+      "80075685a8e56c872aaaea85092c141be4f69786507713495d2fc579da0ea4a7",
+      "b0b3cec403dbac7a01aa6c26f0f81569f8b64191daad4b4543e246d22fcfb162",
+      "3f662c3fe731648f5fc64faff12228c9a4ff79d4d4e8834fcab96b02de27da21",
+      "aedec7c4a0761e4af4fb5de5bbe34614e0bc58d5fcf7f913ae28e8c91d0bbf11"
+    ]
+  },
+  {
+    "article_id": 19671,
+    "title": "= Bleeding Through =",
+    "raw_text_sha256": "6e8dec660789920cb992fb7ae68f3f16defd2e33ab6378cab16b0be58597a6f8",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      355,
+      1154,
+      2798,
+      3208
+    ],
+    "window_sha256": [
+      "106bd84b7cf94e13f63f2a5597c061d05575340ef1b058e5cb99f68882d8b6b9",
+      "a1efd9b0b318b59dc428c27fc512302ba89d4e58d7fa29dc2a0b0073903fdd01",
+      "74274f6fd9785814ada7e1cfa736fbad071a44e57f2526ba6d660504ad59cf2d",
+      "9636e5f2e314f6ab67f4155ece344a24574acf05683cd3d5361e1da229257ac5"
+    ]
+  },
+  {
+    "article_id": 21511,
+    "title": "= Polish Legions ( Napoleonic period ) =",
+    "raw_text_sha256": "79e68389c1f6a02474543b922ddd67682a730e9b805a0e3ece26e82833bf7f67",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      72,
+      1314,
+      2031,
+      3323
+    ],
+    "window_sha256": [
+      "5ec8c008a5789719f44375efde15672e5846782e4db4b1f9e28d6f85cd12dbb3",
+      "deab53b48275a3a88867c1888a3c9606a9cefde8c32c69293f34071b07a1dd40",
+      "2abf600bf3d0e764e8ab8bd9eadb22685fc6f83b38e356c9a9a55b574e7def97",
+      "d9c2b3b18e8f446b6a4cf2642554b12dba53e75659f74392aac718f65ae17f31"
+    ]
+  },
+  {
+    "article_id": 23339,
+    "title": "= Takalik Abaj =",
+    "raw_text_sha256": "6acaf74efae829335ca31660d00b8217dba9b04fc137510e4c356a43541096f7",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      461,
+      1827,
+      2170,
+      3821
+    ],
+    "window_sha256": [
+      "a2bbdd31037da341324c2e2024170c9ca60c4a25055c93c4f9b28434703bec8e",
+      "e7a6e93eb500922cdc8d59867f6f5f47db60ae44d0e754d44bc87c0ef98b3f38",
+      "e313b8d16cc04a6ea12417a974f029f1dc19c4e19ee66f4330893d9a70d0b396",
+      "6e11ea6b8810022bef6b05244e7ce3cf2eb11b07eac326f6607aeecfa86b46db"
+    ]
+  },
+  {
+    "article_id": 18313,
+    "title": "= Bobby Orr =",
+    "raw_text_sha256": "60b67420cdb68cfc7a00538d1c3406dfd939a879def967020226f9b8c25588b8",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      259,
+      1725,
+      2297,
+      3580
+    ],
+    "window_sha256": [
+      "ff88a2fb7e209f4e3385c74cc24149cd883b5f7d37cb7119f205586f2ef164b6",
+      "d712c8c0918c8d1c0f1005ade072ea2da4448517295cf11b3a048d2c17aa7dca",
+      "58fa9de94d41182e1e0a516029c6283c9bda23ab8443b8bb229b6e63386d2ab6",
+      "d5f54b77e64519d4f98fcebbf32bcf3237bde83949bf0f619c2478097a3fbb81"
+    ]
+  },
+  {
+    "article_id": 19782,
+    "title": "= 200 euro note =",
+    "raw_text_sha256": "026d76ff88066f58b530bceaacdb544cbf04e45acd404da7978a421917d52651",
+    "encoded_prefix_tokens": 3716,
+    "starts": [
+      164,
+      1302,
+      2325,
+      3243
+    ],
+    "window_sha256": [
+      "c3f397c34b112d7da105997cdd6b3d52b35c152769729f7d71f20e3a1e98cb51",
+      "fb87f26415f51ea24c8499716a7655f394ac430f2c39ccbc389b3fd05b6fd732",
+      "3386b3a5958ad30bd9d8292a79198d376e03ee5925c20b7ce2c77299e02f8f32",
+      "494ccc686ceb817199cb72f0789c7ca02b3021514ce53653a9fbac144d31756b"
+    ]
+  },
+  {
+    "article_id": 19996,
+    "title": "= Ain 't No Other Man =",
+    "raw_text_sha256": "aa6121c293f1757e845b934312d03b5042cd9c84506c7950a10c40e271772643",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      276,
+      1158,
+      2216,
+      3463
+    ],
+    "window_sha256": [
+      "60bba21387d0bc67b12a87f16cbd7ac61fc87a84c7d9ac6b34d249fb650bc3db",
+      "58bbbbdb8eea941f1eb08803d272468b4fb2ce112a3c3af2c24594e828798bbf",
+      "b9a1f11af269202d11d45afa898c17f373f3a3fa2dfba2a7e968effc3a29b957",
+      "bb54ae5a64a63fbc0e0f83cf1380abe42193b6ca9393ffc884a21bf8cf7fb3e4"
+    ]
+  },
+  {
+    "article_id": 21791,
+    "title": "= Shattered Glass ( Britney Spears song ) =",
+    "raw_text_sha256": "11b7d73d7b3c8f68083b696ad0fa01b2977644d81154cc10e6b37f1b4c818ccf",
+    "encoded_prefix_tokens": 1760,
+    "starts": [
+      325,
+      812,
+      910,
+      1465
+    ],
+    "window_sha256": [
+      "afdf6ff88cfce0ffdda4e76e6c29bb0c39e9610110ae24da5a25a9953e1d3614",
+      "a95aa299bde1ab6672a076eba5315d1854af68b904a8715213988396964bacd5",
+      "5a204a7bcc6d549be0f75f84d43fc3267276198d74f30a378a83de6dd97125da",
+      "1ae68be6286a7e286a4252c81d115a6457172b5c2f62f1f0f17c6760f405948e"
+    ]
+  },
+  {
+    "article_id": 22788,
+    "title": "= Lifesong ( song ) =",
+    "raw_text_sha256": "844125f18a0c5945887bb6187fd4b8f4b1788eab279c71c1d7342f101b92faf5",
+    "encoded_prefix_tokens": 2810,
+    "starts": [
+      350,
+      1200,
+      1990,
+      2444
+    ],
+    "window_sha256": [
+      "a98db3d6afff6b69d85c1b446daf796d78ba445d6f6d5a20a64c10eb28dc8c5f",
+      "260b9254b49f5f377a17b4f52fbee01fea2cd56289da79872e25cecf902d64ee",
+      "14937ddd27830209ea27e48cbd2c6757348e48d6401c7b465eaded580566cfcf",
+      "6f997edddf638af0e7614528a21440f34eeb267113787242b98c17a917bf94a2"
+    ]
+  },
+  {
+    "article_id": 21112,
+    "title": "= Flying Spaghetti Monster =",
+    "raw_text_sha256": "08ffb2a24b89b3608fbdfbbe0d3e92bdff3f25bc9c8d63cc3eb1ffaa0b673132",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      632,
+      1698,
+      2242,
+      3641
+    ],
+    "window_sha256": [
+      "2baf31049c304e344e23d51e24334be67b74638dbb910f170dd82aeccee2c6de",
+      "be8a86517d3a87d022b3168ddf4d342be6f0e51fd5448db993d1b454ae60e93a",
+      "e6951c73c8c9ece8c1a6c26cfe1b0c2d357eb73d18e10f97abf94fd70328bce7",
+      "28457f9ea116104b761b0b0a449c6237c9c93f141a4702c2928fe63066856083"
+    ]
+  },
+  {
+    "article_id": 21241,
+    "title": "= Chetwynd , British Columbia =",
+    "raw_text_sha256": "0e6b89e031fd0cacd273fc846d88b1091fcf6b5599644a4715ef6ef40affaf6a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      932,
+      1106,
+      2433,
+      3876
+    ],
+    "window_sha256": [
+      "bd05fb96283068358a600bd980483b615480bb48bef2840016b7a49454be110b",
+      "5b0f0545fc9e79d72de00b174ba46c32421919bfe83394fef0a4857e40213e74",
+      "69aa987c0bd435d8dad54416f0a8688fc081bb8a2872cec646b6341dafd3d2d7",
+      "b96b4561eeea9eb0b6bd94e57e9aad0bdcb9cdec2a15a886ef16ca5e878dabbb"
+    ]
+  },
+  {
+    "article_id": 17481,
+    "title": "= A Milhouse Divided =",
+    "raw_text_sha256": "9dd0495867f60ad873fb3e2706c40c91b3677da2b9fae353e55adade8cc929ad",
+    "encoded_prefix_tokens": 2696,
+    "starts": [
+      328,
+      901,
+      1824,
+      2146
+    ],
+    "window_sha256": [
+      "aa23728bb5c750d9d6ec80e62700bb46c4c1545243a7aa2b74459f9489a9967d",
+      "43ebbb537793f1e31050b5e608dae53cca5a2b6447c7c2295fe0f1ed12f96afe",
+      "2a0d80be116e8296dc5cf14b8c873438cfa4153fe3aa6c581e18885196865567",
+      "35cc02d702b43492cd4ca82d67601a0e85745225f48cc680a86ce7b4eaf69017"
+    ]
+  },
+  {
+    "article_id": 20951,
+    "title": "= TNA World Beer Drinking Championship =",
+    "raw_text_sha256": "01fb69465d34654b54c7a2fcee6cd33884ccc52bcd2d76a71446751c530b27e6",
+    "encoded_prefix_tokens": 2131,
+    "starts": [
+      264,
+      759,
+      1184,
+      1825
+    ],
+    "window_sha256": [
+      "a89ca0299378b17cfe41ccf5bca0a6613e206ba82e78f2851e48c13a4aeef187",
+      "881115c64a00c1ef212e0f3994c0846961876ae0e37512f21a5a4c355241118c",
+      "681c8401f61fe39715ea7c8185474068aee71b66144ca3ed4925650e99d9bb7f",
+      "4eae3efa973ca85f1a3e7bcd2a16618326652189c159306be34bd15401063dcf"
+    ]
+  },
+  {
+    "article_id": 22046,
+    "title": "= Limbs of the horse =",
+    "raw_text_sha256": "35641cf5fd0340a782cbfa6a887f192cc73bb6109315c96a41105ce296ed5a39",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      124,
+      1956,
+      2605,
+      3302
+    ],
+    "window_sha256": [
+      "2f74ee0ee2e86c6921d6c4df161963ccf692d4d62630add51b25ef68ed3039bd",
+      "3908b2bf86508e4b0ddb1985947a87a6635e20e1511b3a6c49f6a9b1186a57f7",
+      "fb6996fecf769547420be4e56f2030b3c7313ee6aafcdce7e965699e65d24690",
+      "ccaee5aeae817110b4ac8ebb86b6dce6dc2dda1fc9e2cc4a1fef3f5d38a0af64"
+    ]
+  },
+  {
+    "article_id": 21639,
+    "title": "= Highway 61 Revisited =",
+    "raw_text_sha256": "80dfeff73cf77dfd0ca74a5af8afee1b9f8b03d83a20cf52dcff6cff88d2887d",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      227,
+      1905,
+      2078,
+      3657
+    ],
+    "window_sha256": [
+      "081dd09da09d1d8e629f66b5c98981d8dff27219bc15f55175c12ade067852fe",
+      "b5b96d83cc3ecb63db658dbcb18a91b218c9f421ac18b8874a16d592f6077268",
+      "291435189c3c20c9149f3c576df1fb5b03739eb157810b0cbfa6585d2129a057",
+      "abb6777698836dd74df13f370ad63d550db63137b557c7a696efb0a07373cdb2"
+    ]
+  },
+  {
+    "article_id": 16700,
+    "title": "= Bound ( Star Trek : Enterprise ) =",
+    "raw_text_sha256": "6a628c455f2c49e3517e3ec9ce27444db91d349237aae3eab31872197af170d5",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      294,
+      1199,
+      2064,
+      3742
+    ],
+    "window_sha256": [
+      "71f7a6c8853ac60c418e498cf20ad32433a94e2bdc6868489e056aefb69742c1",
+      "58a4bb62651c91449a0d00d0fe05268381a48a852b671899806a7e1ae29351d8",
+      "397535f34c6ae1389ea184226336810633d7522ee88a8793d9fac935f2332d3c",
+      "e3af1791a595aef81573cda7d4b765e26e5c63a5e9ced389234cfd3f9562f325"
+    ]
+  },
+  {
+    "article_id": 18104,
+    "title": "= Washington State Route 117 =",
+    "raw_text_sha256": "848b83989441c4ce5f7f96e2f128438d1b97b4408494a1ec05b3d0c9d0bbe8ff",
+    "encoded_prefix_tokens": 1247,
+    "starts": [
+      145,
+      512,
+      620,
+      893
+    ],
+    "window_sha256": [
+      "9b1ff038be3271cd725bd3f48942255e0ad8a5e2e655ab7582590b7a592c9678",
+      "5c80c68783ec339595e40f33fc40a9d963555fcbab8c3fe27eaef78b2964a0f3",
+      "3a1162be364919e906954b764fe61dd64f998303b2176e42b13b082e0a7b6bd3",
+      "fe3e55515d27f03e448b0eccaf659923cb09f3b5111fadcbccd19e10f7a383b7"
+    ]
+  },
+  {
+    "article_id": 18403,
+    "title": "= Sharon Kay Penman =",
+    "raw_text_sha256": "73082f3ac1862d5023a887e2f04e90cab05aeb69bfef0c57a53416bc90988505",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      283,
+      1079,
+      2458,
+      3628
+    ],
+    "window_sha256": [
+      "55afacad9a625ef58b0d3c260cc6d95ebc19e4b824952fbb0c475c29964152ba",
+      "ee256c36142f2c817804d330c05eef87e3ecf8788f7bd3c30fb83d6083cd76a9",
+      "cc101e7e22eeb589002976d0c12f89551ab0bf48c3d5e737b749079dfb62ca9d",
+      "c606685c21b59955b449403bde03e0c9b4cd6402e79004b5af6eccd28462f424"
+    ]
+  },
+  {
+    "article_id": 20446,
+    "title": "= Aeneas Mackintosh =",
+    "raw_text_sha256": "da765de4ef899c864185bd1e7484adfec57f23890cb0938a1c01c946a7f71f1f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      568,
+      1107,
+      2620,
+      3036
+    ],
+    "window_sha256": [
+      "8c02a0cc525b4454dcb07862ed829b7920045e59c0a6080bf727373a65d6e4f1",
+      "3b377ef23faefdaf034fb55ecbdd213347181998ae8aef9691ff983b6ffb468b",
+      "3d2a4602ff2dbea5b37ef2622b11646c8dcefa3c81015fbbfdcae32ddb766819",
+      "5c358772eca0b91167e7dea3729a562b948af482336d43da5319c7b57d9a86f8"
+    ]
+  },
+  {
+    "article_id": 19352,
+    "title": "= The Gathering Storm ( novel ) =",
+    "raw_text_sha256": "f2aa31857ac3233585c7691f5e998340ed9b07d4958d65d4505f513ef64df6c1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      967,
+      1523,
+      2893,
+      3317
+    ],
+    "window_sha256": [
+      "d5db0f2154d5d4e6dae2cf7231ea5a177e4c767693cfc6a128a4bfd8b5517df9",
+      "341154252fc8d503fbacd4ece413c07edc1925ad6eeede77ede950a9b7c79e75",
+      "251fb1e9ce2b4e06c4fc805e9fb9b90152c9cdd857e1603b98c97f2efa78f750",
+      "1e6564eebe8697ab0ca0d117a744ece9ad5e3be24d3ab351d47ff2e204ba2508"
+    ]
+  },
+  {
+    "article_id": 24416,
+    "title": "= West Indian cricket team in England in 1988 =",
+    "raw_text_sha256": "1b2f35f7020b59ecb1d86a60a37505c8d1d04afa63522b2e31a6c2235f8d5425",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      77,
+      1772,
+      2119,
+      3996
+    ],
+    "window_sha256": [
+      "f28ee5a9b237b4c14393f347d71d3c698bceaf8f9c34c7c474753814f1cee47c",
+      "337e4ba3905a6041af4ee62181e67133f8c5dd82d99985116201bfe4975b06f6",
+      "e2e34619851c15ec79f43a77e938c5543f8da70d22a2be3078e9f3850e0fcc7a",
+      "68fe6e94c75de30b8f7a884366bd718a26ca9f714a53d46288c21693467699f1"
+    ]
+  },
+  {
+    "article_id": 22458,
+    "title": "= Blair Waldorf =",
+    "raw_text_sha256": "58c1ea9741e08009f5f36a75421c460e88a907c37bb397fd64395f3c782f309e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      293,
+      1365,
+      2075,
+      3513
+    ],
+    "window_sha256": [
+      "7410fc3ff9fcd92521a9521e9113f1fa369e51914da5dfe3efeb089a8e2f0014",
+      "cda364b9a2fafc50611ebc4d9665972df0dc26d58bcdc73070ac1162d955a932",
+      "cea809dc9167eb8e54f484e4fd6cc39ffd67fa9526985df41755d9106b321804",
+      "23d0b96e693c8e06b2ce01820427ac70bf9717cc8bd5331b5b55c14dc13eb7b3"
+    ]
+  },
+  {
+    "article_id": 23541,
+    "title": "= Dream of the Rarebit Fiend =",
+    "raw_text_sha256": "2e3c0b5bba0343a24e293bdde73e61a43be9ca88cccb461fc1b70b56293081eb",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      112,
+      1574,
+      2272,
+      3168
+    ],
+    "window_sha256": [
+      "2a510c210fe6b76a7006542f48eb0adf2ca6b55569740235beb1d72a5772760f",
+      "5957799bf7337584ba85797b4b50c6f5b125f8b9e834932325aa54a93073e938",
+      "84d7d9838914f27ce731e7134b087da1ee1e0723214547c0a0f01a3311a70d31",
+      "b2fd87180202950c833a87f6a3c70d591896893db05790883f5fd8a087c24a54"
+    ]
+  },
+  {
+    "article_id": 19987,
+    "title": "= War Tour =",
+    "raw_text_sha256": "eac75417319f4b8745227dfca5a1919fb15d20b1d5daaab4c9d7c6f36e8be2ff",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      986,
+      1009,
+      2755,
+      3304
+    ],
+    "window_sha256": [
+      "c4923af3fa8c2f145b2b6fe8c64e3776749a88155a813774c7d36ae076fa8df9",
+      "2fee52b7bdf24239a80a5c4a360efb38747b08663c4e7753be8875836b459b48",
+      "e381abe5ff0dba7cb6f5d1ded0a4f664ee5a242bbe1adb890e75f4ed4cd28dac",
+      "51875cbf39aacc9f29a35f03503ff60b8f1720031a2125f9323e243256abf49f"
+    ]
+  },
+  {
+    "article_id": 17366,
+    "title": "= D.P.O. =",
+    "raw_text_sha256": "90c447e57d69bc2659ae745fadda918bf4bc7d2d4d5ce1253f7985c8a64195c3",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      97,
+      1143,
+      2585,
+      3895
+    ],
+    "window_sha256": [
+      "372ef3b9c251d5d07ab8e29471fd4f0f5ea2a2d5f90721cd5bdb56f5f12a7ed3",
+      "77c0d079c5522085980da60daefe33c0eb7d79d488db706fb9efecd96e05b46d",
+      "0d94e01a4fe7a182dcf416d3c8f3bf1b99677c39f0f4e8c466dc67539a11a46c",
+      "a8b62c78f3b1cb120ede36ab716994604b18c3215eab246cc8ab87d030522549"
+    ]
+  },
+  {
+    "article_id": 17256,
+    "title": "= Geist und Seele wird verwirret , BWV 35 =",
+    "raw_text_sha256": "2896f40eddb3a52bda50c5605830f8cb9300d5fb883bbb8924253503d15079b5",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      503,
+      1329,
+      2837,
+      3179
+    ],
+    "window_sha256": [
+      "7f5f30c06656d0a3ed44b76682bad8792ffc19a2d7ae1f7e1a954289ec36f202",
+      "78da62cc8911d779dab590751e67c9cb1dd0ba6c51c3343dc4d69ff530692b02",
+      "fcd293252a310fab58abae865b5dad3987cd68ea1d4f4021d07fd024e94a5e66",
+      "8bbf90f1871547539e641a79c0f01f0effaebb97d522b2123434a6d0d61a577c"
+    ]
+  },
+  {
+    "article_id": 21463,
+    "title": "= Operation Mole Cricket 19 =",
+    "raw_text_sha256": "e191af8017145d1131802f445116aba4742479d8a17028c3d8ee3fb31f3c989f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      125,
+      1835,
+      2021,
+      3920
+    ],
+    "window_sha256": [
+      "f30a02673c8194f8edc0ed2ba72a9776448b2de62942c2141a5e3ea773e4075d",
+      "a4c9f872070266e061cb058951b3e4c287ee0c85293594042a364e1a70c6885c",
+      "7b298f10b7810fd1d3cac463e4a9492eb7f8136bc7cc99ecbcf9f61aee48d98d",
+      "0ab99f6f202c63d3dbe694db8e8e56406fb0bd913ca60e151edc768d44de71e5"
+    ]
+  },
+  {
+    "article_id": 17896,
+    "title": "= Convoy Faith =",
+    "raw_text_sha256": "78aeb2ff1fcec084ac22cb4b12e9b45ddce8dfa84207a8e1fee81162bc56067b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      955,
+      1802,
+      2622,
+      3557
+    ],
+    "window_sha256": [
+      "958d6b12284302b9b1dfc691c5eeb0c232ab2b0d0d370ad6dd06edce20788c1f",
+      "dae9b63ccf115e3ffa197ca6375fa7dc7d3b6b557c86231d3fc51dcd135cde42",
+      "a7a6f38007196ece66a56da7ffdbddc1e812ddacf590a83be6b4859e9a616dc5",
+      "ad28b9d6f4759f8795fa9fcd74c6ff3a08a5bc1e0bda2319eb3f6a3c89e84412"
+    ]
+  },
+  {
+    "article_id": 18995,
+    "title": "= Landing at Nadzab =",
+    "raw_text_sha256": "15952615e3a8e5d1e44a1c75e2fd364b2d06c5b18135a7578923eb4826117cf2",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      990,
+      1496,
+      2358,
+      3270
+    ],
+    "window_sha256": [
+      "4d42a619466fafac10879ec82bb02346889fccbd68fcfde5cd94e8c5a1d71a98",
+      "6c8335f61173c1a6f2f5ac47717f68c1701d48cb0f0265396e93dd8afc5ae042",
+      "048cf70aaba441288a6e3bafef37552f591fad0586e05795e3b533dbed1cbb36",
+      "833cb9c650525345de2a01493d9f829f96d378e7de17a86d48734bafb7b2cf1f"
+    ]
+  },
+  {
+    "article_id": 19076,
+    "title": "= The Show ( Girls Aloud song ) =",
+    "raw_text_sha256": "3a7d9a261d82239aaa12b9d39b20aff24cbc6374a508524d95343fe706d71e22",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      716,
+      1542,
+      2216,
+      3205
+    ],
+    "window_sha256": [
+      "56251516009ee50dbabf88e8c16a562e96172534aad8289d50b67991aceedf23",
+      "bc20241bd47f70c263041c9c85259adba0530bfc91b5d4df257a21f4b2d2090c",
+      "2ecfae916c7dfcc8f3971509a370fcfc4110af2fef4897a45c244ae553c527ce",
+      "3f8a54ed56b56da6481a3c6cdbdc688444f92386cb76702803e18a6e3b52d2b6"
+    ]
+  },
+  {
+    "article_id": 22904,
+    "title": "= Airbus A330 =",
+    "raw_text_sha256": "16cc5f10eee71243a3ba38582658a2b79c6723430d6a42e763f4a4ca6d59378f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      94,
+      1538,
+      2878,
+      3293
+    ],
+    "window_sha256": [
+      "0d49954d36396f6746dfd23f13dd5501cad0fbdcfe3b83d939f59374cb477594",
+      "ecebf24e74e13bf7ff2c8f3e78cee5e585c9876b3a6b66d6b4d277e32b0eb0c6",
+      "3b8edbe4223bd6ae0a3f9c1dfff0b6eed868f2a2e4c9f4c4f2aa09cebfa4601f",
+      "966a5c2b0260c795500a3a2e0d574bc28eefad54b27c98b3a2479519fdce8cd1"
+    ]
+  },
+  {
+    "article_id": 18709,
+    "title": "= FIFA World Cup Trophy =",
+    "raw_text_sha256": "998211a5de80f74d4b202be6bc004868706f0e36b63aeeb082ffd41d52ae7a1b",
+    "encoded_prefix_tokens": 3860,
+    "starts": [
+      612,
+      1303,
+      2116,
+      2999
+    ],
+    "window_sha256": [
+      "8a0043edc34c6099b2b34b795d7e9c19b43670fb027eb99d1fc806ebc5430ddd",
+      "cb4531e9cffc053b9b413c3d18dc0b19ead6e817a58bc789ce3c5e48b09dadef",
+      "8d32dd24708a1962fe96fcf4535c33a8b03efd36f5f7513dd0a694dc8f0237af",
+      "6a7f56caa6473e36443cbe4136c768f1461082946ffd0e3d203919b11428b4e2"
+    ]
+  },
+  {
+    "article_id": 24076,
+    "title": "= HMS Calliope ( 1884 ) =",
+    "raw_text_sha256": "15d057835e670f841fb23f40f0f308806449ac1b7e648b7f1861d1bf670bba2e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      248,
+      1667,
+      2267,
+      3320
+    ],
+    "window_sha256": [
+      "17534c782e2a58402c2a37c60f15a4e0b4422728f720bf19e271949b11acd984",
+      "c98103dd63c26f710ea131625f84c4760abcfda1764b80db6e167a1fd9508f1f",
+      "6313724f501497a0a60c59fedf447a871a24b60ccacbd44d73a62cff4b0c8b52",
+      "933560061c18e10bdbf877d6d2ec20df1d4f97062ac7850a0edb889014bfe376"
+    ]
+  },
+  {
+    "article_id": 19278,
+    "title": "= Megan Rapinoe =",
+    "raw_text_sha256": "e547e09bd02809fe76e9b89adba2ad5625a94e16a2d011f796a7956c9e519586",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      383,
+      1683,
+      2464,
+      3989
+    ],
+    "window_sha256": [
+      "53e5aa2709726fd05300e14bbf528d08f608e1c826745b3a61e40d2350758312",
+      "3b29e2924fe5a63cbc4fa032479611de5bf1634b1943a5ae2bb614eeac3cec59",
+      "fc9a78616c20f5d8c82e17dcbfd800847af9439e3cc84a07492a2a1d52a9f010",
+      "8ae3e72f481e3cb4aadff75c84dd3ae9dcbd2b1fe0e96b18e95dbbb9b1242baf"
+    ]
+  },
+  {
+    "article_id": 17818,
+    "title": "= Martino Zaccaria =",
+    "raw_text_sha256": "240f88626576c8ccf55988fc6c2d23073921f0dff53737b5531ccf38b5b45751",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      137,
+      1788,
+      2841,
+      3402
+    ],
+    "window_sha256": [
+      "4948fafb486fa3b04daf03b63c7f662022e65695b1ff5b07f513d57209d0d056",
+      "1c556a80f7ad2f6903b551129b891db7ed39005c38362d962081ec7196037263",
+      "89b492b7f43d0ca27c99fb32ab3ca452230d9fc25348f2d06dc29bac5e33b3da",
+      "1e285158a1429e13e9ce344184c1db4e11163ca7d8ef034b92664e52b588767c"
+    ]
+  },
+  {
+    "article_id": 23382,
+    "title": "= Everglades National Park =",
+    "raw_text_sha256": "1e9912825e6c81313faf9558313fd39d5339a416842f823daa975cfad328a52b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      670,
+      1031,
+      2553,
+      3257
+    ],
+    "window_sha256": [
+      "8350f1c172b9f3d8b6dc76ae8939c664757a735d39899d852e40a2d40e72ecd0",
+      "9ad9215e8201f0c23c800c3d4642a93443649130d56c429782d9ea64ce09bfdd",
+      "53e9b8c7f1a117aa3299b7d2818ab4354934e4474fcfae35aa55dac6bc22bef2",
+      "9e61f43e52fbbdbee8f8f2503214488026c9c1363dde95e8afaec6a5b9ca7fa6"
+    ]
+  },
+  {
+    "article_id": 19452,
+    "title": "= Kali =",
+    "raw_text_sha256": "17cea8efabdaeb8b2fa8486d74f5256aec01d017653316fd5f292cf7d811128a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      782,
+      1234,
+      2205,
+      3405
+    ],
+    "window_sha256": [
+      "5948a43b2c80af2ea46fec1814be5bb44f443f4404fa29ce14e6830c884c0fd8",
+      "7a52c151c9745dc5d922dbf6f62c7a4e70a63cc07f9617374f343892963f7f19",
+      "57e9ab6f3b674a92901bf0e9f8bbd4fbd220b1e53b73f84547a986fbeb6980d6",
+      "a781213ec254996b8fed7e79051f8dd46453f76498f063ba20593f658ad23331"
+    ]
+  },
+  {
+    "article_id": 18905,
+    "title": "= Haraldskær Woman =",
+    "raw_text_sha256": "e7f5e68c5a61751e9e82d647bbb96d79e251333db813e0978db734347cb093af",
+    "encoded_prefix_tokens": 3231,
+    "starts": [
+      275,
+      1511,
+      1710,
+      2606
+    ],
+    "window_sha256": [
+      "c5c87e9a60fd873b4620d035c40e7e5f7a41a91b7748c05063d3e173fdaaeaa4",
+      "c77380d30f474191f4fc145c9edc4b37c88dd490939e670252af5e35e8b6f50e",
+      "1eee2dd0e3be7d19ab9c7bd98af10618c09050e76acd3801a67e513f67e136a5",
+      "508f48bd4e17abdad3e13074b8ccc751224633a1caff44f0dd764ecacdb23eee"
+    ]
+  },
+  {
+    "article_id": 23986,
+    "title": "= Jim Kilburn =",
+    "raw_text_sha256": "225713561a0e5762d7e7e5d6c325477bf1fa512a918be80c821c11c6a2f214dc",
+    "encoded_prefix_tokens": 3452,
+    "starts": [
+      14,
+      1276,
+      1928,
+      3117
+    ],
+    "window_sha256": [
+      "1f60d621dbbba51e66c09b079fdf39ef3ba149d2df804df18b27f1955227cfbe",
+      "5ffd0ca359f85d481321a16a923c563dc279b92082e1653418e2bb647f36f82c",
+      "ddfc49891c090ba60c0e0a208ee6cdb3f549973db24259aa5d3774ec95e9e696",
+      "2d3ac2dce94c056849ef6f1e53afe39fef3ab760c9bdad8e2c51bc7ca42385b6"
+    ]
+  },
+  {
+    "article_id": 23147,
+    "title": "= Ashland Community and Technical College =",
+    "raw_text_sha256": "9939953b006d527d2dbe33a4854610e3bc4219ef6ab0126a37828a79f315d3f1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      774,
+      1200,
+      2805,
+      3779
+    ],
+    "window_sha256": [
+      "44f44dec46edb8b903929ea4cb928db05b4d885dde27d2a5d6cf81223a0db977",
+      "e54181eaf4eb7d34bdcf1adcd8b0a97fb8853ba0809165345491e9da3845813c",
+      "c2e7cc00a9303b2b2a95892d8c8fa6495ff9a34a7f7267a5f3b71f95af883dc6",
+      "5b49d764f3c371eb0ddb41d39e09bcbb497e7650f1b6cc354843dca8014791e9"
+    ]
+  },
+  {
+    "article_id": 24332,
+    "title": "= Banksia menziesii =",
+    "raw_text_sha256": "3c975f332f290e97db39624b5e0b603ae0f4bc180c87b518447ebcf708d1a570",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      122,
+      1737,
+      2790,
+      4007
+    ],
+    "window_sha256": [
+      "b18a0e7c07f0441bddbc477baffdf7ca659d5ef44c84f1042a1393d6561b6be0",
+      "6c33c6197086c617007dba724213ecc693673483716c52323fdc1b7f43c164e4",
+      "1312341aadceb1cc06eb7341237de6e8b569f138eed67758598c26bc6e86418e",
+      "14f6749c58bdd70d2216b7100484f15f442795f1d1c09a68aea636ecad809178"
+    ]
+  },
+  {
+    "article_id": 18427,
+    "title": "= Music of Athens , Georgia =",
+    "raw_text_sha256": "054dd3c42a60906ad927e57f28e875e5c3dded594ef4f56240890bebfd3bf7dc",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      195,
+      1623,
+      2427,
+      3721
+    ],
+    "window_sha256": [
+      "7aab34e742cfb7881604c3f454ecfe77d117682b6b5d434e886114a32d093a77",
+      "96f71350688a2f2c67a8ed215e9bb41c7b463832073bf8519415a8c9e613cc89",
+      "a5851c5ae56fb919e7b28602528c12fda2e8edb0655583cbf217a0f4144dd99d",
+      "92732a248e9ec5a786ab5df168608bdc7892757f965043387286e4d31151d059"
+    ]
+  },
+  {
+    "article_id": 18884,
+    "title": "= Nagore Dargah =",
+    "raw_text_sha256": "805e3473585537cfd14ba9507a03f545155cc25ca576d01f63eb0aae1e6c4568",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      790,
+      1085,
+      2610,
+      3146
+    ],
+    "window_sha256": [
+      "a0d269362501c2bec51f9b08d0d92e3161cfc8b1e9ccfcc13930d6736d6d7004",
+      "4a0b5467aacb1860e2d87917def858f10f45e79dac7daab3cad20441523ab814",
+      "4211e4f1db770fe6757a68f2bd96c8545048982f392f103a17d6668e63631e25",
+      "383a20a987c8c9235515412a77b78fbbd20c298488235f6a509532ff1009725c"
+    ]
+  },
+  {
+    "article_id": 22288,
+    "title": "= Appalachian School of Law =",
+    "raw_text_sha256": "baa4d2b6c4a2cb29432fc7be29cf6e67bf63cebc93e4c3ea97c1f29458e0cb02",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      300,
+      1883,
+      2459,
+      3372
+    ],
+    "window_sha256": [
+      "04848c28e3798d31f0a7c617ad157f72d2e13330d852fbc05b823885cb8bcff2",
+      "9428731b483d774e4247a5bdfb2e1ea3fa9be28b5af0bd49d66db54fd1d50f8b",
+      "4a0120ee6b1ddd1cc08469ac81aa6d9c491de987e22a4ca6207118f21bd258bf",
+      "fc085efac9064bf54f88ab33afaf31ff10877cccb315c01fa9c8c085482b43bf"
+    ]
+  },
+  {
+    "article_id": 16411,
+    "title": "= Laguna Madre ( United States ) =",
+    "raw_text_sha256": "30892b7d8d447b15a7071e4908883e99551de07cc8c81328332bfd1a495ae5d8",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      176,
+      1379,
+      2288,
+      3305
+    ],
+    "window_sha256": [
+      "8afa2a47a8d2a9b4c83c63048df1e4b4bf6f29d219b9120e2d907111831e0169",
+      "c994c08c3ab7467b41cde33a7ac44f09a2af8e687a5526b230870865b8bab74a",
+      "04461f35f7d3316cd92db033a5053a1338696946aea7acbe02c03f73817aeddf",
+      "c75f930ab55f03c731e71b33a9b0220676ce1452d48f423c0de7844ee71eb6ca"
+    ]
+  },
+  {
+    "article_id": 22895,
+    "title": "= Cyclone Magda =",
+    "raw_text_sha256": "3326c042ac1380fb25c20f495b12f06504f81c0e97cfbab0aad4544b3c116b84",
+    "encoded_prefix_tokens": 3341,
+    "starts": [
+      246,
+      1597,
+      2322,
+      2881
+    ],
+    "window_sha256": [
+      "01798a9038097d44b479e0ed2ee6a64baf44409f1787261add72b01294110884",
+      "e427407fc0d4729b65a64ac19db2cbc20d6ceb0919cb876b00aa7ccd519b6e8e",
+      "fe5682074101b79794267217e211083557aad6437ebda8e62a31d4051961bb54",
+      "a29d11f4c5afce7cb6f77cae4f21c0777500573f8be5852426349a88e1434561"
+    ]
+  },
+  {
+    "article_id": 18772,
+    "title": "= William Brill ( RAAF officer ) =",
+    "raw_text_sha256": "50d6b2318cdd153cc2b002c8cbc04fd00447a58c30114e98c49dd958eaba86df",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      116,
+      1297,
+      2071,
+      3106
+    ],
+    "window_sha256": [
+      "112ed1d74c646346b326c677f0fe341140ee6bc09171cfaf7c7f807088e2b791",
+      "b10b2437ce3513b546b805c1a4d569de2b3d290c45f08a24b04e541484fc8b05",
+      "6b882ca49a31bb98231b8f307e20a5d639049dca1b8dae282159ee5139aa0e12",
+      "da5ac41268d0c8b168f4d840141e0fab16914d634ab9df64333f3c823aa22de3"
+    ]
+  },
+  {
+    "article_id": 20691,
+    "title": "= Operation Clambake =",
+    "raw_text_sha256": "1d317a8fea3bde58dd62a839285f08ea27e8da5a22f6e7c34481b130f7ec5529",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      679,
+      1810,
+      2432,
+      3600
+    ],
+    "window_sha256": [
+      "cd9a1273a3a8771b5c628ea2367360792e1960f67effe03bee8b62d7477238b2",
+      "8368ff9cf82a0ac077f40f59ffdaca66136f5253f4598ac57050e6ede68eaba0",
+      "032c1bdff77568343640487e35cf3f5fa76fc684de8ca7fa1366e0e11ec91ba2",
+      "1f5f23af8aec65979d18a4915e3c7cc42668a4dcb8247fee468c64946af2890e"
+    ]
+  },
+  {
+    "article_id": 16509,
+    "title": "= The Most Famous Man in America =",
+    "raw_text_sha256": "582aac589d88d95119b3d68928ef64ebdfc09e2ec83988bcc912bb8e733f31d7",
+    "encoded_prefix_tokens": 3412,
+    "starts": [
+      788,
+      1673,
+      2008,
+      2948
+    ],
+    "window_sha256": [
+      "8e030cd6a78d0b7b47c2ca75403af9d8b904d278439b8a8ddf622cb580f6f4e2",
+      "b3281d40eb9574e3b798ee27cf39b50b9cb18ed7e8e5f012c56476772ce4bdba",
+      "50e84b57feed7c1c13b272b9d725a1abeeb09383a7df650b82746caf0d61e053",
+      "f3f7061beadc54f648b056ce1d383745d26549a60789aea1e649f3613bfa4cec"
+    ]
+  },
+  {
+    "article_id": 22740,
+    "title": "= Numb ( Usher song ) =",
+    "raw_text_sha256": "99d66f156c541e00148f047a4481b1825f64b6a2b4c7e3af84d8019d30fac08b",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      760,
+      1600,
+      2692,
+      3999
+    ],
+    "window_sha256": [
+      "6685836bdb9d8a58c28dc04e8c5b94ee4a58155c6d357b1e572aebdb1583dabe",
+      "44e65376cff0d651e0d3083d7638d04c4f5fc4bfc754684d631e929b8b3a176e",
+      "a6de5c2b2524881426e0b1aedb6d35089b8938d9550d696b6289ed1fdaf37e1c",
+      "0894565561f2de40e9ccb63bdce4fa37d592e153c1e95b4e6eceb8155edd79ec"
+    ]
+  },
+  {
+    "article_id": 22753,
+    "title": "= Mercy , Mercy ( Don Covay song ) =",
+    "raw_text_sha256": "37a237ac6899bb3ef2c0aa675a74a7212fe598f6636542db5f37f6ffc5459b10",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      912,
+      1086,
+      2933,
+      3298
+    ],
+    "window_sha256": [
+      "2a521690b002c29bfa5f2e572f4a94765a22bf59be41782325dcb0cd923e7771",
+      "24b210a71dfaa312fea718394d9bcb600941002c8ae26e1103355b3324d0a5ae",
+      "010d0c82d06c87786514147f94c55a4f71c2a8d46b209689d81912e00ef28b76",
+      "d9a733a773150817c968a2dd67b0d8beecea286e59884d4e4970ba9f0459c191"
+    ]
+  },
+  {
+    "article_id": 24438,
+    "title": "= Hurricane Lane ( 2006 ) =",
+    "raw_text_sha256": "bc4a1f1aa2065c395dd251b1cf3745fac4ede26851ef49d9067e13e9687d3a67",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      543,
+      1695,
+      2517,
+      3860
+    ],
+    "window_sha256": [
+      "e00f1a1e61ad3b0eaab08b0a6beba44b90f9370e362ccfb4c15bc6ddc010d98e",
+      "06f5cb949561d27fd750d3046a8828a5cd4f1aa98de52b5ac8cf69e1f4f5d9a6",
+      "88471034331b0dfc038cc3f12b3f4ea80dead50528ec486fbd59ed458f4cb54d",
+      "133734a93e3506135f0d7e047c3aa2fc3836d52325e20a483c76487601701536"
+    ]
+  },
+  {
+    "article_id": 19046,
+    "title": "= Battle of Kyongju =",
+    "raw_text_sha256": "739dc5572090b653db2a5bc79f8ff4eebd008b9f8089a4a1cd1b171f96a840ec",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      387,
+      1290,
+      2149,
+      3806
+    ],
+    "window_sha256": [
+      "e3f170d3068d0f195874808df2ada5fae8d50ee1d26eeb493874a95d6c20113c",
+      "f5e3b107f1034366022055a1ee4dd48c5ba7358400824daecc8d63012c44ea1f",
+      "1f03c3969d50b1e5f7cc0f5863a2013ba2c5264bb16d47f18bfc43c8a1776567",
+      "3a6158a9da9a4653a9b3abf23e303c795991c9b7cf1f18dbdacc9f93949e9796"
+    ]
+  },
+  {
+    "article_id": 23537,
+    "title": "= The Rural Juror =",
+    "raw_text_sha256": "a6a992811f1c28c77d9ed25b2b613269c99dddd727e49f5089e9f5585ad14bce",
+    "encoded_prefix_tokens": 3591,
+    "starts": [
+      631,
+      1359,
+      2635,
+      3015
+    ],
+    "window_sha256": [
+      "23671fb1e704ae28ffe3c0bfa7beac296fa221d92d236cae4856ac0ef9c608e8",
+      "1dd5e0fd59ac60f50301d50c320b2dac7570175c6fabaaceeee84608a1c6fb7c",
+      "ece698b8270f48e562af61e6f6e4edf220eb91f0ce3766be7fb5287f2129ce64",
+      "25f70fb64733c5e0504f01439f393771058fd01c8b786178d8f24bde441df112"
+    ]
+  },
+  {
+    "article_id": 17070,
+    "title": "= Brunei at the 2004 Summer Olympics =",
+    "raw_text_sha256": "7000b2984f960ff4dcbded955f0467b4b92c08dffee91205e2bc3c7cb31cdcfb",
+    "encoded_prefix_tokens": 1820,
+    "starts": [
+      398,
+      596,
+      925,
+      1737
+    ],
+    "window_sha256": [
+      "34755e13eb61ffadfc8c9262148c4e0c3dbb7eff6acac345c7dd742899794dd0",
+      "b91950f2cf7e9f3a8525e91523c49414a25d062464964958441cbaf50fd2d018",
+      "c276583b6803bf3f8b64bc1dc3cac60166ace710a06c2c59b877f2f30627de86",
+      "d226b6f22cf5023ea0ff65baec66d7f8fcb0309ca95122d315a7b267f0399c22"
+    ]
+  },
+  {
+    "article_id": 24540,
+    "title": "= Andrés Torres =",
+    "raw_text_sha256": "c3821fdd6b9df052047f400900d48e189a2263c2b390e6f89cc7b53ab6a7206f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      524,
+      1074,
+      2807,
+      3079
+    ],
+    "window_sha256": [
+      "aa21a5db155d05a4460121717b8c4fe57ce341601b080060ae41d5cafbea6955",
+      "7fa44786b3065f17d0f57c03f74205433a8b773631ab921ee82f50b04f6f22eb",
+      "6bdb6f74db95a0379545398366e6c41f8ca9908cf23afd906758a5422ca27800",
+      "177492b5b671dab891ed615a825a0abf7f68889bf5e0cc3d8860f3624d56d96a"
+    ]
+  },
+  {
+    "article_id": 18473,
+    "title": "= The Power of Four =",
+    "raw_text_sha256": "0d9e099a65b7f1806a1b22d38b3154ead6f2a32023e0ebeed70fa26c1ec4db40",
+    "encoded_prefix_tokens": 2713,
+    "starts": [
+      501,
+      1307,
+      1716,
+      2517
+    ],
+    "window_sha256": [
+      "8fe683e1170d663241f577bdb7195c7d292ec3630e901fd3c90d03f657cb61b6",
+      "c29415a74d80f2ac37c91fa5eba01effa61b4cf9b536a09549772f6c008ca2bb",
+      "24b1bd17bc23e63a37ff717cc4dbfa106e6c473a054209fb0f0b964332634263",
+      "9ecda41d100860021b80b391631c874b1673c269d8d07219c411b95eb08f3100"
+    ]
+  },
+  {
+    "article_id": 20909,
+    "title": "= Cougars ( 30 Rock ) =",
+    "raw_text_sha256": "686479c09ab91c95aef0b57f235dbed8d0b193e4a0a9035fb60e73c55883e26d",
+    "encoded_prefix_tokens": 2979,
+    "starts": [
+      22,
+      1258,
+      1564,
+      2333
+    ],
+    "window_sha256": [
+      "9df50de7d41f3229bbccd6549ae962b4ff9ccc3c1f454cc4be74ba76082750be",
+      "123e2f4c06b5497cb4d82aff01bf12ff9f3cb1f04c2010211fd74357bbc1b204",
+      "52e0af56fd9e91ca9f4a85af0e4fc9063fbc039e631db1124b7e65b8a2d39e23",
+      "47a2a144c4d4dae87053e77f368fabd8434760034ed37d4abf99a90955047fb5"
+    ]
+  },
+  {
+    "article_id": 20834,
+    "title": "= Tessa Ludwick =",
+    "raw_text_sha256": "9cb28c1e8af0b0973040fb167d29480137ed952843da6897d0288905a79943e1",
+    "encoded_prefix_tokens": 2068,
+    "starts": [
+      223,
+      672,
+      1357,
+      1542
+    ],
+    "window_sha256": [
+      "c0f6664a373d2c4a7415f1d295c36b5b65d3f1ee82b03ea084ca887c66507312",
+      "2c15d84032850ec903d7e77e63c4c6798793523bed9bc733de5f57782591a6a0",
+      "21e696f555fd4dd2b44f3d39f52d67ce8cb9c10b4b803648a40bbf21de1c42e7",
+      "84b7edad8a0afb6cdae4d747a2df55981556086ff698e8f46abf9f5e6c9a9411"
+    ]
+  },
+  {
+    "article_id": 19824,
+    "title": "= Synthpop =",
+    "raw_text_sha256": "9584cbb45230a02bf67cb26aee66bb6ed3bceffda588186a50797c961c93023a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      176,
+      1277,
+      2211,
+      3774
+    ],
+    "window_sha256": [
+      "15cf6e1bbd09c96f1ffebad79c4a7d43d7ff35f63bc42810fdb5bc8ad13bc52d",
+      "326fb843d8ea6d74d123e82fd6ed3b90054e43d9299b0ed2a282bfc88b25e474",
+      "90da22a7798c47c7b7bb8dac0f691701f4e2d76787fc42d14832a09740f209de",
+      "1b705d54bce4e8038f891fb907e130511cf13a85d3e64071bfbc55e7fae45dd2"
+    ]
+  },
+  {
+    "article_id": 23200,
+    "title": "= Say Say Say =",
+    "raw_text_sha256": "90e8d96ea717d66486e9a69d26eddcb1d6cb8c9cde3171dbe55830625c297d92",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      461,
+      1702,
+      2520,
+      3735
+    ],
+    "window_sha256": [
+      "e25940224af8f6dc9c9d87d7788d7cd5d1e049bd3e4fc7cd1bb7febd110edd0a",
+      "00239438f22f72dc677829153046c2bc4cc91431d29ea8c391b241cf8b32a6d7",
+      "008634aceea4b4b74667f895e5f1c9fa20e798cf775ef26aea775c0d1d95f9c8",
+      "73a517f237727284a1c4988d46b3b28b7ebfaab4f99545e9a1cd436acc54af3b"
+    ]
+  },
+  {
+    "article_id": 24116,
+    "title": "= 2003 – 04 Arsenal F.C. season =",
+    "raw_text_sha256": "16eaf600cc5f6e2de71af8e15fe3be00e55924a1a16145a5f767e9e8f0ab82be",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      788,
+      1074,
+      2441,
+      3894
+    ],
+    "window_sha256": [
+      "2fa0c9fd1e39c374a55b0f33195f321f9718bddddab6f1ba5797de0d0584b257",
+      "664f05b4577fb1d5a363e3d6bea3a92ab5bbc61db53865c9aadd44097ca8e4cc",
+      "dc5f2cad79e27cd2ea218cdefe549d7cf6966bf8ea1fc951dc562d9fec574b38",
+      "19b2dc1de10ffa1ee6ac5ab61f66dcc07f1f39a4c1bcfec2797e1d88e372dcda"
+    ]
+  },
+  {
+    "article_id": 24265,
+    "title": "= Team effectiveness =",
+    "raw_text_sha256": "9ec574cdbc5b98ae70965a4bdba06b03b3a302d44773fd8e025a965d6908dfc7",
+    "encoded_prefix_tokens": 3943,
+    "starts": [
+      319,
+      1226,
+      1970,
+      3206
+    ],
+    "window_sha256": [
+      "2fa1059d008aa55b29fd94435163c4afaeacf7d2951d1c194cd61153ebf6cfb7",
+      "2c4a0b6e479afb7dfe419a0e88e4e016d106707e36e22198bcce909de1c8f3b5",
+      "f58e54447dcd5c0f70bb4f1c8d040a0d6f141f7cb48f991e479226b5f7098550",
+      "24fcf766ee2be58a3a68c1a9ebd6bb3441ca3ffd287ed7cb2035ea486dac7688"
+    ]
+  },
+  {
+    "article_id": 21583,
+    "title": "= SeinfeldVision =",
+    "raw_text_sha256": "2ab1280539bdb493647055d773658a27ec238fedc81cbfbfd60f13c14e6e0a22",
+    "encoded_prefix_tokens": 3476,
+    "starts": [
+      422,
+      1091,
+      2194,
+      2562
+    ],
+    "window_sha256": [
+      "02910914c8f1420f61036f7a4459bc595024e7c3b327a788b8378752225bcd95",
+      "5c4355bda6ae04aa3854339fcf8c158ffbbc970df44942152e0b974cba559dd1",
+      "e7d5e4bc8c9ae0e7c10ee458148ffa345c74a575334a44f7b0907764b1021c08",
+      "ae2dfc11909ea6e47439c7d9439349ade27ea79a4e1304d93a1e32ed43460cb2"
+    ]
+  },
+  {
+    "article_id": 19510,
+    "title": "= Remain in Light =",
+    "raw_text_sha256": "1180663d747a24c7ed04b8a1c7e8b3f6df22bf766844d700f1b6b4494c7ad800",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      123,
+      1099,
+      2656,
+      3869
+    ],
+    "window_sha256": [
+      "c02b6b90b0ae8ab022455d3ff6de75d72190fca32a5ff9311e663006cbaa06b9",
+      "40137d74ee49c2a8869520b301c74834070f5242469a84df195f36ae314a19c8",
+      "91319c56a1bcc8b51488f77a86a3bb91cc555b0ee02c3529d7cbae79b22cd326",
+      "1030d2ba85d1ca7757794a6e7312c89023888c7e5f8aa0988fcec7b48cada4db"
+    ]
+  },
+  {
+    "article_id": 18430,
+    "title": "= Glass Swords =",
+    "raw_text_sha256": "3c9520181a1ce86ff884905fa27966abcc171441dc8e1f1cc1f126f5775c1b88",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      324,
+      1676,
+      2191,
+      3183
+    ],
+    "window_sha256": [
+      "68ff189212a905b75306bd92084fa06c18c355c52540ba6c2c9a685ea3eb2020",
+      "006a7ed820c589c2d54bfd64d54022b8d6240cc02e609f74437f20295f52fdc2",
+      "98e138d3919ae030a59acf10dcf3d6c50ae56597fe9b201aba0bba515d724588",
+      "914398eafe612a266267b87c767b338858b5b3cd3b2c05b9fe144e0d229182ae"
+    ]
+  },
+  {
+    "article_id": 22966,
+    "title": "= George Bernard Shaw =",
+    "raw_text_sha256": "c60eea4839224f5fcaef177396a0c33aff3b411df8472ece8e37897743e8f94e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      807,
+      1612,
+      2483,
+      3238
+    ],
+    "window_sha256": [
+      "fb01530fd9ded739ba1823c313a023b36b67a32d8e94a8d58688da02835e2116",
+      "2633d1cb82c2758da61c93bb6e8227498e5682046dd10fcc7fad99d1c8cef67d",
+      "7025d96e0d44d88aec45e43dd052ba929defdbb8b06646afd9247780c52844a0",
+      "06285fe7e517491566fbef72a030d52138a6696fb249c668d6c60aca68ed7c51"
+    ]
+  },
+  {
+    "article_id": 18611,
+    "title": "= Titan Clydebank =",
+    "raw_text_sha256": "ae03e07fc82c10f179cfaa394313d77ff82f45a84735a81ed3c8d146335fc943",
+    "encoded_prefix_tokens": 2957,
+    "starts": [
+      592,
+      1013,
+      1877,
+      2768
+    ],
+    "window_sha256": [
+      "4d10b3c19da3c61c5224c9374866add5c6735773db0ca40fa1965989c29375fa",
+      "ecbde47a1217738de2ccda0907e5befd9f0b06fc94a1207cb5f48562cb59e3bf",
+      "271cc7351396b5a11d8acd7a32d5b4733e5f73d240846fee967c25153f604c01",
+      "f21d356af182a326a7fc84698e0ebccbde35401ba865706b558209cb0bedffa9"
+    ]
+  },
+  {
+    "article_id": 18555,
+    "title": "= Åråsen Stadion =",
+    "raw_text_sha256": "6939fe17e63372b4b71217f59f0b09d12e6489990ced7a5cae069d6a10a040df",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      733,
+      1368,
+      2910,
+      3610
+    ],
+    "window_sha256": [
+      "47281fe0568bf1430b229ceb71d743eaf3193ec4ef550dc69702fe29a55f7f14",
+      "fee15ae704995851e1f77ecfd8b364e2e58f9fc93981cba743c1f735752ca85f",
+      "8875c9364c17bd8adae22af32da4709031d4570f58011da5674e76d6a93fe6e0",
+      "8ff3fb1c04d0d8fb7c0b7a30d0d517b73eef939a077090091275ebae1b79fb45"
+    ]
+  },
+  {
+    "article_id": 20968,
+    "title": "= The Legend of Zelda : Link 's Awakening =",
+    "raw_text_sha256": "ba53961b21ccf9b12efb928dd0203ca0f423ddd409bc1f09a0cc08b0ecf939a4",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      39,
+      1634,
+      2652,
+      3984
+    ],
+    "window_sha256": [
+      "c8c096f9d5cc846959c6357fa4a93fa68eee7c284f9c8f4e1fb1714b85b5dfb8",
+      "fadcf983a818fa005d80c33e41bd3d5e19ea5696a2f2d59b7d7f6b31530051e4",
+      "fae40b1d20f17bb6ca9cacf5834e9beb857612673e3c6370af2c6a6159882d8b",
+      "eca774b10404f75aecd51d2dbef735bb93e19cde05cabea7358f39c16832008a"
+    ]
+  },
+  {
+    "article_id": 20933,
+    "title": "= Wintjiya Napaltjarri =",
+    "raw_text_sha256": "43e09eee67ced8f2a8b6984e07e1f004e0249270a0558df09786fc3912aa91e1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      938,
+      1795,
+      2707,
+      3180
+    ],
+    "window_sha256": [
+      "908569ba11f6d87e8ac8bf515681d66bbd8984f2c37bfa583e675e19f1593c2a",
+      "423310080e250fca78edf5884788b5b12e99c0d342925a1b514ecca81575a038",
+      "01c949fb4f9e587295eb2417768f11cb04fbb59074c2b9690b7a8f5c69a8cc29",
+      "dde22c4cc5824eb720b46c02ac17aaa15aeeb29d68983b640ae811665964869d"
+    ]
+  },
+  {
+    "article_id": 20649,
+    "title": "= I Always Feel Like Somebody 's Watchin ' Me =",
+    "raw_text_sha256": "398d4cdcb039538de110aa0b53d26f7db57df7f9cfcd9079d89376e97a922cea",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      5,
+      1489,
+      2447,
+      3976
+    ],
+    "window_sha256": [
+      "296d466ae38a21fc3aa27516add5d28609b2ff47b6884f95fe73345c22379f2a",
+      "7a83b418647da2be0cf69e59ef87f879d8835f9bc06e4725fe857ca0b4b7c7f7",
+      "887964d5eb5023d4baafe28816fe9ce7b199672868aac779d4faa3e294382b9e",
+      "e5d5ec65063bf927d0db7d0f5d219f9410d28677d5bd17d53f2c1fd0409c01dd"
+    ]
+  },
+  {
+    "article_id": 22647,
+    "title": "= Hoodoo Gurus =",
+    "raw_text_sha256": "097dbc4513f63e744a2fe300a8bfe6d7924198f72c40b8c62f6199e83e29d851",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      136,
+      1789,
+      2520,
+      3865
+    ],
+    "window_sha256": [
+      "4599ce9cedd7df4895994dee1777735bdd58195902b30d4b4e3f7db2b7a12479",
+      "d2f1b6c017a5bc52bebb23e41aeb6d526d562510daf1287d63491f52fdb26f5e",
+      "59066c17487904ebe30746709d20bf42475a617350b175b0253f97d13859ba22",
+      "ad7b1a6e8645b1c18c487d7c232bbce7751f0ae1ae12831ca8d9260550cbde26"
+    ]
+  },
+  {
+    "article_id": 16718,
+    "title": "= Travelers ( The X @-@ Files ) =",
+    "raw_text_sha256": "6e5f39f3e8ecb6447825d4075eb78fdc87a9f81e1e0d158307b3fc268d82bc6f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      437,
+      1789,
+      2953,
+      3681
+    ],
+    "window_sha256": [
+      "dddfea1225cfea70910a8ad129e9e23a7ca2de64067b834ca6a7128681f084ec",
+      "fe0c553c825d35d9f23047598155a6bfba77c3eb30ff0feff1c9dcf22ba0d299",
+      "c161bf8d82e6491f46975b20a190f7a173ce99fbebcefca0f814c4bdc406906a",
+      "d6167b932b7a67c99b27efb36d8ef624d0512348bc72e32c92b0bae1d2cccc68"
+    ]
+  },
+  {
+    "article_id": 19341,
+    "title": "= Market Forces =",
+    "raw_text_sha256": "25cfb5b7e39866e63fd278693f2f9495d07285c57ffd7bb1b37a0c220838e7df",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      286,
+      1224,
+      2269,
+      3254
+    ],
+    "window_sha256": [
+      "c8cdf55fee554000d4e8c43f8d5e4e61cb6e90e000ec2fccf232ea4e98ab27f6",
+      "77c9a2c3699a201a85c158a1fbb19c46ea21b96c3db9a76c981079fd69f448f6",
+      "4b229307e6092db7f0463bfd1440844ebe03162073224d31cac55cbd08ba31b6",
+      "ef76c5d0287e96a5b18b5e31c5e4809adaba41259935bb473b1c141f253cccce"
+    ]
+  },
+  {
+    "article_id": 23723,
+    "title": "= Viva el Príncipe =",
+    "raw_text_sha256": "909bca357410bdfcd5988927f5c4f75f0b9b019c8031b25ca029b1477fe39d5e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      344,
+      1861,
+      2282,
+      3796
+    ],
+    "window_sha256": [
+      "13f8e302e7019e0224cd1a97b878d7c173abf18764fe70f8d8387db77b585e0e",
+      "1514bcaff597966e44c6dd492a5521d1e4d0aadc55c40106de7852647dc73c72",
+      "1547cd2e3806a15890c2ca5b45ea56fb20f6d6155fb6652845f772ab2b59538f",
+      "a188c55d5b98e6920c4b1ea4822912a9a369a5e108b67600d4787059bed87ab7"
+    ]
+  },
+  {
+    "article_id": 17061,
+    "title": "= SMS Odin =",
+    "raw_text_sha256": "019f737605ba844781989567ec4571f7dbd3e08fa8282cc3fdb4e1f1b8754507",
+    "encoded_prefix_tokens": 2137,
+    "starts": [
+      20,
+      1002,
+      1375,
+      2018
+    ],
+    "window_sha256": [
+      "b78ada4915b1c2fd7b837d7568786c91ce37ac233aca587e106d2d0d275f3154",
+      "fc01c2ec038589888994c5d871347ab53af5900be3eb4f5ee7b855c11fe78e55",
+      "3f52a04aec6f62a1a7d958affe4cefc0a13f0d6894a31da2cdad65131df98091",
+      "01e349a9a489e5a9412de7d109b333a14a4a1d3960ce05cd28d8fc100f7b9039"
+    ]
+  },
+  {
+    "article_id": 17723,
+    "title": "= y . The resulting directed pseudoforest is maximal , and may include self @-@ loops whenever some value x has ƒ ( x ) =",
+    "raw_text_sha256": "617a6dbe3f29525b1386e90d2428af001c6e5533606df44660c0d79d920a7615",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      160,
+      1997,
+      2877,
+      3609
+    ],
+    "window_sha256": [
+      "cd8312327f1b64e3c32f2309ff5f3ae0b580f3743f3a26218196767cdb2fc6bb",
+      "66d1ffdd3d5fbaf3162efb12170e764db0b78d8d5cf9ecadddceba306207f701",
+      "3dcffa4cb777c48443788fe8d41d59d156daf16b48c993e710b8306255248e72",
+      "f251497461ff2b0ea1e4185de0e2513564a92a68091a8322d04969196f46cde8"
+    ]
+  },
+  {
+    "article_id": 19375,
+    "title": "= Sophie Blanchard =",
+    "raw_text_sha256": "3166a81eda56181faeb5f5bec2ad3588b85cd4869b681fe71dc87721f727bb82",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      476,
+      1445,
+      2945,
+      3638
+    ],
+    "window_sha256": [
+      "a4e1cea24cc31b2b79cb349a288c6c821841b7ce8bf69c76f15642ca02da4f10",
+      "79191af1a112be420af3fdbe9d11918aabafa288440286cca7891dc569c4d540",
+      "3f2669a59150ccc36485a529df6dfec43c67115d8832c4063f50d91f57a9d0bb",
+      "e9390cb5ce02800547d968865af054b8227e3b452873ae2158e828fb7c5f1052"
+    ]
+  },
+  {
+    "article_id": 24147,
+    "title": "= 1876 FA Cup Final =",
+    "raw_text_sha256": "eac680198988b6042cf36120d79c39c784a681fffe42763ba246106b60050561",
+    "encoded_prefix_tokens": 3678,
+    "starts": [
+      776,
+      1352,
+      2380,
+      3047
+    ],
+    "window_sha256": [
+      "f8f600e120109c2f68d1558c9a4de437846fa83679226504f76d7bb9658776ae",
+      "57c10bfa82285ea082a63e19e187dba417813e70c48f2824944244708dbecd77",
+      "1e65c8318249770d0fa6a5be619b0692d8993a2c3d5f8317b544f05b0bd86256",
+      "54c47805f2d0d8d08c97d1ce7cc2b805f36b1e238299f78bec87b58085dde03e"
+    ]
+  },
+  {
+    "article_id": 16904,
+    "title": "= Francis Marbury =",
+    "raw_text_sha256": "fd7445e1fa752d7185051af66dfb0f4bf248e18d48e173c6913859bcfc8e8304",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      852,
+      1132,
+      2681,
+      3314
+    ],
+    "window_sha256": [
+      "b65a215ed704687ae7393840accc19b4678da92215a70c7849df47fdf3f098bc",
+      "6da1aefbc1878a4f0487b8aaafcdb1764851794819f59d5b1da9f04ce1d5b175",
+      "d2f1a3315e4b3c44c2b090c967376001a6af6ed2a7d60ea346bf60bcd86f4b83",
+      "65823c51ba08708dccb478a390f3684707babe842afa9ff470c21627596246d3"
+    ]
+  },
+  {
+    "article_id": 22644,
+    "title": "= SS Suevic =",
+    "raw_text_sha256": "23a98421aa58ef68be14fa162f4d4f560928aad58ca612e18019eb1996c4d37e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      202,
+      1669,
+      2564,
+      3518
+    ],
+    "window_sha256": [
+      "9ab443dfc0c45e858ead4d813a1a9b40f89566e4bd27205006a596283215bc48",
+      "03a04456b4e97aa3227f343e55746f51c9c6250477adb470fc3ed16132f42ecc",
+      "7bae3100fd51fe2e97b60f0d14ed4e3206f1fdc95a1ea497e9dd6814ece53623",
+      "abc4ab2695a1a6cfcc1d7b5e38cdd8d2527ee125b05ddf1d45cd53cbb346a626"
+    ]
+  },
+  {
+    "article_id": 22190,
+    "title": "= Scientific Detective Monthly =",
+    "raw_text_sha256": "7620ebdae5cf7004f590e910e3ebe1b38704c2a4542ad1cc6d8dfc648f48ef2f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      964,
+      1822,
+      2231,
+      4025
+    ],
+    "window_sha256": [
+      "137b346855dc4b07f16cf0c6fa9b979f97ccbf25270820a877e4de977ba3ef7e",
+      "444c9b368f48e79575f399d0402ff422a8fe2becd1e958cbb9ef04ab94377951",
+      "cffd283105a20e923abdadd2898725ad044864caa4261eb6cdcc03027a67d776",
+      "b5afb56fe806329076833a39ee9c288daabbc5f79c0535200e2661b7affb8ec6"
+    ]
+  },
+  {
+    "article_id": 20371,
+    "title": "= Stadium of Light =",
+    "raw_text_sha256": "8fb6098c40ab9d26059191097aa63773f1611d22a235a373fe2cf8a535c8c6f2",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      385,
+      1525,
+      2076,
+      3407
+    ],
+    "window_sha256": [
+      "6052481308d38bf07b112976ac1224f30f10e716030aa8f29093d164a3ba0453",
+      "cc1b763b6faa4cd0bb116552ae46b106ffb027cf3d00c4d8d1a48d3ae80e3c1b",
+      "ce48cd848c2f42f5383a90064a856cdefeab192c50a83c31eee53bdf2ee10d32",
+      "b4e280fd9ce0235e0308596a89fa2beaa359ebd9ca2a9dc4712af6838486ef22"
+    ]
+  },
+  {
+    "article_id": 24281,
+    "title": "= Pray ( Justin Bieber song ) =",
+    "raw_text_sha256": "1217a612d6a8797f65f298a3f2a87d42f6aa82a06012333ba92700fe85b3c45b",
+    "encoded_prefix_tokens": 3639,
+    "starts": [
+      818,
+      1708,
+      1942,
+      3283
+    ],
+    "window_sha256": [
+      "95aaf21c0b5c5a803368955ed806a2a97324c0496f276396c6aa986d365cba9b",
+      "4102125ec44200be58cb6696e12cc972131e2f244bd805efbdcc1ba82756e3ea",
+      "e33c8c3d4fb1f948d2c7a4943b4f17a8707e3812825d9c19a4335b42dc77c83f",
+      "1d85d0532ba1af986673e33f16a40467f7d70175a10df1a0291f68353a3ae4bd"
+    ]
+  },
+  {
+    "article_id": 21581,
+    "title": "= Kurt Hummel =",
+    "raw_text_sha256": "2bce030b5a9d43a68f823d29ca5c275a53747f448acea0793ab1534e015d32e0",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      147,
+      1314,
+      2162,
+      3032
+    ],
+    "window_sha256": [
+      "679c8a485a5d73b25d997dca5f93c6abf5526db8df1fc4c9ffe61ea6e1cc0fee",
+      "a6f9afcdff0b0c4a2f5b23cdceedf45ba1675a8ea9030d4c41954660d34335c9",
+      "4c9ae5524efe355f627a2ba2f8451c4dea34793d1fc40cf583a4c88314fbfb0c",
+      "0f2880e1c8ae6a5ecbe80b1a19cb5acb143b7fbc59537c2e308b3d48034381a8"
+    ]
+  },
+  {
+    "article_id": 18209,
+    "title": "= Edward Bellamy House =",
+    "raw_text_sha256": "5b7af11bfea48c0572c3d6277a1fb850b08c8ae9c6936da206a61c530476ea25",
+    "encoded_prefix_tokens": 3312,
+    "starts": [
+      159,
+      1447,
+      2209,
+      3129
+    ],
+    "window_sha256": [
+      "085614640be95ca5dbd9b960adb94410f22f65e5bd29e351203a99ce5dfdebc8",
+      "65d62b2ce1ee2110e91606876d22e1b9c27842ddcfe8e8e67573ce77c2c83842",
+      "2cb884c23502c238efbd571cf09b4121d735173aace13d98bdb170d651ba31ee",
+      "8e8d9bdaa70f51b06c25ba59da56949f383b9572ec1c22636452627c2877b90c"
+    ]
+  },
+  {
+    "article_id": 20944,
+    "title": "= Deep Throat ( The X @-@ Files episode ) =",
+    "raw_text_sha256": "a7f1648f81e0326b58337ab1ccbf8e9a6bd2eabdc1482fdc39244cf0c846cc10",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      811,
+      1569,
+      2425,
+      3762
+    ],
+    "window_sha256": [
+      "e25436f317d18cc94ee0406e5830a85d4b5816fd25629890d10e67340bad7e64",
+      "3b95939008c86bd69072935cee8ae20d8c58ad97b3c9367ef957e01b3d476d98",
+      "b28676f5a1a873d7d81a7e48ac18f924c193bafb1a7c2bdfc09e8bdb3d16a4f6",
+      "567db2a6bc6a4c5db9658a3baec814be53c8aeec5b5d336c58d8b334926eef5d"
+    ]
+  },
+  {
+    "article_id": 17702,
+    "title": "= Cayman Islands at the 2008 Summer Olympics =",
+    "raw_text_sha256": "044684c2f9bcd611fc8802cae6d4026882b87e60d5b4dea2b55c9d03f50b6aa4",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      518,
+      1980,
+      2335,
+      3972
+    ],
+    "window_sha256": [
+      "fae8f99a39e7fbd407262f2980af2b458c16a3d05d160bc19ad0b13f13d89c93",
+      "b0bb4adde2bf319d2636bd9877e3940d74c8b7f13eeaf9f842fc6ef6c3888545",
+      "98fffbeade3ecd43e467c7421b41c3d5757489e3087da0a4790d2e9de0d79036",
+      "ffb7212e6c57022166a63eedd83c2b08cc1ce18fe636c53154a58651c326393e"
+    ]
+  },
+  {
+    "article_id": 20602,
+    "title": "= Representative peer =",
+    "raw_text_sha256": "04aec415afa63388d62b65f2f5e4d3522e48e531204518b2f3eec0a8b50490df",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      457,
+      1582,
+      2763,
+      3072
+    ],
+    "window_sha256": [
+      "dd85fc99eaf435ab46c9b2159773a9c184b2fad211b36021a32c03728fb08e70",
+      "cf5d492b604e81d3e0583755648a3c61c28b05b0f98cc6cfb63f0299250eac47",
+      "c2ad61d220637da477dd787b890b01728a01b7a8e1e2aea07eae88a815a6487d",
+      "41c485dd2b4224e0956b041e0d64c34e7a370441703d8394c771762346fd6414"
+    ]
+  },
+  {
+    "article_id": 20532,
+    "title": "= Our Friends in the North =",
+    "raw_text_sha256": "fd23660dc044e071608c777bc074aa9fe00cc965e8d5c7350a28deeae0804072",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      363,
+      1111,
+      2150,
+      3995
+    ],
+    "window_sha256": [
+      "e29369a4687506c7625b1f2ea8edbaa3fa334b074f28ee3cf2998cd4220dd0b4",
+      "2d2abb0af40b0390e9cb3e27c85ff9dd7cd2f0ae0154d5e34dfe3a53a78beb05",
+      "8cbc9a0a58a5f07db7cae099186fea9c49a823306261837bae31dc7035935bc4",
+      "fe9cb6b20245bfcd00439e6471e7e84d86480a34920ea1432b41f1d809b8ee28"
+    ]
+  },
+  {
+    "article_id": 23882,
+    "title": "= 1886 Navy Midshipmen football team =",
+    "raw_text_sha256": "723f223f2e39b6e59638cd993297a57d12f13cfe122c7af279b8d40cb60a4255",
+    "encoded_prefix_tokens": 2884,
+    "starts": [
+      529,
+      1117,
+      1455,
+      2303
+    ],
+    "window_sha256": [
+      "67cd9b964e112f44f8c3992c586a9f573224aa8c1a3ae11b057e0faf95c5e1bd",
+      "5ded42c1b14e72fceba9c7d29655b9728a9a1ab4a0b5e898b95446de78b4fa56",
+      "57608f000b4ecdea32cb27f2d535eaa80050e17273825704a78ae5c43562a770",
+      "74265df750fb528d8fe8f01ce449158074368d9da11c7b1aaff86082c29182cb"
+    ]
+  },
+  {
+    "article_id": 21540,
+    "title": "= Alioramus =",
+    "raw_text_sha256": "1b97ef06f176fc3fd340f2613db19ea6f0fddca4ae6260e174c2ec23b66002e8",
+    "encoded_prefix_tokens": 3870,
+    "starts": [
+      342,
+      1212,
+      2442,
+      3798
+    ],
+    "window_sha256": [
+      "c4538a8ebb23102fdde9338a3dfef28170954089a2f5afbf5fe4de554d0cb374",
+      "8cb1e890b3f0b45904176f3661fdec27caef283cc3bbc981ad8938feb1866cc4",
+      "ac97f6067e61dcf0cc5ebdce764342be12682c50108004245428c260f85cf11e",
+      "ec53ad1785dc465744b7884d358de29ccf5ec50440ed8d86536505fde146fed3"
+    ]
+  },
+  {
+    "article_id": 22351,
+    "title": "= Payback : Debt and the Shadow Side of Wealth =",
+    "raw_text_sha256": "e3dd63c37362a228f910c85141a148ce890dc4db981471462273d9e354feb6ae",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      647,
+      1293,
+      2174,
+      3627
+    ],
+    "window_sha256": [
+      "f89bc48c5c0458fa61ffd5163bde448965d855b8ef5256afea9250e16e3fffe2",
+      "74fe9074687b1cb190778028784bb9e7dc22575fe1988b39eb8aee97d601fa39",
+      "f2069085f9069a9c35c069dd71b4f1b91dc47f18aae17f6bc9dc10672c67cb55",
+      "b3ef7193e652071748274f75ceddf52e6fccedae10cb6c2f444e742c8a304a11"
+    ]
+  },
+  {
+    "article_id": 19414,
+    "title": "= Chain Reaction ( sculpture ) =",
+    "raw_text_sha256": "270f7362c596087162e8989f28f5c47d0ebac7f22c9348068d94486e6c0aea07",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      158,
+      1615,
+      2764,
+      3401
+    ],
+    "window_sha256": [
+      "b0e01216047fdcdd0ef302d8d7162e9ffc7e28eb497faf680e8243262670b682",
+      "9d918f0e117a3c7f0300e03cdf0ad7d0fe739af9f8a5829edc47392ec8ff0c60",
+      "e7f7656df3f98c2008113f2558940c6198b4a2beeb88aba1a404c7e32b202aed",
+      "9e7906dbf683551602706374221b1a7994ecf5e151b2c4565ad2c371051a8a9d"
+    ]
+  },
+  {
+    "article_id": 20157,
+    "title": "= Racha ( film ) =",
+    "raw_text_sha256": "721fadcb0ad8029174a9f8e2ea2921913e7e1f87a1e14dfeee52ac4c57ecc4c9",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      552,
+      1130,
+      2634,
+      3686
+    ],
+    "window_sha256": [
+      "0512b5a04ebfaa6ab180a61e1ddbab16c4dfdee4ec77a6724a7e9dde160884fe",
+      "74cb1c8800c94abc24ba88b90382aa93bdd2a050d49eaa1ddd516602ff2d2936",
+      "e4b378693df75c462b6b8b7b3de2310b7ee280167c9c469a9071d59de2b401f9",
+      "153e22c5ae9e482dd21dbad5a77e60f349b19b8354d3e39523e1b90f825bcaa8"
+    ]
+  },
+  {
+    "article_id": 19207,
+    "title": "= SMS Babenberg =",
+    "raw_text_sha256": "0c1d025a4e8576ff480e857ec73966ed32c614a7e236f7507c37e55a9e76c0fc",
+    "encoded_prefix_tokens": 2429,
+    "starts": [
+      459,
+      833,
+      1484,
+      2259
+    ],
+    "window_sha256": [
+      "2343f1f7693586c6fbe31b46404ba374bf25c916df9cc4ed8b6fb34c4bf94dff",
+      "21d5710aca5ef0dc8907d7040cf963ec8ab2330e7e0090b880aae5a446db5472",
+      "cf32cecb86658934e5ddcb2676d8bf250674afcd82da720e6ac666702771df13",
+      "624180ab6965e164ce16de12140a6bb86700b5839e03eed809c75a3c4bcd51ef"
+    ]
+  },
+  {
+    "article_id": 18917,
+    "title": "= Frank 's Cock =",
+    "raw_text_sha256": "576e8a1269358955c17383332b84302fb5d16d0280ac7989b9f0809c15589993",
+    "encoded_prefix_tokens": 3278,
+    "starts": [
+      18,
+      1081,
+      2246,
+      2822
+    ],
+    "window_sha256": [
+      "2073996fd2c5d051190679182cc93358e957a1ab0fbea5a1f537c8b3724ed2f7",
+      "c89c5a5d83e2bd9541a2bc5cf7ebb967c85f3cf73aa569a0f643d5f0ac658c52",
+      "0dc7f2668131a82ab5222d8e3ec6429c7dd2ec089a323bd23363fbd2d27e6211",
+      "15d67e3d0203e269e7cdfa1b3d749714a0472b32b8cdc53fdda9c316b42d9177"
+    ]
+  },
+  {
+    "article_id": 24137,
+    "title": "= Northern bald ibis =",
+    "raw_text_sha256": "000930207c5220b2249f1628fcae5dd596294f3e24f44a7807f9e08de498b426",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      226,
+      1843,
+      2664,
+      3857
+    ],
+    "window_sha256": [
+      "39bfc293823145ed79100e67425066df2ec2e2a2b81b8e7abcd59f9f3c3c4360",
+      "b84146f64d54aa517f7c03192f39738eec66f223fa4d634292837e3554155357",
+      "a7644a05e3035c286a1fc52e44932e3e01d9bfa0202e0af08682982c1b323249",
+      "7177a4121233bc6b51929317c9d3793549a96661c4df22886a6359dcf85661c5"
+    ]
+  },
+  {
+    "article_id": 24024,
+    "title": "= Battle of Kaiapit =",
+    "raw_text_sha256": "cf9534954c2327fec7259aa4436cfe34ea43aa34aef9e4c6920759947b8ece63",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      777,
+      1232,
+      2856,
+      3677
+    ],
+    "window_sha256": [
+      "cb98b20ca1f03df4d0f6ed62f7b5c90e502c22887ab898c51f250ccd4b778bee",
+      "8692e0909413f1d49ffe6bb67b61b024258bc3f7bdf7623c80f430f5b0b03a38",
+      "109d55ebd90da4be88601bfdaf90be5bce30a298f8fce41e8fd134793f51c52a",
+      "3992eb2822cbe221b8d6ab705aa1994975e9908158c08db2ec4f408a20ba0994"
+    ]
+  },
+  {
+    "article_id": 22482,
+    "title": "= Brown Betty ( Fringe ) =",
+    "raw_text_sha256": "660fda2f4943f9996110e2347b2e506de550401286bc4021d71a090e050a510d",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      74,
+      1682,
+      2376,
+      3171
+    ],
+    "window_sha256": [
+      "1c6312ac56d4bc3c3c0c020a158bc46efcf660f6a32a53053e6b82b21ce26895",
+      "de12fd5259612a0172babfdd561f2dfe466f8e6049f573a038ccead4e5a650f0",
+      "1da41ab0fa0cdab47adc7304a6cd8913d10e6f6a6083a28ebf6f4795e7d50c84",
+      "67aab09c7f7e30da1cf8aa075dfee4f04c1802c10d113a13f60ee246295b1e60"
+    ]
+  },
+  {
+    "article_id": 23956,
+    "title": "= One Foot in the Grave =",
+    "raw_text_sha256": "edac3922091f00ab9a58f5f40e80975e428122afd00846512a70b6ff6be73914",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      933,
+      1301,
+      2258,
+      3357
+    ],
+    "window_sha256": [
+      "6085b0701c907ae724333f161e1c5ba76e82a676bc0154e91c64aca8bf4f28dc",
+      "d41e6394580704bc780ef9a2040f605042188dbbb964678eb2f8eee890e33b58",
+      "32004ce5b7a210a35e95c057cb0e22067ce446f4d6670185f67324c59c5ad8d5",
+      "6d5b4cd98caaf11b1e203ebeaa982dc45b10052c6881252ff272e50d6fde1e5d"
+    ]
+  },
+  {
+    "article_id": 20786,
+    "title": "= Harold B. Lee Library =",
+    "raw_text_sha256": "a460f5486f317f1e4e01c4b67676b4cbef54a92c1d8a2d21c28202dc264be0e5",
+    "encoded_prefix_tokens": 3697,
+    "starts": [
+      473,
+      1575,
+      2697,
+      3479
+    ],
+    "window_sha256": [
+      "f0a8ffac48cfc17548f234018679de81d6ac06fe4a9a85721c41a76cab0a12b7",
+      "7c2e163ad61bc17bf015febb22753e16b85043dca0179f6237cbf8bf09e0fd81",
+      "88ee2fbadb193a4d53f0ba30c9bae29b2326d361e59630e0280ee73bc20db526",
+      "f6dcd9a707d22bd0a86d1ca2a1d3d51142406b1b231aa685d5d5dba556d18010"
+    ]
+  },
+  {
+    "article_id": 17635,
+    "title": "= Action of 1 November 1944 =",
+    "raw_text_sha256": "debc42099cd97ca1796f414d540f765aee53ec25962dcbe72e3180d9ebd7b6f0",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      642,
+      1288,
+      2898,
+      3696
+    ],
+    "window_sha256": [
+      "2adab0246e1e549f6941670c071c0ecc7721aedc02ba80db0099d9f42cc50a59",
+      "80596b99781b4ae4137de98f5c36ec654cdb6cc22a25888706b0df6bb2e9b2bb",
+      "ca3e6d5619847bbbbd301ab8e41e548d3fd17be3a7f3627427f9001ae09fcf90",
+      "4da9a67a2e4d0496354c36107f35c3938009cd077644668e7fa600b25784f952"
+    ]
+  },
+  {
+    "article_id": 20505,
+    "title": "= HMS Brilliant ( H84 ) =",
+    "raw_text_sha256": "4b78934dcce233b5d42d7b7aa5ff612eb59ff2093b77aef188fe200c10c7a42a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      931,
+      1300,
+      2640,
+      3929
+    ],
+    "window_sha256": [
+      "17a4681e454512d22e28a29fda533c3d3100cf62fe9f53d1301b8688c811538b",
+      "207e6a8bc3c1f901449bae1f7c0be5c2f7155ef147d02a1528b2fbf21a1aede2",
+      "f32cde974a2d45e48963dfc736e05f90ea275dcfdc7e8ef438245bb404c8c325",
+      "2efdbc3d5e157f8cece284905eee4310992fc199d42a2ae777618b90347998aa"
+    ]
+  },
+  {
+    "article_id": 20081,
+    "title": "= 1990 Strangeways Prison riot =",
+    "raw_text_sha256": "5782a1ab887d88b89e6bc58a4d79c012735f63b7055bd38b762f926422be45bd",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      933,
+      1696,
+      2433,
+      3086
+    ],
+    "window_sha256": [
+      "377989ffe8c31c587a405d3c694bca0cd18946ab34cacb89c1749f0a262e327a",
+      "08ba2594afae3b210c465a9fba87b987928a783709d157a57bf169fd38aa28b5",
+      "80dee0a0b48f5f2b57b2fb4c8e127d9242c18b6702090998b3411b9c4bd851c9",
+      "7fde791483181db93758728c8d3e9fb8ad54ce322f78c115cac6dd88bb051004"
+    ]
+  },
+  {
+    "article_id": 21136,
+    "title": "= Sharon Newman =",
+    "raw_text_sha256": "bac95ebf5dc9cbd74e32ec34a9bad4850e5baf252b244944765faddb8ab6cb3e",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      466,
+      1886,
+      2597,
+      3975
+    ],
+    "window_sha256": [
+      "40944d74bc8d33ad7046096fc593984ace8ff12ea0bb0736775f5d76d360ab97",
+      "6b09d53ac0742b11c74d30a712f1fd2b942f5e0d057b78855d6961225972229c",
+      "6039d43a34fb373ae3ba511f8ce8502a62cceb298f088186c70dd35b0c9c7f15",
+      "c81d23dd3cd904b13d4831f413140967eeac2c50072fac43890ea757b0908aed"
+    ]
+  },
+  {
+    "article_id": 17180,
+    "title": "= Josh Hutcherson =",
+    "raw_text_sha256": "20a96b0835b631233174bc4e1e0b053bc57216f803fbae739abacb40c5b85e64",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      120,
+      1983,
+      2460,
+      3463
+    ],
+    "window_sha256": [
+      "3bb9c4b90c4725472f28a21e71a57b8b494bed167853890d9cd329943839ffd0",
+      "0a776735c4eb3cd24a9b66c996bf208ff141896409e3e3641ee3bd5eb902dc79",
+      "e8917c9d2816e89790fd8506e38aba26c9f57a03fef83b1e09afdce755d93269",
+      "aecd9e750653cacb8ed31c8efcd46d5332d8e6e93da613787b8b3ea6fe611b96"
+    ]
+  },
+  {
+    "article_id": 18448,
+    "title": "= Apollo 18 ( album ) =",
+    "raw_text_sha256": "c822e2df03d40c93f894c632b10b041a1baa2cf80714c0cca3f0afcd45327090",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      514,
+      1314,
+      2746,
+      3494
+    ],
+    "window_sha256": [
+      "863a184c1685d78ef053003937a634118910a1d7015ec5ed14bd5a6a99495181",
+      "2b444b18da4f337b7ee93803fb43e2f526156f1b7e13d87a7db0822008c4989a",
+      "d5a82109bace3dc509ca67aa9d72af9ce6a4fc6a358f71707c845b7674ec4a95",
+      "a7fdadaf608f0a6c3a13a4ba4a14f079e5178e655373477e48ddc33b0eadf4b7"
+    ]
+  },
+  {
+    "article_id": 20402,
+    "title": "= Frémont Emancipation =",
+    "raw_text_sha256": "8ed569b8103bfd53c67f1ada6921595414776ca9abd0a733f725dd29fcfcd75c",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      913,
+      1542,
+      2346,
+      3817
+    ],
+    "window_sha256": [
+      "32f83d0086641d82fbf6c94a0731ae2868bc1f559e2a75109a16dd93bdcca56c",
+      "e3c6d77e33457b3804f9f224405f73100d64b107894655fcebb8bcc4d612337a",
+      "289ced4d70c3983b23fa557081c48451e1a492a27c2e9f98ff078d400bada8fd",
+      "828156db824a68d78eac32b91a20d21a6e742e59f93b5300c2086ecd74813512"
+    ]
+  },
+  {
+    "article_id": 16601,
+    "title": "= Even the Stars Look Lonesome =",
+    "raw_text_sha256": "e13cb1996b98616870cc65159a62bb1a3fc8013eb8813d2468d0021f0a5c8f96",
+    "encoded_prefix_tokens": 3179,
+    "starts": [
+      362,
+      1118,
+      1644,
+      2857
+    ],
+    "window_sha256": [
+      "828fb4ac5d86473d4291661f700f7fba1cc850e199659d9b693a1d972d77f206",
+      "5a4b2af0b2500553b933396705eaac9d34bff6332a7342e4e4c9156800776342",
+      "c9fdbec8f89f312c34768c54907c1fb7be3ace3d9645d365f1856d69e7a5360c",
+      "ecf80b993f168fb9add21fa5bad303a81935249c62654784040a1a0184f177ae"
+    ]
+  },
+  {
+    "article_id": 21397,
+    "title": "= U.S. Route 40 in Delaware =",
+    "raw_text_sha256": "6e9994537323968db35ca44e10cb69129dfea7c66b1baf7f6aecd6a7c7ba7adf",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      498,
+      1583,
+      2877,
+      3513
+    ],
+    "window_sha256": [
+      "528abbef9e192c7c3a84ec738076c4c2754a21d1f538396dc3d2d10917cbf39d",
+      "9fa753c482119cc473c822cd4b8dc5c114e7978e005594c7452517b62e69300b",
+      "8c91b817f81f46b365259829c5349eb3d509614fd32e6b4efca64afb0beddedc",
+      "ccdd717d5254d2a1dbf095b45e1d303e4e9ef8c446a14891154784f04ef5244f"
+    ]
+  },
+  {
+    "article_id": 19358,
+    "title": "= The Wolf and the Lion =",
+    "raw_text_sha256": "f5637b8ce05e5765c1ebd8bd71a6b9ecd6844790d1e86248a4169165e2dc210f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      424,
+      1398,
+      2321,
+      3622
+    ],
+    "window_sha256": [
+      "6f034b6765dbcf2f80dc4241d3c18e72c3a75b17294530e00e9ce52d9486c0c2",
+      "7a0bc128ffdbbb596c3eff9ae924d7d6933c51b1716d03d77c3c0ada44f440ed",
+      "76f57d8cb49f74b4c749041b5e69e7611883ad707bc2e9caca5b7128f96e3e99",
+      "d019e7b5c633b6acae08e018439553ba7ab7e561604c43a15da29a9b57267b37"
+    ]
+  },
+  {
+    "article_id": 23525,
+    "title": "= Little Tich =",
+    "raw_text_sha256": "d9fc7c714e0134120a31e01a3e2ecfa4b65b010d7bf6faa6c9cbf7bb8fd2f8e1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      444,
+      1818,
+      2481,
+      3179
+    ],
+    "window_sha256": [
+      "8ee7c8cb74d0ce019e426fd6b031902b97c9654212d8a9c4965611cada67a1e9",
+      "ef9d6d26d5b9d76c768f0a9b1224c2824f4fdd7553e924b0fbd38433d58c1651",
+      "57e23c73fa2d263f2465cd4a3f70ec71a67bb59d46f9b0013fee570e0b5afcb6",
+      "4012f694b23ae649d15d5046c706f309e381a3592d44d325309953e87253d956"
+    ]
+  },
+  {
+    "article_id": 23380,
+    "title": "= 1872 FA Cup Final =",
+    "raw_text_sha256": "883c3f733c1015df87567fa6195177906472f3ebae3b83468acf573dff06d3c1",
+    "encoded_prefix_tokens": 3657,
+    "starts": [
+      338,
+      1061,
+      2088,
+      3434
+    ],
+    "window_sha256": [
+      "762ce3acd8420f7595d2cf3800439a337cb8be4b8ec56cf7ad9699f96c98a648",
+      "8362dc81c0ea1ca984808a90ffd59634bb9b588e47130554c546ab1eb6025618",
+      "c8e5188f549138c7fda5e674eb5d71c3f5b57dd06ce2afdf38ec9b97803dd2e4",
+      "188bcdad9cdc5d2260319b487f875ec4e43dacfc8eac846eff14126a2a684d3e"
+    ]
+  },
+  {
+    "article_id": 21524,
+    "title": "= Guinea @-@ Bissau women 's national football team =",
+    "raw_text_sha256": "497db4c594ce4e61d1e957f8b22fca0d87252ffd4cc8cee4f46be1ea07385fd0",
+    "encoded_prefix_tokens": 1823,
+    "starts": [
+      358,
+      488,
+      1316,
+      1709
+    ],
+    "window_sha256": [
+      "4d8a8f3d1cfc1266b6f610448ad224783e4ceb14b5f03288194e1742ca4d9ecc",
+      "cc71a03a79e74becac643dfe6c18c9222711a44d6bc58aa7b471c6c51124c112",
+      "20387681973285aab2b78e9d4677ca9d4f9f648ac1847ee861a0e253d1e49bc2",
+      "3a5f88ba402736d2cf63041f36015cf9d59fae3d3c0dcec2a38eb132286dd6cf"
+    ]
+  },
+  {
+    "article_id": 18007,
+    "title": "= Castle Hill , Mere =",
+    "raw_text_sha256": "01986701c82082ee630345386c4b258d3936027a121ba0b0c085b0e35f963de0",
+    "encoded_prefix_tokens": 1359,
+    "starts": [
+      204,
+      339,
+      678,
+      1228
+    ],
+    "window_sha256": [
+      "f3abc6f1391694657080e76561106f8c882541bd0d736922c97441a4cbe07b08",
+      "b5551fd297772dcde294cfb68343e718fa34e3b7103eb9b7d0311421ecd1214e",
+      "5c6822453b6436cd6821574b431019ec8a2cf2330d1ab135dafe84733f1088b2",
+      "2971bdb664ff8dc93878f6c7307c6bd4206a6f3206756139e570eaab8240e384"
+    ]
+  },
+  {
+    "article_id": 21974,
+    "title": "= Jump ( Madonna song ) =",
+    "raw_text_sha256": "82866206a98cdfa8517ace9b800bc40b3aa8d2085a0c5f3d0f7215e57bd4f0a2",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      873,
+      1344,
+      2231,
+      3568
+    ],
+    "window_sha256": [
+      "b671660e849fa6813c862a6451e9a8711cc392ea8f1c0fcbb353ed28ebca66f9",
+      "446500966d2be11e6b2fbe80feb974ac10b5ae7e15f1c600bd407fca658f4675",
+      "eb5de9c22340c6daca2539b9c3933e44b26f78d5a2363736d7639eb33d338fc4",
+      "4d906a39dac3c0753a9ee1629b6025cc2a850b83c2468e2d09f36a55e4baa73f"
+    ]
+  },
+  {
+    "article_id": 18483,
+    "title": "= Little Catawissa Creek =",
+    "raw_text_sha256": "c22dda7055ee894bad4a854bfaec523fdc08239d9b0291bd1abdaa60d54504ea",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      202,
+      1970,
+      2621,
+      3490
+    ],
+    "window_sha256": [
+      "4e25249c502b78da333cfb2c0430763663946905601f588fc2f92e10bad0dfe7",
+      "832ddb8838c90a6a7f4b705cdac61be6560165fac4d9e85c9dd313c41685455e",
+      "3044ed379a0e750d58032db7552a864b80b5ec4cc3e041c7e6f2a40348a721a1",
+      "a70da9a144c665c6e71fef22b543ac728347154c6455963c6fc6d0a00be496c0"
+    ]
+  },
+  {
+    "article_id": 18468,
+    "title": "= Joseph Hazelwood =",
+    "raw_text_sha256": "5c4612dc7a5097df3f3d3a76924878b7c1b61bfc288ec3f89bd4479ca2a1435a",
+    "encoded_prefix_tokens": 3652,
+    "starts": [
+      40,
+      1314,
+      2651,
+      2841
+    ],
+    "window_sha256": [
+      "f0c6ba7de826111508d62863b4932b6824236825cb505d817f112d60f579d1c6",
+      "dda54a55e8ea1cfeb6bad1a74a5f9569196cb5cb5a3780ac3d3d805c144b813c",
+      "e662093686cc11daf4a11c51441e3ba3211d0effcb4a9d118210916066341c78",
+      "af22f039da25e43bf4ab0d3d7ac028b5098d309e152a1268828054865fdd7c3c"
+    ]
+  },
+  {
+    "article_id": 22459,
+    "title": "= Vic Fontaine =",
+    "raw_text_sha256": "3a2471bd23487e63922234f2a972d010f7441d009fbdeebaeb81d553cfcb92a9",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      476,
+      1777,
+      2054,
+      3271
+    ],
+    "window_sha256": [
+      "27fe95bdcdf7ac2e5e99808a4860e0c276b6cc107514cbff1522913290e283d8",
+      "ae3d6a9d7b6f67e6a116c003238d0e73df579dd2121186232a2dcb66201388f5",
+      "27b21051a8ae7209e1733fceba519e381fcc2b151575d5dfe89f5b6aef776043",
+      "93dcba5e5fe7d4085186d2328a683509be9c02b1c9c01b51fb0303df5785b657"
+    ]
+  },
+  {
+    "article_id": 23575,
+    "title": "= The Dream ( sculpture ) =",
+    "raw_text_sha256": "aeb593752208d5c9a0077a2458483f9d7c7bf3c5014db15268579dc3ace0a54a",
+    "encoded_prefix_tokens": 3099,
+    "starts": [
+      279,
+      795,
+      1829,
+      2941
+    ],
+    "window_sha256": [
+      "9ee69aceb4c285c0b92bb0dcff41afaa894c90305d3c941b189ed4ba22871fa5",
+      "015244ec6ea4e63c1c2e56823ead421cfa366e818e6ff5c47802f26c920bd8bc",
+      "7b01acbe10bd8d8e393e50d322fd4df773051dcabd5b741ea106d08d20459897",
+      "79a880d45b9f30474c37e1c5a048ab79a17e1d958f158595997101df433a7755"
+    ]
+  },
+  {
+    "article_id": 21542,
+    "title": "= Cwm , Llanrothal =",
+    "raw_text_sha256": "e85bcb2142537324e8736375f54de76a1e7afd1b81713de9c497d7ef86fd7be4",
+    "encoded_prefix_tokens": 1734,
+    "starts": [
+      391,
+      593,
+      908,
+      1297
+    ],
+    "window_sha256": [
+      "ca9f46e244e7ef981c9eb7a7b953cf6acdba91ec871ea01a585adb735404309e",
+      "bea5abb1940761df921174a02ee597f7490855cd40ea11f6693b2959a44d3d8c",
+      "1f96c3c5bb4376cdf89af3b188fb289a82a36e06182a46519dbe2e6736171f1c",
+      "89e4a714fc4668f411b49af10397aca156fa86915e0d0b206fa13f4dd908c8b3"
+    ]
+  },
+  {
+    "article_id": 17233,
+    "title": "= Gennady Yanayev =",
+    "raw_text_sha256": "3934b61035014df1c98d5973344e3923282cab71f9c3b280bed55894670993c2",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      213,
+      1548,
+      2353,
+      3640
+    ],
+    "window_sha256": [
+      "b3c1db3660aec946376b68a1b06e12ee5cc4e15bdba20619626537dcdf783abd",
+      "988e712fcf4a8b36d863b8557682d4cb232817050aa568e2f223ac2201e16305",
+      "9ed23054ffa9b725f65e1cd93a97e145ea974f90fc1216538da5f9e1ef99839d",
+      "cfed052809314b6d60bbe234c3d6247e57efa6a4a20ce136a95652d1172fe2f1"
+    ]
+  },
+  {
+    "article_id": 20819,
+    "title": "= Mountain Grove Campground =",
+    "raw_text_sha256": "affb9b96399a55ccd8dd7b2bcef571169953f5133642143d4882026427972435",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      543,
+      1338,
+      2382,
+      3024
+    ],
+    "window_sha256": [
+      "c61ec2a4d120e832be00d2162bd44a7d5e9b1eaa8e3d26b2b71c147adc916a79",
+      "8582fa7d6e18421707cb96fddd3c1474b38f95f1cf3830dc46d4d9aeb1ff7c70",
+      "2b6069270e776890a2bf44c7c69ce6194a77af03b2091db71651b261762cdc64",
+      "b1451c6dc054a4ef53ae53684b17fdda6e89c9f5cd031d854b975edf39be21e1"
+    ]
+  },
+  {
+    "article_id": 20248,
+    "title": "= Tony Bennett =",
+    "raw_text_sha256": "ba7d5be6c17c829fd3f344085f684c0e639025677d44720d34d2c008cf7e8ded",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      802,
+      1265,
+      2708,
+      3920
+    ],
+    "window_sha256": [
+      "72d157ed0516952b192d8afb2a7a1f1db55052b261dc61409e0634701b8ba558",
+      "f65dc3a7768b145ca94a5d4c419bba1f0836d59b867a14da386b2a33073e84e9",
+      "5ebe3fc04fe5587be6fc145209805b81abd0d41661be38962167330754dd12d4",
+      "39122a1816cecb7e14352dfe6924a3aaea74e0e6b060d42c8b0d053fd57ffe91"
+    ]
+  },
+  {
+    "article_id": 18232,
+    "title": "= Kate Winslet =",
+    "raw_text_sha256": "7e6d2d88f315766db88f0960eb94c8082d4b72c6c09eeceb00c1e25219ac0735",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      205,
+      1079,
+      2778,
+      3642
+    ],
+    "window_sha256": [
+      "29d647081f2f06b18f5030f392f17ad95faba780552e9a62d8f2890e6d4d655a",
+      "af73c20d04624e6fce3cb3272dea12718a8fd788a1ec128fe25b84be03adacc8",
+      "3f3f3b2d79ea602d2b0d6bf443befe3eb8eb302608fb884c1fb533f5f6278454",
+      "11e0e14c93d2a1493e3be18f3d2de5cae24f4f7e409d0fbd949427b2d52c1439"
+    ]
+  },
+  {
+    "article_id": 19455,
+    "title": "= Heavy metal music =",
+    "raw_text_sha256": "ad48a0dee5c8ac0cb73620d9ef30b2ece9df68b0a6b10c01b9e55d1a999b8c53",
+    "encoded_prefix_tokens": 3946,
+    "starts": [
+      413,
+      1621,
+      2175,
+      3800
+    ],
+    "window_sha256": [
+      "bd7d6289dc3ee81e03d052b228ca3cf33ff7eec69fd2990eadddc7778abf1e73",
+      "2ccbed97ff5da473b708722431358ce86496fe4aa488cb05a79c5297818d1863",
+      "9f4ed273cce6760c10498b760a1c6e885d31eec541c6ca81fc393b4e84ca49da",
+      "c98d985ca06374652c7b5fcbe2674870568c59ff0fd86597a0c3d87e58f35447"
+    ]
+  },
+  {
+    "article_id": 20614,
+    "title": "= It 's About Time ( Christina Milian album ) =",
+    "raw_text_sha256": "4ca9b8b87f3127b0d8fafc81c94b138863db336a04287818e116236b8c2974ac",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      313,
+      1856,
+      2931,
+      3983
+    ],
+    "window_sha256": [
+      "dda523516c982cb67740bf35e7b27aa72254ad4822902c41758d7b3ac9bf8fc5",
+      "b7ed4a332295b77a8d8a38635652efc7fe95c9b310a8a7204f16a8cd77d706b1",
+      "e45aaaee68abf50380f9232e4d5113db1de513057b264c29dc60a0349e6181d7",
+      "56d4e357ff1721320dab0a5300467c07b02453f2cd907f660bdd64b44d302727"
+    ]
+  },
+  {
+    "article_id": 21965,
+    "title": "= Hepatorenal syndrome =",
+    "raw_text_sha256": "9bac248bab1faf06f8100d315526269a079da55996b927dfc6f347e842c0d785",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      889,
+      1859,
+      2719,
+      3333
+    ],
+    "window_sha256": [
+      "7e2fe77afb96eda12229e23713472c15ab95116babe0028ddf319fb85a4a2adf",
+      "f3831dc9d55d1e8171be6dc5170a21719af38bbc8f95f5ed59f2be34647261e7",
+      "5baf56e7f0a653c5448057379c4dccee3ca0f71b168f3f950f64412f650b50c1",
+      "fadc41033d9b463bf1683b896aa8a9e5fe7551233ebccd5fa41c78ce16034cd6"
+    ]
+  },
+  {
+    "article_id": 18469,
+    "title": "= City of Salford =",
+    "raw_text_sha256": "11196199bdd3ab2672f0b28e320d71dc65763646eda081ef2705f0fb1dbe99b1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      603,
+      1160,
+      2147,
+      3993
+    ],
+    "window_sha256": [
+      "6e1113cded57150c44e7d30bd558c11508511afdbfacd32cfef0965f572ad54a",
+      "8230b8d1ead0fda407e30ff9b412bebbd16e95e9754d7987f650fa73126a2f47",
+      "698064a0cd6014f6cdd315b39fdd383da86628848fb3f9e92ac3a1bda77c9413",
+      "b3f01b0e61af2efe20f4ea1ddd94a8f59b0c33b163147f42b021a2dd7fd37043"
+    ]
+  },
+  {
+    "article_id": 18047,
+    "title": "= 1 − 2 + 3 − 4 + ... =",
+    "raw_text_sha256": "7f687f39a6d1aaca8a300ee0d7a30f634a515b5e49b7b622b5950f383dc0e97c",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      751,
+      1967,
+      2580,
+      3860
+    ],
+    "window_sha256": [
+      "4de1df7246f7dc70b66115748b3a219d61a5bb5fc1e2c8aa393b7b9e4a715cf0",
+      "678559b7a586eb510e3ac6a2ba7e9d91bb32d97834fe8d0b557d11320212f89b",
+      "4897206d4004c4a2c6d7582b60fa391eb613a2cae954caa228054291efcfc736",
+      "b83a5878e0a18ddf96635328533e5e85d9929c10942536c93874e7fe2b8bbf67"
+    ]
+  },
+  {
+    "article_id": 19669,
+    "title": "= Operation Bribie =",
+    "raw_text_sha256": "7d05867b049e100568bbb99805c8996e7cf2128ab9774a7a688b47b8a57d994c",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      541,
+      1791,
+      2811,
+      3202
+    ],
+    "window_sha256": [
+      "ec33a545cd4223cd7b30781ec3cfaa64f59bad4af0cd8f5dec4a21c12d256289",
+      "a2635ce67a47fb469ee154c76cd057d19ad8963ad1492051b6b825726309ea84",
+      "ec4db8d7b100c7732e2fb89610e9c353f0885eefd929e631992261162352bc25",
+      "c9a335f41f9c84165b47038d302264298ab51dca92a05c266a313627c3e1c66f"
+    ]
+  },
+  {
+    "article_id": 18308,
+    "title": "= In My Place =",
+    "raw_text_sha256": "d1bb5f12d60950e74845446227c7e7a3cb1cb7bbaba5a3362132c015b71e1fb9",
+    "encoded_prefix_tokens": 3683,
+    "starts": [
+      845,
+      1016,
+      1895,
+      2958
+    ],
+    "window_sha256": [
+      "508f608785922a9d8fe0b0a01e62e03750cfab35c55aba195d8565b28f41b5e7",
+      "5cedd4871eca53da4d85b2840c7cf44e2c808b679e213254b6cad418f295cfd9",
+      "4a81a2d20742dc2dfddb1164a9f0928adb23bdd040c618981f0fc9dad5924e4a",
+      "f105a39455063f6ea2a0754730e9c6c69a71ccceb2196bfe5f19a1743eff22e4"
+    ]
+  },
+  {
+    "article_id": 16922,
+    "title": "= Drushyam =",
+    "raw_text_sha256": "7643e8a6f21f1180e81d9f1280054e29aae18ed906bdeee14529010d981b7adf",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      631,
+      1458,
+      2262,
+      3264
+    ],
+    "window_sha256": [
+      "d48bfcd72b9503075248f912584c1eea16fdd75c6626edd98468c524e2f0433a",
+      "2678ec5e1f6f39a5a08d2f091e1862d8bbd8c357d11ed2f0905ebfbf8dcadb5b",
+      "6d3a445df045cc10dcb167e6094a99216cd2d0cddef79bb3568a2d8b59f535ab",
+      "1a6e5e55f841ba955afee682f601f0d7497da61e6f538ce7ba1e86c5cbfd4af1"
+    ]
+  },
+  {
+    "article_id": 19642,
+    "title": "= Mozart family grand tour =",
+    "raw_text_sha256": "1f4602fcb15d98a0e5d8350a731e7748dce5fff16006e61da9e3ed706172a44a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      883,
+      1159,
+      2353,
+      3313
+    ],
+    "window_sha256": [
+      "dad736235be9042e3ab6467ed9cb6567aef2b1533ae9f80108c47b3a306eeec9",
+      "42ab77631ff1e3360415d309bc075af038a6e60df643f1ff2cccd31ddbe7b08b",
+      "03d1e02de637369a699d92844c875c8d294875271bccfb21a5ef6b29b264687e",
+      "ff290f3e2cf6f17d068e436d6ef6758698e0a93210e727214f91b7505c04b363"
+    ]
+  },
+  {
+    "article_id": 21861,
+    "title": "= Shapes of Things =",
+    "raw_text_sha256": "d5b4f20961bf68d07c23f2dd650245b7174bc4ededde9bb32ba2dd5146e91209",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      461,
+      1412,
+      2500,
+      3647
+    ],
+    "window_sha256": [
+      "533792fb7af6a46cf83b31fb7c168df73cec6176ffae433e51db9c44956bf988",
+      "e6e0c2161493fc52afda4fed6965b7d1bba767ae9f04629999294c0e3dac8ed2",
+      "0398c63ec7f3240fd550961fbf3f193f1e2ed803e8555b575a78cecef0e884f5",
+      "0446861a069a2cbab49a3858c0acdfb8e72358ba47792eaf27ddfd771a266a85"
+    ]
+  },
+  {
+    "article_id": 18064,
+    "title": "= Oberon ( moon ) =",
+    "raw_text_sha256": "69ba899e1c769c9eab95aea36676a93cfeb25d22d2af387724dbd41e51fb0513",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      591,
+      1168,
+      2127,
+      3518
+    ],
+    "window_sha256": [
+      "c49d650717a7b452d5178b7cec0839c5e1ac29dc8c7f73864b5c9c12d6c92392",
+      "82c0b2c6157cf990da46ec52a3325c3f85c8be8aa407de059ac749128cb190a7",
+      "1daa58ef8c41473d72c7254d088396c5d1098b094edfb3602d455e77534680d2",
+      "1573365d2eb297b0239a328cb28850ef1e818f19ce2f3b901608a2b52c27272c"
+    ]
+  },
+  {
+    "article_id": 18758,
+    "title": "= Applause ( Lady Gaga song ) =",
+    "raw_text_sha256": "8921782fb02f476d0b504301c40705378ae3e0ce68c44260aaf4e340838bbafc",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      456,
+      1244,
+      2234,
+      3100
+    ],
+    "window_sha256": [
+      "2ccb1fa5dd34773d6aaf560f839ef189106e9d14d6ca27a18be84d3804f30004",
+      "ec443ff02a396f2ceefb5416e0d0104be8fba5c1d68a62a62220e10259310f5c",
+      "c65f6bc56cc6fbf17be75f9da2665e712c7f836040ad334fc9eb5f4a3f77e725",
+      "7cc6b1d91d0aa5c75187715b04541548c48e8f18ecd2af36d640fc1419abfe10"
+    ]
+  },
+  {
+    "article_id": 20708,
+    "title": "= Hobey Baker =",
+    "raw_text_sha256": "882b3f25922e557b051285d62bfd393b2c48a11d25e69abafb6b0d8d69a059ae",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      975,
+      1175,
+      2650,
+      3178
+    ],
+    "window_sha256": [
+      "dbd284d9e1fe0abc07834b5261f64e159e408e21b1e003f7eb2e86e001b4ddca",
+      "984a80e8199aaf0d3abe864cc4bde1f2be3bd9437bece782e2b76403cab6b579",
+      "92897a5fc0057f101ad9fd0539e231d4423fcce44398c37ffc284f1ba95aeecf",
+      "46e9f84c92d019bb99e3b76f71a41572fcd605ddfa753f631880167be67fa746"
+    ]
+  },
+  {
+    "article_id": 19518,
+    "title": "= Hudson Bay expedition =",
+    "raw_text_sha256": "9fa817f40cbc3b8c66af0ca0a3cf4ad5496b766c9e85b802e63bac1b171d93cf",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      416,
+      1532,
+      2086,
+      3175
+    ],
+    "window_sha256": [
+      "e304334fd6d9861c6cb155c8aaf2187ddc636fcedd062eaaeb7761d3efd1e1e6",
+      "63f26f4a59614976fbbba2b4c9840d8680bf021878376bbdce0ebaf307153976",
+      "e3dd8bad59b0fa18fbc781b2b91369fdaf54faea67f5479e94450b738b7bcd7d",
+      "69c576e3d533f821413fd4ca4de6d695672f7c5fff67fefeeef894efb45e93cd"
+    ]
+  },
+  {
+    "article_id": 17179,
+    "title": "= Springsteen ( song ) =",
+    "raw_text_sha256": "7b482dfb00f6ebbbab569574cf2708d56631663b011ea881162e3d324cfa0afe",
+    "encoded_prefix_tokens": 3114,
+    "starts": [
+      132,
+      768,
+      1969,
+      2645
+    ],
+    "window_sha256": [
+      "f6cca176814d46975e33b68288b89c89cbe607864301ee8e5b1ba258e27fd5dd",
+      "ab5f4c81b23e381a30ba16672d200ca88f735f3a57169a597cbd8fdbfb1ba885",
+      "72668d5b31c1f747bfe4ca6a73adcb2cc47732065966b47e525a614b0d438efb",
+      "413fb21f998c4a3c47b9d105005417e4c41254439637badba50947787efc5715"
+    ]
+  },
+  {
+    "article_id": 18221,
+    "title": "= Elaine Marley =",
+    "raw_text_sha256": "ccc5f0c51a4e27653bc3ba63e4e100cb8d1b69581cbb7d3b7afbea8b69137a89",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      470,
+      1602,
+      2770,
+      3253
+    ],
+    "window_sha256": [
+      "2686515053fec4f756bf1932d790a07e7a217c3e6112723a0046aa23a227df46",
+      "5e199373211429d23cafdf2093ce2b18522615875684c6c580ab4220172faec5",
+      "f55eabbb83e1473045fe70d8333622fad282e245b40a09e7b1703f72f4cb5056",
+      "88efdc233c1f064ae5a85b450c6e8e48e69efad8f308abc9d492b03e107f1b46"
+    ]
+  },
+  {
+    "article_id": 21199,
+    "title": "= SMS Seydlitz =",
+    "raw_text_sha256": "20897f7eee844e666f719843fe17b221853ee4d1d4b0f4aed5761ecf3a0182ff",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      678,
+      1805,
+      2597,
+      3413
+    ],
+    "window_sha256": [
+      "b37048084fe992502ab704a17c69a64598a9dda5b787f29ee0ed86e1ec085534",
+      "41548471733e10224bf1861396aa1b5a59c4d94ac3b9142e90543c19f4b642cb",
+      "262bb2c8c683df85c25a868c4dbe809d6a4ef97920b9e22e0b429719d2cb064a",
+      "116351a62189ebb1b6dacae2681457d4ca600f7d3a3877d7c4d8759e62ad8fcb"
+    ]
+  },
+  {
+    "article_id": 18888,
+    "title": "= 2011 BMC Racing Team season =",
+    "raw_text_sha256": "168026db0b0e9e0ad76f7f14bba5f25ea4ff1591836e0e2290a51bd6edfed0c6",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      154,
+      1397,
+      2456,
+      3595
+    ],
+    "window_sha256": [
+      "5f7f4d09740248dde26244549bedfd5c8169a4d506799f54c51f2e199167b116",
+      "f63be20ab1b2f3e73153278b57cf14b7e6ed4fa116e63d68cf9591da5f9df4a5",
+      "369dd51c81b02c40929b78399659b059301c44d8fc0c236add586d3ba5624356",
+      "35d7009f0934d05efbf8f078b45560821a69a65d68c1504046b3c8e26e77c55d"
+    ]
+  },
+  {
+    "article_id": 23248,
+    "title": "= Pūnana Leo =",
+    "raw_text_sha256": "64e83641eabf53b4d2014f0003d702bf969fefce197b4a30e31abac65c16065b",
+    "encoded_prefix_tokens": 3145,
+    "starts": [
+      713,
+      801,
+      1887,
+      2478
+    ],
+    "window_sha256": [
+      "f02e49285820fd54058c42a5dbaca990ccc74efeb6630c4ae3903720c2662259",
+      "dc5428afe554ebff24eee0e5d6e8c8105fa2858773ec1105fd2d1f561ae769d4",
+      "b9e9232e812af676e9b5261bee134bd8fb9cd4caed105ee9d0f123f414beae56",
+      "068c18ca67bf440145ff7c67d68e7658c38e3f0bc632efd7d8450ec8773627ad"
+    ]
+  },
+  {
+    "article_id": 20394,
+    "title": "= Hurricane Celeste ( 1972 ) =",
+    "raw_text_sha256": "e4c8ec887f8381609415d91991a6cd9a88518f875500599339c097192a3db295",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      490,
+      1624,
+      2906,
+      3338
+    ],
+    "window_sha256": [
+      "a6cb823b7967dc695b73dff1d30d79ac95c44ef2fe884b381227d435d6c697c9",
+      "1e9853b7bf23f8f664ef7daae127f9033e424d3c3958c5add36548fc8d84d4ef",
+      "a222f6651c2258e237096dbd04fc81d22e787e1bef1ba8e8236cb6f06b942874",
+      "b9e87bfd2fdbbdd396131b3945d7fd426bfb14f09b29120656842bd3b9957bed"
+    ]
+  },
+  {
+    "article_id": 19385,
+    "title": "= A Very Glee Christmas =",
+    "raw_text_sha256": "5bc9370550e54dbfa6c034900114b1e129bfa16d9f40632ddfe4896fe81db99f",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      491,
+      1142,
+      2950,
+      3463
+    ],
+    "window_sha256": [
+      "636dc9b23ff6f4a1e1187063d1fbfb434f1cac5c31ea86153fc590919f46a4a1",
+      "8ff03efa6c957d8b9fafa239e2d48c58dc25a4d61e76a8ac9d77a0cee13e0545",
+      "07fd485b1667a03c1fa7cd94552e58618313efd48c344c3c0324aaea2122b4b4",
+      "e0875b5c4c8010d68ea669eb3a79980ff714638b2fa734729d2b6f02c7625d87"
+    ]
+  },
+  {
+    "article_id": 21109,
+    "title": "= Climate of North Carolina =",
+    "raw_text_sha256": "c857e60257e43b5fe15c6e84b6611ff72fe681aab6bd1ef128132e2cfb405fed",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      842,
+      1815,
+      2157,
+      3239
+    ],
+    "window_sha256": [
+      "0b62a00edc173c3e635e8b1bae666bd5077a3036fc8ffd36015e60a023e5b16f",
+      "ee27745911e0bd845d341dbb1b5ba0d071b1fb07a7ccae2cdab5ab0c129d0712",
+      "f9af8e790382bc75e52ff50444cd221f95c3b7e573005ee1758c743520561542",
+      "dbb1d526913a7eb5da03b90158cb6a35b76227f9ddd6c6f914f6365f8ef51051"
+    ]
+  },
+  {
+    "article_id": 17621,
+    "title": "= Rise of Neville Chamberlain =",
+    "raw_text_sha256": "9366cdb13a041c2fb95a3b9243c1368199c037eec01610c0537205fd5568e6b7",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      347,
+      1186,
+      2986,
+      3066
+    ],
+    "window_sha256": [
+      "c723286ffc6967e4fbbbb8fe137eda9b4e0a791b512276bd541894424051500e",
+      "d4c3381d3402b7bc21aad0749f729089d0fc0e62e5000ce88d8ebd0e6de5fc68",
+      "f6e6f84f8ff776ebb4c06772315c4fd858ac75fa98893a073c45ca1ea2219235",
+      "8417a721cf8d34e3696ded074e6d9d8f08b941fa054d494862d618aef52e1499"
+    ]
+  },
+  {
+    "article_id": 22803,
+    "title": "= Asa Lovejoy =",
+    "raw_text_sha256": "08295840657852b1dd915065eaa3a4795eecfd56a7ee330c4a8e7f756f5ebc39",
+    "encoded_prefix_tokens": 3399,
+    "starts": [
+      224,
+      1190,
+      2189,
+      3329
+    ],
+    "window_sha256": [
+      "a9ae7b44502f0be87d5e98e824518bc8653201be92a4434977ffc8802b50ee4a",
+      "cfae5f4dd4e34c53f1860e64dbb0503a2f2554dbf1d194878846dfc9196c133a",
+      "402663e64593f8638711631eec459796461e2bd9eb4022f3bb0925680f25b793",
+      "e10799db0c6229f74d911621fa81951cc080140d4c34ca12fe95e6129a818266"
+    ]
+  },
+  {
+    "article_id": 23947,
+    "title": "= Communist Party of China =",
+    "raw_text_sha256": "03ae80b19412ddde9d75164474565001204b47e5e62d9e17fb57600f61a229d1",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      289,
+      1041,
+      2416,
+      3249
+    ],
+    "window_sha256": [
+      "ed6b0964dd29f7c49b05afe9c98ac658680715e9750fc2fa7178747aa8dead5f",
+      "7a93f9c55b77f5727c4289c01e63d63db79d5d66cdffd43f932dfed485ab4717",
+      "03e8ac0e5e9b8607c4dbebd790a076dede503ddde00d24daa64e2639fe9ef7b0",
+      "2147e7251d9ac39bd1a9ef4d891cabec5dbaeb46cb6fca519211e6accfbd1916"
+    ]
+  },
+  {
+    "article_id": 18541,
+    "title": "= Álmos =",
+    "raw_text_sha256": "b1e798f050841b376bed48e6f706e0726822870cff994d4a75ed8e34eb85945a",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      542,
+      1470,
+      2932,
+      3755
+    ],
+    "window_sha256": [
+      "747054b8d1d1d5f6f964600f7d0352decc25cd20bb033ce079e0805ccc1baebc",
+      "6cb9045e62230181441e89498e571096b0571772012d90ad5b8e5b0105c16e44",
+      "597c7ad971f419936ee4965a3b21d35230733fd38a315a950c002bbad7c834f8",
+      "ad01cc8fd2121f0d44688ec421746921809649e6b2e1bb794af6ac97137592d0"
+    ]
+  },
+  {
+    "article_id": 21467,
+    "title": "= Ping Tom Memorial Park =",
+    "raw_text_sha256": "7531a07c7036fc4f6136e6d0333d1874a42496ef34abc5247f0bc3e462291d66",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      734,
+      1626,
+      2223,
+      3785
+    ],
+    "window_sha256": [
+      "163c8473ee53dbc7143e98262e36fdd7ea51e7b1b2fa5065d17f3398a742680b",
+      "2b0ca5cb15ac9aed4fbe40c83c4d7f2c37c3396345b920b571f6c9d9418d3f32",
+      "c00cb1e6fdb766dda89f47a8b75322c2b7d7ffa5a074684584aceeb1dd3c7739",
+      "49bc92e83a451a1b7375a109f554b5c9e45f5c276861c44da8dd0a41201b8778"
+    ]
+  },
+  {
+    "article_id": 16551,
+    "title": "= Return the Favor =",
+    "raw_text_sha256": "a4d5f5d3f614b6e55f92234ab0287c12d94249d10399f6f59d380448efc6ff82",
+    "encoded_prefix_tokens": 3088,
+    "starts": [
+      369,
+      1125,
+      1623,
+      2623
+    ],
+    "window_sha256": [
+      "0ab7ea0dba49433a4a581cb32cc5dcb8abbc58795e706dcae938de7a8b0c8882",
+      "b07d68f405d4ca48e617846fa902887ac535709f8e0cbcc9a7f1d82a6ca5ed5a",
+      "fb6b8c82f21179a9384c6fbbcf7426ee6cad53d7fb07513349707efe0be6f4a2",
+      "0de08c399868bd1bcf9e10ea0dc3f5e194961900ec4a3327f24b2c04be197ed1"
+    ]
+  },
+  {
+    "article_id": 16457,
+    "title": "= | 2 − 3 / 2 | =",
+    "raw_text_sha256": "095d9db71ceb769cdbc715594bb0f4fd3c6a065521e0366b1169a5875b773eed",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      772,
+      1043,
+      2233,
+      3093
+    ],
+    "window_sha256": [
+      "e94f699c542dc4cb2d1a832dcb427ee41927a78af8a4ac97179926ade1ff5a10",
+      "1c15e47d917e48b1fbb4cf94e1416d44e89f5507ab236cf9ff04da31bf6d03e6",
+      "519a3ac2f4fd56e274385df01b4aa2304aeb41d2d56dd8c56124bfda63251ec9",
+      "8d689bff45ff182c475af3b88019ec3ee28b5acff8a138e2f2d35d4d68859dd7"
+    ]
+  },
+  {
+    "article_id": 20089,
+    "title": "= Pyramid of Userkaf =",
+    "raw_text_sha256": "efd3d870583afa845ac30242eac6eb685c56f08bfceac0a2df811734fda38ec9",
+    "encoded_prefix_tokens": 4096,
+    "starts": [
+      743,
+      1459,
+      2588,
+      3483
+    ],
+    "window_sha256": [
+      "212ca719986159eba3491ca08ba79f5b11daff087872ec6e345789341fa0b281",
+      "99dcea4db7c9264a21440f6e6758f55e27801b53b5fd5e5199d75f0c1a78b925",
+      "3456ec453161374f0a3484d1a15ded46801efd6ae3a25178b1b114ff3c98dac0",
+      "512c076ccafafc54a506732b0dd28fb616645f4dff18b1db8d04e1ece8a625b9"
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+{"seed": 906107, "mean_nll": {"native-rank1": 4.287718421081081, "native-rank8": 4.266148413531482, "dense104": 4.232931029284373, "dense80": 4.270642420975491, "dense164": 4.19473391934298, "rank8-to1": 4.270711433608085}, "independent_subset_audit": {"required": false, "passed": null}}

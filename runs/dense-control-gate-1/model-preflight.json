@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "parameter_and_compute_counts": {
+    "native-rank1": [
+      47168,
+      15360
+    ],
+    "native-rank8": [
+      95552,
+      31488
+    ],
+    "dense104": [
+      47168,
+      19968
+    ],
+    "dense80": [
+      42560,
+      15360
+    ],
+    "dense164": [
+      58688,
+      31488
+    ]
+  },
+  "legacy_training_forward_max_error": {
+    "native-rank1": 0.0,
+    "native-rank8": 0.0
+  },
+  "checks": [
+    "matched_backbone",
+    "matched_common_and_router",
+    "tied_embeddings",
+    "deterministic_initialization",
+    "dense_manual_forward",
+    "sparse_legacy_parity",
+    "training_inference_parity",
+    "finite_backward_and_parameter_update",
+    "rank1_actual_storage"
+  ]
+}

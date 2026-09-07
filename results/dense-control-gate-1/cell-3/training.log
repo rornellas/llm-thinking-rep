@@ -1,0 +1,27 @@
+/home/runner/work/llm-thinking-rep/llm-thinking-rep/pre_qwen_certification/reality_gate_data.py:165: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  article = torch.as_tensor(
+{"step": 0, "arm": "native-rank1", "development_nll": 6.245796349843343, "recent_train_nll": null}
+{"step": 0, "arm": "native-rank8", "development_nll": 6.245806957880656, "recent_train_nll": null}
+{"step": 0, "arm": "dense104", "development_nll": 6.24357006072998, "recent_train_nll": null}
+{"step": 0, "arm": "dense80", "development_nll": 6.246803175608317, "recent_train_nll": null}
+{"step": 0, "arm": "dense164", "development_nll": 6.239674011866252, "recent_train_nll": null}
+{"step": 0, "arm": "rank8-to1", "development_nll": 6.245806585947673, "recent_train_nll": null}
+{"step": 800, "arm": "native-rank1", "development_nll": 5.057697331110637, "recent_train_nll": 5.174288265705108}
+{"step": 800, "arm": "native-rank8", "development_nll": 5.0710845375061036, "recent_train_nll": 5.18212171792984}
+{"step": 800, "arm": "dense104", "development_nll": 5.037767588297526, "recent_train_nll": 5.155532608032226}
+{"step": 800, "arm": "dense80", "development_nll": 5.028804241816203, "recent_train_nll": 5.141040515899658}
+{"step": 800, "arm": "dense164", "development_nll": 5.101510855356852, "recent_train_nll": 5.196407120227814}
+{"step": 800, "arm": "rank8-to1", "development_nll": 5.071069529851278, "recent_train_nll": null}
+{"step": 2200, "arm": "native-rank1", "development_nll": 4.51131986618042, "recent_train_nll": 4.536916673183441}
+{"step": 2200, "arm": "native-rank8", "development_nll": 4.486229550043742, "recent_train_nll": 4.518754487037659}
+{"step": 2200, "arm": "dense104", "development_nll": 4.46959911664327, "recent_train_nll": 4.499417867660522}
+{"step": 2200, "arm": "dense80", "development_nll": 4.488122495015462, "recent_train_nll": 4.506024308204651}
+{"step": 2200, "arm": "dense164", "development_nll": 4.451700191497803, "recent_train_nll": 4.471716639995575}
+{"step": 2200, "arm": "rank8-to1", "development_nll": 4.486948820749919, "recent_train_nll": null}
+{"step": 4400, "arm": "native-rank1", "development_nll": 4.243972951571147, "recent_train_nll": 4.228565692901611}
+{"step": 4400, "arm": "native-rank8", "development_nll": 4.22072374979655, "recent_train_nll": 4.2025058972835545}
+{"step": 4400, "arm": "dense104", "development_nll": 4.181874918937683, "recent_train_nll": 4.16576689362526}
+{"step": 4400, "arm": "dense80", "development_nll": 4.217200355529785, "recent_train_nll": 4.197455930709839}
+{"step": 4400, "arm": "dense164", "development_nll": 4.155115950902303, "recent_train_nll": 4.118112864494324}
+{"step": 4400, "arm": "rank8-to1", "development_nll": 4.223096256256103, "recent_train_nll": null}
+FROZEN 81c9a666de61001f702e21dc1dfc19f03975d369f70363a247825cc548e3cf04

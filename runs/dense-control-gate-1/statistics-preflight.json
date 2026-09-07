@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "tests": [
+    "zero",
+    "constant",
+    "shift_equivariance",
+    "two_bootstrap_paths",
+    "JSON_scalars"
+  ]
+}

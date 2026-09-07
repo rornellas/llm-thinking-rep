@@ -1,0 +1,60 @@
+{
+  "FCC1_articles_sha256": "08480679de6dfbfcebc97aeb36253cd5a6a2b811ec62e749af46f4810a4ca94b",
+  "FCC1_windows_sha256": "08cb1976bd81b997733a535418816e8d45b7383fd24a87e7a390a432228e9c73",
+  "articles": 256,
+  "environment": {
+    "datasets": "5.0.1",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 13 2026, 02:47:42) [GCC 13.3.0]",
+    "tokenizers": "0.23.1"
+  },
+  "exact_duplicate_window_intersections": 0,
+  "last_tokenizer_true_article": 206,
+  "last_training_true_article": 97,
+  "license": "Source WikiText: CC-BY-SA-3.0 / GFDL; retain source and revision attribution.",
+  "nominal_split": "train",
+  "parent_array_sha256": {
+    "train-tokens.npy": "e98fd44ff87db568c0272a1968949fc7a2a06f12b9079d9d3142f45e53e0750d",
+    "validation-tokens.npy": "678e9c4961e07af6b8dcc44d662a3d75b2f1e9d9dbce10398ac6a1dd035c3c3d"
+  },
+  "parent_prefix_exact_reproduction": true,
+  "pool_bounds": [
+    16384,
+    24576
+  ],
+  "protocol": "DCG-1",
+  "protocol_sha256": "4e04c74291bf5ade6a5a37ba5adbfa96f9d7eba8c18f7c7bfeeffdaee7f9d257",
+  "rejections": [
+    {
+      "article_id": 20775,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 24262,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 21571,
+      "reason": "too_short"
+    },
+    {
+      "article_id": 21147,
+      "reason": "too_short"
+    }
+  ],
+  "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "role": "fresh_holdout_outside_bounded_training_tokenizer_and_FCC1_pools",
+  "scored_tokens_per_model": 65536,
+  "selection_seed": 906131,
+  "sha256": {
+    "articles.json": "1bd6f88d3edcfb24b2cb17c79a67fda8b96c0b349c8376c2841e47fdde4491e9",
+    "windows.npy": "4da1034cef14a67d4e6e37bf1561f60278385e62dbbb6108e9e0c4bf90e9f5f8"
+  },
+  "source": "Salesforce/wikitext",
+  "source_script_sha256": "327f38e56dca75816634624c8e3360a88b58c8a933d8459efc11bd619fa3f301",
+  "subset": "wikitext-103-raw-v1",
+  "tokenizer_sha256": "3264a70c6b243b5926eaca048774c1a282b6f4b06a5a539498582d92c7705a83",
+  "window_seed": 906137,
+  "windows_per_article": 4
+}
